@@ -1,0 +1,55 @@
+GRADE
+
+aluno
+- id aluno
+...
+
+professor
+- id professor
+...
+
+CREATE TABLE sala (
+	id_sala SERIAL PRIMARY KEY,
+	numero TEXT,
+	capacidade TEXT,
+	descricao TEXT
+);
+
+CREATE TABLE materia (
+	id_materia SERIAL PRIMARY KEY,
+	nome TEXT,
+	creditos TEXT
+);
+
+CREATE TABLE pre_req (
+	id_materia INTEGER REFERENCES materia(id_materia),
+	id_pre_req INTEGER REFERENCES materia(id_materia)
+);
+
+CREATE TABLE turma (
+	id_turma SERIAL PRIMARY KEY,
+	id_materia INTEGER REFERENCES materia(id_materia),
+	id_professor INTEGER REFERENCES professor(id_professor),
+	id_sala INTEGER REFERENCES sala(id_sala)
+);
+
+CREATE TABLE horario (
+	id_horario SERIAL PRIMARY KEY,
+	id_turma INTEGER REFERENCES turma(id_turma),
+	dia_hora TEXT
+);
+
+CREATE TABLE compromisso (
+	id_compromisso SERIAL PRIMARY KEY,
+	id_turma INTEGER REFERENCES turma(id_turma),
+	nome TEXT,
+	data DATE,
+	id_sala INTEGER REFERENCES sala(id_sala),
+	informacoes TEXT
+);	
+
+CREATE TABLE aluno-turma (
+	id_aluno INTEGER REFERENCES aluno(id_aluno),
+	id_turma INTEGER REFERENCES turma(id_turma),
+	faltas INTEGER
+);
