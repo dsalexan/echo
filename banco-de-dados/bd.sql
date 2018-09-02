@@ -1,4 +1,7 @@
-﻿DROP TABLE IF EXISTS saldo;
+DROP TABLE IF EXISTS reserva;
+DROP TABLE IF EXISTS viagem;
+DROP TABLE IF EXISTS localidade;
+DROP TABLE IF EXISTS saldo;
 DROP TABLE IF EXISTS cardapio;
 DROP TABLE IF EXISTS aluno_turma;
 DROP TABLE IF EXISTS compromisso;
@@ -160,11 +163,11 @@ CREATE TABLE compromisso (
 );	
 
 INSERT INTO compromisso
-VALUES (DEFAULT, 1, 'Prova de Calculo', 2018-09-29, 1, 'levar calculadora'),
-(DEFAULT, 2, 'Palestra de Organização Financeira', 2018-10-01, 2, 'vale horas'),
-(DEFAULT, 3, 'Entrega Manuscrito', 2018-10-15, 3, 'Encardenado'),
-(DEFAULT, 4, 'Prova de LP', 2018-11-01, 4, 'até vetores'),
-(DEFAULT, 5, 'Reunião Forgers', 2018-09-4, 4, 'Comparecer com Camiseta do grupo');
+VALUES (DEFAULT, 1, 'Prova de Calculo', '2018-09-29', 1, 'levar calculadora'),
+(DEFAULT, 2, 'Palestra de Organização Financeira', '2018-10-01', 2, 'vale horas'),
+(DEFAULT, 3, 'Entrega Manuscrito', '2018-10-15', 3, 'Encardenado'),
+(DEFAULT, 4, 'Prova de LP', '2018-11-01', 4, 'até vetores'),
+(DEFAULT, 5, 'Reunião Forgers', '2018-09-4', 4, 'Comparecer com Camiseta do grupo');
 
 
 CREATE TABLE aluno_turma (
@@ -175,11 +178,11 @@ CREATE TABLE aluno_turma (
 );
 
 INSERT INTO aluno_turma
-VALUES('111866', 1, DEFAULT),
-('111867', 2, DEFAULT),
-('111868', 3, DEFAULT),
-('111869', 4, DEFAULT),
-('111820', 5, DEFAULT);
+VALUES('111111', 1, DEFAULT),
+('222222', 2, DEFAULT),
+('333333', 3, DEFAULT),
+('444444', 4, DEFAULT),
+('555555', 5, DEFAULT);
 
 -- ou então
 
