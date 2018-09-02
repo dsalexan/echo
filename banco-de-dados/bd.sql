@@ -78,6 +78,13 @@ CREATE TABLE cardapio (
     PRIMARY KEY (id_cardapio)
 );
 
+-- ou então
+
+CREATE TABLE cardapio (
+    data JSONB
+);
+
+
 CREATE TABLE saldo (
     id_aluno INT,
     quantidade INT NOT NULL,
