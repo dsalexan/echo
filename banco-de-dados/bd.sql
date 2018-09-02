@@ -1,7 +1,3 @@
-﻿DROP DATABASE IF EXISTS echo;
-CREATE DATABASE echo;
-USE echo;
-
 DROP TABLE aluno_turma;
 DROP TABLE compromisso;
 DROP TABLE horario_turma;
@@ -99,12 +95,12 @@ CREATE TABLE cardapio (
 
 
 CREATE TABLE saldo (
-    id_aluno INT,
+    ra_aluno INT,
     quantidade INT NOT NULL,
-	restaurante VARCHAR(50) NOT NULL,
-	validade DATE NOT NULL,
-	campus VARCHAR(50) NOT NULL,
+    restaurante VARCHAR(50) NOT NULL,
+    validade DATE NOT NULL,
+    campus VARCHAR(50) NOT NULL,
 
-    PRIMARY KEY (id_aluno),
-	FOREIGN KEY (id_aluno) REFERENCES aluno (id_aluno)
+    PRIMARY KEY (ra_aluno),
+    FOREIGN KEY (ra_aluno) REFERENCES aluno (ra_aluno)
 );
