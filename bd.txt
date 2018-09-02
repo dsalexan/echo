@@ -35,8 +35,12 @@ CREATE TABLE turma (
 
 CREATE TABLE horario (
 	id_horario SERIAL PRIMARY KEY,
-	id_turma INTEGER REFERENCES turma(id_turma),
 	dia_hora TEXT
+);
+
+create table horario-turma (
+	id_turma INTEGER REFERENCES turma(id_turma),
+	id_horario INTEGER REFERENCES horario(id_horario)
 );
 
 CREATE TABLE compromisso (
