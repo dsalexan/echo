@@ -150,14 +150,24 @@ CREATE TABLE saldo (
 );
 
 
+CREATE TABLE localidade(
+	id_local SERIAL PRIMARY KEY,
+	descricao VARCHAR(50) NOT NULL
+);
+
+
 CREATE TABLE viagem (
 	id_viagem SERIAL PRIMARY KEY,
 	id_motorista INT NOT NULL,
+	id_origem INT NOT NULL,
+	id_destino INT NOT NULL,
 	dia DATETIME NOT NULL,
 	qtd_vagas INT NOT NULL,
 	descricao VARCHAR(280),
 
-	FOREIGN KEY(id_motorista) REFERENCES aluno (id_aluno)
+	FOREIGN KEY(id_motorista) REFERENCES aluno (ra_aluno),
+	FOREIGN KEY(id_origem) REFERENCES localidade (id_local),
+	FOREIGN KEY(id_destino) REFERENCES localidade (id_local)
 );
 
 
@@ -167,5 +177,5 @@ CREATE TABLE reserva (
 	id_passageiro INT NOT NULL,
 
 	FOREIGN KEY(id_viagem) REFERENCES viagem (id_viagem),
-	FOREIGN KEY(is_passageiro) REFERENCES aluno (id_aluno)
+	FOREIGN KEY(id_passageiro) REFERENCES aluno (ra_aluno)
 );
