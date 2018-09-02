@@ -148,3 +148,24 @@ CREATE TABLE saldo (
     PRIMARY KEY (ra_aluno),
     FOREIGN KEY (ra_aluno) REFERENCES aluno (ra_aluno)
 );
+
+
+CREATE TABLE viagem (
+	id_viagem SERIAL PRIMARY KEY,
+	id_motorista INT NOT NULL,
+	dia DATETIME NOT NULL,
+	qtd_vagas INT NOT NULL,
+	descricao VARCHAR(280),
+
+	FOREIGN KEY(id_motorista) REFERENCES aluno (id_aluno)
+);
+
+
+CREATE TABLE reserva (
+	id_reserva SERIAL PRIMARY KEY,
+	id_viagem INT NOT NULL,
+	id_passageiro INT NOT NULL,
+
+	FOREIGN KEY(id_viagem) REFERENCES viagem (id_viagem),
+	FOREIGN KEY(is_passageiro) REFERENCES aluno (id_aluno)
+);
