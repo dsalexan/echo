@@ -16,6 +16,17 @@ CREATE TABLE aluno (
 	login_intranet TEXT NOT NULL UNIQUE,
 	email TEXT NOT NULL UNIQUE
 );
+INSERT INTO aluno (ra_aluno, nome, login_intranet, email) VALUES
+('000000', 'Usuario0', 'user0', 'user0@gmail.com'),
+('111111', 'Usuario1', 'user1', 'user1@gmail.com'),
+('222222', 'Usuario2', 'user2', 'user2@gmail.com'),
+('333333', 'Usuario3', 'user3', 'user3@gmail.com'),
+('444444', 'Usuario4', 'user4', 'user4@gmail.com'),
+('555555', 'Usuario5', 'user5', 'user5@gmail.com'),
+('666666', 'Usuario6', 'user6', 'user6@gmail.com'),
+('777777', 'Usuario7', 'user7', 'user7@gmail.com'),
+('888888', 'Usuario8', 'user8', 'user8@gmail.com'),
+('999999', 'Usuario9', 'user9', 'user9@gmail.com');
 
 CREATE TABLE sala (
 	id_sala SERIAL PRIMARY KEY,
@@ -25,6 +36,17 @@ CREATE TABLE sala (
 	descricao TEXT,
 	UNIQUE (numero, unidade)
 );
+INSERT INTO sala (numero, unidade, capacidade, descricao) VALUES
+('201', 'Parque Tecnologico', '50', NULL),
+('202', 'Parque Tecnologico', '100', NULL),
+('203', 'Parque Tecnologico', '50', NULL),
+('204', 'Parque Tecnologico', '100', NULL),
+('205', 'Parque Tecnologico', '50', NULL),
+('206', 'Parque Tecnologico', '100', NULL),
+('207', 'Parque Tecnologico', '50', NULL),
+('208', 'Parque Tecnologico', '100', NULL),
+('209', 'Parque Tecnologico', '50', NULL),
+('210', 'Parque Tecnologico', '100', NULL);
 
 CREATE TABLE professor (
 	id_professor SERIAL PRIMARY KEY,
@@ -33,12 +55,34 @@ CREATE TABLE professor (
 	area_atuacao TEXT,
 	id_sala INTEGER REFERENCES sala(id_sala) NOT NULL
 );
+INSERT INTO professor (nome, lattes, area_atuacao, id_sala) VALUES
+('Professor0', 'linklattes0', 'area0', 0),
+('Professor1', 'linklattes1', 'area1', 0),
+('Professor2', 'linklattes2', 'area2', 1),
+('Professor3', 'linklattes3', 'area3', 2),
+('Professor4', 'linklattes4', 'area4', 4),
+('Professor5', 'linklattes5', 'area5', 4),
+('Professor6', 'linklattes6', 'area6', 4),
+('Professor7', 'linklattes7', 'area7', 5),
+('Professor8', 'linklattes8', 'area8', 6),
+('Professor9', 'linklattes9', 'area9', 9);
 
 CREATE TABLE email_professor (
 	id_email SERIAL PRIMARY KEY,
 	id_professor INTEGER REFERENCES professor(id_professor) NOT NULL,
 	email TEXT NOT NULL UNIQUE
 );
+INSERT INTO email_professor (id_professor, email) VALUES
+(0, 'prof0@unifesp.br'),
+(0, 'prof0@gmail.com'),
+(0, 'prof0@hotmail.com'),
+(1, 'prof1@unifesp.br'),
+(1, 'prof1@gmail.com'),
+(2, 'prof2@hotmail.com'),
+(3, 'prof3@unifesp.br'),
+(4, 'prof4@gmail.com'),
+(5, 'prof5@hotmail.com'),
+(6, 'prof6@hotmail.com');
 
 CREATE TABLE materia (
 	id_materia SERIAL PRIMARY KEY,
