@@ -11,7 +11,7 @@ DROP TABLE sala;
 DROP TABLE aluno;
 
 CREATE TABLE aluno (
-	ra_aluno INTEGER PRIMARY KEY,
+	ra_aluno CHAR[6] PRIMARY KEY,
 	nome TEXT NOT NULL,
 	login_intranet TEXT NOT NULL UNIQUE,
 	email TEXT NOT NULL UNIQUE
