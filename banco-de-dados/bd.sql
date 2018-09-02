@@ -1,3 +1,9 @@
+DROP DATABASE IF EXISTS echo;
+
+CREATE DATABASE echo;
+
+USE echo;
+
 GRADE
 
 aluno
@@ -38,7 +44,7 @@ CREATE TABLE horario (
 	dia_hora TEXT
 );
 
-create table horario-turma (
+CREATE TABLE horario_turma (
 	id_turma INTEGER REFERENCES turma(id_turma),
 	id_horario INTEGER REFERENCES horario(id_horario)
 );
@@ -50,10 +56,42 @@ CREATE TABLE compromisso (
 	data DATE,
 	id_sala INTEGER REFERENCES sala(id_sala),
 	informacoes TEXT
-);	
+);
 
-CREATE TABLE aluno-turma (
+CREATE TABLE aluno_turma (
 	id_aluno INTEGER REFERENCES aluno(id_aluno),
 	id_turma INTEGER REFERENCES turma(id_turma),
 	faltas INTEGER
+);
+
+CREATE TABLE cardapio (
+    id_cardapio INT AUTO_INCREMENT,
+    prato_base VARCHAR(50) NOT NULL,
+	prato_principal VARCHAR(50) NOT NULL,
+	opcao_vegetariana VARCHAR(50) NOT NULL,
+	guarnicao VARCHAR(50) NOT NULL,
+	sobremesa VARCHAR(50) NOT NULL,
+	semana INT NOT NULL,
+	dia_semana VARCHAR(20) NOT NULL,
+	tipo_refeicao VARCHAR(10) NOT NULL,
+
+    PRIMARY KEY (id_cardapio)
+);
+
+-- ou então
+
+CREATE TABLE cardapio (
+    data JSONB
+);
+
+
+CREATE TABLE saldo (
+    id_aluno INT,
+    quantidade INT NOT NULL,
+	restaurante VARCHAR(50) NOT NULL,
+	validade DATE NOT NULL,
+	campus VARCHAR(50) NOT NULL,
+
+    PRIMARY KEY (id_aluno),
+	FOREIGN KEY (id_aluno) REFERENCES aluno (id_aluno)
 );
