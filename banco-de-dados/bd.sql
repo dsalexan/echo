@@ -169,7 +169,6 @@ VALUES (DEFAULT, 1, 'Prova de Calculo', '2018-09-29', 1, 'levar calculadora'),
 (DEFAULT, 4, 'Prova de LP', '2018-11-01', 4, 'até vetores'),
 (DEFAULT, 5, 'Reunião Forgers', '2018-09-4', 4, 'Comparecer com Camiseta do grupo');
 
-
 CREATE TABLE aluno_turma (
 	ra_aluno VARCHAR(6) REFERENCES aluno(ra_aluno),
 	id_turma INTEGER REFERENCES turma(id_turma),
@@ -190,7 +189,6 @@ CREATE TABLE cardapio (
     data JSONB
 );
 
-
 CREATE TABLE saldo (
     ra_aluno VARCHAR(6),
     quantidade INT NOT NULL,
@@ -201,8 +199,6 @@ CREATE TABLE saldo (
     PRIMARY KEY (ra_aluno),
     FOREIGN KEY (ra_aluno) REFERENCES aluno (ra_aluno)
 );
-
-
 
 CREATE TABLE localidade(
 	id_local SERIAL PRIMARY KEY,
@@ -216,15 +212,14 @@ INSERT INTO localidade (descricao) VALUES
 ('Chaparral'),
 ('Santa ines');
 
-
 CREATE TABLE viagem (
 	id_viagem SERIAL PRIMARY KEY,
 	id_motorista VARCHAR(6) NOT NULL,
-	id_origem VARCHAR(6) NOT NULL,
+	id_origem INT NOT NULL,
 	id_destino INT NOT NULL,
 	dia DATE NOT NULL,
-	hora TIMESTAMP NOT NULL,
-	qtd_vagas INT NOT NULL ((qtd_vagas < 6) AND (qtd_vagas > 0)),
+	hora TIME NOT NULL,
+	qtd_vagas INT NOT NULL CHECK ((qtd_vagas < 6) AND (qtd_vagas > 0)),
 	descricao VARCHAR(280) NOT NULL,
 
 	FOREIGN KEY(id_motorista) REFERENCES aluno (ra_aluno),
@@ -232,11 +227,11 @@ CREATE TABLE viagem (
 	FOREIGN KEY(id_destino) REFERENCES localidade (id_local)
 );
 INSERT INTO viagem (id_motorista, id_origem, id_destino, dia, hora, qtd_vagas, descricao) VALUES
-(000000, 2, 1, '2018-09-03', '07:30', 4, 'saio do demoiselle'),
-(111111, 2, 1, '2018-09-03', '09:30', 4, 'saio do demoiselle'),
-(555555, 2, 1, '2018-09-03', '23:00', 4, 'saio do demoiselle'),
-(000000, 1, 2, '2018-09-03', '15:30', 4, 'deixo no demoiselle'),
-(111111, 1, 2, '2018-09-03', '21:00', 3, 'deixo no demoiselle');
+('000000', 2, 1, '2018-09-03', '07:30', 4, 'saio do demoiselle'),
+('111111', 2, 1, '2018-09-03', '09:30', 4, 'saio do demoiselle'),
+('555555', 2, 1, '2018-09-03', '23:00', 4, 'saio do demoiselle'),
+('000000', 1, 2, '2018-09-03', '15:30', 4, 'deixo no demoiselle'),
+('111111', 1, 2, '2018-09-03', '21:00', 3, 'deixo no demoiselle');
 
 CREATE TABLE reserva (
 	id_reserva SERIAL PRIMARY KEY,
@@ -247,8 +242,7 @@ CREATE TABLE reserva (
 	FOREIGN KEY(id_passageiro) REFERENCES aluno (ra_aluno)
 );
 
-
-# Nao fiz com o condicional porque nao sei fazer ainda
+-- Nao fiz com o condicional porque nao sei fazer ainda
 INSERT INTO reserva (id_viagem, id_passageiro) VALUES
 (1, 666666),
 (1, 333333),
