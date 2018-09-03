@@ -186,8 +186,27 @@ VALUES('111111', 1, DEFAULT),
 CREATE TABLE cardapio (
     data JSONB
 );
-INSERT INTO cardapio (data)
-VALUES ('{"nome": "Ada", "idade" : 5, "tipo": "gato", "dono": "Eduardo Maçan" }');
+INSERT INTO cardapio (data) VALUES
+('{"prato_base": "Arroz e feijão", "prato_principal" : "Filé de frango", "opcao_vegetariana": "Kibe vegetariano",
+"guarnicao": "Chuchu", "sobremesa": "Gelatina", "semana": "10", "dia_semana": "Segunda", "tipo_refeicao": "Almoço"}'),
+('{"prato_base": "Arroz e feijão", "prato_principal" : "Filé de peixe", "opcao_vegetariana": "Couve-flor gratinada",
+"guarnicao": "Couve", "sobremesa": "Gelatina", "semana": "10", "dia_semana": "Segunda", "tipo_refeicao": "Jantar"}'),
+('{"prato_base": "Arroz e feijão", "prato_principal" : "Costela", "opcao_vegetariana": "Batata",
+"guarnicao": "Farofa", "sobremesa": "Gelatina", "semana": "10", "dia_semana": "Terça", "tipo_refeicao": "Almoço"}'),
+('{"prato_base": "Arroz e feijão", "prato_principal" : "Bisteca", "opcao_vegetariana": "Batata doce",
+"guarnicao": "Farofa", "sobremesa": "Gelatina", "semana": "10", "dia_semana": "Terça", "tipo_refeicao": "Jantar"}'),
+('{"prato_base": "Arroz e feijão", "prato_principal" : "Filé mignon", "opcao_vegetariana": "Rúcula",
+"guarnicao": "Couve", "sobremesa": "Gelatina", "semana": "10", "dia_semana": "Quarta", "tipo_refeicao": "Almoço"}'),
+('{"prato_base": "Arroz e feijão", "prato_principal" : "Contra filé", "opcao_vegetariana": "Ovo frito",
+"guarnicao": "Couve", "sobremesa": "Abacaxi", "semana": "10", "dia_semana": "Quarta", "tipo_refeicao": "Jantar"}'),
+('{"prato_base": "Arroz e feijão", "prato_principal" : "Nhoque", "opcao_vegetariana": "Couve",
+"guarnicao": "Couve", "sobremesa": "Abacaxi", "semana": "10", "dia_semana": "Quinta", "tipo_refeicao": "Almoço"}'),
+('{"prato_base": "Arroz e feijão", "prato_principal" : "Rondeli", "opcao_vegetariana": "Berinjela",
+"guarnicao": "Couve", "sobremesa": "Abacaxi", "semana": "10", "dia_semana": "Quinta", "tipo_refeicao": "Jantar"}'),
+('{"prato_base": "Arroz e feijão", "prato_principal" : "Panqueca", "opcao_vegetariana": "Bolinho de grão de bico",
+"guarnicao": "Farofa", "sobremesa": "Abacaxi", "semana": "10", "dia_semana": "Sexta", "tipo_refeicao": "Almoço"}'),
+('{"prato_base": "Arroz e feijão", "prato_principal" : "Macarrão ao frutos do mar", "opcao_vegetariana": "Brocolis",
+"guarnicao": "Couve", "sobremesa": "Abacaxi", "semana": "10", "dia_semana": "Sexta", "tipo_refeicao": "Jantar"}');
 
 CREATE TABLE saldo (
     ra_aluno VARCHAR(6),
@@ -199,6 +218,18 @@ CREATE TABLE saldo (
     PRIMARY KEY (ra_aluno),
     FOREIGN KEY (ra_aluno) REFERENCES aluno (ra_aluno)
 );
+INSERT INTO saldo
+VALUES
+('000000', 2, 'RU SJC - PARQUE TECNOLÓGICO', '28/02/2019', 'SÃO JOSÉ DOS CAMPOS'),
+('111111', 1, 'RU SJC - PARQUE TECNOLÓGICO', '09/03/2019', 'SÃO JOSÉ DOS CAMPOS'),
+('222222', 3, 'RU SJC - PARQUE TECNOLÓGICO', '17/02/2019', 'SÃO JOSÉ DOS CAMPOS'),
+('333333', 0, 'RU SJC - PARQUE TECNOLÓGICO', '13/01/2019', 'SÃO JOSÉ DOS CAMPOS'),
+('444444', 2, 'RU SJC - PARQUE TECNOLÓGICO', '08/02/2019', 'SÃO JOSÉ DOS CAMPOS'),
+('555555', 1, 'RU SJC - PARQUE TECNOLÓGICO', '02/03/2019', 'SÃO JOSÉ DOS CAMPOS'),
+('666666', 1, 'RU SJC - PARQUE TECNOLÓGICO', '20/03/2019', 'SÃO JOSÉ DOS CAMPOS'),
+('777777', 2, 'RU SJC - PARQUE TECNOLÓGICO', '10/02/2019', 'SÃO JOSÉ DOS CAMPOS'),
+('888888', 0, 'RU SJC - PARQUE TECNOLÓGICO', '18/01/2019', 'SÃO JOSÉ DOS CAMPOS'),
+('999999', 1, 'RU SJC - PARQUE TECNOLÓGICO', '12/02/2019', 'SÃO JOSÉ DOS CAMPOS');
 
 CREATE TABLE localidade(
 	id_local SERIAL PRIMARY KEY,
