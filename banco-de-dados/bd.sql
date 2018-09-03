@@ -203,32 +203,59 @@ CREATE TABLE saldo (
 );
 
 
+
 CREATE TABLE localidade(
 	id_local SERIAL PRIMARY KEY,
 	descricao VARCHAR(50) NOT NULL
 );
+INSERT INTO localidade (descricao) VALUES
+('UNIFESP'),
+('Satelite'),
+('Parque industrial'),
+('Urbanova'),
+('Chaparral'),
+('Santa ines');
 
 
 CREATE TABLE viagem (
 	id_viagem SERIAL PRIMARY KEY,
-	id_motorista INT NOT NULL,
-	id_origem INT NOT NULL,
+	id_motorista VARCHAR(6) NOT NULL,
+	id_origem VARCHAR(6) NOT NULL,
 	id_destino INT NOT NULL,
-	dia DATETIME NOT NULL,
-	qtd_vagas INT NOT NULL,
-	descricao VARCHAR(280),
+	dia DATE NOT NULL,
+	hora TIMESTAMP NOT NULL,
+	qtd_vagas INT NOT NULL ((qtd_vagas < 6) AND (qtd_vagas > 0)),
+	descricao VARCHAR(280) NOT NULL,
 
 	FOREIGN KEY(id_motorista) REFERENCES aluno (ra_aluno),
 	FOREIGN KEY(id_origem) REFERENCES localidade (id_local),
 	FOREIGN KEY(id_destino) REFERENCES localidade (id_local)
 );
-
+INSERT INTO viagem (id_motorista, id_origem, id_destino, dia, hora, qtd_vagas, descricao) VALUES
+(000000, 2, 1, '2018-09-03', '07:30', 4, 'saio do demoiselle'),
+(111111, 2, 1, '2018-09-03', '09:30', 4, 'saio do demoiselle'),
+(555555, 2, 1, '2018-09-03', '23:00', 4, 'saio do demoiselle'),
+(000000, 1, 2, '2018-09-03', '15:30', 4, 'deixo no demoiselle'),
+(111111, 1, 2, '2018-09-03', '21:00', 3, 'deixo no demoiselle');
 
 CREATE TABLE reserva (
 	id_reserva SERIAL PRIMARY KEY,
 	id_viagem INT NOT NULL,
-	id_passageiro INT NOT NULL,
+	id_passageiro VARCHAR(6) NOT NULL,
 
 	FOREIGN KEY(id_viagem) REFERENCES viagem (id_viagem),
 	FOREIGN KEY(id_passageiro) REFERENCES aluno (ra_aluno)
 );
+
+
+# Nao fiz com o condicional porque nao sei fazer ainda
+INSERT INTO reserva (id_viagem, id_passageiro) VALUES
+(1, 666666),
+(1, 333333),
+(1, 777777),
+(2, 444444),
+(2, 888888),
+(4, 444444),
+(4, 666666),
+(3, 888888),
+(5, 333333);
