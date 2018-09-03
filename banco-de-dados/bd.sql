@@ -108,7 +108,7 @@ CREATE TABLE pre_req (
 	PRIMARY KEY(id_materia, id_pre_req)
 );
 
-INSERT INTO pre_req 
+INSERT INTO pre_req
 VALUES (2, 1),
 (5, 3);
 
@@ -131,7 +131,7 @@ CREATE TABLE horario (
 	hora TIME NOT NULL CHECK ((hora >= '08:00') AND (hora <= '21:00'))
 );
 
-INSERT INTO horario 
+INSERT INTO horario
 VALUES (DEFAULT, 'SEG', '10:00'),
 (DEFAULT, 'TER', '08:00'),
 (DEFAULT, 'QUA', '19:00'),
@@ -160,7 +160,7 @@ CREATE TABLE compromisso (
 	data DATE NOT NULL,
 	id_sala INTEGER REFERENCES sala(id_sala),
 	informacoes TEXT
-);	
+);
 
 INSERT INTO compromisso
 VALUES (DEFAULT, 1, 'Prova de Calculo', '2018-09-29', 1, 'levar calculadora'),
@@ -183,11 +183,11 @@ VALUES('111111', 1, DEFAULT),
 ('444444', 4, DEFAULT),
 ('555555', 5, DEFAULT);
 
--- ou então
-
 CREATE TABLE cardapio (
     data JSONB
 );
+INSERT INTO cardapio (data)
+VALUES ('{"nome": "Ada", "idade" : 5, "tipo": "gato", "dono": "Eduardo Maçan" }');
 
 CREATE TABLE saldo (
     ra_aluno VARCHAR(6),
