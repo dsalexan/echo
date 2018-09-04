@@ -186,6 +186,7 @@ VALUES('111111', 1, DEFAULT),
 CREATE TABLE cardapio (
     data JSONB
 );
+
 INSERT INTO cardapio (data) VALUES
 ('{"prato_base": "Arroz e feijão", "prato_principal" : "Filé de frango", "opcao_vegetariana": "Kibe vegetariano",
 "guarnicao": "Chuchu", "sobremesa": "Gelatina", "semana": "10", "dia_semana": "Segunda", "tipo_refeicao": "Almoço"}'),
@@ -284,3 +285,28 @@ INSERT INTO reserva (id_viagem, id_passageiro) VALUES
 (4, 666666),
 (3, 888888),
 (5, 333333);
+
+CREATE TABLE preferencias( -- configuracoes do usuario
+	id_notific VARCHAR(6) AUTO_INCREMENT,
+    num_notific INT CHECK ((num_notific >= 1) AND (num_notific <= 4)), -- quantidade de notificaçoes antes prova
+    hor_notific TIME,
+    notific_prova BOOLEAN,
+    notific_aviso BOOLEAN,
+    notific_email BOOLEAN,
+    sync_calendar BOOLEAN, -- sincronizar com calendario do google
+    id_aluno INT,
+    PRIMARY KEY (id_notific),
+    FOREIGN KEY (id_aluno) REFERENCES aluno(ra_aluno)
+);
+
+INSERT INTO preferencias (num_notific, hr_notific, notific_prova, notific_aviso, notific_email, sync_calendar, id_aluno) VALUES
+	(1, '12:00', true, true, false, true, '000000'),
+    (3, '22:00', false, true, true, false, '111111'),
+    (2, '13:00', true, false, true, true, '222222'),
+    (3, '06:00', true, true, false, false, '333333'),
+    (1, '18:00', true, false, false, false, '444444'),
+    (3, '15:00', true, true, true, true, '555555'),
+    (2, '10:00', false, false, false, false, '666666'),
+    (1, '16:00', false, true, false, true, '777777'),
+    (3, '20:00', true, true, false, false, '88888888'),
+    (2, '17:00', true, false, true, false, '99999999');
