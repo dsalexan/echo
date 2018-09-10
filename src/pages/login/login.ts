@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
+import { CadastroPage } from '../cadastro/cadastro';
+
 /**
  * Generated class for the LoginPage page.
  *
@@ -28,7 +30,12 @@ export class LoginPage {
   }
 
   clickLogin() {
-    if (this.verificarCredenciais(this.dados["usuario"], this.dados["senha"]) == true) {
+    if (this.verificarCredenciais() == true) {
+
+      if (this.primeiroLogin()) {
+        this.navCtrl.push(CadastroPage, {dados: this.dados});
+      }
+
       if (this.dados["lembrar"]) {
           let alert = this.alertCtrl.create( {
             title: 'Lembrar senha',
@@ -36,14 +43,21 @@ export class LoginPage {
             buttons: ['Dismiss']
           });
           alert.present();
-          // Cadastrar que ele quer ser lembrado
+          // lembrar login
       }
-      // this.navCtrl.push(TelaSeguinte);
+
+      // this.navCtrl.push(Home);
     }
   }
 
-  verificarCredenciais(usuario, senha) {
+  verificarCredenciais() {
+    // verificar se usuario this.dados["usuario"] existe
+    // verificar se a senha this.dados["senha"] esta correta
     return true;
   }
 
+  primeiroLogin() {
+    // verificar se usuario this.dados["usuario"] já está cadastrado no banco
+    return true;
+  }
 }
