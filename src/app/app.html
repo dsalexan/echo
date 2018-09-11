@@ -1,1 +1,16 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<!-- Menu lateral -->
+<ion-menu [content]="content">
+
+    <ion-content padding>
+        <button ion-button (click)="clickPerfil">Perfil</button><br>
+        <button ion-button (click)="clickConfiguracoes">Configurações</button><br>
+        <button ion-button (click)="clickLogout">Logout</button><br>
+    </ion-content>
+
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content></ion-nav>
+
+<button ion-button icon-only menuToggle>
+    <ion-icon name="menu"></ion-icon>
+</button>
