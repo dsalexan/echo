@@ -39,15 +39,17 @@ var CadastroPage = /** @class */ (function () {
             // lembrar login
         }
         // cadastrar usuário no banco usando this.dados["usuario/senha/email"]
+        // criar sessão como se o usuário tivesse logado
         // this.navCtrl.push(Home);
     };
     CadastroPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-cadastro',template:/*ion-inline-start:"C:\Users\pedro\Documents\UNIFESP\EngSoft\echo\src\pages\cadastro\cadastro.html"*/'<!--\n  Generated template for the CadastroPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n\n<ion-content padding>\n\n  <form (ngSubmit)="clickCadastrar()">\n    <ion-item>\n      <ion-label floating>E-mail</ion-label>\n      <ion-input type="email" [(ngModel)]="dados.email" name="email"></ion-input>\n    </ion-item>\n    <button ion-button type="submit" block>Cadastrar</button>\n  </form>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\pedro\Documents\UNIFESP\EngSoft\echo\src\pages\cadastro\cadastro.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object])
     ], CadastroPage);
     return CadastroPage;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=cadastro.js.map
@@ -88,7 +90,7 @@ var ConfiguracoesPage = /** @class */ (function () {
     };
     ConfiguracoesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-configuracoes',template:/*ion-inline-start:"C:\Users\pedro\Documents\UNIFESP\EngSoft\echo\src\pages\configuracoes\configuracoes.html"*/'<!--\n  Generated template for the ConfiguracoesPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\pedro\Documents\UNIFESP\EngSoft\echo\src\pages\configuracoes\configuracoes.html"*/,
+            selector: 'page-configuracoes',template:/*ion-inline-start:"C:\Users\pedro\Documents\UNIFESP\EngSoft\echo\src\pages\configuracoes\configuracoes.html"*/'<!--\n  Generated template for the ConfiguracoesPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n\n<ion-content padding>\nTela configurações\n</ion-content>\n'/*ion-inline-end:"C:\Users\pedro\Documents\UNIFESP\EngSoft\echo\src\pages\configuracoes\configuracoes.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
     ], ConfiguracoesPage);
@@ -141,24 +143,27 @@ var LoginPage = /** @class */ (function () {
                 this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__cadastro_cadastro__["a" /* CadastroPage */], { dados: this.dados });
             }
             if (this.dados["lembrar"]) {
-                var alert = this.alertCtrl.create({
-                    title: 'Lembrar senha',
-                    subTitle: 'Lembrar senha',
-                    buttons: ['Dismiss']
-                });
-                alert.present();
-                // lembrar login
+                // lembrar login (cadastrar senha no sqlite?)
             }
             // this.navCtrl.push(Home);
+        }
+        else {
+            var alert = this.alertCtrl.create({
+                title: 'Dados incorretos',
+                subTitle: 'Usuário e/ou senha incorretos.',
+                buttons: ['Dismiss']
+            });
+            alert.present();
         }
     };
     LoginPage.prototype.verificarCredenciais = function () {
         // verificar se usuario this.dados["usuario"] existe
         // verificar se a senha this.dados["senha"] esta correta
+        // isso por web crawling
         return true;
     };
     LoginPage.prototype.primeiroLogin = function () {
-        // verificar se usuario this.dados["usuario"] já está cadastrado no banco
+        // verificar se usuario this.dados["usuario"] já está cadastrado no postgres
         return true;
     };
     LoginPage = __decorate([
@@ -209,7 +214,7 @@ var PerfilPage = /** @class */ (function () {
     };
     PerfilPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-perfil',template:/*ion-inline-start:"C:\Users\pedro\Documents\UNIFESP\EngSoft\echo\src\pages\perfil\perfil.html"*/'<!--\n  Generated template for the PerfilPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\pedro\Documents\UNIFESP\EngSoft\echo\src\pages\perfil\perfil.html"*/,
+            selector: 'page-perfil',template:/*ion-inline-start:"C:\Users\pedro\Documents\UNIFESP\EngSoft\echo\src\pages\perfil\perfil.html"*/'<!--\n  Generated template for the PerfilPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n\n<ion-content padding>\nTela perfil\n</ion-content>\n'/*ion-inline-end:"C:\Users\pedro\Documents\UNIFESP\EngSoft\echo\src\pages\perfil\perfil.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
     ], PerfilPage);

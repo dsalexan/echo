@@ -30,6 +30,7 @@ export class CadastroPage {
       // lembrar login
     }
     // cadastrar usuário no banco usando this.dados["usuario/senha/email"]
+    // criar sessão como se o usuário tivesse logado
     // this.navCtrl.push(Home);
   }
 }
