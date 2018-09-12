@@ -2,9 +2,9 @@
 <ion-menu [content]="content">
 
     <ion-content padding>
-        <button ion-button (click)="clickPerfil">Perfil</button><br>
-        <button ion-button (click)="clickConfiguracoes">Configurações</button><br>
-        <button ion-button (click)="clickLogout">Logout</button><br>
+        <button ion-button menuClose (click)="clickPerfil()">Perfil</button><br>
+        <button ion-button menuClose (click)="clickConfiguracoes()">Configurações</button><br>
+        <button ion-button menuClose (click)="clickLogout()">Logout</button><br>
     </ion-content>
 
 </ion-menu>

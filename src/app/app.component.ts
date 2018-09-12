@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Platform, NavController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -11,6 +11,8 @@ import { ConfiguracoesPage } from '../pages/configuracoes/configuracoes';
   templateUrl: 'app.html'
 })
 export class MyApp {
+  @ViewChild(Nav) nav: Nav;
+
   rootPage:any = LoginPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
@@ -23,14 +25,15 @@ export class MyApp {
   }
 
   clickPerfil() {
-    // this.navCtrl.push(PerfilPage);
+    this.nav.push(PerfilPage);
   }
 
   clickConfiguracoes() {
-    // this.navCtrl.push(ConfiguracoesPage);
+    this.nav.push(ConfiguracoesPage);
   }
 
   clickLogout() {
     // quebrar sessão?
+    this.nav.push(LoginPage);
   }
 }
