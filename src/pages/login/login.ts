@@ -28,8 +28,19 @@ export class LoginPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
+  
+  storeSession(user, senha) {
+    window.localStorage.setItem("usuario", user);
+    window.localStorage.setItem("senha", senha);
+  }
+
+  getSession() {
+    var usuario = window.localStorage.getItem("usuario");
+    var senha = window.localStorage.getItem("senha");
+  }
 
   clickLogin() {
+    this.storeSession(this.dados["usuario"], this.dados["senha"]);
     if (this.verificarCredenciais() == true) {
 
       if (this.primeiroLogin()) {
