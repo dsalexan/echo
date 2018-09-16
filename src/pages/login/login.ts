@@ -48,27 +48,30 @@ export class LoginPage {
       }
 
       if (this.dados["lembrar"]) {
-          let alert = this.alertCtrl.create( {
-            title: 'Lembrar senha',
-            subTitle: 'Lembrar senha',
-            buttons: ['Dismiss']
-          });
-          alert.present();
-          // lembrar login
+          // lembrar login (cadastrar senha no sqlite?)
       }
 
       // this.navCtrl.push(Home);
+    }
+    else {
+      let alert = this.alertCtrl.create( {
+        title: 'Dados incorretos',
+        subTitle: 'Usuário e/ou senha incorretos.',
+        buttons: ['Dismiss']
+      });
+      alert.present();
     }
   }
 
   verificarCredenciais() {
     // verificar se usuario this.dados["usuario"] existe
     // verificar se a senha this.dados["senha"] esta correta
+    // isso por web crawling
     return true;
   }
 
   primeiroLogin() {
-    // verificar se usuario this.dados["usuario"] já está cadastrado no banco
+    // verificar se usuario this.dados["usuario"] já está cadastrado no postgres
     return true;
   }
 }
