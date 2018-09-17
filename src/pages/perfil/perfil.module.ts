@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
+
 import { PerfilPage } from './perfil';
 
 @NgModule({
@@ -9,5 +10,8 @@ import { PerfilPage } from './perfil';
   imports: [
     IonicPageModule.forChild(PerfilPage),
   ],
+  exports: [
+    PerfilPage
+  ]
 })
-export class PerfilPageModule {}
+export class PerfilPageModule { }
