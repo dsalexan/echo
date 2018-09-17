@@ -1,11 +1,73 @@
-<!--
-  Generated template for the PerfilPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
-teste
--->
+<!--Cabeçalho-->
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons left><!--botoes do cabeçalho - ESQUERDA-->
+    </ion-buttons>
+    <ion-title center>{{ 'Perfil' }}</ion-title>
+    <ion-buttons right><!--botoes do cabecalho - DIREITA-->
+      <button ion-button icon-only (click)="editProfile()" class="editSaveToggleBtn">{{caption_name}}</button><!--botao edit profile-->
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
 
-<ion-content padding>
-Tela perfil
+<ion-content>
+  <div class="fixed-content">
+
+    <form *ngIf="form" [formGroup]="form" (ngSubmit)="saveProfile()">
+      <div class="upperDiv">
+        <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]"
+               (change)="processWebImage($event)"/>
+        <div class="profile-image-wrapper" (click)="getPicture()">
+          <div class="profile-image-placeholder" *ngIf="!this.form.controls.image.value">
+            <ion-icon name="ios-camera-outline" class="ios-camera-outline" md="ios-camera-outline" style="color: white !important"></ion-icon>
+            <div>
+            </div>
+          </div>
+          <div class="profile-image" [style.backgroundImage]="getProfileImageStyle()"
+               *ngIf="this.form.controls.image.value"></div>
+        </div>
+        <!--dados do usuario-->
+        <h3 class="full_name">{{profileDetails[0].full_name}}</h3> <!--nome-->
+        <h3 class="userDetails">{{profileDetails[0].about}}</h3> <!--sobre-->
+      </div>
+
+      <ion-list style="padding: 20px !important; border-bottom: 0.55px solid #fff;">
+        <ion-item style="border-top: 0.55px solid #fff;">
+          
+          <!--CAMPO USUARIO-->
+          <ion-label class="usuario">Usuário </ion-label>
+          <ion-input class="inputFields" type="text" formControlName="user_name" (keyup)="changedSmtng()"
+                     disabled="{{isDisabled}}"
+                     [(ngModel)]="account.user_name"></ion-input>
+        </ion-item>
+        
+         <!--CAMPO RA-->
+        <ion-item>
+          <ion-label class="ra">RA </ion-label>
+          <ion-input class="inputFields" type="text" formControlName="user_RA" (keyup)="changedSmtng()"
+                     disabled="{{isDisabled}}"
+                     [(ngModel)]="account.user_RA"></ion-input>
+        </ion-item>
+
+        <!--CAMPO DE EMAIL-->
+        <ion-item>
+          <ion-label class="email">Email </ion-label>
+          <ion-input class="inputFields" type="email" formControlName="user_email" (keyup)="changedSmtng()"
+                     disabled="{{isDisabled}}"
+                     [(ngModel)]="account.user_email"></ion-input>
+        </ion-item>
+
+        <!--CAMPO DE SENHA-->
+        <ion-item>e
+          <ion-label class="senha">Senha </ion-label>
+          <ion-input class="inputFields" type="password" formControlName="user_password" (keyup)="changedSmtng()"
+                     disabled="{{isDisabled}}"
+                     [(ngModel)]="account.user_password"></ion-input>
+        </ion-item>
+        
+      </ion-list>
+    </form>
+  </div>
 </ion-content>
+
