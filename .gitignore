@@ -14,7 +14,7 @@ log.txt
 .versions/
 .sourcemaps/
 
-www/build/
+www/
 coverage/
 collection/
 dist/
