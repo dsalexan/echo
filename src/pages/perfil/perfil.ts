@@ -1,6 +1,16 @@
-import {Component, ViewChild} from '@angular/core';
-import {IonicPage, NavController, ViewController, ToastController, LoadingController} from 'ionic-angular';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, ViewController, ToastController, LoadingController, NavParams } from 'ionic-angular';
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { Storage } from '@ionic/storage';
+
+import { LoginPage } from '../login/login';
+
+/**
+ * Generated class for the PerfilPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
 
 @IonicPage()
 @Component({
@@ -29,7 +39,8 @@ export class PerfilPage {
   };
 
   constructor(public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder,
-              public toastCtrl: ToastController, public loadingCtrl: LoadingController) {
+              public toastCtrl: ToastController, public loadingCtrl: LoadingController, public storage: Storage,
+              public navParams: NavParams) {
 
     this.form = formBuilder.group({
       image: [''], user_RA: [''], user_name: [''], user_password: [''], user_email: [''], user_state: [''],
@@ -96,7 +107,19 @@ export class PerfilPage {
     }
   }
 
+  checkSession() {
+    this.storage.get("usuario").then((usu) => {
+      this.storage.get("senha").then((sen) => {
+        if(usu == null && sen == null){
+          this.navCtrl.push(LoginPage);
+        }
+      })
+    })
+  }
+
   ionViewDidLoad() {
+    this.checkSession()
+    console.log('ionViewDidLoad PerfilPage');
   }
 
   processWebImage(event) {

@@ -12,6 +12,9 @@ log.txt
 .vscode/
 .sass-cache/
 .versions/
+.sourcemaps/
+
+www/build/
 coverage/
 collection/
 dist/
