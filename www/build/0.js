@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 275:
+/***/ 278:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29,6 +29,9 @@ var PerfilPageModule = /** @class */ (function () {
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__perfil__["a" /* PerfilPage */]),
             ],
+            exports: [
+                __WEBPACK_IMPORTED_MODULE_2__perfil__["a" /* PerfilPage */]
+            ]
         })
     ], PerfilPageModule);
     return PerfilPageModule;
