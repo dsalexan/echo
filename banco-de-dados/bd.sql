@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS preferencias;
 DROP TABLE IF EXISTS reserva;
 DROP TABLE IF EXISTS viagem;
 DROP TABLE IF EXISTS localidade;
@@ -251,6 +252,7 @@ CREATE TABLE viagem (
 	id_destino INT NOT NULL,
 	dia DATE NOT NULL,
 	hora TIME NOT NULL,
+	preco REAL NOT NULL,
 	qtd_vagas INT NOT NULL CHECK ((qtd_vagas < 6) AND (qtd_vagas > 0)),
 	descricao VARCHAR(280) NOT NULL,
 
@@ -258,12 +260,12 @@ CREATE TABLE viagem (
 	FOREIGN KEY(id_origem) REFERENCES localidade (id_local),
 	FOREIGN KEY(id_destino) REFERENCES localidade (id_local)
 );
-INSERT INTO viagem (id_motorista, id_origem, id_destino, dia, hora, qtd_vagas, descricao) VALUES
-('000000', 2, 1, '2018-09-03', '07:30', 4, 'saio do demoiselle'),
-('111111', 2, 1, '2018-09-03', '09:30', 4, 'saio do demoiselle'),
-('555555', 2, 1, '2018-09-03', '23:00', 4, 'saio do demoiselle'),
-('000000', 1, 2, '2018-09-03', '15:30', 4, 'deixo no demoiselle'),
-('111111', 1, 2, '2018-09-03', '21:00', 3, 'deixo no demoiselle');
+INSERT INTO viagem (id_motorista, id_origem, id_destino, dia, hora, preco, qtd_vagas, descricao) VALUES
+('000000', 2, 1, '2018-09-03', '07:30', 3.00, 4, 'saio do demoiselle'),
+('111111', 2, 1, '2018-09-03', '09:30', 3.00, 4, 'saio do demoiselle'),
+('555555', 2, 1, '2018-09-03', '23:00', 3.00, 4, 'saio do demoiselle'),
+('000000', 1, 2, '2018-09-03', '15:30', 3.00, 4, 'deixo no demoiselle'),
+('111111', 1, 2, '2018-09-03', '21:00', 3.00, 3, 'deixo no demoiselle');
 
 CREATE TABLE reserva (
 	id_reserva SERIAL PRIMARY KEY,
@@ -274,7 +276,6 @@ CREATE TABLE reserva (
 	FOREIGN KEY(id_passageiro) REFERENCES aluno (ra_aluno)
 );
 
--- Nao fiz com o condicional porque nao sei fazer ainda
 INSERT INTO reserva (id_viagem, id_passageiro) VALUES
 (1, 666666),
 (1, 333333),
@@ -287,19 +288,18 @@ INSERT INTO reserva (id_viagem, id_passageiro) VALUES
 (5, 333333);
 
 CREATE TABLE preferencias( -- configuracoes do usuario
-	id_notific VARCHAR(6) AUTO_INCREMENT,
+    id_notific SERIAL PRIMARY KEY,
     num_notific INT CHECK ((num_notific >= 1) AND (num_notific <= 4)), -- quantidade de notificaçoes antes prova
     hor_notific TIME,
     notific_prova BOOLEAN,
     notific_aviso BOOLEAN,
     notific_email BOOLEAN,
     sync_calendar BOOLEAN, -- sincronizar com calendario do google
-    id_aluno INT,
-    PRIMARY KEY (id_notific),
-    FOREIGN KEY (id_aluno) REFERENCES aluno(ra_aluno)
+	ra_aluno VARCHAR(6),
+    FOREIGN KEY (ra_aluno) REFERENCES aluno(ra_aluno)
 );
 
-INSERT INTO preferencias (num_notific, hr_notific, notific_prova, notific_aviso, notific_email, sync_calendar, id_aluno) VALUES
+INSERT INTO preferencias (num_notific, hor_notific, notific_prova, notific_aviso, notific_email, sync_calendar, ra_aluno) VALUES
 	(1, '12:00', true, true, false, true, '000000'),
     (3, '22:00', false, true, true, false, '111111'),
     (2, '13:00', true, false, true, true, '222222'),
@@ -308,5 +308,5 @@ INSERT INTO preferencias (num_notific, hr_notific, notific_prova, notific_aviso,
     (3, '15:00', true, true, true, true, '555555'),
     (2, '10:00', false, false, false, false, '666666'),
     (1, '16:00', false, true, false, true, '777777'),
-    (3, '20:00', true, true, false, false, '88888888'),
-    (2, '17:00', true, false, true, false, '99999999');
+    (3, '20:00', true, true, false, false, '888888'),
+    (2, '17:00', true, false, true, false, '999999');

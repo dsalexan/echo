@@ -1,3 +1,83 @@
-page-perfil {
-
-}
+perfil-page {
+    .profile-image-wrapper {
+      text-align: center;
+      margin: 20px 0;
+      .profile-image {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        display: inline-block;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        border: 5px solid map_get($colors,logo_border);
+      }
+  
+      .profile-image-placeholder {  //foto do usuario
+        display: inline-block;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: 'secondary';
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        font-size: 12px;
+        border: 5px solid map_get($colors,primary);
+        ion-icon {
+          font-size: 44px;
+          margin-bottom: -10px;
+          margin-top: 22px;
+        }
+      }
+    }
+  
+    .amount{
+      color:  map_get($colors,light);
+      background: white;
+    }
+  
+    .userDetails{ //detalhes do usuario
+      color: black;
+      text-align: center;
+      font-family: "Arial";
+      font-weight: bold;
+      font-size: 1.6rem !important;
+   
+    }
+  
+    .full_name{ //nome do usuario
+      opacity: 0.8;
+      color: black;
+      text-align: center;
+      font-family: "Arial";
+      font-size: 1.7rem !important;
+      margin-bottom: -15px !important;
+    }
+  /*  
+    .upperDiv{
+      background-color:  map_get($colors,secondary);// cor do plano de fundo
+      background-position: bottom;
+    }
+  */
+    .item-block{
+      border: none;
+    }
+  
+    .label_here{
+     color: black !important;
+      font-size: 16px !important;
+    }
+  
+    ion-input{
+      font-size: 16px !important;
+    }
+  
+    .list-md {
+      margin: 15px 0 16px;
+    }
+  
+    .toolbar-background {
+      background-color:  map_get($colors,primary) !important;
+    }
+  }
