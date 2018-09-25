@@ -53,6 +53,8 @@ export class CadastroPage {
     //   });
     // }
 
+    // enviar requisicao do tipo /api/auth/login com usuario, senha e email
+
     // cadastrar usuário no banco usando this.dados["usuario/senha/email"]
     // criar sessão como se o usuário tivesse logado
     // this.navCtrl.push(Home);
