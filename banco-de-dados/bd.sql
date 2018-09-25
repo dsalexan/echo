@@ -5,98 +5,64 @@ DROP TABLE IF EXISTS localidade;
 DROP TABLE IF EXISTS saldo;
 DROP TABLE IF EXISTS cardapio;
 DROP TABLE IF EXISTS aluno_turma;
-DROP TABLE IF EXISTS compromisso;
+DROP TABLE IF EXISTS evento_turma;
 DROP TABLE IF EXISTS horario_turma;
 DROP TABLE IF EXISTS horario;
 DROP TABLE IF EXISTS turma;
 DROP TABLE IF EXISTS pre_req;
-DROP TABLE IF EXISTS materia;
+DROP TABLE IF EXISTS uc;
 DROP TABLE IF EXISTS email_professor;
 DROP TABLE IF EXISTS professor;
 DROP TABLE IF EXISTS sala;
 DROP TABLE IF EXISTS aluno;
 
 CREATE TABLE aluno (
-	ra_aluno VARCHAR(6) PRIMARY KEY,
+	ra_aluno VARCHAR(10) PRIMARY KEY,
 	nome TEXT NOT NULL,
 	login_intranet TEXT NOT NULL UNIQUE,
-	email TEXT NOT NULL UNIQUE
+	senha_intranet TEXT NOT NULL,
+	email TEXT NOT NULL UNIQUE,
+	telefone VARCHAR(15)
 );
-INSERT INTO aluno (ra_aluno, nome, login_intranet, email) VALUES
-('000000', 'Usuario0', 'user0', 'user0@gmail.com'),
-('111111', 'Usuario1', 'user1', 'user1@gmail.com'),
-('222222', 'Usuario2', 'user2', 'user2@gmail.com'),
-('333333', 'Usuario3', 'user3', 'user3@gmail.com'),
-('444444', 'Usuario4', 'user4', 'user4@gmail.com'),
-('555555', 'Usuario5', 'user5', 'user5@gmail.com'),
-('666666', 'Usuario6', 'user6', 'user6@gmail.com'),
-('777777', 'Usuario7', 'user7', 'user7@gmail.com'),
-('888888', 'Usuario8', 'user8', 'user8@gmail.com'),
-('999999', 'Usuario9', 'user9', 'user9@gmail.com');
-
-CREATE TABLE sala (
-	id_sala SERIAL PRIMARY KEY,
-	numero VARCHAR(5) NOT NULL,
-	unidade VARCHAR(20) NOT NULL,
-	capacidade VARCHAR(4),
-	descricao TEXT,
-	UNIQUE (numero, unidade)
-);
-INSERT INTO sala (id_sala, numero, unidade, capacidade, descricao) VALUES
-(DEFAULT, '201', 'Parque Tecnologico', '50', NULL),
-(DEFAULT, '202', 'Parque Tecnologico', '100', NULL),
-(DEFAULT, '203', 'Parque Tecnologico', '50', NULL),
-(DEFAULT, '204', 'Parque Tecnologico', '100', NULL),
-(DEFAULT, '205', 'Parque Tecnologico', '50', NULL),
-(DEFAULT, '206', 'Parque Tecnologico', '100', NULL),
-(DEFAULT, '207', 'Parque Tecnologico', '50', NULL),
-(DEFAULT, '208', 'Parque Tecnologico', '100', NULL),
-(DEFAULT, '209', 'Parque Tecnologico', '50', NULL),
-(DEFAULT, '210', 'Parque Tecnologico', '100', NULL);
+INSERT INTO aluno (ra_aluno, nome, login_intranet, senha_intranet, email) VALUES
+('000000', 'Usuario0', '123456', 'user0', 'user0@gmail.com'),
+('111111', 'Usuario1', '123456', 'user1', 'user1@gmail.com'),
+('222222', 'Usuario2', '123456', 'user2', 'user2@gmail.com'),
+('333333', 'Usuario3', '123456', 'user3', 'user3@gmail.com'),
+('444444', 'Usuario4', '123456', 'user4', 'user4@gmail.com'),
+('555555', 'Usuario5', '123456', 'user5', 'user5@gmail.com'),
+('666666', 'Usuario6', '123456', 'user6', 'user6@gmail.com'),
+('777777', 'Usuario7', '123456', 'user7', 'user7@gmail.com'),
+('888888', 'Usuario8', '123456', 'user8', 'user8@gmail.com'),
+('999999', 'Usuario9', '123456', 'user9', 'user9@gmail.com');
 
 CREATE TABLE professor (
 	id_professor SERIAL PRIMARY KEY,
 	nome TEXT NOT NULL,
+	sala INTEGER NOT NULL,
 	lattes TEXT UNIQUE,
-	area_atuacao TEXT,
-	id_sala INTEGER REFERENCES sala(id_sala) NOT NULL
+	email1 TEXT,
+	email2 TEXT
 );
-INSERT INTO professor (nome, lattes, area_atuacao, id_sala) VALUES
-('Professor0', 'linklattes0', 'area0', 1),
-('Professor1', 'linklattes1', 'area1', 1),
-('Professor2', 'linklattes2', 'area2', 2),
-('Professor3', 'linklattes3', 'area3', 3),
-('Professor4', 'linklattes4', 'area4', 5),
-('Professor5', 'linklattes5', 'area5', 5),
-('Professor6', 'linklattes6', 'area6', 5),
-('Professor7', 'linklattes7', 'area7', 6),
-('Professor8', 'linklattes8', 'area8', 7),
-('Professor9', 'linklattes9', 'area9', 10);
+INSERT INTO professor (nome, sala, lattes, email1) VALUES
+('Professor0', 0, 'linklattes0', 'email0'),
+('Professor1', 1, 'linklattes1', 'email1'),
+('Professor2', 2, 'linklattes2', 'email2'),
+('Professor3', 3, 'linklattes3', 'email3'),
+('Professor4', 4, 'linklattes4', 'email4'),
+('Professor5', 5, 'linklattes5', 'email5'),
+('Professor6', 6, 'linklattes6', 'email6'),
+('Professor7', 7, 'linklattes7', 'email7'),
+('Professor8', 8, 'linklattes8', 'email8'),
+('Professor9', 9, 'linklattes9', 'email9');
 
-CREATE TABLE email_professor (
-	id_email SERIAL PRIMARY KEY,
-	id_professor INTEGER REFERENCES professor(id_professor) NOT NULL,
-	email TEXT NOT NULL UNIQUE
-);
-INSERT INTO email_professor (id_professor, email) VALUES
-(1, 'prof0@unifesp.br'),
-(1, 'prof0@gmail.com'),
-(1, 'prof0@hotmail.com'),
-(2, 'prof1@unifesp.br'),
-(2, 'prof1@gmail.com'),
-(3, 'prof2@hotmail.com'),
-(4, 'prof3@unifesp.br'),
-(5, 'prof4@gmail.com'),
-(6, 'prof5@hotmail.com'),
-(7, 'prof6@hotmail.com');
-
-CREATE TABLE materia (
-	id_materia SERIAL PRIMARY KEY,
+CREATE TABLE uc (
+	id_uc SERIAL PRIMARY KEY,
 	nome TEXT NOT NULL UNIQUE,
 	creditos INTEGER NOT NULL CHECK (creditos > 0)
 );
 
-INSERT INTO materia
+INSERT INTO uc
 VALUES (DEFAULT, 'Logica de Programação', 4),
 (DEFAULT, 'Algoritmos e Estrutura de Dados', 4),
 (DEFAULT, 'Calculo em Uma Variavel', 6),
@@ -104,9 +70,9 @@ VALUES (DEFAULT, 'Logica de Programação', 4),
 (DEFAULT, 'Series e Equaçoes Diferenciais', 4);
 
 CREATE TABLE pre_req (
-	id_materia INTEGER REFERENCES materia(id_materia),
-	id_pre_req INTEGER REFERENCES materia(id_materia),
-	PRIMARY KEY(id_materia, id_pre_req)
+	id_uc INTEGER REFERENCES uc(id_uc),
+	id_pre_req INTEGER REFERENCES uc(id_uc),
+	PRIMARY KEY(id_uc, id_pre_req)
 );
 
 INSERT INTO pre_req
@@ -115,16 +81,17 @@ VALUES (2, 1),
 
 CREATE TABLE turma (
 	id_turma SERIAL PRIMARY KEY,
-	id_materia INTEGER REFERENCES materia(id_materia) NOT NULL,
-	id_professor INTEGER REFERENCES professor(id_professor) NOT NULL
+	id_uc INTEGER REFERENCES uc(id_uc) NOT NULL,
+	id_professor INTEGER REFERENCES professor(id_professor) NOT NULL,
+	nome VARCHAR(5) NOT NULL
 );
 
 INSERT INTO turma
-VALUES (DEFAULT, 1, 1),
-(DEFAULT, 2, 2),
-(DEFAULT, 3, 3),
-(DEFAULT, 4 ,4),
-(DEFAULT, 5, 5);
+VALUES (DEFAULT, 1, 1, 'IA'),
+(DEFAULT, 2, 2, 'IB'),
+(DEFAULT, 3, 3, 'N'),
+(DEFAULT, 4 ,4, 'IC'),
+(DEFAULT, 5, 5, 'N');
 
 CREATE TABLE horario (
 	id_horario SERIAL PRIMARY KEY,
@@ -143,8 +110,8 @@ VALUES (DEFAULT, 'SEG', '10:00'),
 create table horario_turma (
 	id_turma INTEGER REFERENCES turma(id_turma) NOT NULL,
 	id_horario INTEGER REFERENCES horario(id_horario),
-	id_sala INTEGER REFERENCES sala(id_sala),
-	PRIMARY KEY(id_horario, id_sala)
+	sala INTEGER,
+	PRIMARY KEY(id_horario, id_turma)
 );
 
 INSERT INTO horario_turma
@@ -154,21 +121,33 @@ VALUES (1, 1, 1),
 (4, 4, 4),
 (5, 5, 5);
 
-CREATE TABLE compromisso (
-	id_compromisso SERIAL PRIMARY KEY,
-	id_turma INTEGER REFERENCES turma(id_turma) NOT NULL,
-	nome TEXT NOT NULL,
-	data DATE NOT NULL,
-	id_sala INTEGER REFERENCES sala(id_sala),
-	informacoes TEXT
+CREATE TABLE evento(
+	id_evento SERIAL PRIMARY KEY,
+	descricao TEXT NOT NULL
 );
 
-INSERT INTO compromisso
-VALUES (DEFAULT, 1, 'Prova de Calculo', '2018-09-29', 1, 'levar calculadora'),
-(DEFAULT, 2, 'Palestra de Organização Financeira', '2018-10-01', 2, 'vale horas'),
-(DEFAULT, 3, 'Entrega Manuscrito', '2018-10-15', 3, 'Encardenado'),
-(DEFAULT, 4, 'Prova de LP', '2018-11-01', 4, 'até vetores'),
-(DEFAULT, 5, 'Reunião Forgers', '2018-09-4', 4, 'Comparecer com Camiseta do grupo');
+INSERT INTO evento
+VALUES ('Prova'),
+('Atividade'),
+('Trabalho'),
+('Cancelamento');
+
+CREATE TABLE evento_turma (
+	id_evento INTEGER REFERENCES evento(id_evento) NOT NULL,
+	id_turma INTEGER REFERENCES turma(id_turma) NOT NULL,
+	id_aluno VARCHAR(10),
+	data DATE NOT NULL,
+	sala INTEGER NOT NULL,
+	descricao TEXT,
+	PRIMARY KEY(id_evento, id_turma)
+);
+
+INSERT INTO evento_turma
+VALUES (1, 1, '000000', '2018-09-29', 1, 'levar calculadora'),
+(2, 2, '222222', '2018-10-01', 2, 'vale horas'),
+(3, 3, '444444', '2018-10-15', 3, 'Encardenado'),
+(1, 4, '666666', '2018-11-01', 4, 'até vetores'),
+(2, 5, NULL, '2018-09-4', 4, 'Comparecer com Camiseta do grupo');
 
 CREATE TABLE aluno_turma (
 	ra_aluno VARCHAR(6) REFERENCES aluno(ra_aluno),
@@ -185,53 +164,24 @@ VALUES('111111', 1, DEFAULT),
 ('555555', 5, DEFAULT);
 
 CREATE TABLE cardapio (
-    data JSONB
+    tabela JSONB,
+	data_inicio DATE NOT NULL,
+	PRIMARY KEY(data_inicio)
 );
 
 INSERT INTO cardapio (data) VALUES
 ('{"prato_base": "Arroz e feijão", "prato_principal" : "Filé de frango", "opcao_vegetariana": "Kibe vegetariano",
-"guarnicao": "Chuchu", "sobremesa": "Gelatina", "semana": "10", "dia_semana": "Segunda", "tipo_refeicao": "Almoço"}'),
+"guarnicao": "Chuchu", "sobremesa": "Gelatina", "semana": "10", "dia_semana": "Segunda", "tipo_refeicao": "Almoço"}', '2018-10-15'),
 ('{"prato_base": "Arroz e feijão", "prato_principal" : "Filé de peixe", "opcao_vegetariana": "Couve-flor gratinada",
-"guarnicao": "Couve", "sobremesa": "Gelatina", "semana": "10", "dia_semana": "Segunda", "tipo_refeicao": "Jantar"}'),
+"guarnicao": "Couve", "sobremesa": "Gelatina", "semana": "10", "dia_semana": "Segunda", "tipo_refeicao": "Jantar"}', '2018-10-16'),
 ('{"prato_base": "Arroz e feijão", "prato_principal" : "Costela", "opcao_vegetariana": "Batata",
-"guarnicao": "Farofa", "sobremesa": "Gelatina", "semana": "10", "dia_semana": "Terça", "tipo_refeicao": "Almoço"}'),
+"guarnicao": "Farofa", "sobremesa": "Gelatina", "semana": "10", "dia_semana": "Terça", "tipo_refeicao": "Almoço"}', '2018-10-17'),
 ('{"prato_base": "Arroz e feijão", "prato_principal" : "Bisteca", "opcao_vegetariana": "Batata doce",
-"guarnicao": "Farofa", "sobremesa": "Gelatina", "semana": "10", "dia_semana": "Terça", "tipo_refeicao": "Jantar"}'),
+"guarnicao": "Farofa", "sobremesa": "Gelatina", "semana": "10", "dia_semana": "Terça", "tipo_refeicao": "Jantar"}', '2018-10-18'),
 ('{"prato_base": "Arroz e feijão", "prato_principal" : "Filé mignon", "opcao_vegetariana": "Rúcula",
-"guarnicao": "Couve", "sobremesa": "Gelatina", "semana": "10", "dia_semana": "Quarta", "tipo_refeicao": "Almoço"}'),
+"guarnicao": "Couve", "sobremesa": "Gelatina", "semana": "10", "dia_semana": "Quarta", "tipo_refeicao": "Almoço"}', '2018-10-19'),
 ('{"prato_base": "Arroz e feijão", "prato_principal" : "Contra filé", "opcao_vegetariana": "Ovo frito",
-"guarnicao": "Couve", "sobremesa": "Abacaxi", "semana": "10", "dia_semana": "Quarta", "tipo_refeicao": "Jantar"}'),
-('{"prato_base": "Arroz e feijão", "prato_principal" : "Nhoque", "opcao_vegetariana": "Couve",
-"guarnicao": "Couve", "sobremesa": "Abacaxi", "semana": "10", "dia_semana": "Quinta", "tipo_refeicao": "Almoço"}'),
-('{"prato_base": "Arroz e feijão", "prato_principal" : "Rondeli", "opcao_vegetariana": "Berinjela",
-"guarnicao": "Couve", "sobremesa": "Abacaxi", "semana": "10", "dia_semana": "Quinta", "tipo_refeicao": "Jantar"}'),
-('{"prato_base": "Arroz e feijão", "prato_principal" : "Panqueca", "opcao_vegetariana": "Bolinho de grão de bico",
-"guarnicao": "Farofa", "sobremesa": "Abacaxi", "semana": "10", "dia_semana": "Sexta", "tipo_refeicao": "Almoço"}'),
-('{"prato_base": "Arroz e feijão", "prato_principal" : "Macarrão ao frutos do mar", "opcao_vegetariana": "Brocolis",
-"guarnicao": "Couve", "sobremesa": "Abacaxi", "semana": "10", "dia_semana": "Sexta", "tipo_refeicao": "Jantar"}');
-
-CREATE TABLE saldo (
-    ra_aluno VARCHAR(6),
-    quantidade INT NOT NULL,
-    restaurante VARCHAR(50) NOT NULL,
-    validade DATE NOT NULL,
-    campus VARCHAR(50) NOT NULL,
-
-    PRIMARY KEY (ra_aluno),
-    FOREIGN KEY (ra_aluno) REFERENCES aluno (ra_aluno)
-);
-INSERT INTO saldo
-VALUES
-('000000', 2, 'RU SJC - PARQUE TECNOLÓGICO', '28/02/2019', 'SÃO JOSÉ DOS CAMPOS'),
-('111111', 1, 'RU SJC - PARQUE TECNOLÓGICO', '09/03/2019', 'SÃO JOSÉ DOS CAMPOS'),
-('222222', 3, 'RU SJC - PARQUE TECNOLÓGICO', '17/02/2019', 'SÃO JOSÉ DOS CAMPOS'),
-('333333', 0, 'RU SJC - PARQUE TECNOLÓGICO', '13/01/2019', 'SÃO JOSÉ DOS CAMPOS'),
-('444444', 2, 'RU SJC - PARQUE TECNOLÓGICO', '08/02/2019', 'SÃO JOSÉ DOS CAMPOS'),
-('555555', 1, 'RU SJC - PARQUE TECNOLÓGICO', '02/03/2019', 'SÃO JOSÉ DOS CAMPOS'),
-('666666', 1, 'RU SJC - PARQUE TECNOLÓGICO', '20/03/2019', 'SÃO JOSÉ DOS CAMPOS'),
-('777777', 2, 'RU SJC - PARQUE TECNOLÓGICO', '10/02/2019', 'SÃO JOSÉ DOS CAMPOS'),
-('888888', 0, 'RU SJC - PARQUE TECNOLÓGICO', '18/01/2019', 'SÃO JOSÉ DOS CAMPOS'),
-('999999', 1, 'RU SJC - PARQUE TECNOLÓGICO', '12/02/2019', 'SÃO JOSÉ DOS CAMPOS');
+"guarnicao": "Couve", "sobremesa": "Abacaxi", "semana": "10", "dia_semana": "Quarta", "tipo_refeicao": "Jantar"}', '2018-10-20');
 
 CREATE TABLE localidade(
 	id_local SERIAL PRIMARY KEY,
@@ -239,11 +189,11 @@ CREATE TABLE localidade(
 );
 INSERT INTO localidade (descricao) VALUES
 ('UNIFESP'),
-('Satelite'),
-('Parque industrial'),
+('Satélite'),
+('Parque Industrial'),
 ('Urbanova'),
 ('Chaparral'),
-('Santa ines');
+('Santa Inês');
 
 CREATE TABLE viagem (
 	id_viagem SERIAL PRIMARY KEY,
@@ -253,8 +203,8 @@ CREATE TABLE viagem (
 	dia DATE NOT NULL,
 	hora TIME NOT NULL,
 	preco REAL NOT NULL,
-	qtd_vagas INT NOT NULL CHECK ((qtd_vagas < 6) AND (qtd_vagas > 0)),
-	descricao VARCHAR(280) NOT NULL,
+	qtd_vagas INT NOT NULL CHECK ((qtd_vagas < 8) AND (qtd_vagas > 0)),
+	descricao TEXT NOT NULL,
 
 	FOREIGN KEY(id_motorista) REFERENCES aluno (ra_aluno),
 	FOREIGN KEY(id_origem) REFERENCES localidade (id_local),
@@ -268,12 +218,12 @@ INSERT INTO viagem (id_motorista, id_origem, id_destino, dia, hora, preco, qtd_v
 ('111111', 1, 2, '2018-09-03', '21:00', 3.00, 3, 'deixo no demoiselle');
 
 CREATE TABLE reserva (
-	id_reserva SERIAL PRIMARY KEY,
 	id_viagem INT NOT NULL,
 	id_passageiro VARCHAR(6) NOT NULL,
 
 	FOREIGN KEY(id_viagem) REFERENCES viagem (id_viagem),
-	FOREIGN KEY(id_passageiro) REFERENCES aluno (ra_aluno)
+	FOREIGN KEY(id_passageiro) REFERENCES aluno (ra_aluno),
+	PRIMARY KEY(id_viagem, id_passageiro)
 );
 
 INSERT INTO reserva (id_viagem, id_passageiro) VALUES
@@ -286,27 +236,3 @@ INSERT INTO reserva (id_viagem, id_passageiro) VALUES
 (4, 666666),
 (3, 888888),
 (5, 333333);
-
-CREATE TABLE preferencias( -- configuracoes do usuario
-    id_notific SERIAL PRIMARY KEY,
-    num_notific INT CHECK ((num_notific >= 1) AND (num_notific <= 4)), -- quantidade de notificaçoes antes prova
-    hor_notific TIME,
-    notific_prova BOOLEAN,
-    notific_aviso BOOLEAN,
-    notific_email BOOLEAN,
-    sync_calendar BOOLEAN, -- sincronizar com calendario do google
-	ra_aluno VARCHAR(6),
-    FOREIGN KEY (ra_aluno) REFERENCES aluno(ra_aluno)
-);
-
-INSERT INTO preferencias (num_notific, hor_notific, notific_prova, notific_aviso, notific_email, sync_calendar, ra_aluno) VALUES
-	(1, '12:00', true, true, false, true, '000000'),
-    (3, '22:00', false, true, true, false, '111111'),
-    (2, '13:00', true, false, true, true, '222222'),
-    (3, '06:00', true, true, false, false, '333333'),
-    (1, '18:00', true, false, false, false, '444444'),
-    (3, '15:00', true, true, true, true, '555555'),
-    (2, '10:00', false, false, false, false, '666666'),
-    (1, '16:00', false, true, false, true, '777777'),
-    (3, '20:00', true, true, false, false, '888888'),
-    (2, '17:00', true, false, true, false, '999999');
