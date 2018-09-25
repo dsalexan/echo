@@ -408,19 +408,23 @@ webpackEmptyAsyncContext.id = 112;
 var map = {
 	"../pages/cadastro/cadastro.module": [
 		275,
-		3
+		10
 	],
 	"../pages/configuracoes/configuracoes.module": [
 		276,
-		2
+		9
+	],
+	"../pages/edita-produto/edita-produto.module": [
+		279,
+		6
 	],
 	"../pages/login/login.module": [
 		277,
-		1
+		8
 	],
 	"../pages/perfil/perfil.module": [
 		278,
-		0
+		7
 	]
 };
 function webpackAsyncContext(req) {
@@ -505,7 +509,8 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/cadastro/cadastro.module#CadastroPageModule', name: 'CadastroPage', segment: 'cadastro', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/configuracoes/configuracoes.module#ConfiguracoesPageModule', name: 'ConfiguracoesPage', segment: 'configuracoes', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/perfil/perfil.module#PerfilPageModule', name: 'PerfilPage', segment: 'perfil', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/perfil/perfil.module#PerfilPageModule', name: 'PerfilPage', segment: 'perfil', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/edita-produto/edita-produto.module#EditaProdutoPageModule', name: 'EditaProdutoPage', segment: 'edita-produto', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["a" /* IonicStorageModule */].forRoot()
