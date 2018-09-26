@@ -1,19 +1,16 @@
-DROP TABLE IF EXISTS preferencias;
 DROP TABLE IF EXISTS reserva;
 DROP TABLE IF EXISTS viagem;
 DROP TABLE IF EXISTS localidade;
-DROP TABLE IF EXISTS saldo;
 DROP TABLE IF EXISTS cardapio;
 DROP TABLE IF EXISTS aluno_turma;
 DROP TABLE IF EXISTS evento_turma;
+DROP TABLE IF EXISTS evento;
 DROP TABLE IF EXISTS horario_turma;
 DROP TABLE IF EXISTS horario;
 DROP TABLE IF EXISTS turma;
 DROP TABLE IF EXISTS pre_req;
 DROP TABLE IF EXISTS uc;
-DROP TABLE IF EXISTS email_professor;
 DROP TABLE IF EXISTS professor;
-DROP TABLE IF EXISTS sala;
 DROP TABLE IF EXISTS aluno;
 
 CREATE TABLE aluno (
@@ -25,16 +22,16 @@ CREATE TABLE aluno (
 	telefone VARCHAR(15)
 );
 INSERT INTO aluno (ra_aluno, nome, login_intranet, senha_intranet, email) VALUES
-('000000', 'Usuario0', '123456', 'user0', 'user0@gmail.com'),
-('111111', 'Usuario1', '123456', 'user1', 'user1@gmail.com'),
-('222222', 'Usuario2', '123456', 'user2', 'user2@gmail.com'),
-('333333', 'Usuario3', '123456', 'user3', 'user3@gmail.com'),
-('444444', 'Usuario4', '123456', 'user4', 'user4@gmail.com'),
-('555555', 'Usuario5', '123456', 'user5', 'user5@gmail.com'),
-('666666', 'Usuario6', '123456', 'user6', 'user6@gmail.com'),
-('777777', 'Usuario7', '123456', 'user7', 'user7@gmail.com'),
-('888888', 'Usuario8', '123456', 'user8', 'user8@gmail.com'),
-('999999', 'Usuario9', '123456', 'user9', 'user9@gmail.com');
+('000000', 'Usuario0', 'user0', '123456', 'user0@gmail.com'),
+('111111', 'Usuario1', 'user1', '123456', 'user1@gmail.com'),
+('222222', 'Usuario2', 'user2', '123456', 'user2@gmail.com'),
+('333333', 'Usuario3', 'user3', '123456', 'user3@gmail.com'),
+('444444', 'Usuario4', 'user4', '123456', 'user4@gmail.com'),
+('555555', 'Usuario5', 'user5', '123456', 'user5@gmail.com'),
+('666666', 'Usuario6', 'user6', '123456', 'user6@gmail.com'),
+('777777', 'Usuario7', 'user7', '123456', 'user7@gmail.com'),
+('888888', 'Usuario8', 'user8', '123456', 'user8@gmail.com'),
+('999999', 'Usuario9', 'user9', '123456', 'user9@gmail.com');
 
 CREATE TABLE professor (
 	id_professor SERIAL PRIMARY KEY,
@@ -126,7 +123,7 @@ CREATE TABLE evento(
 	descricao TEXT NOT NULL
 );
 
-INSERT INTO evento
+INSERT INTO evento (descricao)
 VALUES ('Prova'),
 ('Atividade'),
 ('Trabalho'),
@@ -169,7 +166,8 @@ CREATE TABLE cardapio (
 	PRIMARY KEY(data_inicio)
 );
 
-INSERT INTO cardapio (data) VALUES
+INSERT INTO cardapio
+VALUES
 ('{"prato_base": "Arroz e feijão", "prato_principal" : "Filé de frango", "opcao_vegetariana": "Kibe vegetariano",
 "guarnicao": "Chuchu", "sobremesa": "Gelatina", "semana": "10", "dia_semana": "Segunda", "tipo_refeicao": "Almoço"}', '2018-10-15'),
 ('{"prato_base": "Arroz e feijão", "prato_principal" : "Filé de peixe", "opcao_vegetariana": "Couve-flor gratinada",
