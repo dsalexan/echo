@@ -1,6 +1,22 @@
+<<<<<<< HEAD
 import {Component, ViewChild} from '@angular/core';
 import {IonicPage, NavController, ViewController, ToastController, LoadingController} from 'ionic-angular';
 import {FormBuilder, FormGroup} from "@angular/forms";
+=======
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, ViewController, ToastController, LoadingController, NavParams } from 'ionic-angular';
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { Storage } from '@ionic/storage';
+
+import { LoginPage } from '../login/login';
+
+/**
+ * Generated class for the PerfilPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+>>>>>>> e9ceb3ae565a004a65206aa716db479c6b294413
 
 @IonicPage()
 @Component({
@@ -29,7 +45,12 @@ export class PerfilPage {
   };
 
   constructor(public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder,
+<<<<<<< HEAD
               public toastCtrl: ToastController, public loadingCtrl: LoadingController) {
+=======
+              public toastCtrl: ToastController, public loadingCtrl: LoadingController, public storage: Storage,
+              public navParams: NavParams) {
+>>>>>>> e9ceb3ae565a004a65206aa716db479c6b294413
 
     this.form = formBuilder.group({
       image: [''], user_RA: [''], user_name: [''], user_password: [''], user_email: [''], user_state: [''],
@@ -42,6 +63,7 @@ export class PerfilPage {
         about: "Bacharelado em Ciência e Tecnologia"
       },
     ];
+<<<<<<< HEAD
 
   }
 
@@ -49,6 +71,15 @@ export class PerfilPage {
 
   }
 
+=======
+
+  }
+
+  getInfomations(){ //busca no banco de dados as informações do usuario
+
+  }
+
+>>>>>>> e9ceb3ae565a004a65206aa716db479c6b294413
   changedSmtng() {
     this.caption_name = "SALVAR";
   }
@@ -94,9 +125,27 @@ export class PerfilPage {
       this.isDisabled = true;
       this.caption_name = "EDITAR";
     }
+<<<<<<< HEAD
   }
 
   ionViewDidLoad() {
+=======
+  }
+
+  checkSession() {
+    this.storage.get("usuario").then((usu) => {
+      this.storage.get("senha").then((sen) => {
+        if(usu == null && sen == null){
+          this.navCtrl.push(LoginPage);
+        }
+      })
+    })
+  }
+
+  ionViewDidLoad() {
+    this.checkSession()
+    console.log('ionViewDidLoad PerfilPage');
+>>>>>>> e9ceb3ae565a004a65206aa716db479c6b294413
   }
 
   processWebImage(event) {

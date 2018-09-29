@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Storage } from '@ionic/storage';
+
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
 import { CadastroPage } from '../cadastro/cadastro';
@@ -19,44 +21,53 @@ export class LoginPage {
 
   dados = {}
 
-  constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public alertCtrl: AlertController
-  ) { }
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage) {
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
-
+  
+  storeUser(user) {
+    this.storage.set("usuario", user)
+  }
+  
   clickLogin() {
-    if (this.verificarCredenciais() == true) {
+    if (this.verificarCredenciais(this.dados["usuario"], this.dados["senha"])) {
+      this.storeUser(this.dados["usuario"]);
 
       if (this.primeiroLogin()) {
         this.navCtrl.push(CadastroPage, {dados: this.dados});
       }
 
       if (this.dados["lembrar"]) {
-          // lembrar login (cadastrar senha no sqlite?)
+        this.storage.set("senha", this.dados["senha"])
       }
 
       // this.navCtrl.push(Home);
-    }
-    else {
+    } else {
       let alert = this.alertCtrl.create( {
-        title: 'Dados incorretos',
-        subTitle: 'Usuário e/ou senha incorretos.',
+        title: 'Ops!',
+        subTitle: 'Verifique as informações inseridas',
         buttons: ['Dismiss']
       });
       alert.present();
     }
   }
 
-  verificarCredenciais() {
+  verificarCredenciais(user, senha) {
+    user = (user == null || user == '') ? '' : user
+    senha = (senha == null || user == '') ? '' : senha
+
+    if(user != '' && senha != '') {
+      return true
+    } else {
+      return false
+    }
+
     // verificar se usuario this.dados["usuario"] existe
     // verificar se a senha this.dados["senha"] esta correta
     // isso por web crawling
-    return true;
   }
 
   primeiroLogin() {
