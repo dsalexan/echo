@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
@@ -18,8 +19,20 @@ export class UtilidadesPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
+  biblioteca() {
     console.log('ionViewDidLoad UtilidadesPage');
+    const browser = this.iab.create('https://ionicframework.com/');
+
+    browser.executeScript();
+
+    browser.insertCSS();
+    browser.on('loadstop').subscribe(event => {
+       browser.insertCSS({ code: "body{color: red;" });
+   });
+
+    browser.close();
   }
 
 }
+
+// https://ionicframework.com/docs/native/in-app-browser/
