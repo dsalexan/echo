@@ -5,14 +5,17 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>utilidades</ion-title>
+  <ion-navbar color="primary">
+    <ion-title center>{{ 'Utilidaes' }}</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content padding>
-
+  <ion-buttons (click) = "clickBilioteca()" class = "biblioteca">BIBLIOTECA</ion-buttons>
+  <ion-buttons (click) = "clickSaldo()" class ="saldo">CONSULTAR SALDO RU</ion-buttons>
+  <ion-buttons (click) = "clickCardapio()" class = "caradpio">CARDÁPIO RU</ion-buttons>
+  <ion-buttons (click) = "clickEmail()" class = "email">EMAIL UNIFESP</ion-buttons>
+  <ion-buttons (click) = "clickAtestado()" class = "atestado">ATESTADO DE MATRICULA</ion-buttons>
+  <ion-buttons (click) = "clickHistorico()" class = "historico">HISTORICO ESCOLAR</ion-buttons>
 </ion-content>

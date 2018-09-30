@@ -90,9 +90,10 @@ VALUES (DEFAULT, 1, 1, 'IA'),
 (DEFAULT, 4 ,4, 'IC'),
 (DEFAULT, 5, 5, 'N');
 
+CREATE TYPE dia_ordenado AS ENUM ('DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB');
 CREATE TABLE horario (
 	id_horario SERIAL PRIMARY KEY,
-	dia_semana VARCHAR(3) NOT NULL,
+	dia_semana dia_ordenado NOT NULL,
 	hora TIME NOT NULL CHECK ((hora >= '08:00') AND (hora <= '21:00'))
 );
 

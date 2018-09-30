@@ -2,15 +2,10 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, ViewController, ToastController, LoadingController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Storage } from '@ionic/storage';
+import { Platform, Nav } from 'ionic-angular';
 
 import { LoginPage } from '../login/login';
-
-/**
- * Generated class for the PerfilPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {ConfigPage} from '../configuracoes/configuracoes'
 
 @IonicPage()
 @Component({
@@ -18,6 +13,8 @@ import { LoginPage } from '../login/login';
   templateUrl: 'perfil.html'
 })
 export class PerfilPage {
+  @ViewChild(Nav) nav: Nav;
+
   @ViewChild('fileInput') fileInput;
   isReadyToSave: boolean;
   item: any;
@@ -39,6 +36,7 @@ export class PerfilPage {
   };
 
   constructor(public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder,
+
               public toastCtrl: ToastController, public loadingCtrl: LoadingController, public storage: Storage,
               public navParams: NavParams) {
 
@@ -57,54 +55,10 @@ export class PerfilPage {
   }
 
   getInfomations(){ //busca no banco de dados as informações do usuario
-
   }
 
-  changedSmtng() {
-    this.caption_name = "SALVAR";
-  }
-
-  editProfile() {
-    if (this.caption_name == "EDITAR") {
-      this.isDisabled = false;
-      this.caption_name = "CANCELAR";
-    } else if (this.caption_name == "SALVAR") {
-
-      console.log(this.isReadyToSave);
-      if (!(this.account.user_name && this.account.user_email && this.account.user_password && this.account.user_RA)) {
-        let toast = this.toastCtrl.create({
-          message: "Campos Inválidos!",
-          duration: 2000,
-          position: 'bottom'
-        });
-        toast.present();
-      } else {
-        let loading = this.loadingCtrl.create({
-          content: 'Please wait...'
-        });
-        loading.present();
-        setTimeout(() => {
-          loading.dismiss();
-          /*carregar dados do usuário no banco
-          *...
-          *...
-          *...
-          */
-          let toast = this.toastCtrl.create({
-            message: "You have successfully updated your details .",
-            duration: 2000,
-            position: 'top'
-          });
-          this.caption_name = "EDITAR";
-          this.isDisabled = true;
-          toast.present();
-
-        }, 2000);
-      }
-    } else if (this.caption_name == "CANCELAR") {
-      this.isDisabled = true;
-      this.caption_name = "EDITAR";
-    }
+  clickConfig() { // vai para a pagina de configurações
+    this.nav.push(ConfigPage);
   }
 
   checkSession() {
@@ -137,5 +91,49 @@ export class PerfilPage {
     return 'url(' + this.form.controls['image'].value + ')'
   }
 
+/*
+ editProfile() {
+    if (this.caption_name == "EDITAR") {
+      this.isDisabled = false;
+      this.caption_name = "CANCELAR";
+    } else if (this.caption_name == "SALVAR") {
+
+      console.log(this.isReadyToSave);
+      if (!(this.account.user_name && this.account.user_email && this.account.user_password && this.account.user_RA)) {
+        let toast = this.toastCtrl.create({
+          message: "Campos Inválidos!",
+          duration: 2000,
+          position: 'bottom'
+        });
+        toast.present();
+      } else {
+        let loading = this.loadingCtrl.create({
+          content: 'Please wait...'
+        });
+        loading.present();
+        setTimeout(() => {
+          loading.dismiss();
+          /*carregar dados do usuário no banco
+          *...
+          *...
+          *...
+
+         let toast = this.toastCtrl.create({
+          message: "You have successfully updated your details .",
+          duration: 2000,
+          position: 'top'
+        });
+        this.caption_name = "EDITAR";
+        this.isDisabled = true;
+        toast.present();
+
+      }, 2000);
+    }
+  } else if (this.caption_name == "CANCELAR") {
+    this.isDisabled = true;
+    this.caption_name = "EDITAR";
+  }
+}
+*/
 
 }
