@@ -1,9 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { Platform, Nav } from 'ionic-angular';
 
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { LoginPage } from '../login/login';
+import { editProfile } from 'caminho editProfile';
+import { editNotific } from 'caminho editNotific';
+import { editArm } from 'caminho editArm';
+import { ajuda } from 'caminho ajuda';
+import { logout } from 'caminho logout';
 
 /**
  * Generated class for the ConfiguracoesPage page.
@@ -17,24 +22,29 @@ import { LoginPage } from '../login/login';
   selector: 'page-configuracoes',
   templateUrl: 'configuracoes.html',
 })
-export class ConfiguracoesPage {
+export class ConfigPage {
+  @ViewChild(Nav) nav: Nav;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
   }
 
-  checkSession() {
-    this.storage.get("usuario").then((usu) => {
-      this.storage.get("senha").then((sen) => {
-        if(usu == null && sen == null){
-          this.navCtrl.push(LoginPage);
-        }
-      })
-    })
+  clickConta(){
+    this.nav.push(editProfile);
   }
 
-  ionViewDidLoad() {
-    this.checkSession()
-    console.log('ionViewDidLoad ConfiguracoesPage');
+  clickNot(){
+    this.nav.push(editNotific);
   }
 
+  clickDados(){
+    this.nav.push(editArm);
+  }
+
+  clickAjuda(){
+    this.nav.push(ajuda);
+  }
+
+  clickLogout(){
+    this.nav.push(logout);
+  }
 }

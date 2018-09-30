@@ -1,22 +1,11 @@
-<<<<<<< HEAD
-import {Component, ViewChild} from '@angular/core';
-import {IonicPage, NavController, ViewController, ToastController, LoadingController} from 'ionic-angular';
-import {FormBuilder, FormGroup} from "@angular/forms";
-=======
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, ViewController, ToastController, LoadingController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Storage } from '@ionic/storage';
+import { Platform, Nav } from 'ionic-angular';
 
 import { LoginPage } from '../login/login';
-
-/**
- * Generated class for the PerfilPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
->>>>>>> e9ceb3ae565a004a65206aa716db479c6b294413
+import {ConfigPage} from '../configuracoes/configuracoes'
 
 @IonicPage()
 @Component({
@@ -24,6 +13,8 @@ import { LoginPage } from '../login/login';
   templateUrl: 'perfil.html'
 })
 export class PerfilPage {
+  @ViewChild(Nav) nav: Nav;
+
   @ViewChild('fileInput') fileInput;
   isReadyToSave: boolean;
   item: any;
@@ -45,12 +36,9 @@ export class PerfilPage {
   };
 
   constructor(public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder,
-<<<<<<< HEAD
-              public toastCtrl: ToastController, public loadingCtrl: LoadingController) {
-=======
+
               public toastCtrl: ToastController, public loadingCtrl: LoadingController, public storage: Storage,
               public navParams: NavParams) {
->>>>>>> e9ceb3ae565a004a65206aa716db479c6b294413
 
     this.form = formBuilder.group({
       image: [''], user_RA: [''], user_name: [''], user_password: [''], user_email: [''], user_state: [''],
@@ -63,28 +51,48 @@ export class PerfilPage {
         about: "Bacharelado em Ciência e Tecnologia"
       },
     ];
-<<<<<<< HEAD
 
   }
 
   getInfomations(){ //busca no banco de dados as informações do usuario
-
   }
 
-=======
-
+  clickConfig() { // vai para a pagina de configurações
+    this.nav.push(ConfigPage);
   }
 
-  getInfomations(){ //busca no banco de dados as informações do usuario
-
+  checkSession() {
+    this.storage.get("usuario").then((usu) => {
+      this.storage.get("senha").then((sen) => {
+        if(usu == null && sen == null){
+          this.navCtrl.push(LoginPage);
+        }
+      })
+    })
   }
 
->>>>>>> e9ceb3ae565a004a65206aa716db479c6b294413
-  changedSmtng() {
-    this.caption_name = "SALVAR";
+  ionViewDidLoad() {
+    this.checkSession()
+    console.log('ionViewDidLoad PerfilPage');
   }
 
-  editProfile() {
+  processWebImage(event) {
+    let reader = new FileReader();
+    reader.onload = (readerEvent) => {
+
+      let imageData = (readerEvent.target as any).result;
+      this.form.patchValue({'image': imageData});
+    };
+
+    reader.readAsDataURL(event.target.files[0]);
+  }
+
+  getProfileImageStyle() {
+    return 'url(' + this.form.controls['image'].value + ')'
+  }
+
+/*
+ editProfile() {
     if (this.caption_name == "EDITAR") {
       this.isDisabled = false;
       this.caption_name = "CANCELAR";
@@ -109,59 +117,23 @@ export class PerfilPage {
           *...
           *...
           *...
-          */
-          let toast = this.toastCtrl.create({
-            message: "You have successfully updated your details .",
-            duration: 2000,
-            position: 'top'
-          });
-          this.caption_name = "EDITAR";
-          this.isDisabled = true;
-          toast.present();
 
-        }, 2000);
-      }
-    } else if (this.caption_name == "CANCELAR") {
-      this.isDisabled = true;
-      this.caption_name = "EDITAR";
+         let toast = this.toastCtrl.create({
+          message: "You have successfully updated your details .",
+          duration: 2000,
+          position: 'top'
+        });
+        this.caption_name = "EDITAR";
+        this.isDisabled = true;
+        toast.present();
+
+      }, 2000);
     }
-<<<<<<< HEAD
+  } else if (this.caption_name == "CANCELAR") {
+    this.isDisabled = true;
+    this.caption_name = "EDITAR";
   }
-
-  ionViewDidLoad() {
-=======
-  }
-
-  checkSession() {
-    this.storage.get("usuario").then((usu) => {
-      this.storage.get("senha").then((sen) => {
-        if(usu == null && sen == null){
-          this.navCtrl.push(LoginPage);
-        }
-      })
-    })
-  }
-
-  ionViewDidLoad() {
-    this.checkSession()
-    console.log('ionViewDidLoad PerfilPage');
->>>>>>> e9ceb3ae565a004a65206aa716db479c6b294413
-  }
-
-  processWebImage(event) {
-    let reader = new FileReader();
-    reader.onload = (readerEvent) => {
-
-      let imageData = (readerEvent.target as any).result;
-      this.form.patchValue({'image': imageData});
-    };
-
-    reader.readAsDataURL(event.target.files[0]);
-  }
-
-  getProfileImageStyle() {
-    return 'url(' + this.form.controls['image'].value + ')'
-  }
-
+}
+*/
 
 }
