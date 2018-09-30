@@ -1,6 +1,6 @@
 webpackJsonp([6],{
 
-/***/ 103:
+/***/ 102:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -78,6 +78,57 @@ var CadastroPage = /** @class */ (function () {
 
 /***/ }),
 
+/***/ 103:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ConfigPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_storage__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(20);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/* NÃO REMOVER
+import { editProfile } from 'caminho editProfile';
+import { editNotific } from 'caminho editNotific';
+import { editArm } from 'caminho editArm';
+import { ajuda } from 'caminho ajuda';
+import { logout } from 'caminho logout';
+*/
+var ConfigPage = /** @class */ (function () {
+    function ConfigPage(navCtrl, navParams, storage) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.storage = storage;
+    }
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* Nav */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* Nav */])
+    ], ConfigPage.prototype, "nav", void 0);
+    ConfigPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-configuracoes',template:/*ion-inline-start:"C:\Users\acamp\Desktop\Unifesp\Eng. de Software\app\echo\src\pages\configuracoes\configuracoes.html"*/'\n\n\n\n<ion-header>\n\n  <ion-content padding>Configurações</ion-content>\n\n</ion-header>\n\n\n\n<ion-content>\n\n  <ion-buttons class = "conta">Conta</ion-buttons> <!-- ADD (click) = "clickConta()"-->\n\n  <ion-buttons class = "notificacoes">Notificações</ion-buttons> <!-- ADD (click) = "clickNot()" -->\n\n  <ion-buttons class = "dados">Dados e Armazenamento</ion-buttons> <!-- ADD (click) = "clickDados()" -->\n\n  <ion-buttons class = "ajuda">Ajuda</ion-buttons> <!-- ADD (click) = "clickAjuda()" -->\n\n  <ion-buttons class = "logout">Logout</ion-buttons> <!-- ADD (click) = "clickLogout()" -->\n\n</ion-content>\n\n\n\n'/*ion-inline-end:"C:\Users\acamp\Desktop\Unifesp\Eng. de Software\app\echo\src\pages\configuracoes\configuracoes.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1__ionic_storage__["b" /* Storage */]])
+    ], ConfigPage);
+    return ConfigPage;
+}());
+
+//# sourceMappingURL=configuracoes.js.map
+
+/***/ }),
+
 /***/ 104:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -88,7 +139,7 @@ var CadastroPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__login_login__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__configuracoes_configuracoes__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__configuracoes_configuracoes__ = __webpack_require__(103);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -214,23 +265,23 @@ var map = {
 		5
 	],
 	"../pages/configuracoes/configuracoes.module": [
-		282,
+		278,
 		4
 	],
 	"../pages/edita-produto/edita-produto.module": [
-		278,
+		279,
 		1
 	],
 	"../pages/login/login.module": [
-		279,
+		280,
 		3
 	],
 	"../pages/perfil/perfil.module": [
-		280,
+		281,
 		2
 	],
 	"../pages/utilidades/utilidades.module": [
-		281,
+		282,
 		0
 	]
 };
@@ -275,9 +326,9 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(269);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_login_login__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_cadastro_cadastro__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_cadastro_cadastro__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_perfil_perfil__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_configuracoes_configuracoes__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_configuracoes_configuracoes__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_status_bar__ = __webpack_require__(196);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_splash_screen__ = __webpack_require__(199);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_http__ = __webpack_require__(156);
@@ -309,7 +360,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_5__pages_login_login__["a" /* LoginPage */],
                 __WEBPACK_IMPORTED_MODULE_6__pages_cadastro_cadastro__["a" /* CadastroPage */],
                 __WEBPACK_IMPORTED_MODULE_7__pages_perfil_perfil__["a" /* PerfilPage */],
-                __WEBPACK_IMPORTED_MODULE_8__pages_configuracoes_configuracoes__["ConfiguracoesPage"]
+                __WEBPACK_IMPORTED_MODULE_8__pages_configuracoes_configuracoes__["a" /* ConfigPage */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
@@ -317,11 +368,11 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* MyApp */], {}, {
                     links: [
                         { loadChildren: '../pages/cadastro/cadastro.module#CadastroPageModule', name: 'CadastroPage', segment: 'cadastro', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/configuracoes/configuracoes.module#ConfiguracoesPageModule', name: 'ConfigPage', segment: 'configuracoes', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/edita-produto/edita-produto.module#EditaProdutoPageModule', name: 'EditaProdutoPage', segment: 'edita-produto', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/perfil/perfil.module#PerfilPageModule', name: 'PerfilPage', segment: 'perfil', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/utilidades/utilidades.module#UtilidadesPageModule', name: 'UtilidadesPage', segment: 'utilidades', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/configuracoes/configuracoes.module#ConfiguracoesPageModule', name: 'ConfigPage', segment: 'configuracoes', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/utilidades/utilidades.module#UtilidadesPageModule', name: 'UtilidadesPage', segment: 'utilidades', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["a" /* IonicStorageModule */].forRoot()
@@ -332,7 +383,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_5__pages_login_login__["a" /* LoginPage */],
                 __WEBPACK_IMPORTED_MODULE_6__pages_cadastro_cadastro__["a" /* CadastroPage */],
                 __WEBPACK_IMPORTED_MODULE_7__pages_perfil_perfil__["a" /* PerfilPage */],
-                __WEBPACK_IMPORTED_MODULE_8__pages_configuracoes_configuracoes__["ConfiguracoesPage"]
+                __WEBPACK_IMPORTED_MODULE_8__pages_configuracoes_configuracoes__["a" /* ConfigPage */]
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_9__ionic_native_status_bar__["a" /* StatusBar */],
@@ -360,7 +411,7 @@ var AppModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_perfil_perfil__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_login_login__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_configuracoes_configuracoes__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_configuracoes_configuracoes__ = __webpack_require__(103);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -393,7 +444,7 @@ var MyApp = /** @class */ (function () {
         this.nav.push(__WEBPACK_IMPORTED_MODULE_5__pages_perfil_perfil__["a" /* PerfilPage */]);
     };
     MyApp.prototype.clickConfiguracoes = function () {
-        this.nav.push(__WEBPACK_IMPORTED_MODULE_7__pages_configuracoes_configuracoes__["ConfiguracoesPage"]);
+        this.nav.push(__WEBPACK_IMPORTED_MODULE_7__pages_configuracoes_configuracoes__["a" /* ConfigPage */]);
     };
     MyApp.prototype.clickLogout = function () {
         this.storage.clear();
@@ -401,14 +452,15 @@ var MyApp = /** @class */ (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */])
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */]) === "function" && _a || Object)
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\acamp\Desktop\Unifesp\Eng. de Software\app\echo\src\app\app.html"*/'<!-- Menu lateral -->\n\n<ion-menu [content]="content">\n\n\n\n    <ion-content padding>\n\n        <button ion-button menuClose (click)="clickPerfil()">Perfil</button><br>\n\n        <button ion-button menuClose (click)="clickConfiguracoes()">Configurações</button><br>\n\n        <button ion-button menuClose (click)="clickLogout()">Logout</button><br>\n\n    </ion-content>\n\n\n\n</ion-menu>\n\n\n\n<ion-nav [root]="rootPage" #content></ion-nav>\n\n\n\n<button ion-button icon-only menuToggle>\n\n    <ion-icon name="menu"></ion-icon>\n\n</button>'/*ion-inline-end:"C:\Users\acamp\Desktop\Unifesp\Eng. de Software\app\echo\src\app\app.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _e || Object])
     ], MyApp);
     return MyApp;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=app.component.js.map
@@ -424,7 +476,7 @@ var MyApp = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(156);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__cadastro_cadastro__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__cadastro_cadastro__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__ = __webpack_require__(251);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -519,57 +571,6 @@ var LoginPage = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=login.js.map
-
-/***/ }),
-
-/***/ 52:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ConfigPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_storage__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(20);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-/* NÃO REMOVER
-import { editProfile } from 'caminho editProfile';
-import { editNotific } from 'caminho editNotific';
-import { editArm } from 'caminho editArm';
-import { ajuda } from 'caminho ajuda';
-import { logout } from 'caminho logout';
-*/
-var ConfigPage = /** @class */ (function () {
-    function ConfigPage(navCtrl, navParams, storage) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.storage = storage;
-    }
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* Nav */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* Nav */])
-    ], ConfigPage.prototype, "nav", void 0);
-    ConfigPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-configuracoes',template:/*ion-inline-start:"C:\Users\acamp\Desktop\Unifesp\Eng. de Software\app\echo\src\pages\configuracoes\configuracoes.html"*/'<!--\n\n  Generated template for the ConfiguracoesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  <ion-content padding>Configurações</ion-content>\n\n</ion-heaer>\n\n\n\n<ion-body>\n\n  <ion-buttons full class = "conta">Conta</ion-button> <!-- ADD (click) = "clickConta()"-->\n\n  <ion-buttons full class = "notificacoes">Notificações</ion-button> <!-- ADD (click) = "clickNot()" -->\n\n  <ion-buttons full class = "dados">Dados e Armazenamento</ion-button> <!-- ADD (click) = "clickDados()" -->\n\n  <ion-buttons full class = "ajuda">Ajuda</ion-button> <!-- ADD (click) = "clickAjuda()" -->\n\n  <ion-buttons full class = "logout">Logout</ion-button> <!-- ADD (click) = "clickLogout()" -->\n\n</ion-body>\n\n\n\n'/*ion-inline-end:"C:\Users\acamp\Desktop\Unifesp\Eng. de Software\app\echo\src\pages\configuracoes\configuracoes.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1__ionic_storage__["b" /* Storage */]])
-    ], ConfigPage);
-    return ConfigPage;
-}());
-
-//# sourceMappingURL=configuracoes.js.map
 
 /***/ })
 

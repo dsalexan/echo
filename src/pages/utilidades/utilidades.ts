@@ -4,12 +4,12 @@
 // $ npm install --save @ionic-native/in-app-browser
 
 import { Component } from '@angular/core';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
+//import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 const biblioteca = 'http://www.biblioteca.unifesp.br/biblioteca/index.php';
 const saldoRU = 'https://phpu.unifesp.br/ru_consulta/index.php';
-const cardapio = 'url do cardapio';
+const cardapio = 'www.unifesp.br/campus/sjc/servicosnae/restaurante/1647-cardapio-semanal-do-ru.html';
 const email = 'https://www.email.unifesp.br';
 const atestado = 'https://intranet.unifesp.br/restrict/index3.php';
 const historico = 'https://intranet.unifesp.br/restrict/index3.php';
@@ -20,7 +20,7 @@ const historico = 'https://intranet.unifesp.br/restrict/index3.php';
   templateUrl: 'utilidades.html',
 })
 export class UtilidadesPage {
-
+/*
   constructor(public navCtrl: NavController, public navParams: NavParams, private iab: InAppBrowser) {
   }
 
@@ -107,7 +107,7 @@ export class UtilidadesPage {
 
     browser.close();
   }
-
+*/
 
 }
 

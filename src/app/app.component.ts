@@ -6,7 +6,7 @@ import { Storage } from '@ionic/storage';
 
 import { PerfilPage } from '../pages/perfil/perfil';
 import { LoginPage } from '../pages/login/login';
-import { ConfiguracoesPage } from '../pages/configuracoes/configuracoes';
+import { ConfigPage } from '../pages/configuracoes/configuracoes';
 
 @Component({
   templateUrl: 'app.html'
@@ -30,7 +30,7 @@ export class MyApp {
   }
 
   clickConfiguracoes() {
-    this.nav.push(ConfiguracoesPage);
+    this.nav.push(ConfigPage);
   }
 
   clickLogout() {
