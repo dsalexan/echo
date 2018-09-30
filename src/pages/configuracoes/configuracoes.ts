@@ -1,21 +1,15 @@
 import { Component, ViewChild } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { Platform, Nav } from 'ionic-angular';
-
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+/* NÃO REMOVER
 import { editProfile } from 'caminho editProfile';
 import { editNotific } from 'caminho editNotific';
 import { editArm } from 'caminho editArm';
 import { ajuda } from 'caminho ajuda';
 import { logout } from 'caminho logout';
-
-/**
- * Generated class for the ConfiguracoesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+*/
 
 @IonicPage()
 @Component({
@@ -27,7 +21,7 @@ export class ConfigPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
   }
-
+/* METODOS PARA NAVEGAÇÃO ENTRE AS TELAS DE CONFIGURAÇÃO --NAO REMOVER
   clickConta(){
     this.nav.push(editProfile);
   }
@@ -46,5 +40,5 @@ export class ConfigPage {
 
   clickLogout(){
     this.nav.push(logout);
-  }
+  } */
 }
