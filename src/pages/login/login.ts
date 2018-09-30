@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
 
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
 import { CadastroPage } from '../cadastro/cadastro';
+import 'rxjs/add/operator/map';
 
 /**
  * Generated class for the LoginPage page.
@@ -21,7 +23,7 @@ export class LoginPage {
 
   dados = {}
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage, public http: Http) {
   }
 
   ionViewDidLoad() {
@@ -60,7 +62,17 @@ export class LoginPage {
     senha = (senha == null || user == '') ? '' : senha
 
     if(user != '' && senha != '') {
-      return true
+      this.http.get('https://localhost:3000/carona/buscar/datahora?data=2018-09-03&hora=07:30').map(res => res.json()).subscribe(data => {
+        console.log(data.results)
+        if(data.results != null) {
+          // guardar na sessao as info
+          return true
+        }
+      }, err => {
+        console.log(err)
+      })
+
+      return false
     } else {
       return false
     }
