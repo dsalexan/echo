@@ -7,7 +7,7 @@ import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { CadastroPage } from '../pages/cadastro/cadastro';
 import { PerfilPage } from '../pages/perfil/perfil';
-import { ConfiguracoesPage } from '../pages/configuracoes/configuracoes';
+import { ConfigPage } from '../pages/configuracoes/configuracoes';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -19,7 +19,7 @@ import { HttpModule } from '@angular/http';
     LoginPage,
     CadastroPage,
     PerfilPage,
-    ConfiguracoesPage
+    ConfigPage
   ],
   imports: [
     BrowserModule,
@@ -33,7 +33,7 @@ import { HttpModule } from '@angular/http';
     LoginPage,
     CadastroPage,
     PerfilPage,
-    ConfiguracoesPage
+    ConfigPage
   ],
   providers: [
     StatusBar,
