@@ -1,13 +1,13 @@
 webpackJsonp([0],{
 
-/***/ 282:
+/***/ 281:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UtilidadesPageModule", function() { return UtilidadesPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utilidades__ = __webpack_require__(284);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -45,7 +45,7 @@ var UtilidadesPageModule = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UtilidadesPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 throw new Error("Cannot find module \"@ionic-native/in-app-browser\"");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(20);
 // --OBS--
 // INSTALAÇÃO NECESSÁRIA:
 // $ ionic cordova plugin add cordova-plugin-inappbrowser
@@ -136,12 +136,12 @@ var UtilidadesPage = /** @class */ (function () {
     };
     UtilidadesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-utilidades',template:/*ion-inline-start:"D:\Gustavo\Desktop\Software Development\echo\src\pages\utilidades\utilidades.html"*/'<!--\n\n  Generated template for the UtilidadesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-title center>{{ \'Utilidaes\' }}</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <ion-buttons (click) = "clickBilioteca()" class = "biblioteca">BIBLIOTECA</ion-buttons>\n\n  <ion-buttons (click) = "clickSaldo()" class ="saldo">CONSULTAR SALDO RU</ion-buttons>\n\n  <ion-buttons (click) = "clickCardapio()" class = "caradpio">CARDÁPIO RU</ion-buttons>\n\n  <ion-buttons (click) = "clickEmail()" class = "email">EMAIL UNIFESP</ion-buttons>\n\n  <ion-buttons (click) = "clickAtestado()" class = "atestado">ATESTADO DE MATRICULA</ion-buttons>\n\n  <ion-buttons (click) = "clickHistorico()" class = "historico">HISTORICO ESCOLAR</ion-buttons>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Gustavo\Desktop\Software Development\echo\src\pages\utilidades\utilidades.html"*/,
+            selector: 'page-utilidades',template:/*ion-inline-start:"C:\Users\acamp\Desktop\Unifesp\Eng. de Software\app\echo\src\pages\utilidades\utilidades.html"*/'<!--\n\n  Generated template for the UtilidadesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-title center>{{ \'Utilidaes\' }}</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <ion-buttons (click) = "clickBilioteca()" class = "biblioteca">BIBLIOTECA</ion-buttons>\n\n  <ion-buttons (click) = "clickSaldo()" class ="saldo">CONSULTAR SALDO RU</ion-buttons>\n\n  <ion-buttons (click) = "clickCardapio()" class = "caradpio">CARDÁPIO RU</ion-buttons>\n\n  <ion-buttons (click) = "clickEmail()" class = "email">EMAIL UNIFESP</ion-buttons>\n\n  <ion-buttons (click) = "clickAtestado()" class = "atestado">ATESTADO DE MATRICULA</ion-buttons>\n\n  <ion-buttons (click) = "clickHistorico()" class = "historico">HISTORICO ESCOLAR</ion-buttons>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\acamp\Desktop\Unifesp\Eng. de Software\app\echo\src\pages\utilidades\utilidades.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__ionic_native_in_app_browser__["InAppBrowser"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__ionic_native_in_app_browser__["InAppBrowser"]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */], typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__ionic_native_in_app_browser__["InAppBrowser"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__ionic_native_in_app_browser__["InAppBrowser"]) === "function" && _a || Object])
     ], UtilidadesPage);
     return UtilidadesPage;
-    var _a, _b, _c;
+    var _a;
 }());
 
 // https://ionicframework.com/docs/native/in-app-browser/
