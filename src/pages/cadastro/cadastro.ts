@@ -4,13 +4,8 @@ import { Storage } from '@ionic/storage';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { LoginPage } from '../login/login';
+import { HomePage } from '../home/home';
 
-/**
- * Generated class for the CadastroPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -26,12 +21,10 @@ export class CadastroPage {
   }
 
   checkSession() {
-    this.storage.get("usuario").then((usu) => {
-      this.storage.get("senha").then((sen) => {
-        if(usu == null && sen == null){
-          this.navCtrl.push(LoginPage);
-        }
-      })
+    this.storage.get("aluno_nome").then((usu) => {
+      if(usu == null) {
+        this.navCtrl.push(LoginPage);
+      }
     })
   }
 
@@ -59,6 +52,6 @@ export class CadastroPage {
 
     // cadastrar usuário no banco usando this.dados["usuario/senha/email"]
     // criar sessão como se o usuário tivesse logado
-    // this.navCtrl.push(Home);
+    this.navCtrl.push(HomePage);
   }
 }
