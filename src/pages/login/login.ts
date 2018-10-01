@@ -28,6 +28,8 @@ export class LoginPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
+    document.getElementById("tabs").style.display = "block"
+    document.getElementById("botao_menu").style.display = "block"
   }
   
   storeUser(user) {
@@ -35,6 +37,7 @@ export class LoginPage {
   }
   
   clickLogin() {
+    document.getElementById("teste").textContent = this.dados["usuario"];
     if (this.verificarCredenciais(this.dados["usuario"], this.dados["senha"])) {
       this.storeUser(this.dados["usuario"]);
 
@@ -62,6 +65,7 @@ export class LoginPage {
     senha = (senha == null || user == '') ? '' : senha
 
     if(user != '' && senha != '') {
+      return true
       this.http.get('https://localhost:3000/carona/buscar/datahora?data=2018-09-03&hora=07:30').map(res => res.json()).subscribe(data => {
         console.log(data.results)
         if(data.results != null) {

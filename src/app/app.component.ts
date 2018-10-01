@@ -9,6 +9,10 @@ import { LoginPage } from '../pages/login/login';
 import { ConfigPage } from '../pages/configuracoes/configuracoes';
 import { UtilidadesPage } from '../pages/utilidades/utilidades';
 
+// import { HomePage } from '../pages/home/home';
+// import { GradePage } from '../pages/grade/grade';
+// import { CaronaPage } from '../pages/carona/carona';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -24,6 +28,18 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
+  }
+
+  clickHome() {
+    // this.nav.push(HomePage)
+  }
+
+  clickGrade() {
+    // this.nav.push(GradePage)
+  }
+
+  clickCarona() {
+    // this.nav.push(CaronaPage)
   }
 
   clickPerfil() {
