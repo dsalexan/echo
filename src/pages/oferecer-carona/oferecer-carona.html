@@ -1,0 +1,41 @@
+
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons left><!--botoes do cabeçalho - ESQUERDA-->
+    </ion-buttons>
+    <ion-title center>{{ 'Caronas' }}</ion-title>
+    <ion-buttons right><!--botoes do cabecalho - DIREITA-->
+      <button ion-button icon-only (click)="clickConfig()" class="configuracoes">Config.</button><!--botao configuracoes-->
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form (ngSubmit)="oferecer()">
+
+    <ion-calendar [(ngModel)]="viagem.data" name="data"
+      (onChange)="onChange($event)"
+      [type]="type"
+      [format]="'YYYY-MM-DD'">
+    </ion-calendar>
+    
+    <ion-item>
+      <ion-label>Quantidade de vagas</ion-label>
+      <ion-input type="number" [(ngModel)]="viagem.qtd_vagas" name="qtd_vagas" min="1" max="5" step="1" value ="1"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label>Preço</ion-label>
+      <ion-input type="number" [(ngModel)]="viagem.preco" name="preco" min="0" value ="0.00"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label floating> Descrição </ion-label>
+      <ion-input type="text" [(ngModel)]="viagem.descricao" name="descricao"></ion-input>
+    </ion-item>
+    
+    <button ion-button round type="submit" block>Oferecer</button>
+    
+  </form>
+  <ion-label id="teste"></ion-label>
+</ion-content>

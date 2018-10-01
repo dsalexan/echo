@@ -7,6 +7,8 @@ import { Storage } from '@ionic/storage';
 import { PerfilPage } from '../pages/perfil/perfil';
 import { LoginPage } from '../pages/login/login';
 import { ConfigPage } from '../pages/configuracoes/configuracoes';
+import { InicialCaronaPage } from '../pages/inicial-carona/inicial-carona';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -36,5 +38,9 @@ export class MyApp {
   clickLogout() {
     this.storage.clear();
     this.nav.push(LoginPage);
+  }
+
+  clickCaronas() {
+    this.nav.push(InicialCaronaPage);
   }
 }
