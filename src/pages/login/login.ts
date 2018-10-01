@@ -59,17 +59,17 @@ export class LoginPage {
 
     if(user != '' && senha != '') {
       return true
-      this.http.get('https://localhost:3000/carona/buscar/datahora?data=2018-09-03&hora=07:30').map(res => res.json()).subscribe(data => {
-        console.log(data.results)
-        if(data.results != null) {
-          // guardar na sessao as info
-          return true
-        }
-      }, err => {
-        console.log(err)
-      })
+      // this.http.get('https://localhost:3000/carona/buscar/datahora?data=2018-09-03&hora=07:30').map(res => res.json()).subscribe(data => {
+      //   console.log(data.results)
+      //   if(data.results != null) {
+      //     // guardar na sessao as info
+      //     return true
+      //   }
+      // }, err => {
+      //   console.log(err)
+      // })
 
-      return false
+      // return false
     } else {
       return false
     }

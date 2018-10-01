@@ -40,10 +40,6 @@ export class MyApp {
     // this.nav.push(GradePage)
   }
 
-  clickCarona() {
-    // this.nav.push(CaronaPage)
-  }
-
   clickPerfil() {
     this.nav.push(PerfilPage);
   }
