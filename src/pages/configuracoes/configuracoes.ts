@@ -21,6 +21,12 @@ export class ConfigPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
   }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ConfigPage');
+    document.getElementById("tabs").style.display = "none"
+    document.getElementById("botao_menu").style.display = "none"
+  }
 /* METODOS PARA NAVEGAÇÃO ENTRE AS TELAS DE CONFIGURAÇÃO --NAO REMOVER
   clickConta(){
     this.nav.push(editProfile);
