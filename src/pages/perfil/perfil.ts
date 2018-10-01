@@ -36,9 +36,8 @@ export class PerfilPage {
   };
 
   constructor(public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder,
-
-              public toastCtrl: ToastController, public loadingCtrl: LoadingController, public storage: Storage,
-              public navParams: NavParams) {
+              public toastCtrl: ToastController, public loadingCtrl: LoadingController, 
+              public storage: Storage, public navParams: NavParams) {
 
     this.form = formBuilder.group({
       image: [''], user_RA: [''], user_name: [''], user_password: [''], user_email: [''], user_state: [''],
@@ -58,7 +57,7 @@ export class PerfilPage {
   }
 
   clickConfig() { // vai para a pagina de configurações
-    this.nav.push(ConfigPage);
+    this.navCtrl.push(ConfigPage);
   }
 
   checkSession() {
