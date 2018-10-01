@@ -50,7 +50,7 @@ export class LoginPage {
           this.storage.set("aluno_telefone", data.data[0].telefone)
           
           if (lembrar) {
-            this.storage.set("senha", this.dados["senha"])
+            this.storage.set("aluno_senha", this.dados["senha"])
           }
           
           this.navCtrl.push(HomePage, {dados: this.dados});
