@@ -1,0 +1,21 @@
+
+<!--Cabeçalho-->
+<ion-header>
+    <ion-navbar color="primary">
+      <ion-buttons left><!--botoes do cabeçalho - ESQUERDA-->
+      </ion-buttons>
+      <ion-title center>{{ 'Caronas' }}</ion-title>
+      <ion-buttons right><!--botoes do cabecalho - DIREITA-->
+        <button ion-button icon-only (click)="clickConfig()" class="configuracoes">Config.</button><!--botao configuracoes-->
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content>
+    <div class="fixed-content">
+        <button ion-button round> Procurar </button><br>
+        <button ion-button round (click)="clickOferecerCarona()" class="oferecer-carona"> Oferecer </button>
+    </div>
+  </ion-content>
+  
+  

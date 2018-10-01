@@ -12,6 +12,8 @@ import { UtilidadesPage } from '../pages/utilidades/utilidades';
 import { HomePage } from '../pages/home/home';
 // import { GradePage } from '../pages/grade/grade';
 // import { CaronaPage } from '../pages/carona/carona';
+import { InicialCaronaPage } from '../pages/inicial-carona/inicial-carona';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -57,5 +59,8 @@ export class MyApp {
 
   clickUtilidade(){
     this.nav.push(UtilidadesPage);
+  }
+  clickCaronas() {
+    this.nav.push(InicialCaronaPage);
   }
 }
