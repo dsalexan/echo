@@ -65,13 +65,13 @@ export class LoginPage {
     senha = (senha == null || user == '') ? '' : senha
 
     if(user != '' && senha != '') {
-      return true
-      this.http.get('https://localhost:3000/carona/buscar/datahora?data=2018-09-03&hora=07:30').map(res => res.json()).subscribe(data => {
-        console.log(data.results)
-        if(data.results != null) {
-          // guardar na sessao as info
-          return true
-        }
+      //return true
+      this.http.get('http://localhost:3000/api/alunos/get/senha?login=user0&senha=123456').map(res => res.json()).subscribe(data => {
+        console.log('RETORNO QUERY', data)
+        // if(data.results != null) {
+        //   // guardar na sessao as info
+        //   return true
+        // }
       }, err => {
         console.log(err)
       })
