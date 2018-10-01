@@ -5,7 +5,8 @@ import { Storage } from '@ionic/storage';
 import { Platform, Nav } from 'ionic-angular';
 
 import { LoginPage } from '../login/login';
-import {ConfigPage} from '../configuracoes/configuracoes'
+import { ConfigPage } from '../configuracoes/configuracoes'
+
 
 @IonicPage()
 @Component({
@@ -36,7 +37,6 @@ export class PerfilPage {
   };
 
   constructor(public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder,
-
               public toastCtrl: ToastController, public loadingCtrl: LoadingController, public storage: Storage,
               public navParams: NavParams) {
 
@@ -62,17 +62,15 @@ export class PerfilPage {
   }
 
   checkSession() {
-    this.storage.get("usuario").then((usu) => {
-      this.storage.get("senha").then((sen) => {
-        if(usu == null && sen == null){
-          this.navCtrl.push(LoginPage);
-        }
-      })
+    this.storage.get("aluno_nome").then((usu) => {
+      if(usu == null) {
+        this.navCtrl.push(LoginPage);
+      }
     })
   }
 
   ionViewDidLoad() {
-    this.checkSession()
+    this.checkSession();
     console.log('ionViewDidLoad PerfilPage');
     document.getElementById("tabs").style.display = "none"
     document.getElementById("botao_menu").style.display = "none"
