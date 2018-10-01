@@ -7,7 +7,6 @@
         <button ion-button menuClose (click)="clickConfiguracoes()">Configurações</button><br>
         <button ion-button menuClose (click)="clickUtilidade()">Utilidades</button><br>
         <button ion-button menuClose (click)="clickLogout()">Logout</button><br>
-        <button ion-button menuClose (click)="clickCaronas()">Carona</button><br>
     </ion-content>
 
 </ion-menu>
@@ -17,14 +16,14 @@
 </button>
 
 <div id="tabs">
-    <button ion-button icon-only>
-        <ion-icon name="md-home" (click)="clickHome()"></ion-icon>
+    <button ion-button icon-only (click)="clickHome()">
+        <ion-icon name="md-home"></ion-icon>
     </button>
-    <button ion-button icon-only>
-        <ion-icon name="md-calendar" (click)="clickGrade()"></ion-icon>
+    <button ion-button icon-only (click)="clickGrade()">
+        <ion-icon name="md-calendar"></ion-icon>
     </button>
-    <button ion-button icon-only>
-        <ion-icon name="md-car" (click)="clickCarona()"></ion-icon>
+    <button ion-button icon-only (click)="clickCaronas()">
+        <ion-icon name="md-car"></ion-icon>
     </button>
 </div>
 

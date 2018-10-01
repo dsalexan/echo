@@ -11,7 +11,6 @@ import { UtilidadesPage } from '../pages/utilidades/utilidades';
 
 import { HomePage } from '../pages/home/home';
 // import { GradePage } from '../pages/grade/grade';
-// import { CaronaPage } from '../pages/carona/carona';
 import { InicialCaronaPage } from '../pages/inicial-carona/inicial-carona';
 
 
