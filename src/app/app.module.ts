@@ -25,13 +25,10 @@ import { CalendarModule } from "ion2-calendar";
     CadastroPage,
     PerfilPage,
     ConfigPage,
-<<<<<<< HEAD
     UtilidadesPage,
-    HomePage
-=======
+    HomePage,
     InicialCaronaPage,
     OferecerCaronaPage
->>>>>>> renata_carona
   ],
   imports: [
     BrowserModule,
@@ -47,13 +44,10 @@ import { CalendarModule } from "ion2-calendar";
     CadastroPage,
     PerfilPage,
     ConfigPage,
-<<<<<<< HEAD
     UtilidadesPage,
-    HomePage
-=======
+    HomePage,
     InicialCaronaPage,
     OferecerCaronaPage
->>>>>>> renata_carona
   ],
   providers: [
     StatusBar,

@@ -58,12 +58,10 @@ export class MyApp {
     this.nav.push(LoginPage);
   }
 
-<<<<<<< HEAD
   clickUtilidade(){
     this.nav.push(UtilidadesPage);
-=======
+  }
   clickCaronas() {
     this.nav.push(InicialCaronaPage);
->>>>>>> renata_carona
   }
 }
