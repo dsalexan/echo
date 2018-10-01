@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { LoginPage } from '../login/login'
 
+import { HTTP } from '@ionic-native/http';
+
 /**
  * Generated class for the HomePage page.
  *
@@ -17,7 +19,7 @@ import { LoginPage } from '../login/login'
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private http: HTTP, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -28,5 +30,12 @@ export class HomePage {
 
   clickLogin() {
     this.navCtrl.push(LoginPage);
+  }
+
+  clickTeste() {
+    this.http.get('http://localhost:3000/api/grades/get/grade/aluno?ra_aluno=112344', {}, {})
+      .then(data =>
+        document.getElementById("teste").textContent = String(data)
+      )
   }
 }
