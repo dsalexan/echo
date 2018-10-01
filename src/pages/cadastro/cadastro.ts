@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { LoginPage } from '../login/login';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the CadastroPage page.
@@ -59,6 +60,6 @@ export class CadastroPage {
 
     // cadastrar usuário no banco usando this.dados["usuario/senha/email"]
     // criar sessão como se o usuário tivesse logado
-    // this.navCtrl.push(Home);
+    this.navCtrl.push(HomePage);
   }
 }

@@ -4,8 +4,11 @@
 // $ npm install --save @ionic-native/in-app-browser
 
 import { Component } from '@angular/core';
-//import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { Storage } from '@ionic/storage';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
+import { LoginPage } from '../login/login';
 
 const biblioteca = 'http://www.biblioteca.unifesp.br/biblioteca/index.php';
 const saldoRU = 'https://phpu.unifesp.br/ru_consulta/index.php';
@@ -20,8 +23,18 @@ const historico = 'https://intranet.unifesp.br/restrict/index3.php';
   templateUrl: 'utilidades.html',
 })
 export class UtilidadesPage {
-  // constructor(public navCtrl: NavController, public navParams: NavParams, private iab: InAppBrowser) {
-  // }
+  constructor(public navCtrl: NavController, public navParams: NavParams, private iab: InAppBrowser, public storage: Storage) {
+  }
+
+  checkSession() {
+    this.storage.get("usuario").then((usu) => {
+      this.storage.get("senha").then((sen) => {
+        if(usu == null && sen == null){
+          this.navCtrl.push(LoginPage);
+        }
+      })
+    })
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UtilidadesPage');
