@@ -20,9 +20,15 @@ const historico = 'https://intranet.unifesp.br/restrict/index3.php';
   templateUrl: 'utilidades.html',
 })
 export class UtilidadesPage {
-/*
-  constructor(public navCtrl: NavController, public navParams: NavParams, private iab: InAppBrowser) {
+  // constructor(public navCtrl: NavController, public navParams: NavParams, private iab: InAppBrowser) {
+  // }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad UtilidadesPage');
+    document.getElementById("tabs").style.display = "none"
+    document.getElementById("botao_menu").style.display = "none"
   }
+  /*
 
   clickBiblioteca() {
     console.log('ionViewDidLoad UtilidadesPage');

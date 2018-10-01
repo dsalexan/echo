@@ -26,6 +26,8 @@ export class OferecerCaronaPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OferecerCaronaPage');
+    document.getElementById("tabs").style.display = "none"
+    document.getElementById("botao_menu").style.display = "none"
   }
 
 }

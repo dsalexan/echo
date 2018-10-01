@@ -15,6 +15,8 @@ export class InicialCaronaPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InicialCaronaPage');
+    document.getElementById("tabs").style.display = "block"
+    document.getElementById("botao_menu").style.display = "block"
   }
 
   clickOferecerCarona() { // vai para a pagina de configurações

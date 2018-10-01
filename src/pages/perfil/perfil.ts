@@ -74,6 +74,8 @@ export class PerfilPage {
   ionViewDidLoad() {
     this.checkSession()
     console.log('ionViewDidLoad PerfilPage');
+    document.getElementById("tabs").style.display = "none"
+    document.getElementById("botao_menu").style.display = "none"
   }
 
   processWebImage(event) {
