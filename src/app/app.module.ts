@@ -10,10 +10,13 @@ import { PerfilPage } from '../pages/perfil/perfil';
 import { ConfigPage } from '../pages/configuracoes/configuracoes';
 import { UtilidadesPage} from '../pages/utilidades/utilidades';
 import { HomePage } from '../pages/home/home';
+import { InicialCaronaPage } from '../pages/inicial-carona/inicial-carona';
+import { OferecerCaronaPage } from '../pages/oferecer-carona/oferecer-carona';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
+import { CalendarModule } from "ion2-calendar";
 
 @NgModule({
   declarations: [
@@ -22,14 +25,20 @@ import { HttpModule } from '@angular/http';
     CadastroPage,
     PerfilPage,
     ConfigPage,
+<<<<<<< HEAD
     UtilidadesPage,
     HomePage
+=======
+    InicialCaronaPage,
+    OferecerCaronaPage
+>>>>>>> renata_carona
   ],
   imports: [
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    CalendarModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -38,8 +47,13 @@ import { HttpModule } from '@angular/http';
     CadastroPage,
     PerfilPage,
     ConfigPage,
+<<<<<<< HEAD
     UtilidadesPage,
     HomePage
+=======
+    InicialCaronaPage,
+    OferecerCaronaPage
+>>>>>>> renata_carona
   ],
   providers: [
     StatusBar,

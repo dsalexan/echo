@@ -7,13 +7,6 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { CadastroPage } from '../cadastro/cadastro';
 import 'rxjs/add/operator/map';
 
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-login',
