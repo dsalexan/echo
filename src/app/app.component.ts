@@ -8,9 +8,8 @@ import { PerfilPage } from '../pages/perfil/perfil';
 import { LoginPage } from '../pages/login/login';
 import { ConfigPage } from '../pages/configuracoes/configuracoes';
 import { UtilidadesPage } from '../pages/utilidades/utilidades';
-import { HomePage } from '../pages/home/home';
 
-// import { HomePage } from '../pages/home/home';
+import { HomePage } from '../pages/home/home';
 // import { GradePage } from '../pages/grade/grade';
 // import { CaronaPage } from '../pages/carona/carona';
 
@@ -32,7 +31,7 @@ export class MyApp {
   }
 
   clickHome() {
-    // this.nav.push(HomePage)
+    this.nav.push(HomePage)
   }
 
   clickGrade() {
