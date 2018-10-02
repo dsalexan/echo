@@ -4,7 +4,7 @@ import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
 
 import { LoginPage } from '../login/login'
-//import { HomePage } from '../home/home';
+import { HomePage } from '../home/home';
 
 
 @IonicPage()
@@ -15,10 +15,8 @@ import { LoginPage } from '../login/login'
 
 export class OferecerCaronaPage {
   date: string;
-  type: 'string';
-  //type: 'string'; // 'string' | 'js-date' | 'moment' | 'time' | 'object'
   viagem = {}
-  localidades = {}
+  lista = []
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController) {
   }
@@ -35,12 +33,15 @@ export class OferecerCaronaPage {
     })
   }
 
-  mostrarOrigem(){
+  mostrarLocalidade(){
     var path = 'http://localhost:3000/api/caronas/get/localidades'
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
       if(data.data[0] != undefined) {
-        // document.getElementById("local_origem").textContent=data.data[0];
+        console.log(data)
+        data.data.forEach(element => {
+          this.lista.push(element)
+        });
       }
 
     }, (err) => {
@@ -51,10 +52,12 @@ export class OferecerCaronaPage {
 
   oferecer(){
     //salvar no banco de dados]
-    document.getElementById("teste").textContent=this.viagem["data"];
-    //document.getElementById("teste").textContent=this.viagem["descricao"];
+    console.log(this.viagem)
+    //document.getElementById("teste").textContent=this.viagem["data"];
+    
     /*
-    var path = 'http://localhost:3000/api/caronas/post/viagem?id_motorista='+ this.storage.get("aluno_ra") + '&id_origem='+ this.viagem["id_origem"] + '&id_destino='+  this.viagem["id_destino"] + '&dia='+ this.viagem["dia"] + '&hora='+ this.viagem["hora"] + '&preco='+ this.viagem["preco"] + '&qtd_vagas=' this.viagem["qtd_vagas"] + '&descricao='+ this.viagem["descricao"]
+    var path = 'http://localhost:3000/api/caronas/post/viagem?id_motorista='+ this.storage.get("aluno_ra") + '&id_origem='+ this.viagem["id_origem"] + '&id_destino='+  this.viagem["id_destino"] + '&dia='+ this.viagem["dia"] + '&hora='+ this.viagem["hora"] + '&preco='+ this.viagem["preco"] + '&qtd_vagas=' + this.viagem["qtd_vagas"] + '&descricao='+ this.viagem["descricao"]
+
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
       if(data.data[0] != undefined) {
@@ -75,12 +78,13 @@ export class OferecerCaronaPage {
       }
     }, (err) => {
       console.log(err)
-    })*/
+    }) */
   }
+
 
   ionViewDidLoad() {
     //this.checkSession();
-    this.mostrarOrigem();
+    this.mostrarLocalidade();
     console.log('ionViewDidLoad OferecerCaronaPage');
     document.getElementById("tabs").style.display = "none"
     document.getElementById("botao_menu").style.display = "none"

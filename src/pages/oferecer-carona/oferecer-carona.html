@@ -18,12 +18,11 @@
         <ion-card-title> Escolha a data </ion-card-title>
         <ion-calendar
           [(ngModel)]="date"
-          name="data"
+          name="date"
           (onChange)="onChange($event)"
-          [type]="type"
           [format]="'YYYY-MM-DD'">
         </ion-calendar>
-        <p>{{viagem.data}}</p>
+        <p>{{date}}</p>
       </ion-card-content>
     </ion-card>
     
@@ -35,16 +34,18 @@
       [format]="'YYYY-MM-DD'">
     </ion-calendar> -->
     <ion-item>
-      <ion-select>
-        <ion-option>Bacon</ion-option>
-        <ion-option>Black Olives</ion-option>
-        <ion-option>Extra Cheese</ion-option>
-        <ion-option>Mushrooms</ion-option>
-        <ion-option>Pepperoni</ion-option>
-        <ion-option>Sausage</ion-option>
+      <ion-label floating> Local de origem </ion-label>
+      <ion-select [(ngModel)]="viagem.id_origem" name="id_origem">
+        <ion-option *ngFor="let op of lista" [value]="op.id_local" >{{op.descricao}}</ion-option>
       </ion-select>
     </ion-item>
 
+    <ion-item>
+        <ion-label floating> Local de destino </ion-label>
+        <ion-select [(ngModel)]="viagem.id_destino" name="id_destino">
+          <ion-option *ngFor="let op of lista" [value]="op.id_local" >{{op.descricao}}</ion-option>
+        </ion-select>
+      </ion-item>
 
     
     <ion-item>
