@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
 
-import { LoginPage } from '../login/login';
-import { CadastroPage } from '../cadastro/cadastro';
+import { LoginPage } from '../login/login'
 
 import { HTTP } from '@ionic-native/http';
 
@@ -33,15 +31,14 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
-    this.checkSession();
     console.log('ionViewDidLoad HomePage');
     document.getElementById("tabs").style.display = "block"
     document.getElementById("botao_menu").style.display = "block"
   }
 
-  /*clickLogin() {
+  clickLogin() {
     this.navCtrl.push(LoginPage);
-  }*/
+  }
   
 
   clickTeste() {

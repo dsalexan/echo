@@ -6,10 +6,8 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
 import { LoginPage } from '../login/login';
-
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 const biblioteca = 'http://www.biblioteca.unifesp.br/biblioteca/index.php';
 const saldoRU = 'https://phpu.unifesp.br/ru_consulta/index.php';
@@ -28,11 +26,11 @@ export class UtilidadesPage {
   }
 
   checkSession() {
-    /*this.storage.get("aluno_nome").then((usu) => {
+    this.storage.get("aluno_nome").then((usu) => {
       if(usu == null) {
         this.navCtrl.push(LoginPage);
       }
-    })*/
+    })
   }
   openUrl(){ window.open('https://google.com', '_system'); }
   ionViewDidLoad() {

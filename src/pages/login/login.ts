@@ -5,7 +5,6 @@ import { Storage } from '@ionic/storage';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
 import { CadastroPage } from '../cadastro/cadastro';
-import { HomePage } from '../home/home';
 import 'rxjs/add/operator/map';
 
 @IonicPage()
@@ -15,8 +14,7 @@ import 'rxjs/add/operator/map';
 })
 export class LoginPage {
 
-  private dados = {}
-  private existe = false
+  dados = {}
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage, public http: Http) {
   }
@@ -26,53 +24,54 @@ export class LoginPage {
     document.getElementById("tabs").style.display = "block"
     document.getElementById("botao_menu").style.display = "block"
   }
-
-  clickLogin() {
-    // document.getElementById("teste").textContent = this.dados["usuario"];
-    this.verificarCredenciais(this.dados["usuario"], this.dados["senha"], this.dados["lembrar"])
+  
+  storeUser(user) {
+    this.storage.set("usuario", user)
   }
+  
+  clickLogin() {
+    document.getElementById("teste").textContent = this.dados["usuario"];
+    if (this.verificarCredenciais(this.dados["usuario"], this.dados["senha"])) {
+      this.storeUser(this.dados["usuario"]);
 
-  verificarCredenciais(user, senha, lembrar) {
-    user = (user == null || user == '') ? '' : user
-    senha = (senha == null || user == '') ? '' : senha
+      if (this.primeiroLogin()) {
+        this.navCtrl.push(CadastroPage, {dados: this.dados});
+      }
 
-    if(user != '' && senha != '') {
-      var path = 'http://localhost:3000/api/alunos/get/senha?login='+ user + '&senha='+ senha
-      this.http.get(path).map(res => res.json()).subscribe(data => {
+      if (this.dados["lembrar"]) {
+        this.storage.set("senha", this.dados["senha"])
+      }
 
-        if(data.data[0] != undefined) {
-
-          this.storage.set("aluno_ra", data.data[0].ra_aluno)
-          this.storage.set("aluno_nome", data.data[0].nome)
-          this.storage.set("aluno_login", data.data[0].login_intranet)
-          this.storage.set("aluno_email", data.data[0].email)
-          this.storage.set("aluno_telefone", data.data[0].telefone)
-          this.storage.set("aluno_telefone", data.data[0].telefone)
-          
-          if (lembrar) {
-            this.storage.set("aluno_senha", this.dados["senha"])
-          }
-          
-          this.navCtrl.push(HomePage, {dados: this.dados});
-          //this.navCtrl.push(CadastroPage, {dados: this.dados});
-        } else {
-          let alert = this.alertCtrl.create({
-            title: 'Ops!',
-            subTitle: 'Verifique as informações inseridas',
-            buttons: ['Dismiss']
-          });
-          alert.present();
-        }
-      }, (err) => {
-        console.log(err)
-      })
+      // this.navCtrl.push(Home);
     } else {
-      let alert = this.alertCtrl.create({
+      let alert = this.alertCtrl.create( {
         title: 'Ops!',
         subTitle: 'Verifique as informações inseridas',
         buttons: ['Dismiss']
       });
       alert.present();
+    }
+  }
+
+  verificarCredenciais(user, senha) {
+    user = (user == null || user == '') ? '' : user
+    senha = (senha == null || user == '') ? '' : senha
+
+    if(user != '' && senha != '') {
+      return true
+      // this.http.get('https://localhost:3000/carona/buscar/datahora?data=2018-09-03&hora=07:30').map(res => res.json()).subscribe(data => {
+      //   console.log(data.results)
+      //   if(data.results != null) {
+      //     // guardar na sessao as info
+      //     return true
+      //   }
+      // }, err => {
+      //   console.log(err)
+      // })
+
+      // return false
+    } else {
+      return false
     }
 
     // verificar se usuario this.dados["usuario"] existe
