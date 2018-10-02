@@ -26,12 +26,10 @@ export class CadastroPage {
   }
 
   checkSession() {
-    this.storage.get("usuario").then((usu) => {
-      this.storage.get("senha").then((sen) => {
-        if(usu == null && sen == null){
-          this.navCtrl.push(LoginPage);
-        }
-      })
+    this.storage.get("aluno_nome").then((usu) => {
+      if(usu == null) {
+        this.navCtrl.push(LoginPage);
+      }
     })
   }
 
