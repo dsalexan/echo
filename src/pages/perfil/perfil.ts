@@ -5,7 +5,7 @@ import { Storage } from '@ionic/storage';
 import { Platform, Nav } from 'ionic-angular';
 
 import { LoginPage } from '../login/login';
-import {ConfigPage} from '../configuracoes/configuracoes'
+import { ConfigPage } from '../configuracoes/configuracoes'
 
 
 @IonicPage()

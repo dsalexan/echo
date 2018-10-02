@@ -22,6 +22,8 @@ import { HTTP } from '@ionic-native/http';
 import { CalendarModule } from "ion2-calendar";
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -36,6 +38,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
