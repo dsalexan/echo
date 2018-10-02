@@ -7,11 +7,10 @@
 
 
 <ion-content padding>
-  <button ion-button class = "biblioteca">BIBLIOTECA</button><br center> <!-- ADD (click) = "clickBilioteca()" -->
-  <button ion-button class ="saldo">CONSULTAR SALDO RU</button><br> <!-- ADD (click) = "clickSaldo()" -->
-  <button ion-button class = "caradpio">CARDÁPIO RU</button><br> <!-- ADD (click) = "clickCardapio()" -->
-  <button ion-button class = "email">EMAIL UNIFESP</button><br> <!-- ADD (click) = "clickEmail()" -->
-  <button ion-button class = "atestado">ATESTADO DE MATRICULA</button><br> <!-- ADD (click) = "clickAtestado()" -->
-  <button ion-button class = "historico">HISTORICO ESCOLAR</button><br> <!-- ADD (click) = "clickHistorico()" -->
-  
+  <button ion-button class = "biblioteca" (click) = "onClick(1)">BIBLIOTECA</button><br>
+  <button ion-button class ="saldo" (click) = "onClick(2)">CONSULTAR SALDO RU</button><br>
+  <button ion-button class = "caradpio" (click) = "onClick(3)">CARDÁPIO RU</button><br>
+  <button ion-button class = "email" (click) = "onClick(4)">EMAIL UNIFESP</button><br>
+  <button ion-button class = "atestado" (click) = "onClick(5)">ATESTADO DE MATRICULA</button><br>
+  <button ion-button class = "historico" (click) = "onClick(6)">HISTORICO ESCOLAR</button><br>
 </ion-content>
