@@ -2,8 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { Platform, Nav } from 'ionic-angular';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { LoginPage } from '../login/login';
 
+import { LoginPage } from '../login/login';
 
 /* NÃO REMOVER
 import { editProfile } from 'caminho editProfile';
@@ -12,6 +12,7 @@ import { editArm } from 'caminho editArm';
 import { ajuda } from 'caminho ajuda';
 import { logout } from 'caminho logout';
 */
+
 
 @IonicPage()
 @Component({

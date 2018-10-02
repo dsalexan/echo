@@ -1,16 +1,9 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
-
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { LoginPage } from '../login/login';
 
-/**
- * Generated class for the CadastroPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({

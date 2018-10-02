@@ -7,6 +7,7 @@ import { Platform, Nav } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import {ConfigPage} from '../configuracoes/configuracoes'
 
+
 @IonicPage()
 @Component({
   selector: 'perfil-page',
@@ -36,7 +37,6 @@ export class PerfilPage {
   };
 
   constructor(public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder,
-
               public toastCtrl: ToastController, public loadingCtrl: LoadingController, public storage: Storage,
               public navParams: NavParams) {
 
