@@ -18,6 +18,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
 import { HTTP } from '@ionic-native/http';
 import { CalendarModule } from "ion2-calendar";
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 @NgModule({
   declarations: [
