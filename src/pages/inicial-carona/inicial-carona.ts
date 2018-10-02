@@ -2,8 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Nav } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
-import { OferecerCaronaPage } from '../oferecer-carona/oferecer-carona'
-import { LoginPage } from '../login/login'
+import { ProcurarCaronaPage } from '../procurar-carona/procurar-carona';
+import { OferecerCaronaPage } from '../oferecer-carona/oferecer-carona';
+import { LoginPage } from '../login/login';
 
 
 @IonicPage()
@@ -35,4 +36,7 @@ export class InicialCaronaPage {
     this.navCtrl.push(OferecerCaronaPage);
   }
 
+  clickProcurarCarona() { // vai para a pagina de configurações
+    this.navCtrl.push(ProcurarCaronaPage);
+  }
 }
