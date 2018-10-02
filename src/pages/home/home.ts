@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+<<<<<<< HEAD
 import { LoginPage } from '../login/login'
+=======
+import { LoginPage } from '../login/login';
+import { CadastroPage } from '../cadastro/cadastro';
+>>>>>>> renata_carona
 
 import { HTTP } from '@ionic-native/http';
 
