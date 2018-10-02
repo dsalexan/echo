@@ -17,6 +17,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
 import { CalendarModule } from "ion2-calendar";
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 @NgModule({
   declarations: [
