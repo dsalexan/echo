@@ -17,7 +17,7 @@
       <ion-card-content>
         <ion-card-title> Escolha a data </ion-card-title>
         <ion-calendar
-          [(ngModel)]="viagem.data"
+          [(ngModel)]="date"
           name="data"
           (onChange)="onChange($event)"
           [type]="type"
@@ -35,10 +35,14 @@
       [format]="'YYYY-MM-DD'">
     </ion-calendar> -->
     <ion-item>
-      <ion-label
-        id="local_origem">
-
-      </ion-label>
+      <ion-select>
+        <ion-option>Bacon</ion-option>
+        <ion-option>Black Olives</ion-option>
+        <ion-option>Extra Cheese</ion-option>
+        <ion-option>Mushrooms</ion-option>
+        <ion-option>Pepperoni</ion-option>
+        <ion-option>Sausage</ion-option>
+      </ion-select>
     </ion-item>
 
 

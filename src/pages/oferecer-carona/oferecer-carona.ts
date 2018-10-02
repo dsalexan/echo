@@ -14,6 +14,8 @@ import { LoginPage } from '../login/login'
 })
 
 export class OferecerCaronaPage {
+  date: string;
+  type: 'string';
   //type: 'string'; // 'string' | 'js-date' | 'moment' | 'time' | 'object'
   viagem = {}
   localidades = {}
@@ -38,7 +40,7 @@ export class OferecerCaronaPage {
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
       if(data.data[0] != undefined) {
-        document.getElementById("local_origem").textContent=data.data[0];
+        // document.getElementById("local_origem").textContent=data.data[0];
       }
 
     }, (err) => {
