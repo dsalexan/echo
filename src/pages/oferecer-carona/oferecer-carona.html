@@ -15,34 +15,48 @@
 
     <ion-card>
       <ion-card-content>
-        <ion-card-title> Escolha a data </ion-card-title>
+        <ion-card-title> Data </ion-card-title>
         <ion-calendar
-          [(ngModel)]="date"
+          [(ngModel)]="viagem.data"
+          id="data"
           name="date"
           (onChange)="onChange($event)"
-          [format]="'YYYY-MM-DD'">
+          [format]="'DD-MM-YYYY'"
+          required #data="ngModel">
         </ion-calendar>
-        <p>{{date}}</p>
+        <!--<p>{{viagem.data}}</p>-->
       </ion-card-content>
     </ion-card>
     
+    <ion-item>
+      <ion-label floating> Hora </ion-label>
+      <ion-datetime
+        displayFormat="HH:mm"
+        [(ngModel)]="viagem.hora"
+        id="hora"
+        name="hora"
+        required #hora="ngModel">
+      </ion-datetime>
+    </ion-item>
 
-    <!--
-    <ion-calendar [(ngModel)]="viagem.data" name="data"
-      (onChange)="onChange($event)"
-      [type]="type"
-      [format]="'YYYY-MM-DD'">
-    </ion-calendar> -->
     <ion-item>
       <ion-label floating> Local de origem </ion-label>
-      <ion-select [(ngModel)]="viagem.id_origem" name="id_origem">
+      <ion-select
+        [(ngModel)]="viagem.id_origem"
+        id="id_origem"
+        name="id_origem"
+        required #id_origem="ngModel">
         <ion-option *ngFor="let op of lista" [value]="op.id_local" >{{op.descricao}}</ion-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
         <ion-label floating> Local de destino </ion-label>
-        <ion-select [(ngModel)]="viagem.id_destino" name="id_destino">
+        <ion-select
+          [(ngModel)]="viagem.id_destino"
+          id="id_destino"
+          name="id_destino"
+          required #id_destino="ngModel">
           <ion-option *ngFor="let op of lista" [value]="op.id_local" >{{op.descricao}}</ion-option>
         </ion-select>
       </ion-item>

@@ -56,7 +56,7 @@ export class OferecerCaronaPage {
     //document.getElementById("teste").textContent=this.viagem["data"];
     
     /*
-    var path = 'http://localhost:3000/api/caronas/post/viagem?id_motorista='+ this.storage.get("aluno_ra") + '&id_origem='+ this.viagem["id_origem"] + '&id_destino='+  this.viagem["id_destino"] + '&dia='+ this.viagem["dia"] + '&hora='+ this.viagem["hora"] + '&preco='+ this.viagem["preco"] + '&qtd_vagas=' + this.viagem["qtd_vagas"] + '&descricao='+ this.viagem["descricao"]
+    var path = 'http://localhost:3000/api/caronas/post/viagem?id_motorista='+ this.storage.get("aluno_ra") + '&id_origem='+ this.viagem["id_origem"] + '&id_destino='+  this.viagem["id_destino"] + '&dia='+ this.viagem["data"] + '&hora='+ this.viagem["hora"] + '&preco='+ this.viagem["preco"] + '&qtd_vagas=' + this.viagem["qtd_vagas"] + '&descricao='+ this.viagem["descricao"]
 
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
@@ -78,7 +78,7 @@ export class OferecerCaronaPage {
       }
     }, (err) => {
       console.log(err)
-    }) */
+    })*/
   }
 
 
