@@ -8,9 +8,6 @@ import { Storage } from '@ionic/storage';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { LoginPage } from '../login/login';
-
-
 const biblioteca = 'http://www.biblioteca.unifesp.br/biblioteca/index.php';
 const saldoRU = 'https://phpu.unifesp.br/ru_consulta/index.php';
 const cardapio = 'www.unifesp.br/campus/sjc/servicosnae/restaurante/1647-cardapio-semanal-do-ru.html';
@@ -34,9 +31,8 @@ export class UtilidadesPage {
       }
     })*/
   }
-  openUrl(){ window.open('https://google.com', '_system'); }
+  
   ionViewDidLoad() {
-    this.checkSession();
     console.log('ionViewDidLoad UtilidadesPage');
     document.getElementById("tabs").style.display = "none"
     document.getElementById("botao_menu").style.display = "none"

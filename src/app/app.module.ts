@@ -16,6 +16,7 @@ import { OferecerCaronaPage } from '../pages/oferecer-carona/oferecer-carona';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
+import { HTTP } from '@ionic-native/http';
 import { CalendarModule } from "ion2-calendar";
 
 @NgModule({
@@ -52,6 +53,7 @@ import { CalendarModule } from "ion2-calendar";
   providers: [
     StatusBar,
     SplashScreen,
+    HTTP,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
