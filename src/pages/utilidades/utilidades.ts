@@ -5,7 +5,7 @@
 
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
-//import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { LoginPage } from '../login/login';
@@ -24,110 +24,50 @@ const historico = 'https://intranet.unifesp.br/restrict/index3.php';
   templateUrl: 'utilidades.html',
 })
 export class UtilidadesPage {
-  constructor(public navCtrl: NavController, public navParams: NavParams/*, private iab: InAppBrowser*/, public storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private iab: InAppBrowser, public storage: Storage) {
   }
 
   checkSession() {
-    this.storage.get("aluno_nome").then((usu) => {
+    /*this.storage.get("aluno_nome").then((usu) => {
       if(usu == null) {
         this.navCtrl.push(LoginPage);
       }
-    })
+    })*/
   }
-
+  openUrl(){ window.open('https://google.com', '_system'); }
   ionViewDidLoad() {
     this.checkSession();
     console.log('ionViewDidLoad UtilidadesPage');
     document.getElementById("tabs").style.display = "none"
     document.getElementById("botao_menu").style.display = "none"
   }
-  /*
 
-  clickBiblioteca() {
-    console.log('ionViewDidLoad UtilidadesPage');
-    const browser = this.iab.create(biblioteca);
+  clickBiblioteca(op) {
 
-    browser.executeScript();
+    var browser;
+    switch(op){
+      case 1:
+        browser = this.iab.create(biblioteca);
+        break;
+      case 2:
+        browser = this.iab.create(saldoRU);
+        break;
+      case 3:
+        browser = this.iab.create(cardapio);
+        break;
+      case 4:
+        browser = this.iab.create(email);
+        break;
+      case 5:
+        browser = this.iab.create(atestado);
+        break;
+      case 6:
+        browser = this.iab.create(historico);
+        break;
+    }
 
-    browser.insertCSS();
-    browser.on('loadstop').subscribe(event => {
-       browser.insertCSS({ code: "body{color: red;" });
-   });
-
-    browser.close();
+  
   }
-
-  clicksSaldo() {
-    console.log('ionViewDidLoad UtilidadesPage');
-    const browser = this.iab.create(saldoRU);
-
-    browser.executeScript();
-
-    browser.insertCSS();
-    browser.on('loadstop').subscribe(event => {
-       browser.insertCSS({ code: "body{color: red;" });
-   });
-
-    browser.close();
-  }
-
-  clickCardapio() {
-    console.log('ionViewDidLoad UtilidadesPage');
-    const browser = this.iab.create(cardapio);
-
-    browser.executeScript();
-
-    browser.insertCSS();
-    browser.on('loadstop').subscribe(event => {
-       browser.insertCSS({ code: "body{color: red;" });
-   });
-
-    browser.close();
-  }
-
-  clickEmail() {
-    console.log('ionViewDidLoad UtilidadesPage');
-    const browser = this.iab.create(email);
-
-    browser.executeScript();
-
-    browser.insertCSS();
-    browser.on('loadstop').subscribe(event => {
-       browser.insertCSS({ code: "body{color: red;" });
-   });
-
-    browser.close();
-  }
-
-  clickAtestado() {
-    console.log('ionViewDidLoad UtilidadesPage');
-    const browser = this.iab.create(atestado);
-
-    browser.executeScript();
-
-    browser.insertCSS();
-    browser.on('loadstop').subscribe(event => {
-       browser.insertCSS({ code: "body{color: red;" });
-   });
-
-    browser.close();
-  }
-
-  clickHistorico() {
-    console.log('ionViewDidLoad UtilidadesPage');
-    const browser = this.iab.create(historico);
-
-    browser.executeScript();
-
-    browser.insertCSS();
-    browser.on('loadstop').subscribe(event => {
-       browser.insertCSS({ code: "body{color: red;" });
-   });
-
-    browser.close();
-  }
-*/
-
 }
 
 // https://ionicframework.com/docs/native/in-app-browser/
