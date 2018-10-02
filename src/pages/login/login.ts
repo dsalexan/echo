@@ -41,12 +41,13 @@ export class LoginPage {
 
         if(data.data[0] != undefined) {
 
-          this.storage.set("aluno_ra", data.data[0].ra_aluno)
-          this.storage.set("aluno_nome", data.data[0].nome)
-          this.storage.set("aluno_login", data.data[0].login_intranet)
-          this.storage.set("aluno_email", data.data[0].email)
-          this.storage.set("aluno_telefone", data.data[0].telefone)
-          this.storage.set("aluno_telefone", data.data[0].telefone)
+          //this.storage.set("aluno_ra", data.data[0].ra_aluno)
+          //this.storage.set("aluno_nome", data.data[0].nome)
+          this.storage.set("aluno_user", data.data[0].user)
+          //this.storage.set("aluno_login", data.data[0].login_intranet)
+          //this.storage.set("aluno_email", data.data[0].email)
+          //this.storage.set("aluno_telefone", data.data[0].telefone)
+          //this.storage.set("aluno_telefone", data.data[0].telefone)
           
           if (lembrar) {
             this.storage.set("aluno_senha", this.dados["senha"])

@@ -25,7 +25,7 @@ export class InicialCaronaPage {
   }
 
   ionViewDidLoad() {
-    this.checkSession();
+    //this.checkSession();
     console.log('ionViewDidLoad InicialCaronaPage');
     document.getElementById("tabs").style.display = "block"
     document.getElementById("botao_menu").style.display = "block"
