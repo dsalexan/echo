@@ -31,7 +31,8 @@ INSERT INTO aluno (ra_aluno, nome, login_intranet, senha_intranet, email) VALUES
 ('666666', 'Usuario6', 'user6', '123456', 'user6@gmail.com'),
 ('777777', 'Usuario7', 'user7', '123456', 'user7@gmail.com'),
 ('888888', 'Usuario8', 'user8', '123456', 'user8@gmail.com'),
-('999999', 'Usuario9', 'user9', '123456', 'user9@gmail.com');
+('999999', 'Usuario9', 'user9', '123456', 'user9@gmail.com'),
+('112344', 'Pedro Spoljaric Gomes', 'pedro.spoljaric', 'senha', 'pedrospoljaric@gmail.com');
 
 CREATE TABLE professor (
 	id_professor SERIAL PRIMARY KEY,
@@ -51,7 +52,11 @@ INSERT INTO professor (nome, sala, lattes, email1) VALUES
 ('Professor6', 6, 'linklattes6', 'email6'),
 ('Professor7', 7, 'linklattes7', 'email7'),
 ('Professor8', 8, 'linklattes8', 'email8'),
-('Professor9', 9, 'linklattes9', 'email9');
+('Professor9', 9, 'linklattes9', 'email9'),
+('Fábio Silveira', 10, 'fabiolattes', 'fabio@gmail.com'),
+('Bruno Kimura', 20, 'brunolattes', 'bruno@gmail.com'),
+('Erwin Doescher', 30, 'erwinlattes', 'erwin@gmail.com'),
+('Lauro Paulo', 40, 'laurolattes', 'lauro@gmail.com');
 
 CREATE TABLE uc (
 	id_uc SERIAL PRIMARY KEY,
@@ -64,7 +69,11 @@ VALUES (DEFAULT, 'Logica de Programação', 4),
 (DEFAULT, 'Algoritmos e Estrutura de Dados', 4),
 (DEFAULT, 'Calculo em Uma Variavel', 6),
 (DEFAULT, 'Fundamentos da Biologia Moderna', 4),
-(DEFAULT, 'Series e Equaçoes Diferenciais', 4);
+(DEFAULT, 'Series e Equaçoes Diferenciais', 4),
+(DEFAULT, 'Engenharia de Software', 4),
+(DEFAULT, 'Redes de Computadores', 4),
+(DEFAULT, 'Cálculo Numérico', 4),
+(DEFAULT, 'Laboratório de Sistemas Computacionais: Circuitos Digitais', 2);
 
 CREATE TABLE pre_req (
 	id_uc INTEGER REFERENCES uc(id_uc),
@@ -74,7 +83,9 @@ CREATE TABLE pre_req (
 
 INSERT INTO pre_req
 VALUES (2, 1),
-(5, 3);
+(5, 3),
+(8, 3),
+(6, 2);
 
 CREATE TABLE turma (
 	id_turma SERIAL PRIMARY KEY,
@@ -88,7 +99,11 @@ VALUES (DEFAULT, 1, 1, 'IA'),
 (DEFAULT, 2, 2, 'IB'),
 (DEFAULT, 3, 3, 'N'),
 (DEFAULT, 4 ,4, 'IC'),
-(DEFAULT, 5, 5, 'N');
+(DEFAULT, 5, 5, 'N'),
+(DEFAULT, 6, 11, 'I'),
+(DEFAULT, 7, 12, 'I'),
+(DEFAULT, 8, 13, 'N'),
+(DEFAULT, 9, 14, 'IB');
 
 CREATE TYPE dia_ordenado AS ENUM ('DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB');
 CREATE TABLE horario (
@@ -99,8 +114,16 @@ CREATE TABLE horario (
 
 INSERT INTO horario
 VALUES (DEFAULT, 'SEG', '10:00'),
+(DEFAULT, 'SEG', '13:30'),
 (DEFAULT, 'TER', '08:00'),
+(DEFAULT, 'TER', '13:30'),
+(DEFAULT, 'TER', '15:30'),
+(DEFAULT, 'TER', '19:00'),
+(DEFAULT, 'QUA', '13:30'),
+(DEFAULT, 'QUA', '15:30'),
 (DEFAULT, 'QUA', '19:00'),
+(DEFAULT, 'QUI', '13:30'),
+(DEFAULT, 'QUI', '19:00'),
 (DEFAULT, 'QUI', '21:00'),
 (DEFAULT, 'SEX', '13:30');
 
@@ -117,7 +140,14 @@ VALUES (1, 1, 1),
 (2, 2, 2),
 (3, 3, 3),
 (4, 4, 4),
-(5, 5, 5);
+(5, 5, 5),
+(6, 2, 403),
+(6, 7, 403),
+(7, 4, 302),
+(7, 10, 404),
+(8, 6, 208),
+(8, 11, 208),
+(9, 8, 401);
 
 CREATE TABLE evento(
 	id_evento SERIAL PRIMARY KEY,
@@ -159,7 +189,11 @@ VALUES('111111', 1, DEFAULT),
 ('222222', 2, DEFAULT),
 ('333333', 3, DEFAULT),
 ('444444', 4, DEFAULT),
-('555555', 5, DEFAULT);
+('555555', 5, DEFAULT),
+('112344', 6, DEFAULT),
+('112344', 7, DEFAULT),
+('112344', 8, DEFAULT),
+('112344', 9, DEFAULT);
 
 CREATE TABLE cardapio (
     tabela JSONB,
