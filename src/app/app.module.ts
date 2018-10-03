@@ -13,6 +13,7 @@ import { UtilidadesPage} from '../pages/utilidades/utilidades';
 import { HomePage } from '../pages/home/home';
 import { InicialCaronaPage } from '../pages/inicial-carona/inicial-carona';
 import { OferecerCaronaPage } from '../pages/oferecer-carona/oferecer-carona';
+import { InicialGradePage } from '../pages/inicial-grade/inicial-grade';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -34,7 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
     UtilidadesPage,
     HomePage,
     InicialCaronaPage,
-    OferecerCaronaPage
+    OferecerCaronaPage,
+    InicialGradePage
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,8 @@ import { HttpClientModule } from '@angular/common/http';
     UtilidadesPage,
     HomePage,
     InicialCaronaPage,
-    OferecerCaronaPage
+    OferecerCaronaPage,
+    InicialGradePage
   ],
   providers: [
     StatusBar,
