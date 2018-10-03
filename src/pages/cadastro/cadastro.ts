@@ -26,9 +26,9 @@ export class CadastroPage {
     })
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     this.checkSession()
-    console.log('ionViewDidLoad CadastroPage');
+    console.log('ionViewWillEnter CadastroPage');
     document.getElementById("tabs").style.display = "none"
     document.getElementById("botao_menu").style.display = "none"
   }

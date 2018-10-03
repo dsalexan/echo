@@ -67,9 +67,9 @@ export class PerfilPage {
     })
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     this.checkSession()
-    console.log('ionViewDidLoad PerfilPage');
+    console.log('ionViewWillEnter PerfilPage');
     document.getElementById("tabs").style.display = "none"
     document.getElementById("botao_menu").style.display = "none"
   }

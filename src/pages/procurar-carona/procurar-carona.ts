@@ -53,10 +53,10 @@ export class ProcurarCaronaPage {
     console.log(this.viagem)
   }
   
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     this.checkSession();
     this.mostrarLocalidade();
-    console.log('ionViewDidLoad OferecerCaronaPage');
+    console.log('ionViewWillEnter OferecerCaronaPage');
     document.getElementById("tabs").style.display = "none"
     document.getElementById("botao_menu").style.display = "none"
   }

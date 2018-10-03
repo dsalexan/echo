@@ -33,9 +33,9 @@ export class ConfigPage {
     })
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     this.checkSession();
-    console.log('ionViewDidLoad ConfigPage');
+    console.log('ionViewWillEnter ConfigPage');
     document.getElementById("tabs").style.display = "none"
     document.getElementById("botao_menu").style.display = "none"
   }

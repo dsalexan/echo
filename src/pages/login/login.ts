@@ -20,8 +20,8 @@ export class LoginPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage, public http: Http) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+  ionViewWillEnter() {
+    console.log('ionViewWillEnter LoginPage');
     document.getElementById("tabs").style.display = "block"
     document.getElementById("botao_menu").style.display = "block"
   }

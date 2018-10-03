@@ -25,9 +25,9 @@ export class InicialCaronaPage {
     })
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     //this.checkSession();
-    console.log('ionViewDidLoad InicialCaronaPage');
+    console.log('ionViewWillEnter InicialCaronaPage');
     document.getElementById("tabs").style.display = "block"
     document.getElementById("botao_menu").style.display = "block"
   }

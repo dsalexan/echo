@@ -25,9 +25,9 @@ export class HomePage {
     })
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     this.checkSession();
-    console.log('ionViewDidLoad HomePage');
+    console.log('ionViewWillEnter HomePage');
     document.getElementById("tabs").style.display = "inline-block"
     document.getElementById("botao_menu").style.display = "inline-block"
   }

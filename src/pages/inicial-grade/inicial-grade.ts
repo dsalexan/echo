@@ -25,9 +25,9 @@ export class InicialGradePage {
     })
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     this.checkSession();
-    console.log('ionViewDidLoad InicialGradePage');
+    console.log('ionViewWillEnter InicialGradePage');
     document.getElementById("tabs").style.display = "block"
     document.getElementById("botao_menu").style.display = "block"
     this.carregarGrade();
