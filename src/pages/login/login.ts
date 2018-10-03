@@ -22,8 +22,8 @@ export class LoginPage {
 
   ionViewWillEnter() {
     console.log('ionViewWillEnter LoginPage');
-    document.getElementById("tabs").style.display = "block"
-    document.getElementById("botao_menu").style.display = "block"
+    document.getElementById("tabs").style.display = "none"
+    document.getElementById("botao_menu").style.display = "none"
   }
   
   clickLogin() {

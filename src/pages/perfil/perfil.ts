@@ -56,7 +56,7 @@ export class PerfilPage {
   }
 
   clickConfig() { // vai para a pagina de configurações
-    this.nav.push(ConfigPage);
+    this.navCtrl.push(ConfigPage);
   }
 
   checkSession() {
