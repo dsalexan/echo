@@ -55,30 +55,34 @@ export class OferecerCaronaPage {
     console.log(this.viagem)
     //document.getElementById("teste").textContent=this.viagem["data"];
     
-    /*
-    var path = 'http://localhost:3000/api/caronas/post/viagem?id_motorista='+ this.storage.get("aluno_ra") + '&id_origem='+ this.viagem["id_origem"] + '&id_destino='+  this.viagem["id_destino"] + '&dia='+ this.viagem["data"] + '&hora='+ this.viagem["hora"] + '&preco='+ this.viagem["preco"] + '&qtd_vagas=' + this.viagem["qtd_vagas"] + '&descricao='+ this.viagem["descricao"]
+    var path
+    this.storage.get("aluno_ra").then((usu) => {
+      path = 'http://localhost:3000/api/caronas/post/viagem?id_motorista='+ usu + '&id_origem='+ this.viagem["id_origem"] + '&id_destino='+  this.viagem["id_destino"] + '&dia='+ this.viagem["data"] + '&hora='+ this.viagem["hora"] + '&preco='+ this.viagem["preco"] + '&qtd_vagas=' + this.viagem["qtd_vagas"] + '&descricao='+ this.viagem["descricao"]
+      console.log(path)
+      this.http.get(path).map(res => res.json()).subscribe(data => {
 
-    this.http.get(path).map(res => res.json()).subscribe(data => {
+        if(data.success) {
+          let alert = this.alertCtrl.create({
+            title: 'Ok!',
+            subTitle: 'Viagem criada com sucesso',
+            buttons: ['Dismiss']
+          });
+          alert.present();
+          this.navCtrl.push(HomePage);
+        } else {
+          let alert = this.alertCtrl.create({
+            title: 'Ops!',
+            subTitle: 'Tente novamente',
+            buttons: ['Dismiss']
+          });
+          alert.present();
+        }
+      }, (err) => {
+        console.log(err)
+      })
 
-      if(data.data[0] != undefined) {
-        let alert = this.alertCtrl.create({
-          title: 'Ok!',
-          subTitle: 'Viagem criada com sucesso',
-          buttons: ['Dismiss']
-        });
-        alert.present();
-        this.navCtrl.push(HomePage);
-      } else {
-        let alert = this.alertCtrl.create({
-          title: 'Ops!',
-          subTitle: 'Tente novamente',
-          buttons: ['Dismiss']
-        });
-        alert.present();
-      }
-    }, (err) => {
-      console.log(err)
-    })*/
+    })
+    
   }
 
   ionViewDidLoad() {
