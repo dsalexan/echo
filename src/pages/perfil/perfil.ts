@@ -43,15 +43,6 @@ export class PerfilPage {
     this.form = formBuilder.group({
       image: [''], user_RA: [''], user_name: [''], user_password: [''], user_email: [''], user_state: [''],
     });
-
-
-    this.profileDetails = [
-      {
-        full_name: "Nome do Usuário",
-        about: "Bacharelado em Ciência e Tecnologia"
-      },
-    ];
-
   }
 
   getInfomations(){ //busca no banco de dados as informações do usuario
