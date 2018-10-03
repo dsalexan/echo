@@ -10,8 +10,8 @@ import { ConfigPage } from '../pages/configuracoes/configuracoes';
 import { UtilidadesPage } from '../pages/utilidades/utilidades';
 
 import { HomePage } from '../pages/home/home';
-// import { GradePage } from '../pages/grade/grade';
 import { InicialCaronaPage } from '../pages/inicial-carona/inicial-carona';
+import { InicialGradePage } from '../pages/inicial-grade/inicial-grade';
 
 
 @Component({
@@ -36,7 +36,7 @@ export class MyApp {
   }
 
   clickGrade() {
-    // this.nav.push(GradePage)
+    this.nav.push(InicialGradePage)
   }
 
   clickPerfil() {
