@@ -1,41 +1,106 @@
-
 <ion-header>
   <ion-navbar color="primary">
     <ion-buttons left><!--botoes do cabeçalho - ESQUERDA-->
     </ion-buttons>
     <ion-title center>{{ 'Caronas' }}</ion-title>
-    <ion-buttons right><!--botoes do cabecalho - DIREITA-->
-      <button ion-button icon-only (click)="clickConfig()" class="configuracoes">Config.</button><!--botao configuracoes-->
-    </ion-buttons>
+    <!--<ion-buttons right>
+      <button ion-button icon-only (click)="clickConfig()" class="configuracoes">Config.</button><!--botao configuracoes
+    </ion-buttons>-->
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <form (ngSubmit)="oferecer()">
+  <form #viagemForm="ngForm" (ngSubmit)="oferecer()">
 
-    <ion-calendar [(ngModel)]="viagem.data" name="data"
-      (onChange)="onChange($event)"
-      [type]="type"
-      [format]="'YYYY-MM-DD'">
-    </ion-calendar>
+    <ion-card>
+      <ion-card-content>
+        <ion-card-title> Data </ion-card-title>
+        <ion-calendar
+          [(ngModel)]="viagem.data"
+          id="data"
+          name="date"
+          (onChange)="onChange($event)"
+          [format]="'DD-MM-YYYY'"
+          required #data="ngModel">
+        </ion-calendar>
+        <!--<p>{{viagem.data}}</p>-->
+      </ion-card-content>
+    </ion-card>
     
     <ion-item>
-      <ion-label>Quantidade de vagas</ion-label>
-      <ion-input type="number" [(ngModel)]="viagem.qtd_vagas" name="qtd_vagas" min="1" max="5" step="1" value ="1"></ion-input>
+      <ion-label floating> Hora </ion-label>
+      <ion-datetime
+        displayFormat="HH:mm"
+        [(ngModel)]="viagem.hora"
+        id="hora"
+        name="hora"
+        required #hora="ngModel">
+      </ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating> Local de origem </ion-label>
+      <ion-select
+        [(ngModel)]="viagem.id_origem"
+        id="id_origem"
+        name="id_origem"
+        required #id_origem="ngModel">
+        <ion-option *ngFor="let op of lista" [value]="op.id_local" >{{op.descricao}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+        <ion-label floating> Local de destino </ion-label>
+        <ion-select
+          [(ngModel)]="viagem.id_destino"
+          id="id_destino"
+          name="id_destino"
+          required #id_destino="ngModel">
+          <ion-option *ngFor="let op of lista" [value]="op.id_local" >{{op.descricao}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+    
+    <ion-item>
+      <ion-label floating>Quantidade de vagas</ion-label>
+      <ion-input
+        type="number"
+        [(ngModel)]="viagem.qtd_vagas"
+        id="qtd_vagas"
+        name="qtd_vagas"
+        required #qtd_vagas="ngModel"
+        min="1"
+        max="5"
+        step="1"
+        value ="1">
+      </ion-input>
     </ion-item>
     
     <ion-item>
-      <ion-label>Preço</ion-label>
-      <ion-input type="number" [(ngModel)]="viagem.preco" name="preco" min="0" value ="0.00"></ion-input>
+      <ion-label floating>Preço R$</ion-label>
+      <ion-input
+        type="number"
+        [(ngModel)]="viagem.preco"
+        id="preco"
+        name="preco"
+        required #preco="ngModel"
+        min="0"
+        value ="0.00">
+      </ion-input>
     </ion-item>
     
     <ion-item>
       <ion-label floating> Descrição </ion-label>
-      <ion-input type="text" [(ngModel)]="viagem.descricao" name="descricao"></ion-input>
+      <ion-input
+        type="text"
+        [(ngModel)]="viagem.descricao"
+        id="descricao"
+        name="descricao"
+        required #descricao="ngModel">
+      </ion-input>
     </ion-item>
     
-    <button ion-button round type="submit" block>Oferecer</button>
+    <button [disabled]="!viagemForm.form.valid" type="submit" ion-button round block>Oferecer</button>
     
   </form>
-  <ion-label id="teste"></ion-label>
 </ion-content>

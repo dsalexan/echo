@@ -9,18 +9,17 @@ import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
-  selector: 'page-oferecer-carona',
-  templateUrl: 'oferecer-carona.html',
+  selector: 'page-procurar-carona',
+  templateUrl: 'procurar-carona.html',
 })
-
-export class OferecerCaronaPage {
-
+export class ProcurarCaronaPage {
+  date: string;
   viagem = {}
   lista = []
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController) {
   }
-  
+
   onChange($event) {
     console.log($event);
   }
@@ -49,38 +48,11 @@ export class OferecerCaronaPage {
     })
   }
 
-
-  oferecer(){
-    //salvar no banco de dados]
+  procurar(){
+    //buscar no banco de dados]
     console.log(this.viagem)
-    //document.getElementById("teste").textContent=this.viagem["data"];
-    
-    /*
-    var path = 'http://localhost:3000/api/caronas/post/viagem?id_motorista='+ this.storage.get("aluno_ra") + '&id_origem='+ this.viagem["id_origem"] + '&id_destino='+  this.viagem["id_destino"] + '&dia='+ this.viagem["data"] + '&hora='+ this.viagem["hora"] + '&preco='+ this.viagem["preco"] + '&qtd_vagas=' + this.viagem["qtd_vagas"] + '&descricao='+ this.viagem["descricao"]
-
-    this.http.get(path).map(res => res.json()).subscribe(data => {
-
-      if(data.data[0] != undefined) {
-        let alert = this.alertCtrl.create({
-          title: 'Ok!',
-          subTitle: 'Viagem criada com sucesso',
-          buttons: ['Dismiss']
-        });
-        alert.present();
-        this.navCtrl.push(HomePage);
-      } else {
-        let alert = this.alertCtrl.create({
-          title: 'Ops!',
-          subTitle: 'Tente novamente',
-          buttons: ['Dismiss']
-        });
-        alert.present();
-      }
-    }, (err) => {
-      console.log(err)
-    })*/
   }
-
+  
   ionViewDidLoad() {
     this.checkSession();
     this.mostrarLocalidade();

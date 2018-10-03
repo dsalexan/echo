@@ -3,6 +3,8 @@ import { Storage } from '@ionic/storage';
 import { Platform, Nav } from 'ionic-angular';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { LoginPage } from '../login/login';
+
 /* NÃO REMOVER
 import { editProfile } from 'caminho editProfile';
 import { editNotific } from 'caminho editNotific';
@@ -10,6 +12,7 @@ import { editArm } from 'caminho editArm';
 import { ajuda } from 'caminho ajuda';
 import { logout } from 'caminho logout';
 */
+
 
 @IonicPage()
 @Component({
@@ -22,7 +25,16 @@ export class ConfigPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
   }
 
+  checkSession() {
+    this.storage.get("aluno_nome").then((usu) => {
+      if(usu == null) {
+        this.navCtrl.push(LoginPage);
+      }
+    })
+  }
+
   ionViewDidLoad() {
+    this.checkSession();
     console.log('ionViewDidLoad ConfigPage');
     document.getElementById("tabs").style.display = "none"
     document.getElementById("botao_menu").style.display = "none"
