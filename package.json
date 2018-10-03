@@ -23,21 +23,16 @@
     "@ionic-native/core": "^4.12.2",
     "@ionic-native/date-picker": "^4.15.0",
     "@ionic-native/http": "^4.12.2",
+    "@ionic-native/in-app-browser": "^4.15.0",
     "@ionic-native/splash-screen": "~4.12.0",
     "@ionic-native/sqlite": "^4.12.2",
     "@ionic-native/status-bar": "~4.12.0",
     "@ionic/storage": "^2.1.3",
     "@types/jquery": "^3.3.6",
-<<<<<<< HEAD
-    "cordova-android": "^7.0.0",
-    "cordova-plugin-datepicker": "0.9.3",
-    "cordova-plugin-inappbrowser": "^3.0.0",
-=======
     "cordova-browser": "5.0.4",
     "cordova-plugin-advanced-http": "^2.0.1",
     "cordova-plugin-datepicker": "0.9.3",
     "cordova-plugin-file": "^6.0.1",
->>>>>>> bc7cef9549d89430ec1c1a99c8138e01930163ab
     "cordova-sqlite-storage": "^2.4.0",
     "ion2-calendar": "^2.2.0",
     "ionic-angular": "3.9.2",
