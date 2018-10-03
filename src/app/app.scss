@@ -21,9 +21,11 @@
 }
 
 div#tabs {
-    display: none;
-    position: fixed;
+    display: inline-block;
+    // margin: auto;
+    // width: 100%;
+    // display: none;
+    position: relative;
     z-index: 1;
     bottom: 0px;
-    left: 0px;
 }

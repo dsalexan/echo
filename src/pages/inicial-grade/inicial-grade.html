@@ -8,7 +8,7 @@
 
   <ion-grid style="font-size: 10px;">
     <ion-row *ngFor="let linha of tabela; let i = index;" style="border: think solid black;">
-        <ion-col col-2 [ngClass]="i == 0 ? 'fundo' : 'nada'" *ngFor="let coluna of linha" style="border: 1px solid black;"> <!-- JUST ADD A col-4 attribute -->
+        <ion-col col-2 *ngFor="let coluna of linha; let j = index" [ngClass]="(i == 0 || j == 0) ? 'fundo' : 'nada'" style="text-align: center; border: 1px solid black;"> <!-- JUST ADD A col-4 attribute -->
               {{coluna}}
         </ion-col>
     </ion-row>

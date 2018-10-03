@@ -28,8 +28,8 @@ export class HomePage {
   ionViewDidLoad() {
     this.checkSession();
     console.log('ionViewDidLoad HomePage');
-    document.getElementById("tabs").style.display = "block"
-    document.getElementById("botao_menu").style.display = "block"
+    document.getElementById("tabs").style.display = "inline-block"
+    document.getElementById("botao_menu").style.display = "inline-block"
   }
 
   clickLogin() {
