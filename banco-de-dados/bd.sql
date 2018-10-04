@@ -7,6 +7,7 @@ DROP TABLE IF EXISTS evento_turma;
 DROP TABLE IF EXISTS evento;
 DROP TABLE IF EXISTS horario_turma;
 DROP TABLE IF EXISTS horario;
+DROP TYPE IF EXISTS dia_ordenado;
 DROP TABLE IF EXISTS turma;
 DROP TABLE IF EXISTS pre_req;
 DROP TABLE IF EXISTS uc;
@@ -32,7 +33,12 @@ INSERT INTO aluno (ra_aluno, nome, login_intranet, senha_intranet, email) VALUES
 ('777777', 'Usuario7', 'user7', '123456', 'user7@gmail.com'),
 ('888888', 'Usuario8', 'user8', '123456', 'user8@gmail.com'),
 ('999999', 'Usuario9', 'user9', '123456', 'user9@gmail.com'),
-('112344', 'Pedro Spoljaric Gomes', 'pedro.spoljaric', 'senha', 'pedrospoljaric@gmail.com');
+('112344', 'Pedro Spoljaric Gomes', 'pedro.spoljaric', 'senha', 'pedrospoljaric@gmail.com'),
+('112347', 'Renata Sendreti Broder', 'renata.broder', 'senha', 'renata.sendreti@gmail.com'),
+('111866', 'Tamires Beatriz da Silva Lucena', 'tlucena', 'senha', 'tamiresb.lucena@gmail.com'),
+('111775', 'Andrew Medeiros de Campos', 'andrew.medeiros', 'senha', 'andrew.medeirosc@gmail.com'),
+('111843', 'Danilo Souza Alexandre', 'dsalexan', 'senha', 'danilo.salexan@gmail.com'),
+('111851', 'Gustavo Martins Collaço', 'gustavo.collaco', 'senha', 'gustavo.m.collaco@gmail.com');
 
 CREATE TABLE professor (
 	id_professor SERIAL PRIMARY KEY,
@@ -253,19 +259,20 @@ INSERT INTO viagem (id_motorista, id_origem, id_destino, dia, hora, preco, qtd_v
 CREATE TABLE reserva (
 	id_viagem INT NOT NULL,
 	id_passageiro VARCHAR(6) NOT NULL,
+	status_reserva BOOLEAN NOT NULL,
 
 	FOREIGN KEY(id_viagem) REFERENCES viagem (id_viagem),
 	FOREIGN KEY(id_passageiro) REFERENCES aluno (ra_aluno),
 	PRIMARY KEY(id_viagem, id_passageiro)
 );
 
-INSERT INTO reserva (id_viagem, id_passageiro) VALUES
-(1, 666666),
-(1, 333333),
-(1, 777777),
-(2, 444444),
-(2, 888888),
-(4, 444444),
-(4, 666666),
-(3, 888888),
-(5, 333333);
+INSERT INTO reserva (id_viagem, id_passageiro, status_reserva) VALUES
+(1, 666666, 'false'),
+(1, 333333, 'false'),
+(1, 777777, 'false'),
+(2, 444444, 'false'),
+(2, 888888, 'false'),
+(4, 444444, 'false'),
+(4, 666666, 'false'),
+(3, 888888, 'false'),
+(5, 333333, 'false');

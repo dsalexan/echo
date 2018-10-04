@@ -20,7 +20,7 @@
             id="data"
             name="date"
             (onChange)="onChange($event)"
-            [format]="'DD-MM-YYYY'"
+            [format]="'YYYY-MM-DD'"
             required #data="ngModel">
           </ion-calendar>
           <!--<p>{{viagem.data}}</p>-->
@@ -60,6 +60,7 @@
           </ion-select>
         </ion-item>
   
+      <!--
       <ion-item>
         <ion-label floating>Quantidade de vagas</ion-label>
         <ion-input
@@ -73,7 +74,7 @@
           step="1"
           value ="1">
         </ion-input>
-      </ion-item>
+      </ion-item> -->
             
       <button [disabled]="!viagemForm.form.valid" type="submit" ion-button round block>Procurar</button>
       
