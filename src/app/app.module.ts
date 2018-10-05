@@ -15,6 +15,7 @@ import { InicialCaronaPage } from '../pages/inicial-carona/inicial-carona';
 import { OferecerCaronaPage } from '../pages/oferecer-carona/oferecer-carona';
 import { ProcurarCaronaPage } from '../pages/procurar-carona/procurar-carona';
 import { InicialGradePage } from '../pages/inicial-grade/inicial-grade';
+import { GradeEventoPage } from '../pages/grade-evento/grade-evento';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -38,7 +39,8 @@ import { HttpClientModule } from '@angular/common/http';
     InicialCaronaPage,
     OferecerCaronaPage,
     ProcurarCaronaPage,
-    InicialGradePage
+    InicialGradePage,
+    GradeEventoPage
   ],
   imports: [
     BrowserModule,
@@ -61,7 +63,8 @@ import { HttpClientModule } from '@angular/common/http';
     InicialCaronaPage,
     OferecerCaronaPage,
     ProcurarCaronaPage,
-    InicialGradePage
+    InicialGradePage,
+    GradeEventoPage
   ],
   providers: [
     StatusBar,

@@ -1,0 +1,7 @@
+.rounded-rectangle {
+    width: var(--width);
+    height: 20px;
+    border-radius: 15px 15px 0px 0px;
+    background-color: #eeeeee;
+    padding: 10px;
+}
