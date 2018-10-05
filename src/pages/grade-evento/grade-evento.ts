@@ -21,8 +21,10 @@ export class GradeEventoPage {
     this.dados = navParams.get('dados');
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad GradeEventoPage');
+  ionViewWillEnter() {
+    console.log('ionViewWillEnter GradeEventoPage');
+    document.getElementById("tabs").style.display = "none"
+    document.getElementById("botao_menu").style.display = "none"
   }
 
 }
