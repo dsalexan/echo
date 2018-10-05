@@ -9,9 +9,7 @@ page-inicial-grade {
     .rounded-rectangle {
         width: var(--width);
         height: 25px;
-        border-left:solid black 1px;
-        border-right:solid black 1px;
-        border-top:solid black 1px;
+        border: solid black 1px;
         border-radius: 15px 15px 0px 0px;
         background-color: #eeeeee;
         padding: 5px 10px;

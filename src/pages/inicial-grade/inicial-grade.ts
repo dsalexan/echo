@@ -33,6 +33,8 @@ export class InicialGradePage {
     console.log('ionViewWillEnter InicialGradePage');
     document.getElementById("tabs").style.display = "block"
     document.getElementById("botao_menu").style.display = "block"
+    
+    this.eventos = {'Domingo': [], 'Segunda': [], 'Terça': [], 'Quarta': [], 'Quinta': [], 'Sexta': [], 'Sábado': []}
     this.carregarGrade();
 
     var today = new Date()
@@ -45,9 +47,6 @@ export class InicialGradePage {
         mm: dia.getMonth()+1 >= 10 ? dia.getMonth()+1 : '0'+dia.getMonth()+1,
         yyyy: dia.getFullYear()
       }
-      // this.semanaDias[i] = dia.getDate() >= 10 ? dia.getDate() : '0'+dia.getDate()
-      // this.semanaMeses[i] = dia.getMonth()+1 >= 10 ? dia.getMonth()+1 : '0'+dia.getMonth()+1
-      // this.semanaAnos[i] = dia.getFullYear()
     }
   }
   
