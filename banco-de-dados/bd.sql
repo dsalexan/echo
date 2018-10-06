@@ -1,3 +1,4 @@
+DROP VIEW compromissos;
 DROP TABLE IF EXISTS reserva;
 DROP TABLE IF EXISTS viagem;
 DROP TABLE IF EXISTS localidade;
@@ -169,19 +170,21 @@ VALUES ('Prova'),
 CREATE TABLE evento_turma (
 	id_evento INTEGER REFERENCES evento(id_evento) NOT NULL,
 	id_turma INTEGER REFERENCES turma(id_turma) NOT NULL,
-	id_aluno VARCHAR(10),
+	ra_aluno VARCHAR(10) REFERENCES aluno(ra_aluno),
 	data DATE NOT NULL,
-	sala INTEGER NOT NULL,
+	hora TIME,
+	sala INTEGER,
 	descricao TEXT,
 	PRIMARY KEY(id_evento, id_turma)
 );
 
 INSERT INTO evento_turma
-VALUES (1, 1, '000000', '2018-09-29', 1, 'levar calculadora'),
-(2, 2, '222222', '2018-10-01', 2, 'vale horas'),
-(3, 3, '444444', '2018-10-15', 3, 'Encardenado'),
-(1, 4, '666666', '2018-11-01', 4, 'até vetores'),
-(2, 5, NULL, '2018-09-4', 4, 'Comparecer com Camiseta do grupo');
+VALUES (1, 1, '000000', '2018-09-29', '13:00:00', 1, 'levar calculadora'),
+(2, 2, '222222', '2018-10-01', '13:00:00', 2, 'vale horas'),
+(3, 3, '444444', '2018-10-15', '13:00:00', 3, 'Encardenado'),
+(1, 4, '666666', '2018-11-01', '13:00:00', 4, 'até vetores'),
+(2, 5, NULL, '2018-09-4', '13:00:00', 4, 'Comparecer com Camiseta do grupo'),
+(2, 3, '112344', '2018-09-4', '13:00:00', 4, 'Comparecer com Camiseta do grupo');
 
 CREATE TABLE aluno_turma (
 	ra_aluno VARCHAR(6) REFERENCES aluno(ra_aluno),

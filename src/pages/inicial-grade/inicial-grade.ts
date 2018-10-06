@@ -59,14 +59,22 @@ export class InicialGradePage {
   adicionarGrade() {
     console.log(this.storage.get("aluno_ra"))
     this.storage.get("aluno_ra").then(ra_aluno => {
-      var path = 'http://localhost:3000/api/grades/get/grade/aluno?ra_aluno=' + ra_aluno
+      var path = 'http://localhost:3000/api/grade/get/compromissos/aluno?ra_aluno=' + ra_aluno
       this.http.get(path).map(res => res.json()).subscribe(data => {
-        data.data.forEach(aula => {
-          var dia_semana = this.extenso[aula.dia_semana]
-          var nome_uc = aula.nome_uc
+        console.log(data)
+        data.data.forEach(c => {
+          if (c.tipo == 'aula')
+            var dia_semana = this.extenso[c.dia_semana]
+          else
+          {
+            var dia = new Date(c.dia)
+            var dia_semana:any = this.diasSemana[dia.getDay()]
+          }
+
+          var nome = c.nome
           this.eventos[dia_semana].push({
-            // Colocar aqui informacoes da aula que vao ser adicionadas no evento
-            nome_uc: nome_uc
+            // Colocar aqui informacoes do compromisso que vao ser adicionadas no evento
+            nome: nome
           })
         })
       }, (err) => {
