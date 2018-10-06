@@ -250,11 +250,15 @@ CREATE TABLE viagem (
 	FOREIGN KEY(id_destino) REFERENCES localidade (id_local)
 );
 INSERT INTO viagem (id_motorista, id_origem, id_destino, dia, hora, preco, qtd_vagas, descricao) VALUES
-('000000', 2, 1, '2018-09-03', '07:30', 3.00, 4, 'saio do demoiselle'),
-('111111', 2, 1, '2018-09-03', '09:30', 3.00, 4, 'saio do demoiselle'),
-('555555', 2, 1, '2018-09-03', '23:00', 3.00, 4, 'saio do demoiselle'),
-('000000', 1, 2, '2018-09-03', '15:30', 3.00, 4, 'deixo no demoiselle'),
-('111111', 1, 2, '2018-09-03', '21:00', 3.00, 3, 'deixo no demoiselle');
+('000000', 2, 1, '2018-10-29', '07:30', 3.00, 4, 'saio do demoiselle'),
+('111111', 2, 1, '2018-10-29', '12:00', 3.00, 4, 'saio do demoiselle'),
+('555555', 2, 1, '2018-10-29', '19:00', 3.00, 4, 'saio do demoiselle'),
+('000000', 1, 2, '2018-10-29', '12:30', 3.00, 4, 'deixo no demoiselle'),
+('111111', 1, 2, '2018-10-29', '21:00', 3.00, 3, 'deixo no demoiselle'),
+('112347', 3, 1, '2018-10-29', '13:00', 3.00, 3, 'Saio do parque industrial (chama no zap pra combinar se for da região) e passo na tentação às 13h00'),
+('111851', 5, 1, '2018-10-29', '12:30', 3.00, 4, 'Vou passar no posto chaparral e vou direto pra UNIFESP'),
+('112347', 1, 3, '2018-10-29', '21:00', 3.00, 3, 'Vou direto pro parque industrial, não passo no satélite'),
+('111851', 1, 4, '2018-10-29', '21:00', 3.00, 4, 'vou para o urbanova mesmo, mas acho que vou passar no mc pra pegar um lanche no caminho');
 
 CREATE TABLE reserva (
 	id_viagem INT NOT NULL,
