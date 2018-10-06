@@ -13,29 +13,18 @@ import { GradeEventoPage } from '../grade-evento/grade-evento';
 })
 export class InicialGradePage {
 
-  tabela = new Array(7)
   eventos = {'Domingo': [], 'Segunda': [], 'Terça': [], 'Quarta': [], 'Quinta': [], 'Sexta': [], 'Sábado': []}
+
   extenso = {'DOM': 'Domingo', 'SEG': 'Segunda', 'TER': 'Terça', 'QUA': 'Quarta', 'QUI': 'Quinta', 'SEX': 'Sexta', 'SAB': 'Sábado'}
   diasSemana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']
   
   semana = new Array(7)
-  // semanaDias = new Array(7)
-  // semanaMeses = new Array(7)
-  // semanaAnos = new Array(7)
-
-  createRange(n) {return new Array(n);}
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, public storage: Storage) {
   }
 
-  ionViewWillEnter() {
-    this.checkSession();
-    console.log('ionViewWillEnter InicialGradePage');
-    document.getElementById("tabs").style.display = "block"
-    document.getElementById("botao_menu").style.display = "block"
-    
-    this.eventos = {'Domingo': [], 'Segunda': [], 'Terça': [], 'Quarta': [], 'Quinta': [], 'Sexta': [], 'Sábado': []}
-    this.carregarGrade();
+  ionViewDidLoad() {
+    this.adicionarGrade();
 
     var today = new Date()
 
@@ -49,6 +38,15 @@ export class InicialGradePage {
       }
     }
   }
+
+  ionViewWillEnter() {
+    this.checkSession();
+    console.log('ionViewWillEnter InicialGradePage');
+    document.getElementById("tabs").style.display = "block"
+    document.getElementById("botao_menu").style.display = "block"
+  }
+
+  createRange(n) {return new Array(n);}
   
   checkSession() {
     this.storage.get("aluno_nome").then((usu) => {
@@ -57,26 +55,22 @@ export class InicialGradePage {
       }
     })
   }
-  
-  carregarGrade() {
+
+  adicionarGrade() {
     console.log(this.storage.get("aluno_ra"))
     this.storage.get("aluno_ra").then(ra_aluno => {
       var path = 'http://localhost:3000/api/grades/get/grade/aluno?ra_aluno=' + ra_aluno
       this.http.get(path).map(res => res.json()).subscribe(data => {
-        this.adicionarGradeEventos(data)
+        data.data.forEach(aula => {
+          var dia_semana = this.extenso[aula.dia_semana]
+          var nome_uc = aula.nome_uc
+          this.eventos[dia_semana].push({
+            // Colocar aqui informacoes da aula que vao ser adicionadas no evento
+            nome_uc: nome_uc
+          })
+        })
       }, (err) => {
         console.log(err)
-      })
-    })
-  }
-
-  adicionarGradeEventos(data) {
-
-    data.data.forEach(aula => {
-      var dia_semana = this.extenso[aula.dia_semana]
-      var nome_uc = aula.nome_uc
-      this.eventos[dia_semana].push({
-        nome_uc: nome_uc
       })
     })
   }

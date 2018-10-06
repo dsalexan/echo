@@ -7,9 +7,9 @@
 
 <ion-content padding>
 
+  <div style="padding-top: 30px"></div>
+
   <div *ngFor="let ds of diasSemana; let d = index">
-  <!-- <div *ngFor="let d of semanaDias"> -->
-  <!-- <div *ngFor="let d of createRange(6)"> -->
     <div *ngIf="eventos[ds].length > 0" class="rounded-rectangle" style="--width: 100%">
       {{ds}}<span style="float: right">{{semana[d].dd}}/{{semana[d].mm}}/{{semana[d].yyyy}}</span>
     </div>
