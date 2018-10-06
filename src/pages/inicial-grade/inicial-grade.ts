@@ -33,7 +33,7 @@ export class InicialGradePage {
       dia.setDate(today.getDate() + (i - today.getDay()))
       this.semana[i] = {
         dd: dia.getDate() >= 10 ? dia.getDate() : '0'+dia.getDate(),
-        mm: dia.getMonth()+1 >= 10 ? dia.getMonth()+1 : '0'+dia.getMonth()+1,
+        mm: dia.getMonth()+1 >= 10 ? dia.getMonth()+1 : '0'+(dia.getMonth()+1),
         yyyy: dia.getFullYear()
       }
     }
@@ -59,7 +59,10 @@ export class InicialGradePage {
   adicionarGrade() {
     console.log(this.storage.get("aluno_ra"))
     this.storage.get("aluno_ra").then(ra_aluno => {
-      var path = 'http://localhost:3000/api/grade/get/compromissos/aluno?ra_aluno=' + ra_aluno
+      var path = 'http://localhost:3000/api/grade/get/compromissos/aluno?ra_aluno=' + ra_aluno +
+                 '&dt_inicio=' + this.semana[0].yyyy + '-' + this.semana[0].mm + '-' + this.semana[0].dd +
+                 '&dt_fim=' + this.semana[6].yyyy + '-' + this.semana[6].mm + '-' + this.semana[6].dd
+      console.log(this.semana)
       this.http.get(path).map(res => res.json()).subscribe(data => {
         console.log(data)
         data.data.forEach(c => {

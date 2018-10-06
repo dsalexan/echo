@@ -184,7 +184,8 @@ VALUES (1, 1, '000000', '2018-09-29', '13:00:00', 1, 'levar calculadora'),
 (3, 3, '444444', '2018-10-15', '13:00:00', 3, 'Encardenado'),
 (1, 4, '666666', '2018-11-01', '13:00:00', 4, 'até vetores'),
 (2, 5, NULL, '2018-09-4', '13:00:00', 4, 'Comparecer com Camiseta do grupo'),
-(2, 3, '112344', '2018-09-4', '13:00:00', 4, 'Comparecer com Camiseta do grupo');
+(2, 3, '112344', '2018-09-4', '13:00:00', 4, 'Comparecer com Camiseta do grupo'),
+(1, 7, NULL, '2018-09-30', '13:00:00', 1, 'levar calculadora');
 
 CREATE TABLE aluno_turma (
 	ra_aluno VARCHAR(6) REFERENCES aluno(ra_aluno),
@@ -279,3 +280,23 @@ INSERT INTO reserva (id_viagem, id_passageiro, status_reserva) VALUES
 (4, 666666, 'false'),
 (3, 888888, 'false'),
 (5, 333333, 'false');
+
+CREATE VIEW compromissos AS
+SELECT 'aula' AS tipo, ATu.ra_aluno, UC.nome AS nome, T.nome AS turma, T.id_turma, H.dia_semana, NULL as dia, H.hora, HT.sala, NULL as descricao
+FROM uc AS UC
+    INNER JOIN turma AS T
+        ON UC.id_uc = T.id_uc
+    INNER JOIN horario_turma AS HT
+        ON T.id_turma = HT.id_turma
+    INNER JOIN horario AS H
+        ON HT.id_horario = H.id_horario
+    INNER JOIN aluno_turma AS ATu
+        ON T.id_turma = ATu.id_turma
+UNION
+SELECT 'evento' AS tipo, ET.ra_aluno, E.descricao AS nome, T.nome as turma, T.id_turma, NULL as dia_semana, ET.data AS dia, ET.hora, ET.sala, ET.descricao
+FROM evento_turma AS ET
+    INNER JOIN turma AS T
+        ON ET.id_turma = T.id_turma
+    INNER JOIN evento AS E
+        ON ET.id_evento = E.id_evento
+ORDER BY hora;
