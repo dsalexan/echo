@@ -13,7 +13,7 @@ import { GradeEventoPage } from '../grade-evento/grade-evento';
 })
 export class InicialGradePage {
 
-  eventos = {'Domingo': [], 'Segunda': [], 'Terça': [], 'Quarta': [], 'Quinta': [], 'Sexta': [], 'Sábado': []}
+  compromissos = {'Domingo': [], 'Segunda': [], 'Terça': [], 'Quarta': [], 'Quinta': [], 'Sexta': [], 'Sábado': []}
 
   extenso = {'DOM': 'Domingo', 'SEG': 'Segunda', 'TER': 'Terça', 'QUA': 'Quarta', 'QUI': 'Quinta', 'SEX': 'Sexta', 'SAB': 'Sábado'}
   diasSemana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']
@@ -74,10 +74,19 @@ export class InicialGradePage {
             var dia_semana:any = this.diasSemana[dia.getDay()]
           }
 
+          var nome_uc = c.nome_uc
           var nome = c.nome
-          this.eventos[dia_semana].push({
+          var turma = c.turma
+          var fullTime = c.hora
+          var hora = fullTime.split(":")[0] + 'h' + fullTime.split(":")[1]
+          var tipo = c.tipo
+          this.compromissos[dia_semana].push({
             // Colocar aqui informacoes do compromisso que vao ser adicionadas no evento
-            nome: nome
+            nome_uc: nome_uc,
+            nome: nome,
+            turma: turma,
+            hora: hora,
+            tipo: tipo
           })
         })
       }, (err) => {
@@ -87,6 +96,13 @@ export class InicialGradePage {
   }
 
   selecionarEvento(ds, e) {
-    this.navCtrl.push(GradeEventoPage, {dados: this.eventos[ds][e]})
+    this.navCtrl.push(GradeEventoPage, {dados: this.compromissos[ds][e]})
+  }
+
+  eventoOuNao(compromisso) {
+    console.log(compromisso)
+    if (compromisso.tipo == 'evento')
+      return true
+    return false
   }
 }

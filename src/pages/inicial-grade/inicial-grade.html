@@ -10,12 +10,27 @@
   <div style="padding-top: 30px"></div>
 
   <div *ngFor="let ds of diasSemana; let d = index">
-    <div *ngIf="eventos[ds].length > 0" class="rounded-rectangle" style="--width: 100%">
+    <div *ngIf="compromissos[ds].length > 0" class="rounded-rectangle" style="--width: 100%">
       {{ds}}<span style="float: right">{{semana[d].dd}}/{{semana[d].mm}}/{{semana[d].yyyy}}</span>
     </div>
-    <div (click)="selecionarEvento(ds, e)" class="rectangle" [ngClass]="(e == eventos[ds].length-1) ? 'arredondado' : 'nada'" style="--width: 100%; --height: 60px" *ngFor="let evento of eventos[ds]; let e = index">
-      {{evento.nome}}
-    </div>
+    <ng-container *ngFor="let compromisso of compromissos[ds]; let c = index">
+      <div (click)="selecionarEvento(ds, e)" class="rectangle" [ngClass]="(c == compromissos[ds].length-1) ? 'arredondado' : 'nada'" style="--width: 100%; --height: 65px">
+        <div *ngIf="eventoOuNao(compromisso) == false">
+          {{compromisso.nome_uc}} - {{compromisso.turma}}
+          <div style="float: bottom; margin-top: 10px">
+            <div style="float: left">Aula</div>
+            <div style="float: right">{{compromisso.hora}}</div>
+          </div>
+        </div>
+        <div *ngIf="eventoOuNao(compromisso)">
+          {{compromisso.nome_uc}} - {{compromisso.turma}}
+          <div style="float: bottom; margin-top: 10px">
+            <div style="float: left">{{compromisso.nome}}</div>
+            <div style="float: right">{{compromisso.hora}}</div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
   </div>
 <br><br><br>
   <ion-grid style="font-size: 10px; margin-bottom: 100px">
