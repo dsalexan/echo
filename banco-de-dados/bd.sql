@@ -175,7 +175,7 @@ CREATE TABLE evento_turma (
 	hora TIME,
 	sala INTEGER,
 	descricao TEXT,
-	PRIMARY KEY(id_evento, id_turma)
+	PRIMARY KEY(id_evento, id_turma, data, hora)
 );
 
 INSERT INTO evento_turma
@@ -184,8 +184,11 @@ VALUES (1, 1, '000000', '2018-09-29', '13:00:00', 1, 'levar calculadora'),
 (3, 3, '444444', '2018-10-15', '13:00:00', 3, 'Encardenado'),
 (1, 4, '666666', '2018-11-01', '13:00:00', 4, 'até vetores'),
 (2, 5, NULL, '2018-09-4', '13:00:00', 4, 'Comparecer com Camiseta do grupo'),
-(2, 3, '112344', '2018-09-4', '13:00:00', 4, 'Comparecer com Camiseta do grupo'),
-(1, 7, NULL, '2018-09-30', '13:00:00', 1, 'levar calculadora');
+(2, 6, '112344', '2018-08-06', '19:00:00', 4, 'testinho'),
+(2, 8, '112344', '2018-09-04', '13:00:00', 4, 'Comparecer com Camiseta do grupo'),
+(3, 8, '112344', '2018-10-31', '19:00:00', 4, 'atenção'),
+(1, 7, NULL, '2018-09-30', '13:00:00', 1, 'até o cap 4'),
+(1, 7, NULL, '2018-11-25', '13:30:00', 1, 'até o cap 7');
 
 CREATE TABLE aluno_turma (
 	ra_aluno VARCHAR(6) REFERENCES aluno(ra_aluno),

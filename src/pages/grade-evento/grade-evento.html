@@ -7,8 +7,22 @@
 
 <ion-content padding>
 
-  <div class="rounded-rectangle" style="--width: 100%; --height: 60px">
-    {{dados.nome}}
+  <div class="rounded-rectangle" style="--width: 100%; --height: 200px">
+    <div *ngIf="eventoOuNao(dados) == false">
+      {{dados.nome_uc}} - {{dados.turma}}
+      <div style="float: bottom; margin-top: 10px">
+        <div style="float: left">Aula</div>
+        <div style="float: right">{{dados.hora}}</div>
+      </div>
+    </div>
+    <div *ngIf="eventoOuNao(dados)">
+      {{dados.nome_uc}} - {{dados.turma}}
+      <div style="float: right"><h2><b>{{dados.dia_mes}}</b></h2></div>
+      <div style="float: bottom; margin-top: 10px">
+        <div style="float: left">{{dados.nome}}</div>
+        <div style="float: right; margin-right: -25px">{{dados.hora}}</div>
+      </div>
+    </div>
   </div>
 
 </ion-content>

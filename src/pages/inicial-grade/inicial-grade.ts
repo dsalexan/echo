@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 import { LoginPage } from '../login/login'
 import { Http } from '@angular/http';
 import { GradeEventoPage } from '../grade-evento/grade-evento';
+import { AgendaPage } from '../agenda/agenda';
 
 @IonicPage()
 @Component({
@@ -57,20 +58,24 @@ export class InicialGradePage {
   }
 
   adicionarGrade() {
-    console.log(this.storage.get("aluno_ra"))
+    // console.log(this.storage.get("aluno_ra"))
     this.storage.get("aluno_ra").then(ra_aluno => {
       var path = 'http://localhost:3000/api/grade/get/compromissos/aluno?ra_aluno=' + ra_aluno +
                  '&dt_inicio=' + this.semana[0].yyyy + '-' + this.semana[0].mm + '-' + this.semana[0].dd +
                  '&dt_fim=' + this.semana[6].yyyy + '-' + this.semana[6].mm + '-' + this.semana[6].dd
-      console.log(this.semana)
+      // console.log(this.semana)
       this.http.get(path).map(res => res.json()).subscribe(data => {
-        console.log(data)
+        // console.log(data)
         data.data.forEach(c => {
           if (c.tipo == 'aula')
+          {
             var dia_semana = this.extenso[c.dia_semana]
+            var dia_mes = ""
+          }
           else
           {
             var dia = new Date(c.dia)
+            var dia_mes = dia.getDate() < 10 ? '0' + String(dia.getDate()) : String(dia.getDate())
             var dia_semana:any = this.diasSemana[dia.getDay()]
           }
 
@@ -86,7 +91,8 @@ export class InicialGradePage {
             nome: nome,
             turma: turma,
             hora: hora,
-            tipo: tipo
+            tipo: tipo,
+            dia_mes: dia_mes
           })
         })
       }, (err) => {
@@ -95,14 +101,20 @@ export class InicialGradePage {
     })
   }
 
-  selecionarEvento(ds, e) {
-    this.navCtrl.push(GradeEventoPage, {dados: this.compromissos[ds][e]})
+  selecionarCompromisso(ds, c) {
+    // console.log(this.compromissos[ds][e])
+    // console.log(ds, c)
+    this.navCtrl.push(GradeEventoPage, {dados: this.compromissos[ds][c]})
   }
 
   eventoOuNao(compromisso) {
-    console.log(compromisso)
+    // console.log(compromisso)
     if (compromisso.tipo == 'evento')
       return true
     return false
+  }
+
+  clickAgenda() {
+    this.navCtrl.push(AgendaPage)
   }
 }

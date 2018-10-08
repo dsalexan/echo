@@ -19,6 +19,7 @@ export class GradeEventoPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.dados = navParams.get('dados');
+    console.log(this.dados)
   }
 
   ionViewWillEnter() {
@@ -27,4 +28,10 @@ export class GradeEventoPage {
     document.getElementById("botao_menu").style.display = "none"
   }
 
+  eventoOuNao(compromisso) {
+    console.log(compromisso)
+    if (compromisso.tipo == 'evento')
+      return true
+    return false
+  }
 }

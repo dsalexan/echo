@@ -27,6 +27,7 @@ import { CalendarModule } from "ion2-calendar";
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
+import { AgendaPage } from '../pages/agenda/agenda';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { HttpClientModule } from '@angular/common/http';
     ProcurarCaronaPage,
     InicialGradePage,
     ResCaronaPage,
-    GradeEventoPage
+    GradeEventoPage,
+    AgendaPage
   ],
   imports: [
     BrowserModule,
@@ -67,7 +69,8 @@ import { HttpClientModule } from '@angular/common/http';
     ProcurarCaronaPage,
     InicialGradePage,
     ResCaronaPage,
-    GradeEventoPage
+    GradeEventoPage,
+    AgendaPage
   ],
   providers: [
     StatusBar,
