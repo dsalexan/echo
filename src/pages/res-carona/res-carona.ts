@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { LoginPage } from '../login/login'
+import { CaronaPage } from '../carona/carona'
 
 
 @IonicPage()
@@ -16,6 +17,10 @@ export class ResCaronaPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
     this.dados = this.navParams.get("p1");
+  }
+
+  selecionar(item){
+    this.navCtrl.push(CaronaPage, {viagem: item})
   }
 
   checkSession() {

@@ -17,6 +17,9 @@ import { ProcurarCaronaPage } from '../pages/procurar-carona/procurar-carona';
 import { InicialGradePage } from '../pages/inicial-grade/inicial-grade';
 import { ResCaronaPage } from '../pages/res-carona/res-carona';
 import { GradeEventoPage } from '../pages/grade-evento/grade-evento';
+import { AgendaPage } from '../pages/agenda/agenda';
+import { CaronaPage } from '../pages/carona/carona';
+import { MinhasCaronasPage } from '../pages/minhas-caronas/minhas-caronas';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -27,7 +30,6 @@ import { CalendarModule } from "ion2-calendar";
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
-import { AgendaPage } from '../pages/agenda/agenda';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { AgendaPage } from '../pages/agenda/agenda';
     InicialGradePage,
     ResCaronaPage,
     GradeEventoPage,
-    AgendaPage
+    AgendaPage,
+    CaronaPage,
+    MinhasCaronasPage
   ],
   imports: [
     BrowserModule,
@@ -70,7 +74,9 @@ import { AgendaPage } from '../pages/agenda/agenda';
     InicialGradePage,
     ResCaronaPage,
     GradeEventoPage,
-    AgendaPage
+    AgendaPage,
+    CaronaPage,
+    MinhasCaronasPage
   ],
   providers: [
     StatusBar,
