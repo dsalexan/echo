@@ -12,7 +12,7 @@ import { LoginPage } from '../login/login';
 
 const biblioteca = 'http://www.biblioteca.unifesp.br/biblioteca/index.php';
 const saldoRU = 'https://phpu.unifesp.br/ru_consulta/index.php';
-const cardapio = 'www.unifesp.br/campus/sjc/servicosnae/restaurante/1647-cardapio-semanal-do-ru.html';
+const cardapio = 'https://www.unifesp.br/campus/sjc/servicosnae/restaurante/1647-cardapio-semanal-do-ru.html';
 const email = 'https://email.unifesp.br/';
 const atestado = 'https://intranet.unifesp.br/restrict/index3.php';
 const historico = 'https://intranet.unifesp.br/restrict/index3.php';
