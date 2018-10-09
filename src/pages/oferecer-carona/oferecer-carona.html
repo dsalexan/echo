@@ -28,28 +28,52 @@
     </ion-card>
     
     <ion-item>
-      <ion-label floating> Hora </ion-label>
-      <ion-datetime
-        displayFormat="HH:mm"
-        [(ngModel)]="viagem.hora"
-        id="hora"
-        name="hora"
-        required #hora="ngModel">
-      </ion-datetime>
-    </ion-item>
-
-    <ion-item>
       <ion-label floating> Local de origem </ion-label>
       <ion-select
-        [(ngModel)]="viagem.id_origem"
-        id="id_origem"
-        name="id_origem"
-        required #id_origem="ngModel">
-        <ion-option *ngFor="let op of lista" [value]="op.id_local" >{{op.descricao}}</ion-option>
-      </ion-select>
-    </ion-item>
+      [(ngModel)]="viagem.id_origem"
+      id="id_origem"
+      name="id_origem"
+      required #id_origem="ngModel">
+      <ion-option *ngFor="let op of lista" [value]="op.id_local" >{{op.descricao}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <!--
+  <ion-list>
 
     <ion-item>
+      <ion-label>Pepperoni</ion-label>
+      <ion-checkbox [(ngModel)]="pepperoni"></ion-checkbox>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label>Sausage</ion-label>
+      <ion-checkbox [(ngModel)]="sausage" disabled="true"></ion-checkbox>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label>Mushrooms</ion-label>
+      <ion-checkbox [(ngModel)]="mushrooms"></ion-checkbox>
+    </ion-item>
+  
+  </ion-list>-->
+
+
+
+
+  
+  <ion-item>
+    <ion-label floating> Hora </ion-label>
+    <ion-datetime
+      displayFormat="HH:mm"
+      [(ngModel)]="viagem.hora"
+      id="hora"
+      name="hora"
+      required #hora="ngModel">
+    </ion-datetime>
+  </ion-item>
+
+  <ion-item>
         <ion-label floating> Local de destino </ion-label>
         <ion-select
           [(ngModel)]="viagem.id_destino"

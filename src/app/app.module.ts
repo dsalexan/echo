@@ -20,6 +20,8 @@ import { GradeEventoPage } from '../pages/grade-evento/grade-evento';
 import { AgendaPage } from '../pages/agenda/agenda';
 import { CaronaPage } from '../pages/carona/carona';
 import { MinhasCaronasPage } from '../pages/minhas-caronas/minhas-caronas';
+import { ViagemMotoristaPage } from '../pages/viagem-motorista/viagem-motorista';
+import { ViagemPassageiroPage } from '../pages/viagem-passageiro/viagem-passageiro';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -48,7 +50,9 @@ import { HttpClientModule } from '@angular/common/http';
     GradeEventoPage,
     AgendaPage,
     CaronaPage,
-    MinhasCaronasPage
+    MinhasCaronasPage,
+    ViagemMotoristaPage,
+    ViagemPassageiroPage
   ],
   imports: [
     BrowserModule,
@@ -76,7 +80,9 @@ import { HttpClientModule } from '@angular/common/http';
     GradeEventoPage,
     AgendaPage,
     CaronaPage,
-    MinhasCaronasPage
+    MinhasCaronasPage,
+    ViagemMotoristaPage,
+    ViagemPassageiroPage
   ],
   providers: [
     StatusBar,
