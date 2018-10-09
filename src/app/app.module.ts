@@ -20,6 +20,8 @@ import { GradeEventoPage } from '../pages/grade-evento/grade-evento';
 import { AgendaPage } from '../pages/agenda/agenda';
 import { CaronaPage } from '../pages/carona/carona';
 import { MinhasCaronasPage } from '../pages/minhas-caronas/minhas-caronas';
+import { InicialDivulgacaoPage } from '../pages/inicial-divulgacao/inicial-divulgacao';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -48,7 +50,8 @@ import { HttpClientModule } from '@angular/common/http';
     GradeEventoPage,
     AgendaPage,
     CaronaPage,
-    MinhasCaronasPage
+    MinhasCaronasPage,
+    InicialDivulgacaoPage
   ],
   imports: [
     BrowserModule,
@@ -76,7 +79,8 @@ import { HttpClientModule } from '@angular/common/http';
     GradeEventoPage,
     AgendaPage,
     CaronaPage,
-    MinhasCaronasPage
+    MinhasCaronasPage,
+    InicialDivulgacaoPage
   ],
   providers: [
     StatusBar,
