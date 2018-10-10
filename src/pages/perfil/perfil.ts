@@ -20,22 +20,13 @@ export class PerfilPage {
   isReadyToSave: boolean;
   item: any;
   form: FormGroup;
-  profileDetails: any[];
   private isDisabled: boolean = true;
   private caption_name: string = "EDITAR";
   account: {
     user_RA: string,user_name: string, user_email: string, user_password: string, profile_image: string,
     full_name: string, about: string
-  } = {
-    user_RA: '111111',
-    user_name: 'userName',
-    user_email: 'user@mail.net',
-    user_password: 'password',
-    profile_image: ' ',
-    full_name: 'Nome do Usuário',
-    about: 'Bacharel em Ciência e Tecnologia'
-  };
-
+  }
+  
   constructor(public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder,
               public toastCtrl: ToastController, public loadingCtrl: LoadingController, public storage: Storage,
               public navParams: NavParams) {
@@ -44,15 +35,35 @@ export class PerfilPage {
       image: [''], user_RA: [''], user_name: [''], user_password: [''], user_email: [''], user_state: [''],
     });
 
-    this.profileDetails = [
-      {
-        full_name: "Nome do Usuário",
-        about: "Bacharelado em Ciência e Tecnologia"
-      },
-    ];
+    this.account = {
+      user_RA: '111111',
+      user_name: 'userName',
+      user_email: 'user@mail.net',
+      user_password: 'password',
+      profile_image: ' ',
+      full_name: 'Nome do Usuário',
+      about: 'Bacharel em Ciência e Tecnologia'
+    }
   }
 
-  getInfomations(){ //busca no banco de dados as informações do usuario
+  getInfomations() { //busca no banco de dados as informações do usuario
+    this.storage.get("aluno_login").then((usu) => {
+      this.account.user_name = usu
+      
+      this.storage.get("aluno_ra").then((ra) => {
+        this.account.user_RA = ra
+
+        this.storage.get("aluno_email").then((email) => {
+          this.account.user_email = email
+
+          this.storage.get("aluno_nome").then((nome) => {
+            this.account.full_name = nome
+          })
+
+        })
+
+      })
+    })
   }
 
   clickConfig() { // vai para a pagina de configurações
@@ -69,6 +80,7 @@ export class PerfilPage {
 
   ionViewWillEnter() {
     this.checkSession()
+    this.getInfomations()
     console.log('ionViewWillEnter PerfilPage');
     document.getElementById("tabs").style.display = "none"
     document.getElementById("botao_menu").style.display = "none"
