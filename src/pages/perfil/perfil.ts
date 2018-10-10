@@ -36,12 +36,12 @@ export class PerfilPage {
     });
 
     this.account = {
-      user_RA: '111111',
-      user_name: 'userName',
-      user_email: 'user@mail.net',
-      user_password: 'password',
-      profile_image: ' ',
-      full_name: 'Nome do Usuário',
+      user_RA: '',
+      user_name: '',
+      user_email: '',
+      user_password: '',
+      profile_image: '',
+      full_name: '',
       about: 'Bacharel em Ciência e Tecnologia'
     }
   }
