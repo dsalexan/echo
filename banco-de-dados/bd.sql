@@ -249,7 +249,7 @@ CREATE TABLE viagem (
 	qtd_vagas INT NOT NULL CHECK ((qtd_vagas < 8) AND (qtd_vagas > 0)),
 	descricao TEXT NOT NULL,
 
-	FOREIGN KEY(id_motorista) REFERENCES aluno (ra_aluno),
+	FOREIGN KEY(id_motorista) REFERENCES aluno (ra_aluno)
 );
 INSERT INTO viagem (id_motorista, dia, preco, qtd_vagas, descricao) VALUES
 ('000000', '2018-10-29', 3.00, 4, 'Saio do demoiselle'),
