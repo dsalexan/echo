@@ -1,5 +1,7 @@
 DROP VIEW compromissos;
 DROP TABLE IF EXISTS reserva;
+DROP TABLE IF EXISTS origem;
+DROP TABLE IF EXISTS destino;
 DROP TABLE IF EXISTS viagem;
 DROP TABLE IF EXISTS localidade;
 DROP TABLE IF EXISTS cardapio;
@@ -249,7 +251,7 @@ CREATE TABLE viagem (
 	qtd_vagas INT NOT NULL CHECK ((qtd_vagas < 8) AND (qtd_vagas > 0)),
 	descricao TEXT NOT NULL,
 
-	FOREIGN KEY(id_motorista) REFERENCES aluno (ra_aluno),
+	FOREIGN KEY(id_motorista) REFERENCES aluno (ra_aluno)
 );
 INSERT INTO viagem (id_motorista, dia, preco, qtd_vagas, descricao) VALUES
 ('000000', '2018-10-29', 3.00, 4, 'Saio do demoiselle'),
@@ -285,7 +287,6 @@ INSERT INTO origem(id_viagem, id_origem, hora) VALUES
 CREATE TABLE destino(
 	id_viagem INT NOT NULL,
 	id_destino INT NOT NULL,
-	hora TIME NOT NULL,
 	
 	FOREIGN KEY(id_viagem) REFERENCES viagem (id_viagem),
 	FOREIGN KEY(id_destino) REFERENCES localidade (id_local)

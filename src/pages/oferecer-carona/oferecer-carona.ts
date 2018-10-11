@@ -18,8 +18,8 @@ export class OferecerCaronaPage {
   viagem = {}
   lista = []
   loc = new Object
-  origem = new Array
-  destino = new Array
+  origem = []
+  destino = []
   horateste = {}
   c = 0
 
