@@ -1,5 +1,7 @@
 DROP VIEW compromissos;
 DROP TABLE IF EXISTS reserva;
+DROP TABLE IF EXISTS origem;
+DROP TABLE IF EXISTS destino;
 DROP TABLE IF EXISTS viagem;
 DROP TABLE IF EXISTS localidade;
 DROP TABLE IF EXISTS cardapio;
@@ -285,21 +287,20 @@ INSERT INTO origem(id_viagem, id_origem, hora) VALUES
 CREATE TABLE destino(
 	id_viagem INT NOT NULL,
 	id_destino INT NOT NULL,
-	hora TIME NOT NULL,
 	
 	FOREIGN KEY(id_viagem) REFERENCES viagem (id_viagem),
 	FOREIGN KEY(id_destino) REFERENCES localidade (id_local)
 );
-INSERT INTO origem(id_viagem, id_origem, hora) VALUES
-(1, 1, '13:00'),
-(2, 1, '12:30'),
-(3, 1, '12:45'),
-(4, 2, '21:00'),
-(5, 2, '23:00'),
-(6, 1, '12:50'),
-(7, 1, '13:00'),
-(8, 3, '21:00'),
-(9, 4, '21:00');
+INSERT INTO destino(id_viagem, id_destino) VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 2),
+(5, 2),
+(6, 1),
+(7, 1),
+(8, 3),
+(9, 4);
 
 CREATE TABLE reserva (
 	id_viagem INT NOT NULL,
