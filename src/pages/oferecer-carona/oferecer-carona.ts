@@ -97,12 +97,14 @@ export class OferecerCaronaPage {
 
         if(data.success) {
           var id = data.data.id_viagem
+          var erro = 0
           Object.keys(this.horateste).forEach( key => {
-            path = 'http://localhost:3000/api/caronas/post/viagem/origem?id_viagem=' + id + '&origem=' + key  + '&hora=' + this.horateste[key]
+            path = 'http://localhost:3000/api/caronas/post/viagem/origem?id_viagem=' + id + '&hora=' + this.horateste[key] + '&origem=' + key 
             console.log(path)
             this.http.get(path).map(res => res.json()).subscribe(or => {
               if(data.success) {
               }else {
+                erro = 1
                 let alert = this.alertCtrl.create({
                   title: 'Ops!',
                   subTitle: 'Tente novamente',
@@ -117,10 +119,11 @@ export class OferecerCaronaPage {
           while (i < this.origem.length) {
             path2 = 'http://localhost:3000/api/caronas/post/viagem/destino?id_viagem=' + id + '&destino=' + this.origem[i]
             console.log(path2)
-            this.http.get(path).map(res => res.json()).subscribe(or => {
+            i++
+            this.http.get(path2).map(res => res.json()).subscribe(or => {
               if(data.success) {
-                i++
               }else {
+                erro = 1
                 let alert = this.alertCtrl.create({
                   title: 'Ops!',
                   subTitle: 'Tente novamente',
@@ -129,6 +132,16 @@ export class OferecerCaronaPage {
                 alert.present();
               }
             })
+          }
+
+          if(!erro){
+            let alert = this.alertCtrl.create({
+              title: 'Ok!',
+              subTitle: 'Viagem criada com sucesso',
+              buttons: ['Dismiss']
+            });
+            alert.present();
+            this.navCtrl.push(HomePage);
           }
         } else {
           let alert = this.alertCtrl.create({
