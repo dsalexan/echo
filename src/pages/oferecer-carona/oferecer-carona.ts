@@ -39,7 +39,6 @@ export class OferecerCaronaPage {
     console.log(this.origem)
   }
 
-
   onChange($event) {
     console.log($event);
   }
@@ -70,7 +69,6 @@ export class OferecerCaronaPage {
     })
   }
 
-
   oferecer(){
     //salvar no banco de dados]
     //console.log('\norigem:')
@@ -98,7 +96,7 @@ export class OferecerCaronaPage {
       this.http.get(path).map(res => res.json()).subscribe(data => {
 
         if(data.success) {
-          var id = data.data.id
+          var id = data.data.id_viagem
           Object.keys(this.horateste).forEach( key => {
             path = 'http://localhost:3000/api/caronas/post/viagem/origem?id_viagem=' + id + '&origem=' + key  + '&hora=' + this.horateste[key]
             console.log(path)
