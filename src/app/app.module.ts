@@ -30,6 +30,7 @@ import { CalendarModule } from "ion2-calendar";
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
+import { TurmaPage } from '../pages/turma/turma';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { HttpClientModule } from '@angular/common/http';
     GradeEventoPage,
     AgendaPage,
     CaronaPage,
-    MinhasCaronasPage
+    MinhasCaronasPage,
+    TurmaPage
   ],
   imports: [
     BrowserModule,
@@ -76,7 +78,8 @@ import { HttpClientModule } from '@angular/common/http';
     GradeEventoPage,
     AgendaPage,
     CaronaPage,
-    MinhasCaronasPage
+    MinhasCaronasPage,
+    TurmaPage
   ],
   providers: [
     StatusBar,

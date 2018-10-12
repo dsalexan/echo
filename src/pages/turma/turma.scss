@@ -1,0 +1,24 @@
+page-turma {
+.infos{
+    color: map-get($colors, primary);
+    text-align: center;
+    font-size: 150%;
+}
+
+.texto{
+    color: #555555;
+}
+
+.info{
+    text-align: center;
+}
+
+.button-inner{
+    justify-content: center;
+}
+
+.data{
+    text-align: right;
+    color: #777777
+}
+}

@@ -10,6 +10,7 @@ import { ConfigPage } from '../pages/configuracoes/configuracoes';
 import { UtilidadesPage } from '../pages/utilidades/utilidades';
 
 import { HomePage } from '../pages/home/home';
+import { TurmaPage } from '../pages/turma/turma';
 import { InicialCaronaPage } from '../pages/inicial-carona/inicial-carona';
 import { InicialGradePage } from '../pages/inicial-grade/inicial-grade';
 
@@ -20,7 +21,7 @@ import { InicialGradePage } from '../pages/inicial-grade/inicial-grade';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = HomePage;
+  rootPage:any = TurmaPage; // ORIGINAL == HomePage
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public storage: Storage) {
     platform.ready().then(() => {

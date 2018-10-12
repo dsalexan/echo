@@ -1,0 +1,63 @@
+
+<ion-header>
+
+  <ion-navbar color='primary'>
+      <ion-buttons left>
+        <button ion-button icon-only (click)="back()" class="back">
+          <ion-icon name='arrow-back'></ion-icon>
+        </button>
+      </ion-buttons>
+    <ion-title class='titulo'>{{turma}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+    <ion-card>
+      <ion-card-header class='infos'>Informações</ion-card-header>
+      <ion-card-content>
+        <div class='info'>
+          <div>Professor:</div><div class='texto'>{{nomeProf}}</div>
+          <div>Sala:</div><div class='texto'>{{sala}}</div>
+          <div>Horários:</div><div class='texto'>{{horario1}}</div><div class='texto'>{{horario2}}</div><br>
+        </div>
+        <button ion-button class='button-inner' round (click)='novaAtiv()'>Nova Atividade</button>
+      </ion-card-content>
+    </ion-card>
+  
+  <ion-item-group>
+    <ion-list-header>Atividades</ion-list-header>
+    <ion-card color='secondary'>
+        <ion-card-header>P1</ion-card-header>
+        <ion-card-content>Descrição.<div class='data'>22/Ago</div></ion-card-content>     
+    </ion-card>
+
+    <ion-card color='secondary'>
+        <ion-card-header>Lista de Exercício</ion-card-header>
+        <ion-card-content>Descrição.<div class='data'>13/Set</div></ion-card-content>      
+    </ion-card>
+
+    <ion-card color='secondary'>
+        <ion-card-header>P2</ion-card-header>
+        <ion-card-content>Descrição.<div class='data'>30/Out</div></ion-card-content>      
+    </ion-card>
+
+    <ion-card color='secondary'>
+        <ion-card-header>Seminário</ion-card-header>
+        <ion-card-content>Descrição.<div class='data'>2/Nov</div></ion-card-content>      
+    </ion-card>
+
+    <ion-card color='secondary'>
+        <ion-card-header>P3</ion-card-header>
+        <ion-card-content>Descrição.<div class='data'>1/Dez</div></ion-card-content>      
+    </ion-card>
+  </ion-item-group>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+</ion-content>
