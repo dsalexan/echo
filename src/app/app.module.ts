@@ -20,6 +20,8 @@ import { GradeEventoPage } from '../pages/grade-evento/grade-evento';
 import { AgendaPage } from '../pages/agenda/agenda';
 import { CaronaPage } from '../pages/carona/carona';
 import { MinhasCaronasPage } from '../pages/minhas-caronas/minhas-caronas';
+import { ViagemMotoristaPage } from '../pages/viagem-motorista/viagem-motorista';
+import { ViagemPassageiroPage } from '../pages/viagem-passageiro/viagem-passageiro';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -50,7 +52,9 @@ import { TurmaPage } from '../pages/turma/turma';
     AgendaPage,
     CaronaPage,
     MinhasCaronasPage,
-    TurmaPage
+    TurmaPage,
+    ViagemMotoristaPage,
+    ViagemPassageiroPage
   ],
   imports: [
     BrowserModule,
@@ -79,7 +83,9 @@ import { TurmaPage } from '../pages/turma/turma';
     AgendaPage,
     CaronaPage,
     MinhasCaronasPage,
-    TurmaPage
+    TurmaPage,
+    ViagemMotoristaPage,
+    ViagemPassageiroPage
   ],
   providers: [
     StatusBar,

@@ -17,10 +17,28 @@ export class OferecerCaronaPage {
 
   viagem = {}
   lista = []
+  loc = new Object
+  origem = []
+  destino = []
+  horateste = {}
+  c = 0
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController) {
+    this.origem = new Array
+    this.destino = new Array
   }
-  
+
+  criaDic() {
+//    console.log(this.origem.length);
+    for (var i = 0; i < this.origem.length; i++) {
+      //se o elemento da lista não está no horateste, adiciona
+      if (!(String(this.origem[i]) in this.horateste))
+        this.horateste[String(this.origem[i])] = ''
+    }
+    console.log('\norigem:')
+    console.log(this.origem)
+  }
+
   onChange($event) {
     console.log($event);
   }
@@ -40,8 +58,10 @@ export class OferecerCaronaPage {
       if(data.data[0] != undefined) {
         console.log(data)
         data.data.forEach(element => {
+          this.loc[element["id_local"]] = element ["descricao"]
           this.lista.push(element)
         });
+        //console.log(this.loc)
       }
 
     }, (err) => {
@@ -49,26 +69,80 @@ export class OferecerCaronaPage {
     })
   }
 
-
   oferecer(){
     //salvar no banco de dados]
+    //console.log('\norigem:')
+    //console.log(this.origem)
+    Object.keys(this.horateste).forEach( key => {
+      //se a chave nao esta na origem, deleta
+      //if (){
+      if (! (this.origem.includes(parseInt(key)))) {
+        console.log('\ndeletando:')
+        console.log(key)
+        delete this.horateste[key]
+      }
+    })
+    //console.log('\nhorateste:')
+    //console.log(this.horateste)
+
     console.log(this.viagem)
-    //document.getElementById("teste").textContent=this.viagem["data"];
     
     var path
+    var path2
+
     this.storage.get("aluno_ra").then((usu) => {
-      path = 'http://localhost:3000/api/caronas/post/viagem?id_motorista='+ usu + '&id_origem='+ this.viagem["id_origem"] + '&id_destino='+  this.viagem["id_destino"] + '&dia='+ this.viagem["data"] + '&hora='+ this.viagem["hora"] + '&preco='+ this.viagem["preco"] + '&qtd_vagas=' + this.viagem["qtd_vagas"] + '&descricao='+ this.viagem["descricao"]
+      path = 'http://localhost:3000/api/caronas/post/viagem?id_motorista='+ usu + '&dia='+ this.viagem["data"] + '&preco='+ this.viagem["preco"] + '&qtd_vagas=' + this.viagem["qtd_vagas"] + '&descricao='+ this.viagem["descricao"]
       console.log(path)
       this.http.get(path).map(res => res.json()).subscribe(data => {
 
         if(data.success) {
-          let alert = this.alertCtrl.create({
-            title: 'Ok!',
-            subTitle: 'Viagem criada com sucesso',
-            buttons: ['Dismiss']
-          });
-          alert.present();
-          this.navCtrl.push(HomePage);
+          var id = data.data.id_viagem
+          var erro = 0
+          Object.keys(this.horateste).forEach( key => {
+            path = 'http://localhost:3000/api/caronas/post/viagem/origem?id_viagem=' + id + '&hora=' + this.horateste[key] + '&origem=' + key 
+            console.log(path)
+            this.http.get(path).map(res => res.json()).subscribe(or => {
+              if(data.success) {
+              }else {
+                erro = 1
+                let alert = this.alertCtrl.create({
+                  title: 'Ops!',
+                  subTitle: 'Tente novamente',
+                  buttons: ['Dismiss']
+                });
+                alert.present();
+              }
+            })
+          })
+        
+          var i = 0
+          while (i < this.origem.length) {
+            path2 = 'http://localhost:3000/api/caronas/post/viagem/destino?id_viagem=' + id + '&destino=' + this.origem[i]
+            console.log(path2)
+            i++
+            this.http.get(path2).map(res => res.json()).subscribe(or => {
+              if(data.success) {
+              }else {
+                erro = 1
+                let alert = this.alertCtrl.create({
+                  title: 'Ops!',
+                  subTitle: 'Tente novamente',
+                  buttons: ['Dismiss']
+                });
+                alert.present();
+              }
+            })
+          }
+
+          if(!erro){
+            let alert = this.alertCtrl.create({
+              title: 'Ok!',
+              subTitle: 'Viagem criada com sucesso',
+              buttons: ['Dismiss']
+            });
+            alert.present();
+            this.navCtrl.push(HomePage);
+          }
         } else {
           let alert = this.alertCtrl.create({
             title: 'Ops!',
@@ -80,9 +154,7 @@ export class OferecerCaronaPage {
       }, (err) => {
         console.log(err)
       })
-
     })
-    
   }
 
   ionViewWillEnter() {

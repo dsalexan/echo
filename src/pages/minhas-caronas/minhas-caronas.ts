@@ -4,6 +4,8 @@ import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
 
 import { LoginPage } from '../login/login'
+import { ViagemMotoristaPage } from '../viagem-motorista/viagem-motorista';
+import { ViagemPassageiroPage } from '../viagem-passageiro/viagem-passageiro';
 
 @IonicPage()
 @Component({
@@ -16,6 +18,14 @@ export class MinhasCaronasPage {
   viagens_passageiro = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController) {
+  }
+
+  abrirMotorista(v){
+    this.navCtrl.push(ViagemMotoristaPage, {viagem: v});
+  }
+
+  abrirPassageiro(v){
+    this.navCtrl.push(ViagemPassageiroPage, {viagem: v});
   }
 
   caronasMotorista(){

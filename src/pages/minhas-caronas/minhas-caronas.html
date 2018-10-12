@@ -11,25 +11,25 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item *ngFor="let viagem of viagens_motorista" (click)="abrir(viagem)">{{d.descricao}}
+    <button ion-item *ngFor="let viagem of viagens_motorista" (click)="abrirMotorista(viagem)">{{viagem.descricao}}
       <ion-avatar item-start>
         <ion-icon name="md-person"></ion-icon>
         <!---<img src="img/avatar-cher.png">-->
       </ion-avatar>
-      <h2>{{d.dia}}</h2>
-      <p>{{d.hora}}</p>
+      <h2>{{viagem.dia}}</h2>
+      <p>{{viagem.hora}}</p>
     </button>
   </ion-list>
 
 
   <ion-list>
-    <button ion-item *ngFor="let viagem of viagens_passageiro" (click)="abrir(viagem)">{{d.descricao}}
+    <button ion-item *ngFor="let viagem of viagens_passageiro" (click)="abrirPassageiro(viagem)">{{viagem.descricao}}
       <ion-avatar item-start>
         <ion-icon name="md-person"></ion-icon>
         <!---<img src="img/avatar-cher.png">-->
       </ion-avatar>
-      <h2>{{d.dia}}</h2>
-      <p>{{d.hora}}</p>
+      <h2>{{viagem.dia}}</h2>
+      <p>{{viagem.hora}}</p>
     </button>
   </ion-list>
 </ion-content>

@@ -13,46 +13,53 @@
   <form #viagemForm="ngForm" (ngSubmit)="oferecer()">
 
     <ion-card>
-      <ion-card-content>
-        <ion-card-title> Data </ion-card-title>
-        <ion-calendar
-          [(ngModel)]="viagem.data"
-          id="data"
-          name="date"
-          (onChange)="onChange($event)"
-          [format]="'DD-MM-YYYY'"
-          required #data="ngModel">
-        </ion-calendar>
-        <!--<p>{{viagem.data}}</p>-->
-      </ion-card-content>
-    </ion-card>
+        <ion-card-content>
+          <ion-card-title> Data </ion-card-title>
+          <ion-calendar
+            [(ngModel)]="viagem.data"
+            id="data"
+            name="date"
+            (onChange)="onChange($event)"
+            [format]="'YYYY-MM-DD'"
+            required #data="ngModel">
+          </ion-calendar>
+          <!--<p>{{viagem.data}}</p>-->
+        </ion-card-content>
+      </ion-card>
     
     <ion-item>
-      <ion-label floating> Hora </ion-label>
-      <ion-datetime
-        displayFormat="HH:mm"
-        [(ngModel)]="viagem.hora"
-        id="hora"
-        name="hora"
-        required #hora="ngModel">
-      </ion-datetime>
-    </ion-item>
-
-    <ion-item>
       <ion-label floating> Local de origem </ion-label>
-      <ion-select
-        [(ngModel)]="viagem.id_origem"
-        id="id_origem"
-        name="id_origem"
-        required #id_origem="ngModel">
-        <ion-option *ngFor="let op of lista" [value]="op.id_local" >{{op.descricao}}</ion-option>
-      </ion-select>
+        <ion-select
+          [(ngModel)]="origem"
+          (ionChange)="criaDic()"
+          multiple="true"
+          id="id_origem"
+          name="id_origem"
+          required #id_origem="ngModel">
+          <ion-option *ngFor="let op of lista" [value]="op.id_local" >{{op.descricao}}</ion-option>
+        </ion-select>
+    </ion-item>
+  
+    <ion-item *ngFor="let o of origem; let i = index">
+      <ion-label > {{loc[o]}} </ion-label> 
+      <div item-content>
+        <ion-label floating> Hora </ion-label>
+        <ion-datetime
+          displayFormat="HH:mm"
+          [(ngModel)]="horateste[o]"
+          id="hora"
+          name="hora"
+          required #hora="ngModel">
+        </ion-datetime>
+      </div>
     </ion-item>
 
-    <ion-item>
+
+  <ion-item>
         <ion-label floating> Local de destino </ion-label>
         <ion-select
-          [(ngModel)]="viagem.id_destino"
+          [(ngModel)]="destino"
+          multiple="true"
           id="id_destino"
           name="id_destino"
           required #id_destino="ngModel">
@@ -60,7 +67,6 @@
         </ion-select>
       </ion-item>
 
-    
     <ion-item>
       <ion-label floating>Quantidade de vagas</ion-label>
       <ion-input
