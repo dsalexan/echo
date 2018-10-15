@@ -33,9 +33,9 @@
           displayFormat="HH:mm"
           [(ngModel)]="viagem.hora"
           id="hora"
-          name="hora"
-          required #hora="ngModel">
+          name="hora">
         </ion-datetime>
+        <!-- required #hora="ngModel"> -->
       </ion-item>
   
       <ion-item>
@@ -43,8 +43,8 @@
         <ion-select
           [(ngModel)]="viagem.id_origem"
           id="id_origem"
-          name="id_origem"
-          required #id_origem="ngModel">
+          name="id_origem">
+          <!--required #id_origem="ngModel">-->
           <ion-option *ngFor="let op of lista" [value]="op.id_local" >{{op.descricao}}</ion-option>
         </ion-select>
       </ion-item>
@@ -54,13 +54,13 @@
           <ion-select
             [(ngModel)]="viagem.id_destino"
             id="id_destino"
-            name="id_destino"
-            required #id_destino="ngModel">
+            name="id_destino">
+            <!--required #id_destino="ngModel">-->
             <ion-option *ngFor="let op of lista" [value]="op.id_local" >{{op.descricao}}</ion-option>
           </ion-select>
         </ion-item>
   
-      <!--
+      
       <ion-item>
         <ion-label floating>Quantidade de vagas</ion-label>
         <ion-input
@@ -68,13 +68,13 @@
           [(ngModel)]="viagem.qtd_vagas"
           id="qtd_vagas"
           name="qtd_vagas"
-          required #qtd_vagas="ngModel"
           min="1"
           max="5"
           step="1"
           value ="1">
+          <!--required #qtd_vagas="ngModel"-->
         </ion-input>
-      </ion-item> -->
+      </ion-item>
             
       <button [disabled]="!viagemForm.form.valid" type="submit" ion-button round block>Procurar</button>
       
