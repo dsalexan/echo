@@ -36,6 +36,8 @@ export class ResCaronaPage {
     console.log(this.dados)
     console.log(typeof(this.dados))
     console.log('ionViewDidLoad ResCaronaPage');
+    document.getElementById("tabs").style.display = "none"
+    document.getElementById("botao_menu").style.display = "none"
   }
 
 }

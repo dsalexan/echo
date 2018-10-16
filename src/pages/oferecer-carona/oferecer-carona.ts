@@ -1,11 +1,40 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, PopoverController, ViewController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
 
 import { LoginPage } from '../login/login'
 import { HomePage } from '../home/home';
 
+
+@Component({
+  selector: 'page-oferecer-carona',
+  template: `
+
+    <ion-card>
+      <ion-card-content>
+        <ion-calendar
+          [(ngModel)]="data"
+          id="data"
+          name="date"
+          (onChange)="close()"
+          [format]="'YYYY-MM-DD'">
+        </ion-calendar>
+        <!--<p>{{data}}</p>-->
+      </ion-card-content>
+    </ion-card>`
+
+})
+export class PopoverOferecerPage {
+
+  data: String;
+  constructor(public viewCtrl: ViewController) {}
+
+  close() {
+    this.viewCtrl.dismiss();
+  }
+
+}
 
 @IonicPage()
 @Component({
@@ -23,15 +52,20 @@ export class OferecerCaronaPage {
   horateste = {}
   c = 0
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController, public popOver: PopoverController) {
     this.origem = new Array
     this.destino = new Array
   }
 
+  abrirData(myEvent) {
+    let popover = this.popOver.create(PopoverOferecerPage);
+    popover.present({
+      ev: myEvent
+    });
+  }
+
   criaDic() {
-//    console.log(this.origem.length);
     for (var i = 0; i < this.origem.length; i++) {
-      //se o elemento da lista não está no horateste, adiciona
       if (!(String(this.origem[i]) in this.horateste))
         this.horateste[String(this.origem[i])] = ''
     }

@@ -62,6 +62,8 @@ export class ViagemPassageiroPage {
   ionViewDidLoad() {
     this.checkSession();
     console.log('ionViewDidLoad ViagemPassageiroPage');
+    document.getElementById("tabs").style.display = "none"
+    document.getElementById("botao_menu").style.display = "none"
   }
 
 }

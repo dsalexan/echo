@@ -111,6 +111,8 @@ export class MinhasCaronasPage {
     this.caronasMotorista();
     this.caronasPassageiro();
     console.log('ionViewDidLoad MinhasCaronasPage');
+    document.getElementById("tabs").style.display = "none"
+    document.getElementById("botao_menu").style.display = "none"
   }
 
 }

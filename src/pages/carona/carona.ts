@@ -62,8 +62,9 @@ export class CaronaPage {
 
   ionViewDidLoad() {
     this.checkSession();
-
     console.log('ionViewDidLoad CaronaPage');
+    document.getElementById("tabs").style.display = "none"
+    document.getElementById("botao_menu").style.display = "none"
   }
 
 }
