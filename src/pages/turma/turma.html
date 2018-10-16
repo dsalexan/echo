@@ -2,12 +2,17 @@
 <ion-header>
 
   <ion-navbar color='primary'>
-      <ion-buttons left>
-        <button ion-button icon-only (click)="back()" class="back">
-          <ion-icon name='arrow-back'></ion-icon>
-        </button>
-      </ion-buttons>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="back()" class="back">
+        <ion-icon name='arrow-back'></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title class='titulo'>{{turma}}</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="novaAtiv()" class="atividade">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -23,7 +28,6 @@
           <div>Sala:</div><div class='texto'>{{sala}}</div>
           <div>Horários:</div><div class='texto'>{{horario1}}</div><div class='texto'>{{horario2}}</div><br>
         </div>
-        <button ion-button class='button-inner' round (click)='novaAtiv()'>Nova Atividade</button>
       </ion-card-content>
     </ion-card>
   

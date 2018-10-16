@@ -21,7 +21,7 @@ import { InicialGradePage } from '../pages/inicial-grade/inicial-grade';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = TurmaPage; // ORIGINAL == HomePage
+  rootPage:any = HomePage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public storage: Storage) {
     platform.ready().then(() => {
