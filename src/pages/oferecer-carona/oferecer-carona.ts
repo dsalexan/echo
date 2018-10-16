@@ -4,7 +4,7 @@ import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
 
 import { LoginPage } from '../login/login'
-import { HomePage } from '../home/home';
+import { InicialCaronaPage } from '../inicial-carona/inicial-carona';
 
 
 @Component({
@@ -150,8 +150,8 @@ export class OferecerCaronaPage {
           })
         
           var i = 0
-          while (i < this.origem.length) {
-            path2 = 'http://localhost:3000/api/caronas/post/viagem/destino?id_viagem=' + id + '&destino=' + this.origem[i]
+          while (i < this.destino.length) {
+            path2 = 'http://localhost:3000/api/caronas/post/viagem/destino?id_viagem=' + id + '&destino=' + this.destino[i]
             console.log(path2)
             i++
             this.http.get(path2).map(res => res.json()).subscribe(or => {
@@ -175,7 +175,7 @@ export class OferecerCaronaPage {
               buttons: ['Dismiss']
             });
             alert.present();
-            this.navCtrl.push(HomePage);
+            this.navCtrl.push(InicialCaronaPage);
           }
         } else {
           let alert = this.alertCtrl.create({
