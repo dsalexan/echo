@@ -10,6 +10,7 @@ import { ConfigPage } from '../pages/configuracoes/configuracoes';
 import { UtilidadesPage } from '../pages/utilidades/utilidades';
 
 import { HomePage } from '../pages/home/home';
+import { TurmaPage } from '../pages/turma/turma';
 import { InicialCaronaPage } from '../pages/inicial-carona/inicial-carona';
 import { InicialGradePage } from '../pages/inicial-grade/inicial-grade';
 

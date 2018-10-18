@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 
 import { ProcurarCaronaPage } from '../procurar-carona/procurar-carona';
 import { OferecerCaronaPage } from '../oferecer-carona/oferecer-carona';
+import { MinhasCaronasPage } from '../minhas-caronas/minhas-caronas';
 import { LoginPage } from '../login/login';
 
 
@@ -26,7 +27,7 @@ export class InicialCaronaPage {
   }
 
   ionViewWillEnter() {
-    //this.checkSession();
+    this.checkSession();
     console.log('ionViewWillEnter InicialCaronaPage');
     document.getElementById("tabs").style.display = "block"
     document.getElementById("botao_menu").style.display = "block"
@@ -38,5 +39,9 @@ export class InicialCaronaPage {
 
   clickProcurarCarona() { // vai para a pagina de configurações
     this.navCtrl.push(ProcurarCaronaPage);
+  }
+
+  clickMinhasCaronas(){
+    this.navCtrl.push(MinhasCaronasPage);
   }
 }

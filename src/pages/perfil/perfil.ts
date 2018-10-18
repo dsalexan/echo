@@ -23,6 +23,7 @@ export class PerfilPage {
   profileDetails: any[];
   private isDisabled: boolean = true;
   private caption_name: string = "EDITAR";
+  
   account: {
     user_RA: string,user_name: string, user_email: string, user_password: string, profile_image: string,
     full_name: string, about: string

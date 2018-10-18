@@ -1,5 +1,7 @@
 DROP VIEW compromissos;
 DROP TABLE IF EXISTS reserva;
+DROP TABLE IF EXISTS origem;
+DROP TABLE IF EXISTS destino;
 DROP TABLE IF EXISTS viagem;
 DROP TABLE IF EXISTS localidade;
 DROP TABLE IF EXISTS cardapio;
@@ -244,24 +246,61 @@ INSERT INTO localidade (descricao) VALUES
 CREATE TABLE viagem (
 	id_viagem SERIAL PRIMARY KEY,
 	id_motorista VARCHAR(6) NOT NULL,
-	id_origem INT NOT NULL,
-	id_destino INT NOT NULL,
 	dia DATE NOT NULL,
-	hora TIME NOT NULL,
 	preco REAL NOT NULL,
 	qtd_vagas INT NOT NULL CHECK ((qtd_vagas < 8) AND (qtd_vagas > 0)),
 	descricao TEXT NOT NULL,
 
-	FOREIGN KEY(id_motorista) REFERENCES aluno (ra_aluno),
-	FOREIGN KEY(id_origem) REFERENCES localidade (id_local),
+	FOREIGN KEY(id_motorista) REFERENCES aluno (ra_aluno)
+);
+INSERT INTO viagem (id_motorista, dia, preco, qtd_vagas, descricao) VALUES
+('000000', '2018-10-29', 3.00, 4, 'Saio do demoiselle'),
+('111111', '2018-10-29', 3.00, 4, 'Pego na tentação'),
+('555555', '2018-10-29', 3.00, 4, 'Saio do posto BR'),
+('000000', '2018-10-29', 3.00, 4, 'Deixo no demoiselle'),
+('111111', '2018-10-29', 3.00, 3, 'Deixo na Pedro Tursi'),
+('112347', '2018-10-29', 3.00, 3, 'Saio do parque industrial (chama no zap pra combinar se for da região) às 13h00'),
+('111851', '2018-10-29', 3.00, 4, 'Vou passar no posto chaparral e vou direto pra UNIFESP'),
+('112347', '2018-10-29', 3.00, 3, 'Vou direto pro parque industrial, não passo no satélite'),
+('111851', '2018-10-29', 3.00, 4, 'Vou para o urbanova mesmo, mas acho que vou passar no mc pra pegar um lanche no caminho');
+
+
+CREATE TABLE origem(
+	id_viagem INT NOT NULL,
+	id_origem INT NOT NULL,
+	hora TIME NOT NULL,
+
+	FOREIGN KEY(id_viagem) REFERENCES viagem (id_viagem),
+	FOREIGN KEY(id_origem) REFERENCES localidade (id_local)
+);
+INSERT INTO origem(id_viagem, id_origem, hora) VALUES
+(1, 2, '13:00'),
+(2, 2, '12:30'),
+(3, 2, '12:45'),
+(4, 1, '21:00'),
+(5, 1, '23:00'),
+(6, 3, '12:50'),
+(7, 5, '13:00'),
+(8, 1, '21:00'),
+(9, 1, '21:00');
+
+CREATE TABLE destino(
+	id_viagem INT NOT NULL,
+	id_destino INT NOT NULL,
+	
+	FOREIGN KEY(id_viagem) REFERENCES viagem (id_viagem),
 	FOREIGN KEY(id_destino) REFERENCES localidade (id_local)
 );
-INSERT INTO viagem (id_motorista, id_origem, id_destino, dia, hora, preco, qtd_vagas, descricao) VALUES
-('000000', 2, 1, '2018-09-03', '07:30', 3.00, 4, 'saio do demoiselle'),
-('111111', 2, 1, '2018-09-03', '09:30', 3.00, 4, 'saio do demoiselle'),
-('555555', 2, 1, '2018-09-03', '23:00', 3.00, 4, 'saio do demoiselle'),
-('000000', 1, 2, '2018-09-03', '15:30', 3.00, 4, 'deixo no demoiselle'),
-('111111', 1, 2, '2018-09-03', '21:00', 3.00, 3, 'deixo no demoiselle');
+INSERT INTO destino(id_viagem, id_destino) VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 2),
+(5, 2),
+(6, 1),
+(7, 1),
+(8, 3),
+(9, 4);
 
 CREATE TABLE reserva (
 	id_viagem INT NOT NULL,
@@ -272,7 +311,6 @@ CREATE TABLE reserva (
 	FOREIGN KEY(id_passageiro) REFERENCES aluno (ra_aluno),
 	PRIMARY KEY(id_viagem, id_passageiro)
 );
-
 INSERT INTO reserva (id_viagem, id_passageiro, status_reserva) VALUES
 (1, 666666, 'false'),
 (1, 333333, 'false'),

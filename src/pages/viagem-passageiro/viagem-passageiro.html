@@ -1,0 +1,21 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <ion-buttons left><!--botoes do cabeçalho - ESQUERDA-->
+      </ion-buttons>
+      <ion-title center>{{ 'Passageiro' }}</ion-title>
+      <!--<ion-buttons right>
+        <button ion-button icon-only (click)="clickConfig()" class="configuracoes">Config.</button><!--botao configuracoes
+      </ion-buttons>-->
+    </ion-navbar>
+  </ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <h2> Viagem de {{loc[viagem.id_origem]}} para {{loc[viagem.id_destino]}}</h2>
+    <h2> Dia {{viagem.dia.slice(0,10)}} às {{viagem.hora}}</h2>
+  </ion-item>
+  <br>
+
+
+  
+</ion-content>

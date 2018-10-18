@@ -20,47 +20,57 @@
           id="data"
           name="date"
           (onChange)="onChange($event)"
-          [format]="'DD-MM-YYYY'"
+          [format]="'YYYY-MM-DD'"
           required #data="ngModel">
         </ion-calendar>
-        <!--<p>{{viagem.data}}</p>-->
       </ion-card-content>
     </ion-card>
-    
-    <ion-item>
-      <ion-label floating> Hora </ion-label>
-      <ion-datetime
-        displayFormat="HH:mm"
-        [(ngModel)]="viagem.hora"
-        id="hora"
-        name="hora"
-        required #hora="ngModel">
-      </ion-datetime>
-    </ion-item>
+  
+    <!--
+    <button ion-item (click)="abrirData($event)">
+      <ion-label> Data </ion-label>
+    </button>-->
 
     <ion-item>
       <ion-label floating> Local de origem </ion-label>
+        <ion-select
+          [(ngModel)]="origem"
+          (ionChange)="criaDic()"
+          multiple="true"
+          id="id_origem"
+          name="id_origem"
+          required #id_origem="ngModel">
+          <ion-option *ngFor="let op of lista" [value]="op.id_local" >{{op.descricao}}</ion-option>
+        </ion-select>
+    </ion-item>
+  
+    <ion-item *ngFor="let o of origem; let i = index">
+      <ion-label > {{loc[o]}} </ion-label> 
+      <div item-content>
+        <ion-label floating> Hora </ion-label>
+        <ion-datetime
+          displayFormat="HH:mm"
+          [(ngModel)]="horateste[o]"
+          id="hora"
+          name="hora"
+          required #hora="ngModel">
+        </ion-datetime>
+      </div>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label floating> Local de destino </ion-label>
       <ion-select
-        [(ngModel)]="viagem.id_origem"
-        id="id_origem"
-        name="id_origem"
-        required #id_origem="ngModel">
+        [(ngModel)]="destino"
+        multiple="true"
+        id="id_destino"
+        name="id_destino"
+        required #id_destino="ngModel">
         <ion-option *ngFor="let op of lista" [value]="op.id_local" >{{op.descricao}}</ion-option>
       </ion-select>
     </ion-item>
 
-    <ion-item>
-        <ion-label floating> Local de destino </ion-label>
-        <ion-select
-          [(ngModel)]="viagem.id_destino"
-          id="id_destino"
-          name="id_destino"
-          required #id_destino="ngModel">
-          <ion-option *ngFor="let op of lista" [value]="op.id_local" >{{op.descricao}}</ion-option>
-        </ion-select>
-      </ion-item>
-
-    
     <ion-item>
       <ion-label floating>Quantidade de vagas</ion-label>
       <ion-input
@@ -76,6 +86,16 @@
       </ion-input>
     </ion-item>
     
+    <!--
+    <ion-item>
+      <ion-label color="gray">Quantidade de vagas</ion-label>
+      <ion-range min="1" max="5" [(ngModel)]="viagem.qtd_vagas" id="qtd_vagas" name="qtd_vagas" pin="true" snaps="true" required #qtd_vagas="ngModel">
+        <ion-label range-left>1</ion-label>
+        <ion-label range-right>5</ion-label>
+      </ion-range>
+    </ion-item>-->
+    
+    
     <ion-item>
       <ion-label floating>Preço R$</ion-label>
       <ion-input
@@ -85,6 +105,7 @@
         name="preco"
         required #preco="ngModel"
         min="0"
+        step="0.50"
         value ="0.00">
       </ion-input>
     </ion-item>
