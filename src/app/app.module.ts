@@ -32,7 +32,6 @@ import { CalendarModule } from "ion2-calendar";
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
-import { AgendaPage } from '../pages/agenda/agenda';
 import { GradeCadastroEventoPage } from '../pages/grade-cadastro-evento/grade-cadastro-evento';
 import { TurmaPage } from '../pages/turma/turma';
 
