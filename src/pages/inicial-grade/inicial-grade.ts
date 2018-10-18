@@ -60,45 +60,45 @@ export class InicialGradePage {
   adicionarGrade() {
     // console.log(this.storage.get("aluno_ra"))
     this.storage.get("aluno_ra").then(ra_aluno => {
-      var path = 'http://localhost:3000/api/grade/get/compromissos/aluno?ra_aluno=' + ra_aluno +
+      var path = 'http://localhost:3000/api/grades/get/compromissos/aluno?ra_aluno=' + ra_aluno +
                  '&dt_inicio=' + this.semana[0].yyyy + '-' + this.semana[0].mm + '-' + this.semana[0].dd +
                  '&dt_fim=' + this.semana[6].yyyy + '-' + this.semana[6].mm + '-' + this.semana[6].dd
       // console.log(this.semana)
       this.http.get(path).map(res => res.json()).subscribe(data => {
         // console.log(data)
         data.data.forEach(c => {
+          var o = {}
+
           if (c.tipo == 'aula')
           {
             var dia_semana = this.extenso[c.dia_semana]
-            var dia_mes = ""
+            o["dia_mes"] = ""
           }
           else
           {
             var dia = new Date(c.dia)
-            var dia_mes = dia.getDate() < 10 ? '0' + String(dia.getDate()) : String(dia.getDate())
+            o["dia_mes"] = dia.getDate() < 10 ? '0' + String(dia.getDate()) : String(dia.getDate())
             var dia_semana:any = this.diasSemana[dia.getDay()]
           }
 
-          var nome_uc = c.nome_uc
-          var nome = c.nome
-          var turma = c.turma
-          var fullTime = c.hora
-          var hora = fullTime.split(":")[0] + 'h' + fullTime.split(":")[1]
-          var tipo = c.tipo
-          this.compromissos[dia_semana].push({
+          o["nome_uc"] = c.nome_uc
+          o["nome"] = c.nome
+          o["turma"] = c.turma
+          if (c["hora"] != null) {
+            var fullTime = c.hora
+            o["hora"] = fullTime.split(":")[0] + 'h' + fullTime.split(":")[1]
+          }
+          o["tipo"] = c.tipo
+          this.compromissos[dia_semana].push(
             // Colocar aqui informacoes do compromisso que vao ser adicionadas no evento
-            nome_uc: nome_uc,
-            nome: nome,
-            turma: turma,
-            hora: hora,
-            tipo: tipo,
-            dia_mes: dia_mes
-          })
+            o
+          )
         })
       }, (err) => {
         console.log(err)
       })
     })
+    console.log(this.compromissos)
   }
 
   selecionarCompromisso(ds, c) {
@@ -116,5 +116,14 @@ export class InicialGradePage {
 
   clickAgenda() {
     this.navCtrl.push(AgendaPage)
+  }
+
+  horaInObject(object) {
+    if ("hora" in object) {
+      return true
+    }
+    else {
+      return false
+    }
   }
 }

@@ -28,6 +28,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 import { AgendaPage } from '../pages/agenda/agenda';
+import { GradeCadastroEventoPage } from '../pages/grade-cadastro-evento/grade-cadastro-evento';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { AgendaPage } from '../pages/agenda/agenda';
     InicialGradePage,
     ResCaronaPage,
     GradeEventoPage,
-    AgendaPage
+    AgendaPage,
+    GradeCadastroEventoPage
   ],
   imports: [
     BrowserModule,
@@ -70,7 +72,8 @@ import { AgendaPage } from '../pages/agenda/agenda';
     InicialGradePage,
     ResCaronaPage,
     GradeEventoPage,
-    AgendaPage
+    AgendaPage,
+    GradeCadastroEventoPage
   ],
   providers: [
     StatusBar,

@@ -21,18 +21,20 @@
           {{compromisso.nome_uc}} - {{compromisso.turma}}
           <div style="float: bottom; margin-top: 10px">
             <div style="float: left">Aula</div>
-            <div style="float: right">{{compromisso.hora}}</div>
+            <div *ngIf="horaInObject(compromisso)" style="float: right">{{compromisso.hora}}</div>
           </div>
         </div>
         <div *ngIf="eventoOuNao(compromisso)">
           {{compromisso.nome_uc}} - {{compromisso.turma}}
           <div style="float: bottom; margin-top: 10px">
             <div style="float: left">{{compromisso.nome}}</div>
-            <div style="float: right">{{compromisso.hora}}</div>
+            <div *ngIf="horaInObject(compromisso)" style="float: right">{{compromisso.hora}}</div>
           </div>
         </div>
       </div>
     </ng-container>
   </div>
+
+  <div style="padding-bottom: 100px"></div>
 
 </ion-content>

@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons left><!--botoes do cabeçalho - ESQUERDA-->
+    </ion-buttons>
+    <ion-title center>{{ 'Cadastrar evento' }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div style="padding-top: 10px"></div>
+
+  <form #eventoForm="ngForm" (ngSubmit)="cadastrar()">
+
+    <ion-card>
+      <ion-card-content>
+        <ion-card-title> Data </ion-card-title>
+        <ion-calendar
+          [(ngModel)]="evento.data"
+          id="data"
+          name="data"
+          [format]="'DD-MM-YYYY'"
+          required #data="ngModel">
+        </ion-calendar>
+        <!--<p>{{viagem.data}}</p>-->
+      </ion-card-content>
+    </ion-card>
+
+    <ion-item>
+      <ion-label floating> Hora </ion-label>
+      <ion-datetime
+        displayFormat="HH:mm"
+        [(ngModel)]="evento.hora"
+        id="hora"
+        name="hora"
+        #hora="ngModel">
+      </ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating> Tipo de evento </ion-label>
+      <ion-select
+        [(ngModel)]="evento.id_evento"
+        id="id_evento"
+        name="id_evento"
+        required #id_evento="ngModel">
+        <ion-option *ngFor="let t of lista_tipos_evento" [value]="t.id_evento" >{{t.descricao}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating> Turma </ion-label>
+      <ion-select
+        [(ngModel)]="evento.id_turma"
+        id="id_turma"
+        name="id_turma"
+        required #id_evento="ngModel">
+        <ion-option *ngFor="let turma of lista_turmas_aluno" [value]="turma.id_turma">{{turma.nome_uc}} - {{turma.nome_turma}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating> Sala </ion-label>
+      <ion-input
+        type="text"
+        [(ngModel)]="evento.sala"
+        id="sala"
+        name="sala"
+        #sala="ngModel">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating> Descrição </ion-label>
+      <ion-input
+        type="text"
+        [(ngModel)]="evento.descricao"
+        id="descricao"
+        name="descricao"
+        #descricao="ngModel">
+      </ion-input>
+    </ion-item>
+    
+    <button [disabled]="!eventoForm.form.valid" type="submit" ion-button round block> Cadastrar </button>
+    
+  </form>
+</ion-content>
