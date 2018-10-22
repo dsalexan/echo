@@ -7,21 +7,28 @@
 
 <ion-content padding>
 
-  <div class="rounded-rectangle" style="--width: 100%; --height: 200px">
-    <div *ngIf="eventoOuNao(dados) == false">
-      {{dados.nome_uc}} - {{dados.turma}}
-      <div style="float: bottom; margin-top: 10px">
-        <div style="float: left">Aula</div>
-        <div style="float: right">{{dados.hora}}</div>
-      </div>
-    </div>
-    <div *ngIf="eventoOuNao(dados)">
-      {{dados.nome_uc}} - {{dados.turma}}
-      <div style="float: right"><h2><b>{{dados.dia_mes}}</b></h2></div>
-      <div style="float: bottom; margin-top: 10px">
-        <div style="float: left">{{dados.nome}}</div>
-        <div style="float: right; margin-right: -25px">{{dados.hora}}</div>
-      </div>
+  <div id="info" style="--width: 100%; --height: 120px">
+
+    <div id="tipo"><h2><b>{{dados.nome}}</b></h2></div>
+    <div id="data"><h2><b><div style="display: inline" *ngIf="eventoOuNao(dados)">{{dados.dia_mes}}/{{dados.mes}} </div>{{dados.hora}}</b></h2></div>
+    
+    <div id="nomeuc">UC: {{dados.nome_uc}}</div>
+    <div id="turma">Turma: {{dados.nome_turma}}</div>
+    <div id="professor">Professor: {{dados.nome_prof}}</div>
+    <!-- <div id="data" *ngIf="eventoOuNao(dados)"><h2><b>{{dados.dia_mes}}/{{dados.mes}}</b></h2></div> -->
+    <!-- <div style="float: bottom; margin-top: 10px"> -->
+    <!-- <div id="tipo">{{dados.nome}}</div>
+    <div id="hora">{{dados.hora}}</div> -->
+    <!-- </div> -->
+    
+  </div>
+
+  <div id="info2" style="--width: 100%; --height: 200px">
+
+    <div style="display: block; position: absolute; top: 10px; left: 10px"><h2><b>Alunos da turma</b></h2></div>
+    <div style="margin-top: 50px"></div>
+    <div class="alunos" *ngFor="let aluno of dados.alunos">
+      {{aluno.nome}} - {{aluno.ra}}
     </div>
   </div>
 

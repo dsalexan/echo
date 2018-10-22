@@ -78,11 +78,16 @@ export class InicialGradePage {
           {
             var dia = new Date(c.dia)
             o["dia_mes"] = dia.getDate() < 10 ? '0' + String(dia.getDate()) : String(dia.getDate())
+            o["mes"] = dia.getMonth() < 10 ? '0' + String(dia.getMonth()) : String(dia.getMonth())
+            o["ano"] = String(dia.getFullYear())
             var dia_semana:any = this.diasSemana[dia.getDay()]
           }
 
+          o["id_turma"] = c.id_turma
           o["nome_uc"] = c.nome_uc
           o["nome"] = c.nome
+          if (c.nome == null)
+            o["nome"] = "Aula"
           o["turma"] = c.turma
           if (c["hora"] != null) {
             var fullTime = c.hora
