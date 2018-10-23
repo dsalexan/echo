@@ -14,8 +14,11 @@ import { HomePage } from '../home/home';
 })
 export class CaronaPage {
   carona: any;
+  loc: {}
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController) {
     this.carona = this.navParams.get("viagem");
+    this.loc = this.navParams.get("loc");
   }
 
   reservar(){
