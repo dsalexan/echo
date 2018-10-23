@@ -22,6 +22,8 @@ import { CaronaPage } from '../pages/carona/carona';
 import { MinhasCaronasPage } from '../pages/minhas-caronas/minhas-caronas';
 import { ViagemMotoristaPage, PopoverMotoristaPage } from '../pages/viagem-motorista/viagem-motorista';
 import { ViagemPassageiroPage } from '../pages/viagem-passageiro/viagem-passageiro';
+import { InicialDivulgacaoPage } from '../pages/inicial-divulgacao/inicial-divulgacao';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -58,7 +60,8 @@ import { TurmaPage } from '../pages/turma/turma';
     ViagemMotoristaPage,
     ViagemPassageiroPage,
     PopoverMotoristaPage,
-    PopoverOferecerPage
+    PopoverOferecerPage,
+    InicialDivulgacaoPage
   ],
   imports: [
     BrowserModule,
@@ -92,7 +95,8 @@ import { TurmaPage } from '../pages/turma/turma';
     ViagemMotoristaPage,
     ViagemPassageiroPage,
     PopoverMotoristaPage,
-    PopoverOferecerPage
+    PopoverOferecerPage,
+    InicialDivulgacaoPage
   ],
   providers: [
     StatusBar,

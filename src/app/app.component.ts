@@ -13,7 +13,7 @@ import { HomePage } from '../pages/home/home';
 import { TurmaPage } from '../pages/turma/turma';
 import { InicialCaronaPage } from '../pages/inicial-carona/inicial-carona';
 import { InicialGradePage } from '../pages/inicial-grade/inicial-grade';
-
+import { InicialDivulgacaoPage } from '../pages/inicial-divulgacao/inicial-divulgacao';
 
 @Component({
   templateUrl: 'app.html'
@@ -59,4 +59,9 @@ export class MyApp {
   clickCaronas() {
     this.nav.push(InicialCaronaPage);
   }
+
+  clickDivulgacao() {
+    this.nav.push(InicialDivulgacaoPage);
+  }
+
 }

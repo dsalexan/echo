@@ -322,6 +322,39 @@ INSERT INTO reserva (id_viagem, id_passageiro, status_reserva) VALUES
 (3, 888888, 'false'),
 (5, 333333, 'false');
 
+CREATE TABLE tipo_divulgacao(
+    id_tipo SERIAL PRIMARY KEY,
+    nome_tipo VARCHAR(10) NOT NULL
+);
+
+INSERT INTO tipo VALUES
+('Doce'),
+('Salgado'),
+('Empréstimo');
+
+
+CREATE TABLE item_divulgacao (
+    id_divulgacao SERIAL PRIMARY KEY,
+    ra_aluno VARCHAR(6) NOT NULL,
+    id_tipo INT NOT NULL,
+    valor REAL,
+    dia DATE NOT NULL,
+    hora_inicio TIME NOT NULL,
+    hora_fim TIME NOT NULL,
+    descricao TEXT,
+    quantidade INT,
+    reserva_automatica BOOLEAN NOT NULL,
+
+    FOREIGN KEY(id_tipo) REFERENCES tipo_divulgacao(id_tipo),
+    FOREIGN KEY(ra_aluno) REFERENCES aluno(ra_aluno),
+);
+
+INSERT INTO item_divulgacao (ra_aluno, id_tipo, valor, dia, hora_inicio, hora_fim, descricao, quantidade, reserva_automatica) VALUES
+('000000', 1, 3.00, '2018-09-03', '10:00', '21:00', 'bolo de cenoura', 15, FALSE),
+('111111', 1, 2.50, '2018-09-03', '08:00', '12:00', 'cookies', 10, FALSE),
+('222222', 3, NULL, '2018-09-02', '13:30', '15:30', 'preciso de calculadora', NULL, NULL),
+('333333', 2, 3.00, '2018-09-02', '11:00', '23:00', 'enroladinho de salsicha', 5, TRUE);
+
 CREATE VIEW compromissos AS
 SELECT 'aula' AS tipo, ATu.ra_aluno, UC.nome AS nome_uc, NULL AS nome, T.nome AS turma, T.id_turma, H.dia_semana, NULL as dia, H.hora, HT.sala, NULL as descricao
 FROM uc AS UC
