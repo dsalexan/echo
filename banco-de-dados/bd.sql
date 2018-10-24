@@ -41,7 +41,7 @@ INSERT INTO aluno (ra_aluno, nome, login_intranet, senha_intranet, email) VALUES
 ('111866', 'Tamires Beatriz da Silva Lucena', 'tlucena', 'senha', 'tamiresb.lucena@gmail.com'),
 ('111775', 'Andrew Medeiros de Campos', 'andrew.medeiros', 'senha', 'andrew.medeirosc@gmail.com'),
 ('111843', 'Danilo Souza Alexandre', 'dsalexan', 'senha', 'danilo.salexan@gmail.com'),
-('111851', 'Gustavo Martins Collaço', 'gustavo.collaco', 'senha', 'gustavo.m.collaco@gmail.com');
+('111851', 'Gustavo Martins Collaço', 'gustavocollaco', 'senha', 'gustavo.m.collaco@gmail.com');
 
 CREATE TABLE professor (
 	id_professor SERIAL PRIMARY KEY,
