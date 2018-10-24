@@ -36,9 +36,10 @@ export class LoginPage {
     senha = (senha == null || user == '') ? '' : senha
 
     if(user != '' && senha != '') {
-      var path = 'http://localhost:3000/api/alunos/get/senha?login='+ user + '&senha='+ senha
+      //var path = 'http://localhost:3000/api/alunos/get/senha?login='+ user + '&senha='+ senha
+      var path = 'http://localhost:3000/api/auth/login?login='+ user + '&senha='+ senha
       this.http.get(path).map(res => res.json()).subscribe(data => {
-        if(data.data[0] != undefined) {
+        if(data.auth && data.data[0] != undefined) {
 
           this.storage.set("aluno_ra", data.data[0].ra_aluno)
           this.storage.set("aluno_nome", data.data[0].nome)
@@ -63,7 +64,13 @@ export class LoginPage {
           alert.present();
         }
       }, (err) => {
-        console.log(err)
+        console.log(err) //quando autenticacao falha, retorna erro 401, com auth false
+        let alert = this.alertCtrl.create({
+          title: 'Ops!',
+          subTitle: 'Verifique as informações inseridas',
+          buttons: ['Dismiss']
+        });
+        alert.present();
       })
     } else {
       let alert = this.alertCtrl.create({
