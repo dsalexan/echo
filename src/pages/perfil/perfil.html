@@ -30,8 +30,8 @@
                *ngIf="this.form.controls.image.value"></div>
         </div>
         <!--dados do usuario-->
-        <h3 class="full_name">{{profileDetails[0].full_name}}</h3> <!--nome-->
-        <h3 class="userDetails">{{profileDetails[0].about}}</h3> <!--sobre-->
+        <h3 class="full_name">{{account.full_name}}</h3> <!--nome-->
+        <h3 class="userDetails">{{account.about}}</h3> <!--sobre-->
       </div>
 
       <ion-list style="padding: 20px !important; border-bottom: 0.55px solid #fff;">
@@ -61,7 +61,7 @@
         </ion-item>
 
         <!--CAMPO DE SENHA-->
-        <ion-item>e
+        <ion-item>
           <ion-label class="senha">Senha </ion-label>
           <ion-input class="inputFields" type="password" formControlName="user_password" (keyup)="changedSmtng()"
                      disabled="{{isDisabled}}"

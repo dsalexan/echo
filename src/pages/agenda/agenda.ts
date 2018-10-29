@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { GradeEventoPage } from '../grade-evento/grade-evento';
 import { Storage } from '@ionic/storage';
+import { GradeCadastroEventoPage } from '../grade-cadastro-evento/grade-cadastro-evento';
 
 @IonicPage()
 @Component({
@@ -17,8 +18,11 @@ export class AgendaPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, public storage: Storage) {
   }
 
-  ionViewWillEnter() {
+  ionViewDidLoad() {
     this.adicionarEventos()
+  }
+
+  ionViewWillEnter() {
     console.log('ionViewWillEnter AgendaPage');
     document.getElementById("tabs").style.display = "none"
     document.getElementById("botao_menu").style.display = "none"
@@ -37,7 +41,7 @@ export class AgendaPage {
     var ultimo_dia = String(ultimo.getDate())
 
     this.storage.get("aluno_ra").then(ra_aluno => {
-      var path = 'http://localhost:3000/api/grade/get/compromissos/aluno?ra_aluno=' + ra_aluno +
+      var path = 'http://localhost:3000/api/grades/get/compromissos/aluno?ra_aluno=' + ra_aluno +
                  '&dt_inicio=' + today.getFullYear() + '-' + mes_inicio + '-' + '01' +
                  '&dt_fim=' + today.getFullYear() + '-' + mes_fim + '-' + ultimo_dia
       // console.log(path)
@@ -46,28 +50,26 @@ export class AgendaPage {
         data.data.forEach(c => {
           if (c.tipo == 'evento')
           {
+            var o = {}
             // console.log(c.dia)
             var dia = new Date(c.dia)
-            var dia_mes = dia.getDate() < 10 ? '0' + String(dia.getDate()) : String(dia.getDate())
+            o["dia_mes"] = dia.getDate() < 10 ? '0' + String(dia.getDate()) : String(dia.getDate())
             var mes:any = this.meses[dia.getMonth()]
 
-            var nome_uc = c.nome_uc
-            var nome = c.nome
-            var turma = c.turma
-            var fullTime = c.hora
-            var hora = fullTime.split(":")[0] + 'h' + fullTime.split(":")[1]
-            var tipo = c.tipo
+            o["nome_uc"] = c.nome_uc
+            o["nome"] = c.nome
+            o["turma"] = c.turma
+            if (c["hora"] != null) {
+              var fullTime = c.hora
+              o["hora"] = fullTime.split(":")[0] + 'h' + fullTime.split(":")[1]
+            }
+            o["tipo"] = c.tipo
 
             // console.log(c)
-            this.eventos[mes].push({
+            this.eventos[mes].push(
               // Colocar aqui informacoes do compromisso que vao ser adicionadas no evento
-              nome_uc: nome_uc,
-              nome: nome,
-              turma: turma,
-              hora: hora,
-              dia_mes: dia_mes,
-              tipo: tipo
-            })
+              o
+            )
           }
         })
       }, (err) => {
@@ -80,5 +82,18 @@ export class AgendaPage {
   selecionarCompromisso(mes, e) {
     // console.log(this.eventos[mes][e])
     this.navCtrl.push(GradeEventoPage, {dados: this.eventos[mes][e]})
+  }
+
+  clickCadastrar() {
+    this.navCtrl.push(GradeCadastroEventoPage)
+  }
+
+  horaInObject(object) {
+    if ("hora" in object) {
+      return true
+    }
+    else {
+      return false
+    }
   }
 }

@@ -1,14 +1,49 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-buttons left><!--botoes do cabeçalho - ESQUERDA-->
-    </ion-buttons>
+    
     <ion-title center>{{ 'Motorista' }}</ion-title>
-    <!--<ion-buttons right>
-      <button ion-button icon-only (click)="clickConfig()" class="configuracoes">Config.</button><!--botao configuracoes
-    </ion-buttons>-->
+    <ion-buttons right>
+        <button ion-button icon-only (click)="editarViagemMotorista($event)">
+          <ion-icon name="more"></ion-icon>
+        </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  
+  <ion-item>
+    <br>
+    <h3> Origem: {{loc[viagem.id_origem]}}<br>Destino: {{loc[viagem.id_destino]}}</h3>
+    <h4> Dia {{viagem.dia.slice(0,10)}} às {{viagem.hora}}</h4>
+  </ion-item>
+  <br>
+  <ion-list>
+    <h4>Reservas Confirmadas</h4>
+    <ion-item *ngFor="let r of reservaConfirmada" >{{r.id_passageiro}}
+      <ion-avatar item-start>
+        <ion-icon name="md-person"></ion-icon>
+        <!---<img src="img/avatar-cher.png">-->
+      </ion-avatar>
+      <button ion-button icon-end (click)="rejeitarReserva()">
+        <ion-icon name="md-trash"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <h4>Reservas Pendentes</h4>
+    <ion-item *ngFor="let r of reservaPendente">{{r.id_passageiro}}
+      <ion-avatar item-start>
+        <ion-icon name="md-person"></ion-icon>
+        <!---<img src="img/avatar-cher.png">-->
+      </ion-avatar>
+      <button ion-button icon-end (click)="rejeitarReserva()">
+        <ion-icon name="md-thumbs-down"></ion-icon>
+      </button>
+      <button ion-button icon-end (click)="aceitarReserva()">
+        <ion-icon name="md-thumbs-up"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
+
 </ion-content>

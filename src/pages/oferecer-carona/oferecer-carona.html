@@ -13,20 +13,24 @@
   <form #viagemForm="ngForm" (ngSubmit)="oferecer()">
 
     <ion-card>
-        <ion-card-content>
-          <ion-card-title> Data </ion-card-title>
-          <ion-calendar
-            [(ngModel)]="viagem.data"
-            id="data"
-            name="date"
-            (onChange)="onChange($event)"
-            [format]="'YYYY-MM-DD'"
-            required #data="ngModel">
-          </ion-calendar>
-          <!--<p>{{viagem.data}}</p>-->
-        </ion-card-content>
-      </ion-card>
-    
+      <ion-card-content>
+        <ion-card-title> Data </ion-card-title>
+        <ion-calendar
+          [(ngModel)]="viagem.data"
+          id="data"
+          name="date"
+          (onChange)="onChange($event)"
+          [format]="'YYYY-MM-DD'"
+          required #data="ngModel">
+        </ion-calendar>
+      </ion-card-content>
+    </ion-card>
+  
+    <!--
+    <button ion-item (click)="abrirData($event)">
+      <ion-label> Data </ion-label>
+    </button>-->
+
     <ion-item>
       <ion-label floating> Local de origem </ion-label>
         <ion-select
@@ -55,17 +59,17 @@
     </ion-item>
 
 
-  <ion-item>
-        <ion-label floating> Local de destino </ion-label>
-        <ion-select
-          [(ngModel)]="destino"
-          multiple="true"
-          id="id_destino"
-          name="id_destino"
-          required #id_destino="ngModel">
-          <ion-option *ngFor="let op of lista" [value]="op.id_local" >{{op.descricao}}</ion-option>
-        </ion-select>
-      </ion-item>
+    <ion-item>
+      <ion-label floating> Local de destino </ion-label>
+      <ion-select
+        [(ngModel)]="destino"
+        multiple="true"
+        id="id_destino"
+        name="id_destino"
+        required #id_destino="ngModel">
+        <ion-option *ngFor="let op of lista" [value]="op.id_local" >{{op.descricao}}</ion-option>
+      </ion-select>
+    </ion-item>
 
     <ion-item>
       <ion-label floating>Quantidade de vagas</ion-label>
@@ -82,6 +86,16 @@
       </ion-input>
     </ion-item>
     
+    <!--
+    <ion-item>
+      <ion-label color="gray">Quantidade de vagas</ion-label>
+      <ion-range min="1" max="5" [(ngModel)]="viagem.qtd_vagas" id="qtd_vagas" name="qtd_vagas" pin="true" snaps="true" required #qtd_vagas="ngModel">
+        <ion-label range-left>1</ion-label>
+        <ion-label range-right>5</ion-label>
+      </ion-range>
+    </ion-item>-->
+    
+    
     <ion-item>
       <ion-label floating>Preço R$</ion-label>
       <ion-input
@@ -91,6 +105,7 @@
         name="preco"
         required #preco="ngModel"
         min="0"
+        step="0.50"
         value ="0.00">
       </ion-input>
     </ion-item>

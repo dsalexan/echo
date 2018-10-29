@@ -1,11 +1,40 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, PopoverController, ViewController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
 
 import { LoginPage } from '../login/login'
-import { HomePage } from '../home/home';
+import { InicialCaronaPage } from '../inicial-carona/inicial-carona';
 
+
+@Component({
+  selector: 'page-oferecer-carona',
+  template: `
+
+    <ion-card>
+      <ion-card-content>
+        <ion-calendar
+          [(ngModel)]="data"
+          id="data"
+          name="date"
+          (onChange)="close()"
+          [format]="'YYYY-MM-DD'">
+        </ion-calendar>
+        <!--<p>{{data}}</p>-->
+      </ion-card-content>
+    </ion-card>`
+
+})
+export class PopoverOferecerPage {
+
+  data: String;
+  constructor(public viewCtrl: ViewController) {}
+
+  close() {
+    this.viewCtrl.dismiss();
+  }
+
+}
 
 @IonicPage()
 @Component({
@@ -23,15 +52,20 @@ export class OferecerCaronaPage {
   horateste = {}
   c = 0
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController, public popOver: PopoverController) {
     this.origem = new Array
     this.destino = new Array
   }
 
+  abrirData(myEvent) {
+    let popover = this.popOver.create(PopoverOferecerPage);
+    popover.present({
+      ev: myEvent
+    });
+  }
+
   criaDic() {
-//    console.log(this.origem.length);
     for (var i = 0; i < this.origem.length; i++) {
-      //se o elemento da lista não está no horateste, adiciona
       if (!(String(this.origem[i]) in this.horateste))
         this.horateste[String(this.origem[i])] = ''
     }
@@ -116,8 +150,8 @@ export class OferecerCaronaPage {
           })
         
           var i = 0
-          while (i < this.origem.length) {
-            path2 = 'http://localhost:3000/api/caronas/post/viagem/destino?id_viagem=' + id + '&destino=' + this.origem[i]
+          while (i < this.destino.length) {
+            path2 = 'http://localhost:3000/api/caronas/post/viagem/destino?id_viagem=' + id + '&destino=' + this.destino[i]
             console.log(path2)
             i++
             this.http.get(path2).map(res => res.json()).subscribe(or => {
@@ -141,7 +175,7 @@ export class OferecerCaronaPage {
               buttons: ['Dismiss']
             });
             alert.present();
-            this.navCtrl.push(HomePage);
+            this.navCtrl.push(InicialCaronaPage);
           }
         } else {
           let alert = this.alertCtrl.create({

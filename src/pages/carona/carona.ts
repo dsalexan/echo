@@ -14,8 +14,11 @@ import { HomePage } from '../home/home';
 })
 export class CaronaPage {
   carona: any;
+  loc: {}
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController) {
     this.carona = this.navParams.get("viagem");
+    this.loc = this.navParams.get("loc");
   }
 
   reservar(){
@@ -62,8 +65,9 @@ export class CaronaPage {
 
   ionViewDidLoad() {
     this.checkSession();
-
     console.log('ionViewDidLoad CaronaPage');
+    document.getElementById("tabs").style.display = "none"
+    document.getElementById("botao_menu").style.display = "none"
   }
 
 }

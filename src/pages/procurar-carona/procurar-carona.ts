@@ -17,6 +17,7 @@ export class ProcurarCaronaPage {
   date: string;
   viagem = {}
   lista = []
+  loc = {}
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController) {
     this.viagem["data"] = undefined;
@@ -44,6 +45,7 @@ export class ProcurarCaronaPage {
 
       if(data.data[0] != undefined) {
         data.data.forEach(element => {
+          this.loc[element.id_local] = element.descricao
           this.lista.push(element)
         });
       }
@@ -59,7 +61,7 @@ export class ProcurarCaronaPage {
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
       if(data.data[0] != {}) {
-          this.navCtrl.push(ResCaronaPage, {p1: data.data, p2:this.viagem});
+          this.navCtrl.push(ResCaronaPage, {p1: data.data, p2:this.viagem, loc:this.loc});
       } else {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
@@ -79,7 +81,7 @@ export class ProcurarCaronaPage {
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
       if(data.data[0] != {}) {
-        this.navCtrl.push(ResCaronaPage, {p1: data.data, p2:this.viagem});
+        this.navCtrl.push(ResCaronaPage, {p1: data.data, p2:this.viagem, loc:this.loc});
       } else {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
@@ -99,7 +101,7 @@ export class ProcurarCaronaPage {
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
       if(data.data[0] != {}) {
-        this.navCtrl.push(ResCaronaPage, {p1: data.data, p2:this.viagem});
+        this.navCtrl.push(ResCaronaPage, {p1: data.data, p2:this.viagem, loc:this.loc});
       } else {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
@@ -119,7 +121,7 @@ export class ProcurarCaronaPage {
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
       if(data.data[0] != {}) {
-        this.navCtrl.push(ResCaronaPage, {p1: data.data, p2:this.viagem});
+        this.navCtrl.push(ResCaronaPage, {p1: data.data, p2:this.viagem, loc:this.loc});
       } else {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
@@ -139,7 +141,7 @@ export class ProcurarCaronaPage {
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
       if(data.data[0] != {}) {
-        this.navCtrl.push(ResCaronaPage, {p1: data.data, p2:this.viagem});
+        this.navCtrl.push(ResCaronaPage, {p1: data.data, p2:this.viagem, loc:this.loc});
       } else {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
@@ -159,7 +161,7 @@ export class ProcurarCaronaPage {
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
       if(data.data[0] != {}) {
-        this.navCtrl.push(ResCaronaPage, {p1: data.data, p2:this.viagem});
+        this.navCtrl.push(ResCaronaPage, {p1: data.data, p2:this.viagem, loc:this.loc});
       } else {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
@@ -179,7 +181,7 @@ export class ProcurarCaronaPage {
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
       if(data.data[0] != {}) {
-        this.navCtrl.push(ResCaronaPage, {p1: data.data, p2:this.viagem});
+        this.navCtrl.push(ResCaronaPage, {p1: data.data, p2:this.viagem, loc:this.loc});
       } else {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
@@ -199,7 +201,7 @@ export class ProcurarCaronaPage {
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
       if(data.data[0] != {}) {
-          this.navCtrl.push(ResCaronaPage, {p1: data.data});
+          this.navCtrl.push(ResCaronaPage, {p1: data.data, p2:this.viagem, loc:this.loc});
       } else {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
@@ -219,7 +221,7 @@ export class ProcurarCaronaPage {
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
       if(data.data[0] != {}) {
-        this.navCtrl.push(ResCaronaPage, {p1: data.data, p2:this.viagem});
+        this.navCtrl.push(ResCaronaPage, {p1: data.data, p2:this.viagem, loc:this.loc});
       } else {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
@@ -239,7 +241,7 @@ export class ProcurarCaronaPage {
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
       if(data.data[0] != {}) {
-        this.navCtrl.push(ResCaronaPage, {p1: data.data, p2:this.viagem});
+        this.navCtrl.push(ResCaronaPage, {p1: data.data, p2:this.viagem, loc:this.loc});
       } else {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
@@ -259,7 +261,7 @@ export class ProcurarCaronaPage {
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
       if(data.data[0] != {}) {
-        this.navCtrl.push(ResCaronaPage, {p1: data.data, p2:this.viagem});
+        this.navCtrl.push(ResCaronaPage, {p1: data.data, p2:this.viagem, loc:this.loc});
       } else {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
@@ -279,7 +281,7 @@ export class ProcurarCaronaPage {
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
       if(data.data[0] != {}) {
-        this.navCtrl.push(ResCaronaPage, {p1: data.data, p2:this.viagem});
+        this.navCtrl.push(ResCaronaPage, {p1: data.data, p2:this.viagem, loc:this.loc});
       } else {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
@@ -299,7 +301,7 @@ export class ProcurarCaronaPage {
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
       if(data.data[0] != {}) {
-        this.navCtrl.push(ResCaronaPage, {p1: data.data, p2:this.viagem});
+        this.navCtrl.push(ResCaronaPage, {p1: data.data, p2:this.viagem, loc:this.loc});
       } else {
         let alert = this.alertCtrl.create({
           title: 'Ops!',

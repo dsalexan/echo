@@ -16,16 +16,17 @@ export class MinhasCaronasPage {
 
   viagens_motorista= [];
   viagens_passageiro = [];
+  loc = {};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController) {
   }
 
   abrirMotorista(v){
-    this.navCtrl.push(ViagemMotoristaPage, {viagem: v});
+    this.navCtrl.push(ViagemMotoristaPage, {viagem: v, loc:this.loc});
   }
 
   abrirPassageiro(v){
-    this.navCtrl.push(ViagemPassageiroPage, {viagem: v});
+    this.navCtrl.push(ViagemPassageiroPage, {viagem: v, loc:this.loc});
   }
 
   caronasMotorista(){
@@ -36,7 +37,7 @@ export class MinhasCaronasPage {
       this.http.get(path).map(res => res.json()).subscribe(data => {
         
         if(data.success) {
-          this.viagens_passageiro = data.data;
+          this.viagens_motorista = data.data;
         } else {
           let alert = this.alertCtrl.create({
             title: 'Ops!',
@@ -61,7 +62,7 @@ export class MinhasCaronasPage {
       this.http.get(path).map(res => res.json()).subscribe(data => {
         
         if(data.success) {
-          this.viagens_motorista = data.data;
+          this.viagens_passageiro = data.data;
         } else {
           let alert = this.alertCtrl.create({
             title: 'Ops!',
@@ -87,11 +88,31 @@ export class MinhasCaronasPage {
     })
   }
 
+  mostrarLocalidade(){
+    var path = 'http://localhost:3000/api/caronas/get/localidades'
+    this.http.get(path).map(res => res.json()).subscribe(data => {
+
+      if(data.data[0] != undefined) {
+        //console.log(data)
+        data.data.forEach(element => {
+          this.loc[element["id_local"]] = element ["descricao"]
+        });
+        //console.log(this.loc)
+      }
+
+    }, (err) => {
+        console.log(err)
+    })
+  }
+
   ionViewDidLoad() {
     this.checkSession();
+    this.mostrarLocalidade();
     this.caronasMotorista();
     this.caronasPassageiro();
     console.log('ionViewDidLoad MinhasCaronasPage');
+    document.getElementById("tabs").style.display = "none"
+    document.getElementById("botao_menu").style.display = "none"
   }
 
 }

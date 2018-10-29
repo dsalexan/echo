@@ -41,7 +41,7 @@ INSERT INTO aluno (ra_aluno, nome, login_intranet, senha_intranet, email) VALUES
 ('111866', 'Tamires Beatriz da Silva Lucena', 'tlucena', 'senha', 'tamiresb.lucena@gmail.com'),
 ('111775', 'Andrew Medeiros de Campos', 'andrew.medeiros', 'senha', 'andrew.medeirosc@gmail.com'),
 ('111843', 'Danilo Souza Alexandre', 'dsalexan', 'senha', 'danilo.salexan@gmail.com'),
-('111851', 'Gustavo Martins Collaço', 'gustavo.collaco', 'senha', 'gustavo.m.collaco@gmail.com');
+('111851', 'Gustavo Martins Collaço', 'gustavocollaco', 'senha', 'gustavo.m.collaco@gmail.com');
 
 CREATE TABLE professor (
 	id_professor SERIAL PRIMARY KEY,
@@ -170,27 +170,27 @@ VALUES ('Prova'),
 ('Cancelamento');
 
 CREATE TABLE evento_turma (
+	id_evento_turma SERIAL PRIMARY KEY,
 	id_evento INTEGER REFERENCES evento(id_evento) NOT NULL,
 	id_turma INTEGER REFERENCES turma(id_turma) NOT NULL,
 	ra_aluno VARCHAR(10) REFERENCES aluno(ra_aluno),
 	data DATE NOT NULL,
 	hora TIME,
 	sala INTEGER,
-	descricao TEXT,
-	PRIMARY KEY(id_evento, id_turma, data, hora)
+	descricao TEXT
 );
 
 INSERT INTO evento_turma
-VALUES (1, 1, '000000', '2018-09-29', '13:00:00', 1, 'levar calculadora'),
-(2, 2, '222222', '2018-10-01', '13:00:00', 2, 'vale horas'),
-(3, 3, '444444', '2018-10-15', '13:00:00', 3, 'Encardenado'),
-(1, 4, '666666', '2018-11-01', '13:00:00', 4, 'até vetores'),
-(2, 5, NULL, '2018-09-4', '13:00:00', 4, 'Comparecer com Camiseta do grupo'),
-(2, 6, '112344', '2018-08-06', '19:00:00', 4, 'testinho'),
-(2, 8, '112344', '2018-09-04', '13:00:00', 4, 'Comparecer com Camiseta do grupo'),
-(3, 8, '112344', '2018-10-31', '19:00:00', 4, 'atenção'),
-(1, 7, NULL, '2018-09-30', '13:00:00', 1, 'até o cap 4'),
-(1, 7, NULL, '2018-11-25', '13:30:00', 1, 'até o cap 7');
+VALUES (DEFAULT, 1, 1, '000000', '2018-09-29', '13:00:00', 1, 'levar calculadora'),
+(DEFAULT, 2, 2, '222222', '2018-10-01', '13:00:00', 2, 'vale horas'),
+(DEFAULT, 3, 3, '444444', '2018-10-15', '13:00:00', 3, 'Encardenado'),
+(DEFAULT, 1, 4, '666666', '2018-11-01', '13:00:00', 4, 'até vetores'),
+(DEFAULT, 2, 5, NULL, '2018-09-4', '13:00:00', 4, 'Comparecer com Camiseta do grupo'),
+(DEFAULT, 2, 6, '112344', '2018-08-06', '19:00:00', 4, 'testinho'),
+(DEFAULT, 2, 8, '112344', '2018-09-04', '13:00:00', 4, 'Comparecer com Camiseta do grupo'),
+(DEFAULT, 3, 8, '112344', '2018-10-31', '19:00:00', 4, 'atenção'),
+(DEFAULT, 1, 7, NULL, '2018-09-30', '13:00:00', 1, 'até o cap 4'),
+(DEFAULT, 1, 7, NULL, '2018-11-25', '13:30:00', 1, 'até o cap 7');
 
 CREATE TABLE aluno_turma (
 	ra_aluno VARCHAR(6) REFERENCES aluno(ra_aluno),
@@ -321,6 +321,39 @@ INSERT INTO reserva (id_viagem, id_passageiro, status_reserva) VALUES
 (4, 666666, 'false'),
 (3, 888888, 'false'),
 (5, 333333, 'false');
+
+CREATE TABLE tipo_divulgacao(
+    id_tipo SERIAL PRIMARY KEY,
+    nome_tipo VARCHAR(10) NOT NULL
+);
+
+INSERT INTO tipo VALUES
+('Doce'),
+('Salgado'),
+('Empréstimo');
+
+
+CREATE TABLE item_divulgacao (
+    id_divulgacao SERIAL PRIMARY KEY,
+    ra_aluno VARCHAR(6) NOT NULL,
+    id_tipo INT NOT NULL,
+    valor REAL,
+    dia DATE NOT NULL,
+    hora_inicio TIME NOT NULL,
+    hora_fim TIME NOT NULL,
+    descricao TEXT,
+    quantidade INT,
+    reserva_automatica BOOLEAN NOT NULL,
+
+    FOREIGN KEY(id_tipo) REFERENCES tipo_divulgacao(id_tipo),
+    FOREIGN KEY(ra_aluno) REFERENCES aluno(ra_aluno),
+);
+
+INSERT INTO item_divulgacao (ra_aluno, id_tipo, valor, dia, hora_inicio, hora_fim, descricao, quantidade, reserva_automatica) VALUES
+('000000', 1, 3.00, '2018-09-03', '10:00', '21:00', 'bolo de cenoura', 15, FALSE),
+('111111', 1, 2.50, '2018-09-03', '08:00', '12:00', 'cookies', 10, FALSE),
+('222222', 3, NULL, '2018-09-02', '13:30', '15:30', 'preciso de calculadora', NULL, NULL),
+('333333', 2, 3.00, '2018-09-02', '11:00', '23:00', 'enroladinho de salsicha', 5, TRUE);
 
 CREATE VIEW compromissos AS
 SELECT 'aula' AS tipo, ATu.ra_aluno, UC.nome AS nome_uc, NULL AS nome, T.nome AS turma, T.id_turma, H.dia_semana, NULL as dia, H.hora, HT.sala, NULL as descricao
