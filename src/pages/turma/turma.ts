@@ -15,7 +15,13 @@ import { copyInputAttributes } from 'ionic-angular/umd/util/dom';
   templateUrl: 'turma.html',
 })
 export class TurmaPage {
+  //DADOS ATIVIDADE
+  categoria: string;
+  date: string;
+  desc: string;
+  hora:string
 
+  //DADOS TURMA
   form: FormGroup;
   turma: string;
   nomeProf: string;
@@ -26,6 +32,10 @@ export class TurmaPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder,
               public storage: Storage, public alertCtrl: AlertController) {
     this.getInformations();
+    this.categoria = ''
+    this.date = ''
+    this.desc = ''
+    this.hora = ''
   }
 
   back(){
@@ -93,6 +103,7 @@ export class TurmaPage {
           handler: (values: string) => {
             console.log('Salvo! Valor: ' + values);
             categoria = values;
+            this.categoria = values;
             newData.present();
           }
         }
@@ -132,6 +143,10 @@ export class TurmaPage {
             date = values.data;
             hora = values.horario;
             desc = values.descricao;
+
+            this.date = values.data;
+            this.desc = values.descricao;
+            this.hora = values.horario;
   
             console.log('Cat: ' + categoria +
             '\nData: ' + date +
@@ -155,7 +170,7 @@ export class TurmaPage {
   }
 
   ionViewDidLoad() {
-    this.checkSession();
+    //this.checkSession();
     console.log('ionViewDidLoad TurmaPage');
   }
 
