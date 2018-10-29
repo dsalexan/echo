@@ -1,16 +1,9 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
-
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { LoginPage } from '../login/login';
 
-/**
- * Generated class for the CadastroPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -26,18 +19,18 @@ export class CadastroPage {
   }
 
   checkSession() {
-    this.storage.get("usuario").then((usu) => {
-      this.storage.get("senha").then((sen) => {
-        if(usu == null && sen == null){
-          this.navCtrl.push(LoginPage);
-        }
-      })
+    this.storage.get("aluno_nome").then((usu) => {
+      if(usu == null) {
+        this.navCtrl.push(LoginPage);
+      }
     })
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     this.checkSession()
-    console.log('ionViewDidLoad CadastroPage');
+    console.log('ionViewWillEnter CadastroPage');
+    document.getElementById("tabs").style.display = "none"
+    document.getElementById("botao_menu").style.display = "none"
   }
 
   storeEmail(email) {

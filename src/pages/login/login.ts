@@ -5,14 +5,8 @@ import { Storage } from '@ionic/storage';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
 import { CadastroPage } from '../cadastro/cadastro';
+import { HomePage } from '../home/home';
 import 'rxjs/add/operator/map';
-
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -26,55 +20,65 @@ export class LoginPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage, public http: Http) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
-  
-  storeUser(user) {
-    this.storage.set("usuario", user)
+  ionViewWillEnter() {
+    console.log('ionViewWillEnter LoginPage');
+    document.getElementById("tabs").style.display = "none"
+    document.getElementById("botao_menu").style.display = "none"
   }
   
   clickLogin() {
-    if (this.verificarCredenciais(this.dados["usuario"], this.dados["senha"])) {
-      this.storeUser(this.dados["usuario"]);
+    // document.getElementById("teste").textContent = this.dados["usuario"];
+    this.verificarCredenciais(this.dados["usuario"], this.dados["senha"], this.dados["lembrar"])
+  }
 
-      if (this.primeiroLogin()) {
-        this.navCtrl.push(CadastroPage, {dados: this.dados});
-      }
+  verificarCredenciais(user, senha, lembrar) {
+    user = (user == null || user == '') ? '' : user
+    senha = (senha == null || user == '') ? '' : senha
 
-      if (this.dados["lembrar"]) {
-        this.storage.set("senha", this.dados["senha"])
-      }
+    if(user != '' && senha != '') {
+      //var path = 'http://localhost:3000/api/alunos/get/senha?login='+ user + '&senha='+ senha
+      var path = 'http://localhost:3000/api/auth/login?login='+ user + '&senha='+ senha
+      this.http.get(path).map(res => res.json()).subscribe(data => {
+        if(data.auth && data.data[0] != undefined) {
 
-      // this.navCtrl.push(Home);
+          this.storage.set("aluno_ra", data.data[0].ra_aluno)
+          this.storage.set("aluno_nome", data.data[0].nome)
+          this.storage.set("aluno_user", data.data[0].user)
+          this.storage.set("aluno_login", data.data[0].login_intranet)
+          this.storage.set("aluno_email", data.data[0].email)
+          this.storage.set("aluno_telefone", data.data[0].telefone)
+          this.storage.set("aluno_telefone", data.data[0].telefone)
+          
+          if (lembrar) {
+            this.storage.set("aluno_senha", this.dados["senha"])
+          }
+          
+          this.navCtrl.push(HomePage, {dados: this.dados});
+          //this.navCtrl.push(CadastroPage, {dados: this.dados});
+        } else {
+          let alert = this.alertCtrl.create({
+            title: 'Ops!',
+            subTitle: 'Verifique as informações inseridas',
+            buttons: ['Dismiss']
+          });
+          alert.present();
+        }
+      }, (err) => {
+        console.log(err) //quando autenticacao falha, retorna erro 401, com auth false
+        let alert = this.alertCtrl.create({
+          title: 'Ops!',
+          subTitle: 'Verifique as informações inseridas',
+          buttons: ['Dismiss']
+        });
+        alert.present();
+      })
     } else {
-      let alert = this.alertCtrl.create( {
+      let alert = this.alertCtrl.create({
         title: 'Ops!',
         subTitle: 'Verifique as informações inseridas',
         buttons: ['Dismiss']
       });
       alert.present();
-    }
-  }
-
-  verificarCredenciais(user, senha) {
-    user = (user == null || user == '') ? '' : user
-    senha = (senha == null || user == '') ? '' : senha
-
-    if(user != '' && senha != '') {
-      this.http.get('https://localhost:3000/carona/buscar/datahora?data=2018-09-03&hora=07:30').map(res => res.json()).subscribe(data => {
-        console.log(data.results)
-        if(data.results != null) {
-          // guardar na sessao as info
-          return true
-        }
-      }, err => {
-        console.log(err)
-      })
-
-      return false
-    } else {
-      return false
     }
 
     // verificar se usuario this.dados["usuario"] existe

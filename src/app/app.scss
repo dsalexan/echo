@@ -15,7 +15,20 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-.ion-page > ion-content
-{
-   top: 30px;//your headers height
+// .ion-page > ion-content
+// {
+//    top: 30px;//your headers height
+// }
+
+div#tabs {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    bottom: 0px;
+
+    width: 100%;
+    height: 76px;
+    border: solid black 1px;
+    background-color: #ffe082;
+    padding: 5px;
 }

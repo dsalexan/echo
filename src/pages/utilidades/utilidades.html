@@ -1,17 +1,19 @@
 
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title center>{{ 'Utilidaes' }}</ion-title>
+    <ion-buttons left><!--botoes do cabeçalho - ESQUERDA-->
+    </ion-buttons>
+    <ion-title center>{{ 'Utilidades' }}</ion-title>
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
-  <button ion-button class = "biblioteca">BIBLIOTECA</button><br center> <!-- ADD (click) = "clickBilioteca()" -->
-  <button ion-button class ="saldo">CONSULTAR SALDO RU</button><br> <!-- ADD (click) = "clickSaldo()" -->
-  <button ion-button class = "caradpio">CARDÁPIO RU</button><br> <!-- ADD (click) = "clickCardapio()" -->
-  <button ion-button class = "email">EMAIL UNIFESP</button><br> <!-- ADD (click) = "clickEmail()" -->
-  <button ion-button class = "atestado">ATESTADO DE MATRICULA</button><br> <!-- ADD (click) = "clickAtestado()" -->
-  <button ion-button class = "historico">HISTORICO ESCOLAR</button><br> <!-- ADD (click) = "clickHistorico()" -->
-  
+  <div class='botoes'>
+    <button ion-button round class = "biblioteca" (click) = "clickBiblioteca()">BIBLIOTECA</button><br>
+    <button ion-button round class ="saldo" (click) = "clicksSaldo()">CONSULTAR SALDO RU</button><br>
+    <button ion-button round class = "caradpio" (click) = "clickCardapio()">CARDÁPIO RU</button><br>
+    <button ion-button round class = "email" (click) = "clickEmail()">EMAIL UNIFESP</button><br>
+    <button ion-button round class = "atestado" (click) = "clickAtestado()">ATESTADO DE MATRICULA</button><br>
+    <button ion-button round class = "historico" (click) = "clickHistorico()">HISTORICO ESCOLAR</button><br>
+  </div>
 </ion-content>

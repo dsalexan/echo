@@ -1,17 +1,35 @@
 <!-- Menu lateral -->
+
 <ion-menu [content]="content">
 
     <ion-content padding>
-        <button ion-button menuClose (click)="clickPerfil()">Perfil</button><br>
-        <button ion-button menuClose (click)="clickConfiguracoes()">Configurações</button><br>
-        <button ion-button menuClose (click)="clickUtilidade()">Utilidades</button><br>
-        <button ion-button menuClose (click)="clickLogout()">Logout</button><br>
+        <button ion-button round menuClose style="width: 100%" (click)="clickPerfil()">Perfil</button><br>
+        <button ion-button round menuClose style="width: 100%" (click)="clickConfiguracoes()">Configurações</button><br>
+        <button ion-button round menuClose style="width: 100%" (click)="clickUtilidade()">Utilidades</button><br>
+        <button ion-button round menuClose style="width: 100%" (click)="clickLogout()">Logout</button><br>
     </ion-content>
 
 </ion-menu>
 
-<ion-nav [root]="rootPage" #content></ion-nav>
-
-<button ion-button icon-only menuToggle>
-    <ion-icon name="menu"></ion-icon>
+<button ion-button icon-only menuToggle style="display: none; height: 40px; z-index: 1" id="botao_menu">
+    <ion-icon name="md-menu"></ion-icon>
 </button>
+
+<div style="width: 100%; text-align: center; position: absolute; bottom: 0px">
+    <div id="tabs">
+        <button ion-button large icon-only (click)="clickHome()">
+            <ion-icon name="md-home"></ion-icon>
+        </button>
+        <button ion-button large icon-only (click)="clickGrade()">
+            <ion-icon name="md-calendar"></ion-icon>
+        </button>
+        <button ion-button large icon-only (click)="clickCaronas()">
+            <ion-icon name="md-car"></ion-icon>
+        </button>
+        <button ion-button large icon-only (click)="clickDivulgacao()">
+            <ion-icon name="md-pricetags"></ion-icon>
+        </button>
+    </div>
+</div>
+
+<ion-nav [root]="rootPage" #content></ion-nav>

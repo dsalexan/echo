@@ -1,0 +1,10 @@
+page-grade-evento {
+    .rounded-rectangle {
+        width: var(--width);
+        height: var(--height);
+        border:solid black 1px;
+        border-radius: 15px 15px 15px 15px;
+        background-color: #eeeeee;
+        padding: 5px 10px;
+    }
+}

@@ -1,0 +1,46 @@
+
+<ion-header>
+
+  <ion-navbar color='primary'>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="back()" class="back">
+        <ion-icon name='arrow-back'></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title class='titulo'>{{turma}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+    <ion-fab right>
+        <button ion-fab color="primary" (click)='novaAtiv()'><ion-icon name="add"></ion-icon></button>
+      </ion-fab>    
+
+    <ion-card>
+      <ion-card-header class='infos'>Informações</ion-card-header>
+      <ion-card-content>
+        <div class='info'>
+          <div>Professor:</div><div class='texto'>{{nomeProf}}</div>
+          <div>Sala:</div><div class='texto'>{{sala}}</div>
+          <div>Horários:</div><div class='texto'>{{horario1}}</div><div class='texto'>{{horario2}}</div><br>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  
+    <ion-item-group>
+      <ion-list-header>Atividades</ion-list-header>
+      <ion-card color='secondary'>
+          <ion-card-header>{{categoria}}</ion-card-header>
+          <ion-card-content>{{desc}}<div class='data'>{{data}}</div></ion-card-content>     
+      </ion-card>
+    </ion-item-group>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+</ion-content>

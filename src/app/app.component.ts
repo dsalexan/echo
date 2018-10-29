@@ -9,13 +9,19 @@ import { LoginPage } from '../pages/login/login';
 import { ConfigPage } from '../pages/configuracoes/configuracoes';
 import { UtilidadesPage } from '../pages/utilidades/utilidades';
 
+import { HomePage } from '../pages/home/home';
+import { TurmaPage } from '../pages/turma/turma';
+import { InicialCaronaPage } from '../pages/inicial-carona/inicial-carona';
+import { InicialGradePage } from '../pages/inicial-grade/inicial-grade';
+import { InicialDivulgacaoPage } from '../pages/inicial-divulgacao/inicial-divulgacao';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = LoginPage;
+  rootPage:any = HomePage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public storage: Storage) {
     platform.ready().then(() => {
@@ -24,6 +30,14 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
+  }
+
+  clickHome() {
+    this.nav.push(HomePage)
+  }
+
+  clickGrade() {
+    this.nav.push(InicialGradePage)
   }
 
   clickPerfil() {
@@ -42,4 +56,12 @@ export class MyApp {
   clickUtilidade(){
     this.nav.push(UtilidadesPage);
   }
+  clickCaronas() {
+    this.nav.push(InicialCaronaPage);
+  }
+
+  clickDivulgacao() {
+    this.nav.push(InicialDivulgacaoPage);
+  }
+
 }
