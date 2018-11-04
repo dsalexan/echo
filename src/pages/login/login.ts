@@ -36,7 +36,7 @@ export class LoginPage {
     senha = (senha == null || user == '') ? '' : senha
 
     if(user != '' && senha != '') {
-      var path = 'http://localhost:3000/api/alunos/get/senha?login='+ user + '&senha='+ senha
+      var path = 'http://104.248.9.4.4:3000/api/alunos/get/senha?login='+ user + '&senha='+ senha
       this.http.get(path).map(res => res.json()).subscribe(data => {
         if(data.data[0] != undefined) {
 

@@ -26,6 +26,7 @@ export class GradeEventoPage {
   ionViewWillEnter() {
     this.carregarDadosTurma()
     console.log('ionViewWillEnter GradeEventoPage');
+    console.log(this.dados)
     document.getElementById("tabs").style.display = "none"
     document.getElementById("botao_menu").style.display = "none"
   }
@@ -33,7 +34,7 @@ export class GradeEventoPage {
   carregarDadosTurma() {
     var id_turma = this.dados["id_turma"];
 
-    var path = 'http://localhost:3000/api/grades/get/turma/id?id_turma=' + id_turma
+    var path = 'http://104.248.9.4:3000/api/grades/get/turma/id?id_turma=' + id_turma
     this.http.get(path).map(res => res.json()).subscribe(info => {
       // console.log(info)
       this.dados["nome_turma"] = info.data.nome_turma
@@ -43,12 +44,28 @@ export class GradeEventoPage {
 
     this.dados["alunos"] = []
 
-    var path2 = 'http://localhost:3000/api/grades/get/aluno/turma?id_turma=' + id_turma
+    var path2 = 'http://104.248.9.4:3000/api/grades/get/aluno/turma?id_turma=' + id_turma
     this.http.get(path2).map(res => res.json()).subscribe(data => {
-      console.log(data)
+      // console.log(data)
       data.data.forEach(aluno => {
         var a = {nome: aluno.nome, ra: aluno.ra_aluno}
         this.dados["alunos"].push(a)
+      })
+    })
+
+    this.dados["eventos"] = []
+
+    var path3 = 'http://104.248.9.4:3000/api/grades/get/evento/turma?id_turma=' + id_turma
+    this.http.get(path3).map(res => res.json()).subscribe(data => {
+      // console.log(data)
+      data.data.forEach(evento => {
+        var o = {
+          descricao_evento: evento.descricao_evento,
+          data: evento.data,
+          hora: evento.hora,
+          sala: evento.sala
+        }
+        this.dados["eventos"].push(o)
       })
     })
   }
