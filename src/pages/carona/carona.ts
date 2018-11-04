@@ -27,7 +27,7 @@ export class CaronaPage {
 
     var path
     this.storage.get("aluno_ra").then((usu) => {
-      path = 'http://localhost:3000/api/caronas/post/viagem/reserva?id_viagem='+ this.carona.id_viagem + '&id_passageiro='+ usu + '&status_reserva=false'
+      path = 'http://104.248.9.4:3000/api/caronas/post/viagem/reserva?id_viagem='+ this.carona.id_viagem + '&id_passageiro='+ usu + '&status_reserva=false'
       //console.log(path)
       this.http.get(path).map(res => res.json()).subscribe(data => {
 

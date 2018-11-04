@@ -41,7 +41,7 @@ export class AgendaPage {
     var ultimo_dia = String(ultimo.getDate())
 
     this.storage.get("aluno_ra").then(ra_aluno => {
-      var path = 'http://localhost:3000/api/grades/get/compromissos/aluno?ra_aluno=' + ra_aluno +
+      var path = 'http://104.248.9.4:3000/api/grades/get/compromissos/aluno?ra_aluno=' + ra_aluno +
                  '&dt_inicio=' + today.getFullYear() + '-' + mes_inicio + '-' + '01' +
                  '&dt_fim=' + today.getFullYear() + '-' + mes_fim + '-' + ultimo_dia
       // console.log(path)
@@ -54,16 +54,21 @@ export class AgendaPage {
             // console.log(c.dia)
             var dia = new Date(c.dia)
             o["dia_mes"] = dia.getDate() < 10 ? '0' + String(dia.getDate()) : String(dia.getDate())
+            o["mes"] = dia.getMonth() < 10 ? '0' + String(dia.getMonth()) : String(dia.getMonth())
+            o["ano"] = String(dia.getFullYear())
             var mes:any = this.meses[dia.getMonth()]
 
+            o["id_turma"] = c.id_turma
             o["nome_uc"] = c.nome_uc
-            o["nome"] = c.nome
+            if (c.nome == null)
+              o["nome"] = "Aula"
             o["turma"] = c.turma
             if (c["hora"] != null) {
               var fullTime = c.hora
               o["hora"] = fullTime.split(":")[0] + 'h' + fullTime.split(":")[1]
             }
             o["tipo"] = c.tipo
+            o["descricao_evento"] = c.descricao
 
             // console.log(c)
             this.eventos[mes].push(

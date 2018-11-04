@@ -7,4 +7,93 @@ page-grade-evento {
         background-color: #eeeeee;
         padding: 5px 10px;
     }
+    div#info {
+        position: fixed;
+        width: calc(var(--width) - 32px);
+        height: var(--height);
+
+        border:solid black 1px;
+        border-radius: 15px 15px 15px 15px;
+        
+        background-color: #eeeeee;
+    }
+    div#info3 {
+        position: fixed;
+        margin-top: 140px;
+        width: calc(var(--width) - 32px);
+        height: var(--height);
+
+        border:solid black 1px;
+        border-radius: 15px 15px 15px 15px;
+        
+        background-color: #eeeeee;
+    }
+    div#info2 {
+        position: fixed;
+        margin-top: 140px;
+        width: calc(var(--width) - 32px);
+        height: var(--height);
+
+        border:solid black 1px;
+        border-radius: 15px 15px 15px 15px;
+        
+        background-color: #eeeeee;
+    }
+
+    div#nomeuc {
+        display: block;
+        position: absolute;
+        width: calc(var(--width) - 20px);
+        left: 10px;
+        top: 50px;
+    }
+
+    div#info div#turma {
+        display: block;
+        position: absolute;
+        left: 10px;
+        top: 70px;
+    }
+
+    div#info div#professor {
+        display: block;
+        position: absolute;
+        left: 10px;
+        top: 90px;
+    }
+
+    div#info div#data {
+        display: block;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+
+    div#tipo {
+        display: block;
+        position: absolute;
+        left: 10px;
+        top: 10px;
+    }
+
+    div#info div#hora {
+        display: block;
+        position: absolute;
+        right: 10px;
+        top: 40px;
+    }
+
+    div#info div#evento {
+        display: block;
+        position: absolute;
+        left: 10px;
+        top: 10px;
+    }
+
+    .alunos {
+        display: block;
+        position: absolute;
+        left: 10px;
+    }
+
 }
