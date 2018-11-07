@@ -60,12 +60,12 @@ export class InicialGradePage {
   adicionarGrade() {
     // console.log(this.storage.get("aluno_ra"))
     this.storage.get("aluno_ra").then(ra_aluno => {
-      var path = 'http://localhost:3000/api/grades/get/compromissos/aluno?ra_aluno=' + ra_aluno +
+      var path = 'http://104.248.9.4:3000/api/grades/get/compromissos/aluno?ra_aluno=' + ra_aluno +
                  '&dt_inicio=' + this.semana[0].yyyy + '-' + this.semana[0].mm + '-' + this.semana[0].dd +
                  '&dt_fim=' + this.semana[6].yyyy + '-' + this.semana[6].mm + '-' + this.semana[6].dd
       // console.log(this.semana)
       this.http.get(path).map(res => res.json()).subscribe(data => {
-        // console.log(data)
+        console.log(data)
         data.data.forEach(c => {
           var o = {}
 
@@ -78,17 +78,24 @@ export class InicialGradePage {
           {
             var dia = new Date(c.dia)
             o["dia_mes"] = dia.getDate() < 10 ? '0' + String(dia.getDate()) : String(dia.getDate())
+            o["mes"] = dia.getMonth() < 10 ? '0' + String(dia.getMonth()) : String(dia.getMonth())
+            o["ano"] = String(dia.getFullYear())
             var dia_semana:any = this.diasSemana[dia.getDay()]
           }
 
+          o["id_turma"] = c.id_turma
           o["nome_uc"] = c.nome_uc
           o["nome"] = c.nome
+          if (c.nome == null)
+            o["nome"] = "Aula"
           o["turma"] = c.turma
           if (c["hora"] != null) {
             var fullTime = c.hora
             o["hora"] = fullTime.split(":")[0] + 'h' + fullTime.split(":")[1]
           }
           o["tipo"] = c.tipo
+          o["descricao_evento"] = c.descricao
+
           this.compromissos[dia_semana].push(
             // Colocar aqui informacoes do compromisso que vao ser adicionadas no evento
             o

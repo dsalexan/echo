@@ -14,7 +14,6 @@
 
 </ion-header>
 
-
 <ion-content padding>
 
   <div style="width: 100%; padding-top: 5px; margin: 0px; text-align: center; position: absolute; top: 0px; left: 0px">
@@ -23,16 +22,16 @@
   <div style="padding-top: 30px"></div>
 
   <div *ngFor="let mes of meses; let m = index">
-    <div *ngIf="eventos[mes].length > 0" class="rounded-rectangle" style="--width: 100%">
+    <div *ngIf="eventos[mes].length > 0" class="rounded-rectangle" style="--width: 100%; --color: #cccccc">
       {{mes}}
     </div>
     <ng-container *ngFor="let evento of eventos[mes]; let e = index">
-      <div (click)="selecionarCompromisso(mes, e)" class="rectangle" [ngClass]="(e == eventos[mes].length-1) ? 'arredondado' : 'nada'" style="--width: 100%; --height: 65px">
+      <div (click)="selecionarCompromisso(mes, e)" class="rectangle" [ngClass]="(e == eventos[mes].length-1) ? 'arredondado' : 'nada'" style="--width: 100%; --height: 65px; --color: #eeeeee">
           {{evento.nome_uc}} - {{evento.turma}}
           <div style="float: right"><h2><b>{{evento.dia_mes}}</b></h2></div>
           <div style="float: bottom; margin-top: 10px">
             <div style="float: left">{{evento.nome}}</div>
-            <div *ngIf="horaInObject(evento)" style="float: right; margin-right: -25px">{{evento.hora}}</div>
+            <div *ngIf="horaInObject(evento)" style="float: right; margin-right: -27px">{{evento.hora}}</div>
           </div>
       </div>
     </ng-container>

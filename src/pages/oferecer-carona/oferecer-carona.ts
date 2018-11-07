@@ -86,7 +86,7 @@ export class OferecerCaronaPage {
   }
 
   mostrarLocalidade(){
-    var path = 'http://localhost:3000/api/caronas/get/localidades'
+    var path = 'http://104.248.9.4:3000/api/caronas/get/localidades'
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
       if(data.data[0] != undefined) {
@@ -125,7 +125,7 @@ export class OferecerCaronaPage {
     var path2
 
     this.storage.get("aluno_ra").then((usu) => {
-      path = 'http://localhost:3000/api/caronas/post/viagem?id_motorista='+ usu + '&dia='+ this.viagem["data"] + '&preco='+ this.viagem["preco"] + '&qtd_vagas=' + this.viagem["qtd_vagas"] + '&descricao='+ this.viagem["descricao"]
+      path = 'http://104.248.9.4:3000/api/caronas/post/viagem?id_motorista='+ usu + '&dia='+ this.viagem["data"] + '&preco='+ this.viagem["preco"] + '&qtd_vagas=' + this.viagem["qtd_vagas"] + '&descricao='+ this.viagem["descricao"]
       console.log(path)
       this.http.get(path).map(res => res.json()).subscribe(data => {
 
@@ -133,7 +133,7 @@ export class OferecerCaronaPage {
           var id = data.data.id_viagem
           var erro = 0
           Object.keys(this.horateste).forEach( key => {
-            path = 'http://localhost:3000/api/caronas/post/viagem/origem?id_viagem=' + id + '&hora=' + this.horateste[key] + '&origem=' + key 
+            path = 'http://104.248.9.4:3000/api/caronas/post/viagem/origem?id_viagem=' + id + '&hora=' + this.horateste[key] + '&origem=' + key 
             console.log(path)
             this.http.get(path).map(res => res.json()).subscribe(or => {
               if(data.success) {
@@ -151,7 +151,7 @@ export class OferecerCaronaPage {
         
           var i = 0
           while (i < this.destino.length) {
-            path2 = 'http://localhost:3000/api/caronas/post/viagem/destino?id_viagem=' + id + '&destino=' + this.destino[i]
+            path2 = 'http://104.248.9.4:3000/api/caronas/post/viagem/destino?id_viagem=' + id + '&destino=' + this.destino[i]
             console.log(path2)
             i++
             this.http.get(path2).map(res => res.json()).subscribe(or => {

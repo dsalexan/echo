@@ -32,7 +32,7 @@ export class MinhasCaronasPage {
   caronasMotorista(){
     var path;
     this.storage.get("aluno_ra").then((usu) => {
-      path = 'http://localhost:3000/api/caronas/get/viagem/motorista?id='+ usu
+      path = 'http://104.248.9.4:3000/api/caronas/get/viagem/motorista?id='+ usu
       console.log(path)
       this.http.get(path).map(res => res.json()).subscribe(data => {
         
@@ -57,7 +57,7 @@ export class MinhasCaronasPage {
   caronasPassageiro(){
     var path;
     this.storage.get("aluno_ra").then((usu) => {
-      path = 'http://localhost:3000/api/caronas/get/viagem/passageiro?id='+ usu
+      path = 'http://104.248.9.4:3000/api/caronas/get/viagem/passageiro?id='+ usu
       console.log(path)
       this.http.get(path).map(res => res.json()).subscribe(data => {
         
@@ -89,7 +89,7 @@ export class MinhasCaronasPage {
   }
 
   mostrarLocalidade(){
-    var path = 'http://localhost:3000/api/caronas/get/localidades'
+    var path = 'http://104.248.9.4:3000/api/caronas/get/localidades'
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
       if(data.data[0] != undefined) {
