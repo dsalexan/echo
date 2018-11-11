@@ -46,26 +46,27 @@ INSERT INTO aluno (ra_aluno, nome, login_intranet, senha_intranet, email) VALUES
 CREATE TABLE professor (
 	id_professor SERIAL PRIMARY KEY,
 	nome TEXT NOT NULL,
-	sala INTEGER NOT NULL,
-	lattes TEXT UNIQUE,
+	area TEXT,
+	sala TEXT,
+	lattes TEXT,
 	email1 TEXT,
 	email2 TEXT
 );
-INSERT INTO professor (nome, sala, lattes, email1) VALUES
-('Professor0', 0, 'linklattes0', 'email0'),
-('Professor1', 1, 'linklattes1', 'email1'),
-('Professor2', 2, 'linklattes2', 'email2'),
-('Professor3', 3, 'linklattes3', 'email3'),
-('Professor4', 4, 'linklattes4', 'email4'),
-('Professor5', 5, 'linklattes5', 'email5'),
-('Professor6', 6, 'linklattes6', 'email6'),
-('Professor7', 7, 'linklattes7', 'email7'),
-('Professor8', 8, 'linklattes8', 'email8'),
-('Professor9', 9, 'linklattes9', 'email9'),
-('Fábio Silveira', 10, 'fabiolattes', 'fabio@gmail.com'),
-('Bruno Kimura', 20, 'brunolattes', 'bruno@gmail.com'),
-('Erwin Doescher', 30, 'erwinlattes', 'erwin@gmail.com'),
-('Lauro Paulo', 40, 'laurolattes', 'lauro@gmail.com');
+INSERT INTO professor (nome, area, sala, lattes, email1) VALUES
+('Professor0', 'area', '0', 'linklattes0', 'email0'),
+('Professor1', 'area', '1', 'linklattes1', 'email1'),
+('Professor2', 'area', '2', 'linklattes2', 'email2'),
+('Professor3', 'area', '3', 'linklattes3', 'email3'),
+('Professor4', 'area', '4', 'linklattes4', 'email4'),
+('Professor5', 'area', '5', 'linklattes5', 'email5'),
+('Professor6', 'area', '6', 'linklattes6', 'email6'),
+('Professor7', 'area', '7', 'linklattes7', 'email7'),
+('Professor8', 'area', '8', 'linklattes8', 'email8'),
+('Professor9', 'area', '9', 'linklattes9', 'email9'),
+('Fábio Silveira', 'area', '10', 'fabiolattes', 'fabio@gmail.com'),
+('Bruno Kimura', 'area', '20', 'brunolattes', 'bruno@gmail.com'),
+('Erwin Doescher', 'area', '30', 'erwinlattes', 'erwin@gmail.com'),
+('Lauro Paulo', 'area', '40', 'laurolattes', 'lauro@gmail.com');
 
 CREATE TABLE uc (
 	id_uc SERIAL PRIMARY KEY,

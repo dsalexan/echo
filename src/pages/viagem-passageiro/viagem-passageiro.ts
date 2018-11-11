@@ -25,7 +25,7 @@ export class ViagemPassageiroPage {
   }
 
   rejeitarReserva(){
-    var path = 'http://104.248.9.4:3000/api/caronas/delete/reserva?id=' + this.viagem["id_viagem"]
+    var path = 'http://localhost:3000/api/caronas/delete/reserva?id=' + this.viagem["id_viagem"]
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
       if(data.success) {
