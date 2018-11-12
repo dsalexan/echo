@@ -36,21 +36,22 @@ export class LoginPage {
     senha = (senha == null || user == '') ? '' : senha
 
     if(user != '' && senha != '') {
-      //var path = 'http://localhost:3000/api/alunos/get/senha?login='+ user + '&senha='+ senha
-      var path = 'http://104.248.9.4.4:3000/api/auth/login?login='+ user + '&senha='+ senha
+      var path = 'http://localhost:3000/api/auth/login?login='+ user + '&senha='+ senha
+      //var path = 'http://104.248.9.4.4:3000/api/auth/login?login='+ user + '&senha='+ senha
       this.http.get(path).map(res => res.json()).subscribe(data => {
-        if(data.auth && data.data[0] != undefined) {
+        console.log('data', data.auth)
+        console.log('data', data.data)
+        if(data.auth && data.data != undefined) {
 
-          this.storage.set("aluno_ra", data.data[0].ra_aluno)
-          this.storage.set("aluno_nome", data.data[0].nome)
-          this.storage.set("aluno_user", data.data[0].user)
-          this.storage.set("aluno_login", data.data[0].login_intranet)
-          this.storage.set("aluno_email", data.data[0].email)
-          this.storage.set("aluno_telefone", data.data[0].telefone)
-          this.storage.set("aluno_telefone", data.data[0].telefone)
+          //this.storage.set("aluno_ra", data.data[0].ra_aluno)
+          this.storage.set("aluno_nome", data.data.nome)
+          //this.storage.set("aluno_user", data.data[0].user)
+          this.storage.set("aluno_login", data.data.login_intranet)
+          //this.storage.set("aluno_email", data.data[0].email)
+          //this.storage.set("aluno_telefone", data.data[0].telefone)
           
           if (lembrar) {
-            this.storage.set("aluno_senha", this.dados["senha"])
+            //this.storage.set("aluno_senha", this.dados["senha"])
           }
           
           this.navCtrl.push(HomePage, {dados: this.dados});
