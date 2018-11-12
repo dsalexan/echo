@@ -1,4 +1,5 @@
 DROP VIEW compromissos;
+DROP TABLE IF EXISTS tipo_divulgacao;
 DROP TABLE IF EXISTS reserva;
 DROP TABLE IF EXISTS origem;
 DROP TABLE IF EXISTS destino;
@@ -35,13 +36,7 @@ INSERT INTO aluno (ra_aluno, nome, login_intranet, senha_intranet, email) VALUES
 ('666666', 'Usuario6', 'user6', '123456', 'user6@gmail.com'),
 ('777777', 'Usuario7', 'user7', '123456', 'user7@gmail.com'),
 ('888888', 'Usuario8', 'user8', '123456', 'user8@gmail.com'),
-('999999', 'Usuario9', 'user9', '123456', 'user9@gmail.com'),
-('112344', 'Pedro Spoljaric Gomes', 'pedro.spoljaric', 'senha', 'pedrospoljaric@gmail.com'),
-('112347', 'Renata Sendreti Broder', 'renata.broder', 'senha', 'renata.sendreti@gmail.com'),
-('111866', 'Tamires Beatriz da Silva Lucena', 'tlucena', 'senha', 'tamiresb.lucena@gmail.com'),
-('111775', 'Andrew Medeiros de Campos', 'andrew.medeiros', 'senha', 'andrew.medeirosc@gmail.com'),
-('111843', 'Danilo Souza Alexandre', 'dsalexan', 'senha', 'danilo.salexan@gmail.com'),
-('111851', 'Gustavo Martins Collaço', 'gustavocollaco', 'senha', 'gustavo.m.collaco@gmail.com');
+('999999', 'Usuario9', 'user9', '123456', 'user9@gmail.com');
 
 CREATE TABLE professor (
 	id_professor SERIAL PRIMARY KEY,
@@ -258,12 +253,7 @@ INSERT INTO viagem (id_motorista, dia, preco, qtd_vagas, descricao) VALUES
 ('111111', '2018-10-29', 3.00, 4, 'Pego na tentação'),
 ('555555', '2018-10-29', 3.00, 4, 'Saio do posto BR'),
 ('000000', '2018-10-29', 3.00, 4, 'Deixo no demoiselle'),
-('111111', '2018-10-29', 3.00, 3, 'Deixo na Pedro Tursi'),
-('112347', '2018-10-29', 3.00, 3, 'Saio do parque industrial (chama no zap pra combinar se for da região) às 13h00'),
-('111851', '2018-10-29', 3.00, 4, 'Vou passar no posto chaparral e vou direto pra UNIFESP'),
-('112347', '2018-10-29', 3.00, 3, 'Vou direto pro parque industrial, não passo no satélite'),
-('111851', '2018-10-29', 3.00, 4, 'Vou para o urbanova mesmo, mas acho que vou passar no mc pra pegar um lanche no caminho');
-
+('111111', '2018-10-29', 3.00, 3, 'Deixo na Pedro Tursi');
 
 CREATE TABLE origem(
 	id_viagem INT NOT NULL,
@@ -278,11 +268,7 @@ INSERT INTO origem(id_viagem, id_origem, hora) VALUES
 (2, 2, '12:30'),
 (3, 2, '12:45'),
 (4, 1, '21:00'),
-(5, 1, '23:00'),
-(6, 3, '12:50'),
-(7, 5, '13:00'),
-(8, 1, '21:00'),
-(9, 1, '21:00');
+(5, 1, '23:00');
 
 CREATE TABLE destino(
 	id_viagem INT NOT NULL,
@@ -296,11 +282,7 @@ INSERT INTO destino(id_viagem, id_destino) VALUES
 (2, 1),
 (3, 1),
 (4, 2),
-(5, 2),
-(6, 1),
-(7, 1),
-(8, 3),
-(9, 4);
+(5, 2);
 
 CREATE TABLE reserva (
 	id_viagem INT NOT NULL,
@@ -327,7 +309,7 @@ CREATE TABLE tipo_divulgacao(
     nome_tipo VARCHAR(10) NOT NULL
 );
 
-INSERT INTO tipo VALUES
+INSERT INTO tipo_divulgacao VALUES
 ('Doce'),
 ('Salgado'),
 ('Empréstimo');
@@ -352,7 +334,7 @@ CREATE TABLE item_divulgacao (
 INSERT INTO item_divulgacao (ra_aluno, id_tipo, valor, dia, hora_inicio, hora_fim, descricao, quantidade, reserva_automatica) VALUES
 ('000000', 1, 3.00, '2018-09-03', '10:00', '21:00', 'bolo de cenoura', 15, FALSE),
 ('111111', 1, 2.50, '2018-09-03', '08:00', '12:00', 'cookies', 10, FALSE),
-('222222', 3, NULL, '2018-09-02', '13:30', '15:30', 'preciso de calculadora', NULL, NULL),
+('222222', 3, 2.00, '2018-09-02', '13:30', '15:30', 'preciso de calculadora', 0, FALSE),
 ('333333', 2, 3.00, '2018-09-02', '11:00', '23:00', 'enroladinho de salsicha', 5, TRUE);
 
 CREATE VIEW compromissos AS
