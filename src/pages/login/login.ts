@@ -42,18 +42,13 @@ export class LoginPage {
         console.log('data', data.auth)
         console.log('data', data.data)
         if(data.auth && data.data != undefined) {
-
-          //this.storage.set("aluno_ra", data.data[0].ra_aluno)
+          this.storage.set("aluno_ra", data.data.ra)
           this.storage.set("aluno_nome", data.data.nome)
-          //this.storage.set("aluno_user", data.data[0].user)
-          this.storage.set("aluno_login", data.data.login_intranet)
-          //this.storage.set("aluno_email", data.data[0].email)
-          //this.storage.set("aluno_telefone", data.data[0].telefone)
-          
-          if (lembrar) {
-            //this.storage.set("aluno_senha", this.dados["senha"])
-          }
-          
+          this.storage.set("aluno_senha", data.data.senha)
+          this.storage.set("aluno_login", data.data.login)
+          this.storage.set("aluno_email", data.data.email == null ? "" : data.data.ra)
+          this.storage.set("aluno_telefone", data.data.telefone == null ? "" : data.data.ra)
+
           this.navCtrl.push(HomePage, {dados: this.dados});
           //this.navCtrl.push(CadastroPage, {dados: this.dados});
         } else {
