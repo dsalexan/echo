@@ -28,10 +28,10 @@ export class LoginPage {
   
   clickLogin() {
     // document.getElementById("teste").textContent = this.dados["usuario"];
-    this.verificarCredenciais(this.dados["usuario"], this.dados["senha"], this.dados["lembrar"])
+    this.verificarCredenciais(this.dados["usuario"], this.dados["senha"])
   }
 
-  verificarCredenciais(user, senha, lembrar) {
+  verificarCredenciais(user, senha) {
     user = (user == null || user == '') ? '' : user
     senha = (senha == null || user == '') ? '' : senha
 
@@ -44,7 +44,7 @@ export class LoginPage {
         if(data.auth && data.data != undefined) {
           this.storage.set("aluno_ra", data.data.ra)
           this.storage.set("aluno_nome", data.data.nome)
-          this.storage.set("aluno_senha", data.data.senha)
+          this.storage.set("aluno_senha", senha)
           this.storage.set("aluno_login", data.data.login)
           this.storage.set("aluno_email", data.data.email == null ? "" : data.data.ra)
           this.storage.set("aluno_telefone", data.data.telefone == null ? "" : data.data.ra)
