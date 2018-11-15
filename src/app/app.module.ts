@@ -22,8 +22,9 @@ import { CaronaPage } from '../pages/carona/carona';
 import { MinhasCaronasPage } from '../pages/minhas-caronas/minhas-caronas';
 import { ViagemMotoristaPage, PopoverMotoristaPage } from '../pages/viagem-motorista/viagem-motorista';
 import { ViagemPassageiroPage } from '../pages/viagem-passageiro/viagem-passageiro';
+import { TurmaPage } from '../pages/turma/turma';
 import { InicialDivulgacaoPage } from '../pages/inicial-divulgacao/inicial-divulgacao';
-
+import { DivulgarDivulgacaoPage } from '../pages/divulgar-divulgacao/divulgar-divulgacao';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -35,7 +36,6 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 import { GradeCadastroEventoPage } from '../pages/grade-cadastro-evento/grade-cadastro-evento';
-import { TurmaPage } from '../pages/turma/turma';
 
 @NgModule({
   declarations: [
@@ -61,7 +61,8 @@ import { TurmaPage } from '../pages/turma/turma';
     ViagemPassageiroPage,
     PopoverMotoristaPage,
     PopoverOferecerPage,
-    InicialDivulgacaoPage
+    InicialDivulgacaoPage,
+    DivulgarDivulgacaoPage
   ],
   imports: [
     BrowserModule,
@@ -96,7 +97,8 @@ import { TurmaPage } from '../pages/turma/turma';
     ViagemPassageiroPage,
     PopoverMotoristaPage,
     PopoverOferecerPage,
-    InicialDivulgacaoPage
+    InicialDivulgacaoPage,
+    DivulgarDivulgacaoPage
   ],
   providers: [
     StatusBar,
