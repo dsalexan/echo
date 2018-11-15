@@ -7,6 +7,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { CadastroPage } from '../cadastro/cadastro';
 import { HomePage } from '../home/home';
 import 'rxjs/add/operator/map';
+import { AES, lib, PBKDF2, pad, mode } from 'crypto-js'
 
 @IonicPage()
 @Component({
@@ -36,7 +37,10 @@ export class LoginPage {
     senha = (senha == null || user == '') ? '' : senha
 
     if(user != '' && senha != '') {
-      var path = 'http://localhost:3000/api/auth/login?login='+ user + '&senha='+ senha
+      // Encrypt
+      var encryptSenha = this.encrypt(senha, 'Achilles');
+
+      var path = 'http://localhost:3000/api/auth/login?login='+ user + '&senha='+ encryptSenha
       //var path = 'http://104.248.9.4.4:3000/api/auth/login?login='+ user + '&senha='+ senha
       this.http.get(path).map(res => res.json()).subscribe(data => {
         console.log('data', data.auth)
@@ -85,5 +89,31 @@ export class LoginPage {
   primeiroLogin() {
     // verificar se usuario this.dados["usuario"] já está cadastrado no postgres
     return true;
+  }
+
+  encrypt (msg, pass) {
+    var keySize = 256;
+    var iterations = 100;
+
+    var salt = lib.WordArray.random(128/8);
+    
+    var key = PBKDF2(pass, salt, {
+        keySize: keySize/32,
+        iterations: iterations
+      });
+  
+    var iv = lib.WordArray.random(128/8);
+    
+    var encrypted = AES.encrypt(msg, key, { 
+      iv: iv, 
+      padding: pad.Pkcs7,
+      mode: mode.CBC
+      
+    });
+    
+    // salt, iv will be hex 32 in length
+    // append them to the ciphertext for use  in decryption
+    var transitmessage = salt.toString()+ iv.toString() + encrypted.toString();
+    return transitmessage;
   }
 }
