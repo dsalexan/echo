@@ -24,21 +24,20 @@ CREATE TABLE aluno (
 	ra_aluno VARCHAR(10) PRIMARY KEY,
 	nome TEXT NOT NULL,
 	login_intranet TEXT NOT NULL UNIQUE,
-	senha_intranet TEXT NOT NULL,
 	email TEXT NOT NULL UNIQUE,
 	telefone VARCHAR(15)
 );
-INSERT INTO aluno (ra_aluno, nome, login_intranet, senha_intranet, email) VALUES
-('000000', 'Usuario0', 'user0', '123456', 'user0@gmail.com'),
-('111111', 'Usuario1', 'user1', '123456', 'user1@gmail.com'),
-('222222', 'Usuario2', 'user2', '123456', 'user2@gmail.com'),
-('333333', 'Usuario3', 'user3', '123456', 'user3@gmail.com'),
-('444444', 'Usuario4', 'user4', '123456', 'user4@gmail.com'),
-('555555', 'Usuario5', 'user5', '123456', 'user5@gmail.com'),
-('666666', 'Usuario6', 'user6', '123456', 'user6@gmail.com'),
-('777777', 'Usuario7', 'user7', '123456', 'user7@gmail.com'),
-('888888', 'Usuario8', 'user8', '123456', 'user8@gmail.com'),
-('999999', 'Usuario9', 'user9', '123456', 'user9@gmail.com');
+INSERT INTO aluno (ra_aluno, nome, login_intranet, email) VALUES
+('000000', 'Usuario0', 'user0', 'user0@gmail.com'),
+('111111', 'Usuario1', 'user1', 'user1@gmail.com'),
+('222222', 'Usuario2', 'user2', 'user2@gmail.com'),
+('333333', 'Usuario3', 'user3', 'user3@gmail.com'),
+('444444', 'Usuario4', 'user4', 'user4@gmail.com'),
+('555555', 'Usuario5', 'user5', 'user5@gmail.com'),
+('666666', 'Usuario6', 'user6', 'user6@gmail.com'),
+('777777', 'Usuario7', 'user7', 'user7@gmail.com'),
+('888888', 'Usuario8', 'user8', 'user8@gmail.com'),
+('999999', 'Usuario9', 'user9', 'user9@gmail.com');
 
 CREATE TABLE professor (
 	id_professor SERIAL PRIMARY KEY,
