@@ -24,7 +24,7 @@ CREATE TABLE aluno (
 	ra_aluno VARCHAR(10) PRIMARY KEY,
 	nome TEXT NOT NULL,
 	login_intranet TEXT NOT NULL UNIQUE,
-	email TEXT NOT NULL UNIQUE,
+	email TEXT NOT NULL,
 	telefone VARCHAR(15)
 );
 INSERT INTO aluno (ra_aluno, nome, login_intranet, email) VALUES

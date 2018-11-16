@@ -5,6 +5,17 @@ import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { HttpModule } from '@angular/http';
+import { Http } from '@angular/http';
+import { HTTP } from '@ionic-native/http';
+import { CalendarModule } from "ion2-calendar";
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+
+import { HttpClientModule } from '@angular/common/http';
+import { GradeCadastroEventoPage } from '../pages/grade-cadastro-evento/grade-cadastro-evento';
+
 import { LoginPage } from '../pages/login/login';
 import { CadastroPage } from '../pages/cadastro/cadastro';
 import { PerfilPage } from '../pages/perfil/perfil';
@@ -25,17 +36,7 @@ import { ViagemPassageiroPage } from '../pages/viagem-passageiro/viagem-passagei
 import { TurmaPage } from '../pages/turma/turma';
 import { InicialDivulgacaoPage } from '../pages/inicial-divulgacao/inicial-divulgacao';
 import { DivulgarDivulgacaoPage } from '../pages/divulgar-divulgacao/divulgar-divulgacao';
-
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { HttpModule } from '@angular/http';
-import { Http } from '@angular/http';
-import { HTTP } from '@ionic-native/http';
-import { CalendarModule } from "ion2-calendar";
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-
-import { HttpClientModule } from '@angular/common/http';
-import { GradeCadastroEventoPage } from '../pages/grade-cadastro-evento/grade-cadastro-evento';
+import { FiltrarDivulgacaoPage } from '../pages/filtrar-divulgacao/filtrar-divulgacao';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { GradeCadastroEventoPage } from '../pages/grade-cadastro-evento/grade-ca
     PopoverMotoristaPage,
     PopoverOferecerPage,
     InicialDivulgacaoPage,
-    DivulgarDivulgacaoPage
+    DivulgarDivulgacaoPage,
+    FiltrarDivulgacaoPage
   ],
   imports: [
     BrowserModule,
@@ -98,7 +100,8 @@ import { GradeCadastroEventoPage } from '../pages/grade-cadastro-evento/grade-ca
     PopoverMotoristaPage,
     PopoverOferecerPage,
     InicialDivulgacaoPage,
-    DivulgarDivulgacaoPage
+    DivulgarDivulgacaoPage,
+    FiltrarDivulgacaoPage
   ],
   providers: [
     StatusBar,
