@@ -64,4 +64,8 @@ export class MyApp {
     this.nav.push(InicialDivulgacaoPage);
   }
 
+  clickTurma(){
+    this.nav.push(TurmaPage)
+  }
+
 }

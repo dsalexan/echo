@@ -1,18 +1,106 @@
-<!--
-  Generated template for the DivulgarDivulgacaoPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
+    <ion-navbar color="primary">
+      <ion-buttons left><!--botoes do cabeçalho - ESQUERDA-->
+      </ion-buttons>
+      <ion-title center>{{ 'Divulgar' }}</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <form #item_divulgacaoForm="ngForm" (ngSubmit)="divulgar()">
 
-  <ion-navbar>
-    <ion-title>divulgar-divulgacao</ion-title>
-  </ion-navbar>
+      <ion-item>
+        <ion-label floating>Categoria</ion-label>
+          <ion-select
+            type="number"
+            [(ngModel)]="item.categoria"
+            id="categoria"
+            name="categoria"
+            required #categoria="ngModel">
+            <ion-option *ngFor="let i of lista" [value]="i.id_tipo" >{{i.nome_tipo}}</ion-option>
+          </ion-select>
+      </ion-item>
+      <!-- <button (click) = "teste()">oi</button> -->
 
-</ion-header>
+      <ion-item>
+          <ion-label floating>Preço R$</ion-label>
+          <ion-input
+            type="number"
+            [(ngModel)]="item.valor"
+            id="valor"
+            name="valor"
+            required #valor="ngModel"
+            min="0"
+            step="0.50"
+            value ="0.00">
+          </ion-input>
+      </ion-item>
 
 
-<ion-content padding>
+        <ion-item>
+            <ion-label floating>Quantidade</ion-label>
+            <ion-input
+              type="number"
+              [(ngModel)]="item.quantidade"
+              id="quantidade"
+              name="quantidade"
+              required #quantidade="ngModel"
+              min="1"
+              step="1"
+              value ="1">
+            </ion-input>
+        </ion-item>
+              
+        <ion-item>
+          <ion-label floating> Descrição </ion-label>
+          <ion-input
+            type="text"
+            [(ngModel)]="item.descricao"
+            id="descricao"
+            name="descricao"
+            required #descricao="ngModel">
+          </ion-input>
+        </ion-item>
+        
+        <ion-calendar
+          [(ngModel)]="item.dia"
+          id="dia"
+          name="dia"
+          required #dia="ngModel">
+        </ion-calendar>
+  
+        <ion-card>
+          <ion-card-content>
+              <ion-title> Horário para Retirada</ion-title>
 
-</ion-content>
+              <ion-item>
+                    <ion-label floating> Das </ion-label>
+                    <ion-datetime
+                      displayFormat="HH:mm"
+                      [(ngModel)]="item.hora_inicio"
+                      id="hora_inicio"
+                      name="hora_inicio"
+                      required #hora_inicio="ngModel">
+                    </ion-datetime>
+                
+                </ion-item>
+
+                <ion-item>
+                      <ion-label floating> Às </ion-label>
+                      <ion-datetime
+                        displayFormat="HH:mm"
+                        [(ngModel)]="item.hora_fim"
+                        id="hora_fim"
+                        name="hora_fim"
+                        required #hora_fim="ngModel">
+                      </ion-datetime>
+                  </ion-item>
+
+          </ion-card-content>
+        </ion-card>   
+        
+      <button [disabled]= "!item_divulgacaoForm.form.valid" type="submit" ion-button round block>Divulgar</button>
+        
+      </form>
+  </ion-content>
+  

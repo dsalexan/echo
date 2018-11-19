@@ -5,6 +5,17 @@ import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { HttpModule } from '@angular/http';
+import { Http } from '@angular/http';
+import { HTTP } from '@ionic-native/http';
+import { CalendarModule } from "ion2-calendar";
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+
+import { HttpClientModule } from '@angular/common/http';
+import { GradeCadastroEventoPage } from '../pages/grade-cadastro-evento/grade-cadastro-evento';
+
 import { LoginPage } from '../pages/login/login';
 import { CadastroPage } from '../pages/cadastro/cadastro';
 import { PerfilPage } from '../pages/perfil/perfil';
@@ -22,20 +33,10 @@ import { CaronaPage } from '../pages/carona/carona';
 import { MinhasCaronasPage } from '../pages/minhas-caronas/minhas-caronas';
 import { ViagemMotoristaPage, PopoverMotoristaPage } from '../pages/viagem-motorista/viagem-motorista';
 import { ViagemPassageiroPage } from '../pages/viagem-passageiro/viagem-passageiro';
-import { InicialDivulgacaoPage } from '../pages/inicial-divulgacao/inicial-divulgacao';
-
-
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { HttpModule } from '@angular/http';
-import { Http } from '@angular/http';
-import { HTTP } from '@ionic-native/http';
-import { CalendarModule } from "ion2-calendar";
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-
-import { HttpClientModule } from '@angular/common/http';
-import { GradeCadastroEventoPage } from '../pages/grade-cadastro-evento/grade-cadastro-evento';
 import { TurmaPage } from '../pages/turma/turma';
+import { InicialDivulgacaoPage } from '../pages/inicial-divulgacao/inicial-divulgacao';
+import { DivulgarDivulgacaoPage } from '../pages/divulgar-divulgacao/divulgar-divulgacao';
+import { FiltrarDivulgacaoPage } from '../pages/filtrar-divulgacao/filtrar-divulgacao';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,9 @@ import { TurmaPage } from '../pages/turma/turma';
     ViagemPassageiroPage,
     PopoverMotoristaPage,
     PopoverOferecerPage,
-    InicialDivulgacaoPage
+    InicialDivulgacaoPage,
+    DivulgarDivulgacaoPage,
+    FiltrarDivulgacaoPage
   ],
   imports: [
     BrowserModule,
@@ -96,7 +99,9 @@ import { TurmaPage } from '../pages/turma/turma';
     ViagemPassageiroPage,
     PopoverMotoristaPage,
     PopoverOferecerPage,
-    InicialDivulgacaoPage
+    InicialDivulgacaoPage,
+    DivulgarDivulgacaoPage,
+    FiltrarDivulgacaoPage
   ],
   providers: [
     StatusBar,

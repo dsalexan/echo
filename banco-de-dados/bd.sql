@@ -1,4 +1,6 @@
 DROP VIEW compromissos;
+DROP TABLE IF EXISTS reserva_divulgacao;
+DROP TABLE IF EXISTS item_divulgacao;
 DROP TABLE IF EXISTS tipo_divulgacao;
 DROP TABLE IF EXISTS reserva;
 DROP TABLE IF EXISTS origem;
@@ -22,7 +24,7 @@ CREATE TABLE aluno (
 	ra_aluno VARCHAR(10) PRIMARY KEY,
 	nome TEXT NOT NULL,
 	login_intranet TEXT NOT NULL UNIQUE,
-	email TEXT NOT NULL UNIQUE,
+	email TEXT NOT NULL,
 	telefone VARCHAR(15)
 );
 INSERT INTO aluno (ra_aluno, nome, login_intranet, email) VALUES
@@ -308,7 +310,7 @@ CREATE TABLE tipo_divulgacao(
     nome_tipo VARCHAR(10) NOT NULL
 );
 
-INSERT INTO tipo_divulgacao VALUES
+INSERT INTO tipo_divulgacao (nome_tipo) VALUES
 ('Doce'),
 ('Salgado'),
 ('Empréstimo');
@@ -324,17 +326,27 @@ CREATE TABLE item_divulgacao (
     hora_fim TIME NOT NULL,
     descricao TEXT,
     quantidade INT,
-    reserva_automatica BOOLEAN NOT NULL,
 
     FOREIGN KEY(id_tipo) REFERENCES tipo_divulgacao(id_tipo),
-    FOREIGN KEY(ra_aluno) REFERENCES aluno(ra_aluno),
+    FOREIGN KEY(ra_aluno) REFERENCES aluno(ra_aluno)
 );
 
-INSERT INTO item_divulgacao (ra_aluno, id_tipo, valor, dia, hora_inicio, hora_fim, descricao, quantidade, reserva_automatica) VALUES
-('000000', 1, 3.00, '2018-09-03', '10:00', '21:00', 'bolo de cenoura', 15, FALSE),
-('111111', 1, 2.50, '2018-09-03', '08:00', '12:00', 'cookies', 10, FALSE),
-('222222', 3, 2.00, '2018-09-02', '13:30', '15:30', 'preciso de calculadora', 0, FALSE),
-('333333', 2, 3.00, '2018-09-02', '11:00', '23:00', 'enroladinho de salsicha', 5, TRUE);
+INSERT INTO item_divulgacao (ra_aluno, id_tipo, valor, dia, hora_inicio, hora_fim, descricao, quantidade) VALUES
+('000000', 1, 3.00, '2018-09-03', '10:00', '21:00', 'bolo de cenoura', 15),
+('111111', 1, 2.50, '2018-09-03', '08:00', '12:00', 'cookies', 10),
+('222222', 3, 0.00, '2018-09-02', '13:30', '15:30', 'preciso de calculadora', 0),
+('333333', 2, 3.00, '2018-09-02', '11:00', '23:00', 'enroladinho de salsicha', 5);
+
+CREATE TABLE reserva_divulgacao(
+	id_reserva SERIAL PRIMARY KEY,
+	id_divulgacao INT NOT NULL,
+	ra_aluno_comprador VARCHAR(6) NOT NULL,
+	quantidade INT,
+
+	FOREIGN KEY(id_divulgacao) REFERENCES item_divulgacao(id_divulgacao),
+	FOREIGN KEY(ra_aluno_comprador) REFERENCES aluno(ra_aluno)
+);
+
 
 CREATE VIEW compromissos AS
 SELECT 'aula' AS tipo, ATu.ra_aluno, UC.nome AS nome_uc, NULL AS nome, T.nome AS turma, T.id_turma, H.dia_semana, NULL as dia, H.hora, HT.sala, NULL as descricao
