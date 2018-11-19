@@ -64,7 +64,7 @@ export class FiltrarDivulgacaoPage {
 
 
 
-  filtrar(){
+  buscar(){
     var path = 'http://localhost:3000/api/divulgacao/get/tipo?id_tipo=' + document.getElementById('categoria').getAttribute("ng-reflect-model")
       
     this.http.get(path).map(res => res.json()).subscribe(data => {

@@ -2,12 +2,12 @@
     <ion-navbar color="primary">
       <ion-buttons left><!--botoes do cabeçalho - ESQUERDA-->
       </ion-buttons>
-      <ion-title center>{{ 'Filtrar' }}</ion-title>
+      <ion-title center>{{ 'Buscar' }}</ion-title>
     </ion-navbar>
   </ion-header>
   
   <ion-content padding>
-    <form #item_divulgacaoForm="ngForm" (ngSubmit)="filtrar()">
+    <form #item_divulgacaoForm="ngForm" (ngSubmit)="buscar()">
 
       <ion-item>
         <ion-label floating>Categoria</ion-label>
@@ -54,23 +54,32 @@
   
         <ion-card>
           <ion-card-content>
-              <ion-title> Horário para retirada</ion-title>
+            <ion-title> Horário para retirada</ion-title>
 
-              <ion-item>
-                    <ion-label floating> A partir das </ion-label>
-                    <ion-datetime
-                      displayFormat="HH:mm"
-                      [(ngModel)]="item.hora_inicio"
-                      id="hora_inicio"
-                      name="hora_inicio">
-                    </ion-datetime>
-                
-                </ion-item>
+            <ion-item>
+              <ion-label floating> A partir das </ion-label>
+              <ion-datetime
+                displayFormat="HH:mm"
+                [(ngModel)]="item.hora_inicio"
+                id="hora_inicio"
+                name="hora_inicio">
+              </ion-datetime>
+            </ion-item>
+
+            <ion-item>
+              <ion-label floating> Até as </ion-label>
+              <ion-datetime
+                displayFormat="HH:mm"
+                [(ngModel)]="item.hora_fim"
+                id="hora_fim"
+                name="hora_fim">
+              </ion-datetime>
+            </ion-item>
 
           </ion-card-content>
         </ion-card>   
         
-      <button [disabled]= "!item_divulgacaoForm.form.valid" type="submit" ion-button round block>Filtrar</button>
+      <button [disabled]= "!item_divulgacaoForm.form.valid" type="submit" ion-button round block>Buscar</button>
         
       </form>
   </ion-content>
