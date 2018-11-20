@@ -183,9 +183,6 @@ VALUES (DEFAULT, 1, 1, '000000', '2018-09-29', '13:00:00', 1, 'levar calculadora
 (DEFAULT, 3, 3, '444444', '2018-10-15', '13:00:00', 3, 'Encardenado'),
 (DEFAULT, 1, 4, '666666', '2018-11-01', '13:00:00', 4, 'até vetores'),
 (DEFAULT, 2, 5, NULL, '2018-09-4', '13:00:00', 4, 'Comparecer com Camiseta do grupo'),
-(DEFAULT, 2, 6, '112344', '2018-08-06', '19:00:00', 4, 'testinho'),
-(DEFAULT, 2, 8, '112344', '2018-09-04', '13:00:00', 4, 'Comparecer com Camiseta do grupo'),
-(DEFAULT, 3, 8, '112344', '2018-10-31', '19:00:00', 4, 'atenção'),
 (DEFAULT, 1, 7, NULL, '2018-09-30', '13:00:00', 1, 'até o cap 4'),
 (DEFAULT, 1, 7, NULL, '2018-11-25', '13:30:00', 1, 'até o cap 7');
 
@@ -201,10 +198,7 @@ VALUES('111111', 1, DEFAULT),
 ('222222', 2, DEFAULT),
 ('333333', 3, DEFAULT),
 ('444444', 4, DEFAULT),
-('555555', 5, DEFAULT),
-('112344', 6, DEFAULT),
-('112344', 7, DEFAULT),
-('112344', 8, DEFAULT);
+('555555', 5, DEFAULT);
 
 CREATE TABLE cardapio (
     tabela JSONB,
