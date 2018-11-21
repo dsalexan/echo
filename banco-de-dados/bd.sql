@@ -282,22 +282,26 @@ INSERT INTO destino(id_viagem, id_destino) VALUES
 CREATE TABLE reserva (
 	id_viagem INT NOT NULL,
 	id_passageiro VARCHAR(6) NOT NULL,
+	id_origem INT NOT NULL,
+	id_destino INT NOT NULL,
 	status_reserva BOOLEAN NOT NULL,
 
 	FOREIGN KEY(id_viagem) REFERENCES viagem (id_viagem),
 	FOREIGN KEY(id_passageiro) REFERENCES aluno (ra_aluno),
+	FOREIGN KEY(id_origem) REFERENCES origem (id_origem),
+	FOREIGN KEY(id_destino) REFERENCES destino (id_destino),
 	PRIMARY KEY(id_viagem, id_passageiro)
 );
-INSERT INTO reserva (id_viagem, id_passageiro, status_reserva) VALUES
-(1, 666666, 'false'),
-(1, 333333, 'false'),
-(1, 777777, 'false'),
-(2, 444444, 'false'),
-(2, 888888, 'false'),
-(4, 444444, 'false'),
-(4, 666666, 'false'),
-(3, 888888, 'false'),
-(5, 333333, 'false');
+-- INSERT INTO reserva (id_viagem, id_passageiro, id_origem, id_destino, status_reserva) VALUES
+-- (1, 666666, 1, 2, 'false'),
+-- (1, 333333, 'false'),
+-- (1, 777777, 'false'),
+-- (2, 444444, 'false'),
+-- (2, 888888, 'false'),
+-- (4, 444444, 'false'),
+-- (4, 666666, 'false'),
+-- (3, 888888, 'false'),
+-- (5, 333333, 'false');
 
 CREATE TABLE tipo_divulgacao(
     id_tipo SERIAL PRIMARY KEY,
