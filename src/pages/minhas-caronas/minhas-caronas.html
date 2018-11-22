@@ -32,6 +32,9 @@
       </ion-avatar>
       <h2>{{viagem.dia}}</h2>
       <p>{{viagem.hora}}</p>
+      
+      {{viagem.status_reserva ? 'Confirmada' : 'Pendente'}}
+
     </button>
   </ion-list>
 </ion-content>

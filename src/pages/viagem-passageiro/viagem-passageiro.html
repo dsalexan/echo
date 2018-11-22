@@ -13,6 +13,9 @@
   <ion-item>
     <h2> Viagem de {{loc[viagem.id_origem]}} para {{loc[viagem.id_destino]}}</h2>
     <h2> Dia {{viagem.dia.slice(0,10)}} às {{viagem.hora}}</h2>
+    <button ion-item (click)="deletarReserva()">
+      <ion-icon name="md-trash"></ion-icon>   Excluir viagem
+    </button>
   </ion-item>
   <br>
 

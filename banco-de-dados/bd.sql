@@ -288,8 +288,8 @@ CREATE TABLE reserva (
 
 	FOREIGN KEY(id_viagem) REFERENCES viagem (id_viagem),
 	FOREIGN KEY(id_passageiro) REFERENCES aluno (ra_aluno),
-	FOREIGN KEY(id_origem) REFERENCES origem (id_origem),
-	FOREIGN KEY(id_destino) REFERENCES destino (id_destino),
+	FOREIGN KEY(id_origem) REFERENCES localidade (id_local),
+	FOREIGN KEY(id_destino) REFERENCES localidade (id_local),
 	PRIMARY KEY(id_viagem, id_passageiro)
 );
 -- INSERT INTO reserva (id_viagem, id_passageiro, id_origem, id_destino, status_reserva) VALUES

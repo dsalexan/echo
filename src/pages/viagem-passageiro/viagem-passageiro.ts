@@ -24,31 +24,33 @@ export class ViagemPassageiroPage {
     this.loc = this.navParams.get("loc");
   }
 
-  rejeitarReserva(){
-    var path = 'http://localhost:3000/api/caronas/delete/reserva?id=' + this.viagem["id_viagem"]
-    this.http.get(path).map(res => res.json()).subscribe(data => {
+  deletarReserva(){
+    this.storage.get("aluno_ra").then((usu) => {
+      var path = 'http://localhost:3000/api/caronas/delete/reserva?id=' + this.viagem["id_viagem"] + '&ra=' + usu
+      
+      this.http.get(path).map(res => res.json()).subscribe(data => {
 
-      if(data.success) {
-        let alert = this.alertCtrl.create({
-          title: 'Ok!',
-          subTitle: 'Reserva excluída',
-          buttons: ['Dismiss']
-        });
-        alert.present();
-        this.ionViewDidLoad();
+        if(data.success) {
+          let alert = this.alertCtrl.create({
+            title: 'Ok!',
+            subTitle: 'Reserva excluída',
+            buttons: ['Dismiss']
+          });
+          alert.present();
+          this.ionViewDidLoad();
 
-        //enviar mensagem de rejeição para o passageiro
-        
-      } else {
-        let alert = this.alertCtrl.create({
-          title: 'Ops!',
-          subTitle: 'Tente novamente',
-          buttons: ['Dismiss']
-        });
-        alert.present();
-      }
+          //enviar mensagem de cancelamento de reserva para o motorista
+          
+        } else {
+          let alert = this.alertCtrl.create({
+            title: 'Ops!',
+            subTitle: 'Tente novamente',
+            buttons: ['Dismiss']
+          });
+          alert.present();
+        }
+      })
     })
-
   }
 
   checkSession() {
@@ -61,6 +63,7 @@ export class ViagemPassageiroPage {
 
   ionViewDidLoad() {
     this.checkSession();
+    console.log(this.viagem)
     console.log('ionViewDidLoad ViagemPassageiroPage');
     document.getElementById("tabs").style.display = "none"
     document.getElementById("botao_menu").style.display = "none"

@@ -62,6 +62,7 @@ export class MinhasCaronasPage {
       this.http.get(path).map(res => res.json()).subscribe(data => {
         
         if(data.success) {
+          console.log(data.data)
           this.viagens_passageiro = data.data;
         } else {
           let alert = this.alertCtrl.create({
