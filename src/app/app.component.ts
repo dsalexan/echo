@@ -14,6 +14,7 @@ import { TurmaPage } from '../pages/turma/turma';
 import { InicialCaronaPage } from '../pages/inicial-carona/inicial-carona';
 import { InicialGradePage } from '../pages/inicial-grade/inicial-grade';
 import { InicialDivulgacaoPage } from '../pages/inicial-divulgacao/inicial-divulgacao';
+import { ViagemMotoristaPage } from '../pages/viagem-motorista/viagem-motorista';
 
 @Component({
   templateUrl: 'app.html'
@@ -21,7 +22,7 @@ import { InicialDivulgacaoPage } from '../pages/inicial-divulgacao/inicial-divul
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = HomePage;
+  rootPage:any = ViagemMotoristaPage//HomePage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public storage: Storage) {
     platform.ready().then(() => {
