@@ -1,4 +1,6 @@
 DROP VIEW compromissos;
+DROP TABLE IF EXISTS reserva_divulgacao;
+DROP TABLE IF EXISTS item_divulgacao;
 DROP TABLE IF EXISTS tipo_divulgacao;
 DROP TABLE IF EXISTS reserva;
 DROP TABLE IF EXISTS origem;
@@ -22,21 +24,20 @@ CREATE TABLE aluno (
 	ra_aluno VARCHAR(10) PRIMARY KEY,
 	nome TEXT NOT NULL,
 	login_intranet TEXT NOT NULL UNIQUE,
-	senha_intranet TEXT NOT NULL,
-	email TEXT NOT NULL UNIQUE,
+	email TEXT NOT NULL,
 	telefone VARCHAR(15)
 );
-INSERT INTO aluno (ra_aluno, nome, login_intranet, senha_intranet, email) VALUES
-('000000', 'Usuario0', 'user0', '123456', 'user0@gmail.com'),
-('111111', 'Usuario1', 'user1', '123456', 'user1@gmail.com'),
-('222222', 'Usuario2', 'user2', '123456', 'user2@gmail.com'),
-('333333', 'Usuario3', 'user3', '123456', 'user3@gmail.com'),
-('444444', 'Usuario4', 'user4', '123456', 'user4@gmail.com'),
-('555555', 'Usuario5', 'user5', '123456', 'user5@gmail.com'),
-('666666', 'Usuario6', 'user6', '123456', 'user6@gmail.com'),
-('777777', 'Usuario7', 'user7', '123456', 'user7@gmail.com'),
-('888888', 'Usuario8', 'user8', '123456', 'user8@gmail.com'),
-('999999', 'Usuario9', 'user9', '123456', 'user9@gmail.com');
+INSERT INTO aluno (ra_aluno, nome, login_intranet, email) VALUES
+('000000', 'Usuario0', 'user0', 'user0@gmail.com'),
+('111111', 'Usuario1', 'user1', 'user1@gmail.com'),
+('222222', 'Usuario2', 'user2', 'user2@gmail.com'),
+('333333', 'Usuario3', 'user3', 'user3@gmail.com'),
+('444444', 'Usuario4', 'user4', 'user4@gmail.com'),
+('555555', 'Usuario5', 'user5', 'user5@gmail.com'),
+('666666', 'Usuario6', 'user6', 'user6@gmail.com'),
+('777777', 'Usuario7', 'user7', 'user7@gmail.com'),
+('888888', 'Usuario8', 'user8', 'user8@gmail.com'),
+('999999', 'Usuario9', 'user9', 'user9@gmail.com');
 
 CREATE TABLE professor (
 	id_professor SERIAL PRIMARY KEY,
@@ -182,9 +183,6 @@ VALUES (DEFAULT, 1, 1, '000000', '2018-09-29', '13:00:00', 1, 'levar calculadora
 (DEFAULT, 3, 3, '444444', '2018-10-15', '13:00:00', 3, 'Encardenado'),
 (DEFAULT, 1, 4, '666666', '2018-11-01', '13:00:00', 4, 'até vetores'),
 (DEFAULT, 2, 5, NULL, '2018-09-4', '13:00:00', 4, 'Comparecer com Camiseta do grupo'),
-(DEFAULT, 2, 6, '112344', '2018-08-06', '19:00:00', 4, 'testinho'),
-(DEFAULT, 2, 8, '112344', '2018-09-04', '13:00:00', 4, 'Comparecer com Camiseta do grupo'),
-(DEFAULT, 3, 8, '112344', '2018-10-31', '19:00:00', 4, 'atenção'),
 (DEFAULT, 1, 7, NULL, '2018-09-30', '13:00:00', 1, 'até o cap 4'),
 (DEFAULT, 1, 7, NULL, '2018-11-25', '13:30:00', 1, 'até o cap 7');
 
@@ -200,10 +198,7 @@ VALUES('111111', 1, DEFAULT),
 ('222222', 2, DEFAULT),
 ('333333', 3, DEFAULT),
 ('444444', 4, DEFAULT),
-('555555', 5, DEFAULT),
-('112344', 6, DEFAULT),
-('112344', 7, DEFAULT),
-('112344', 8, DEFAULT);
+('555555', 5, DEFAULT);
 
 CREATE TABLE cardapio (
     tabela JSONB,
@@ -287,29 +282,33 @@ INSERT INTO destino(id_viagem, id_destino) VALUES
 CREATE TABLE reserva (
 	id_viagem INT NOT NULL,
 	id_passageiro VARCHAR(6) NOT NULL,
+	id_origem INT NOT NULL,
+	id_destino INT NOT NULL,
 	status_reserva BOOLEAN NOT NULL,
 
 	FOREIGN KEY(id_viagem) REFERENCES viagem (id_viagem),
 	FOREIGN KEY(id_passageiro) REFERENCES aluno (ra_aluno),
+	FOREIGN KEY(id_origem) REFERENCES origem (id_origem),
+	FOREIGN KEY(id_destino) REFERENCES destino (id_destino),
 	PRIMARY KEY(id_viagem, id_passageiro)
 );
-INSERT INTO reserva (id_viagem, id_passageiro, status_reserva) VALUES
-(1, 666666, 'false'),
-(1, 333333, 'false'),
-(1, 777777, 'false'),
-(2, 444444, 'false'),
-(2, 888888, 'false'),
-(4, 444444, 'false'),
-(4, 666666, 'false'),
-(3, 888888, 'false'),
-(5, 333333, 'false');
+-- INSERT INTO reserva (id_viagem, id_passageiro, id_origem, id_destino, status_reserva) VALUES
+-- (1, 666666, 1, 2, 'false'),
+-- (1, 333333, 'false'),
+-- (1, 777777, 'false'),
+-- (2, 444444, 'false'),
+-- (2, 888888, 'false'),
+-- (4, 444444, 'false'),
+-- (4, 666666, 'false'),
+-- (3, 888888, 'false'),
+-- (5, 333333, 'false');
 
 CREATE TABLE tipo_divulgacao(
     id_tipo SERIAL PRIMARY KEY,
     nome_tipo VARCHAR(10) NOT NULL
 );
 
-INSERT INTO tipo_divulgacao VALUES
+INSERT INTO tipo_divulgacao (nome_tipo) VALUES
 ('Doce'),
 ('Salgado'),
 ('Empréstimo');
@@ -325,17 +324,27 @@ CREATE TABLE item_divulgacao (
     hora_fim TIME NOT NULL,
     descricao TEXT,
     quantidade INT,
-    reserva_automatica BOOLEAN NOT NULL,
 
     FOREIGN KEY(id_tipo) REFERENCES tipo_divulgacao(id_tipo),
-    FOREIGN KEY(ra_aluno) REFERENCES aluno(ra_aluno),
+    FOREIGN KEY(ra_aluno) REFERENCES aluno(ra_aluno)
 );
 
-INSERT INTO item_divulgacao (ra_aluno, id_tipo, valor, dia, hora_inicio, hora_fim, descricao, quantidade, reserva_automatica) VALUES
-('000000', 1, 3.00, '2018-09-03', '10:00', '21:00', 'bolo de cenoura', 15, FALSE),
-('111111', 1, 2.50, '2018-09-03', '08:00', '12:00', 'cookies', 10, FALSE),
-('222222', 3, 2.00, '2018-09-02', '13:30', '15:30', 'preciso de calculadora', 0, FALSE),
-('333333', 2, 3.00, '2018-09-02', '11:00', '23:00', 'enroladinho de salsicha', 5, TRUE);
+INSERT INTO item_divulgacao (ra_aluno, id_tipo, valor, dia, hora_inicio, hora_fim, descricao, quantidade) VALUES
+('000000', 1, 3.00, '2018-09-03', '10:00', '21:00', 'bolo de cenoura', 15),
+('111111', 1, 2.50, '2018-09-03', '08:00', '12:00', 'cookies', 10),
+('222222', 3, 0.00, '2018-09-02', '13:30', '15:30', 'preciso de calculadora', 0),
+('333333', 2, 3.00, '2018-09-02', '11:00', '23:00', 'enroladinho de salsicha', 5);
+
+CREATE TABLE reserva_divulgacao(
+	id_reserva SERIAL PRIMARY KEY,
+	id_divulgacao INT NOT NULL,
+	ra_aluno_comprador VARCHAR(6) NOT NULL,
+	quantidade INT,
+
+	FOREIGN KEY(id_divulgacao) REFERENCES item_divulgacao(id_divulgacao),
+	FOREIGN KEY(ra_aluno_comprador) REFERENCES aluno(ra_aluno)
+);
+
 
 CREATE VIEW compromissos AS
 SELECT 'aula' AS tipo, ATu.ra_aluno, UC.nome AS nome_uc, NULL AS nome, T.nome AS turma, T.id_turma, H.dia_semana, NULL as dia, H.hora, HT.sala, NULL as descricao

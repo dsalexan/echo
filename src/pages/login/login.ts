@@ -7,6 +7,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { CadastroPage } from '../cadastro/cadastro';
 import { HomePage } from '../home/home';
 import 'rxjs/add/operator/map';
+import { AES, lib, PBKDF2, pad, mode } from 'crypto-js'
 
 @IonicPage()
 @Component({
@@ -28,32 +29,30 @@ export class LoginPage {
   
   clickLogin() {
     // document.getElementById("teste").textContent = this.dados["usuario"];
-    this.verificarCredenciais(this.dados["usuario"], this.dados["senha"], this.dados["lembrar"])
+    this.verificarCredenciais(this.dados["usuario"], this.dados["senha"])
   }
 
-  verificarCredenciais(user, senha, lembrar) {
+  verificarCredenciais(user, senha) {
     user = (user == null || user == '') ? '' : user
     senha = (senha == null || user == '') ? '' : senha
 
     if(user != '' && senha != '') {
-      var path = 'http://localhost:3000/api/auth/login?login='+ user + '&senha='+ senha
+      // Encrypt
+      var encryptSenha = this.encrypt(senha, 'Achilles');
+
+      var path = 'http://localhost:3000/api/auth/login?login='+ user + '&senha='+ encryptSenha
       //var path = 'http://104.248.9.4.4:3000/api/auth/login?login='+ user + '&senha='+ senha
       this.http.get(path).map(res => res.json()).subscribe(data => {
         console.log('data', data.auth)
         console.log('data', data.data)
         if(data.auth && data.data != undefined) {
-
-          //this.storage.set("aluno_ra", data.data[0].ra_aluno)
+          this.storage.set("aluno_ra", data.data.ra)
           this.storage.set("aluno_nome", data.data.nome)
-          //this.storage.set("aluno_user", data.data[0].user)
-          this.storage.set("aluno_login", data.data.login_intranet)
-          //this.storage.set("aluno_email", data.data[0].email)
-          //this.storage.set("aluno_telefone", data.data[0].telefone)
-          
-          if (lembrar) {
-            //this.storage.set("aluno_senha", this.dados["senha"])
-          }
-          
+          this.storage.set("aluno_senha", senha)
+          this.storage.set("aluno_login", data.data.login)
+          this.storage.set("aluno_email", data.data.email == null ? "" : data.data.ra)
+          this.storage.set("aluno_telefone", data.data.telefone == null ? "" : data.data.ra)
+
           this.navCtrl.push(HomePage, {dados: this.dados});
           //this.navCtrl.push(CadastroPage, {dados: this.dados});
         } else {
@@ -90,5 +89,31 @@ export class LoginPage {
   primeiroLogin() {
     // verificar se usuario this.dados["usuario"] já está cadastrado no postgres
     return true;
+  }
+
+  encrypt (msg, pass) {
+    var keySize = 256;
+    var iterations = 100;
+
+    var salt = lib.WordArray.random(128/8);
+    
+    var key = PBKDF2(pass, salt, {
+        keySize: keySize/32,
+        iterations: iterations
+      });
+  
+    var iv = lib.WordArray.random(128/8);
+    
+    var encrypted = AES.encrypt(msg, key, { 
+      iv: iv, 
+      padding: pad.Pkcs7,
+      mode: mode.CBC
+      
+    });
+    
+    // salt, iv will be hex 32 in length
+    // append them to the ciphertext for use  in decryption
+    var transitmessage = salt.toString()+ iv.toString() + encrypted.toString();
+    return transitmessage;
   }
 }
