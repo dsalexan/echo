@@ -345,6 +345,17 @@ CREATE TABLE reserva_divulgacao(
 	FOREIGN KEY(ra_aluno_comprador) REFERENCES aluno(ra_aluno)
 );
 
+CREATE TABLE bug_report(
+	id_bug_report SERIAL PRIMARY KEY,
+	ra_aluno VARCHAR(6) NOT NULL,
+    dia DATE NOT NULL,
+    hora TIME NOT NULL,
+	tipo VARCHAR(50) NOT NULL,
+	descricao TEXT NOT NULL,
+
+	FOREIGN KEY(ra_aluno) REFERENCES aluno(ra_aluno)
+);
+
 
 CREATE VIEW compromissos AS
 SELECT 'aula' AS tipo, ATu.ra_aluno, UC.nome AS nome_uc, NULL AS nome, T.nome AS turma, T.id_turma, H.dia_semana, NULL as dia, H.hora, HT.sala, NULL as descricao

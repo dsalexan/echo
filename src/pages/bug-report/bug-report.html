@@ -13,28 +13,28 @@
   </ion-header>
   
 <ion-content padding>
-    <form #bugForm="ngForm" (ngSubmit)="submitBugReport()">
+  <form #bugForm="ngForm" (ngSubmit)="submitBugReport()">
 
-        <ion-item>
-          <ion-label floating> O bug é relacionado a qual funcionalidade? </ion-label>
-          <ion-select id="tipo" name="tipo">
-            <ion-option value="agenda">Agenda</ion-option>
-            <ion-option value="carona">Carona</ion-option>
-            <ion-option value="configuracao">Configuração</ion-option>
-            <ion-option value="divulgacao">Divulgação</ion-option>
-            <ion-option value="login">Login</ion-option>
-            <ion-option value="perfil">Perfil</ion-option>
-            <ion-option value="utilidades">Utilidades</ion-option>
-          </ion-select>
-        </ion-item> <!-- [(ngModel)]="bug.tipo" -->
+      <ion-item>
+        <ion-label floating> O bug é relacionado a qual funcionalidade? </ion-label>
+        <ion-select id="tipo" name="tipo" [(ngModel)]="tipo" >
+          <ion-option value="agenda">Agenda</ion-option>
+          <ion-option value="carona">Carona</ion-option>
+          <ion-option value="configuracao">Configuração</ion-option>
+          <ion-option value="divulgacao">Divulgação</ion-option>
+          <ion-option value="login">Login</ion-option>
+          <ion-option value="perfil">Perfil</ion-option>
+          <ion-option value="utilidades">Utilidades</ion-option>
+        </ion-select>
+      </ion-item> <!-- [(ngModel)]="bug.tipo" -->
 
-        <ion-item>
-          <ion-label floating> Descrição </ion-label>
-          <ion-input type="text" id="descricao" name="descricao" required>
-          </ion-input>
-        </ion-item> <!--  [(ngModel)]="bug.descricao" -->
+      <ion-item>
+        <ion-label floating> Descrição </ion-label>
+        <ion-input type="text" id="descricao" name="descricao" [(ngModel)]="descricao" required>
+        </ion-input>
+      </ion-item> <!--  [(ngModel)]="bug.descricao" -->
 
-        <button [disabled]="!bugForm.form.valid" type="submit" ion-button round block>Enviar</button>
-    
-      </form>
+      <button type="submit" ion-button round block>Enviar</button>
+  
+    </form>
 </ion-content>
