@@ -42,8 +42,9 @@ export class BugReportPage {
     });
     
     this.storage.get("aluno_ra").then((usu) => {
-      var dia = '2018-09-03'
-      var hora = '10:00'
+      var dia = this.formatDate(new Date())
+      var hora = (new Date()).toTimeString().split(' ')[0]
+      hora = hora.slice(0, hora.length-3) 
       var tipo = this.tipo
       var descricao = this.descricao
       var path = 'http://localhost:3000/api/bugreport/put/bug?ra_aluno=' + usu + '&dia=' + dia + '&hora=' + hora + '&tipo=' + tipo + '&descricao=' + descricao
@@ -51,10 +52,23 @@ export class BugReportPage {
       this.http.get(path).map(res => res.json()).subscribe(data => {
         if(data.success) {
           alert.present();
+          this.navCtrl.push(HomePage);
         }else {
           alertError.present();
         }
       })
     })
+  }
+
+  formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
   }
 }
