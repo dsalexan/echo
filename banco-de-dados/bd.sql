@@ -201,25 +201,10 @@ VALUES('111111', 1, DEFAULT),
 ('555555', 5, DEFAULT);
 
 CREATE TABLE cardapio (
+	id_cardapio SERIAL PRIMARY KEY,
     tabela JSONB,
-	data_inicio DATE NOT NULL,
-	PRIMARY KEY(data_inicio)
+	data_inicio DATE NOT NULL
 );
-
-INSERT INTO cardapio
-VALUES
-('{"prato_base": "Arroz e feijão", "prato_principal" : "Filé de frango", "opcao_vegetariana": "Kibe vegetariano",
-"guarnicao": "Chuchu", "sobremesa": "Gelatina", "semana": "10", "dia_semana": "Segunda", "tipo_refeicao": "Almoço"}', '2018-10-15'),
-('{"prato_base": "Arroz e feijão", "prato_principal" : "Filé de peixe", "opcao_vegetariana": "Couve-flor gratinada",
-"guarnicao": "Couve", "sobremesa": "Gelatina", "semana": "10", "dia_semana": "Segunda", "tipo_refeicao": "Jantar"}', '2018-10-16'),
-('{"prato_base": "Arroz e feijão", "prato_principal" : "Costela", "opcao_vegetariana": "Batata",
-"guarnicao": "Farofa", "sobremesa": "Gelatina", "semana": "10", "dia_semana": "Terça", "tipo_refeicao": "Almoço"}', '2018-10-17'),
-('{"prato_base": "Arroz e feijão", "prato_principal" : "Bisteca", "opcao_vegetariana": "Batata doce",
-"guarnicao": "Farofa", "sobremesa": "Gelatina", "semana": "10", "dia_semana": "Terça", "tipo_refeicao": "Jantar"}', '2018-10-18'),
-('{"prato_base": "Arroz e feijão", "prato_principal" : "Filé mignon", "opcao_vegetariana": "Rúcula",
-"guarnicao": "Couve", "sobremesa": "Gelatina", "semana": "10", "dia_semana": "Quarta", "tipo_refeicao": "Almoço"}', '2018-10-19'),
-('{"prato_base": "Arroz e feijão", "prato_principal" : "Contra filé", "opcao_vegetariana": "Ovo frito",
-"guarnicao": "Couve", "sobremesa": "Abacaxi", "semana": "10", "dia_semana": "Quarta", "tipo_refeicao": "Jantar"}', '2018-10-20');
 
 CREATE TABLE localidade(
 	id_local SERIAL PRIMARY KEY,
