@@ -7,7 +7,7 @@
 
 <ion-content padding>
 
-  <div id="info" style="--width: 100%; --height: 150px">
+  <div id="info" style="--width: 100%; --height: 170px">
 
     <div id="tipo"><h2><b>{{dados.nome}}</b></h2></div>
     <div id="data"><h2><b><div style="display: inline" *ngIf="eventoOuNao(dados)">{{dados.dia_mes}}/{{dados.mes}} </div>{{dados.hora}}</b></h2></div>
@@ -18,11 +18,13 @@
 
     <div id="faltas">Faltas:</div>
     <div id="botaofaltas">
-      <button id="teste" ion-button large>
+      <button ion-button (click)="removeFalta()">
         <ion-icon name="md-remove-circle"></ion-icon>
       </button>
-      10
-      <button ion-button>
+      <div id="qtdFaltas">
+        {{dados.faltas}}
+      </div>
+      <button ion-button (click)="addFalta()">
         <ion-icon name="md-add-circle"></ion-icon>
       </button>
     </div>

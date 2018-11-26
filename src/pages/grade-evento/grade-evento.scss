@@ -69,15 +69,23 @@ page-grade-evento {
         top: 110px;
     }
 
-    div#info div#botaofaltas {
+    div#info div#botaofaltas button:nth-of-type(1) {
+        display: block;
+        position: absolute;
+        right: 100px;
+        top: 110px;
+    }
+    div#info div#botaofaltas button:nth-of-type(2) {
         display: block;
         position: absolute;
         right: 10px;
-        top: 100px;
+        top: 110px;
     }
-
-    div#info div#botaofaltas button#teste {
-        padding-top: 0px;
+    div#info div#botaofaltas div#qtdFaltas {
+        display: block;
+        position: absolute;
+        right: 75px;
+        top: 123px;
     }
 
     div#info div#data {
