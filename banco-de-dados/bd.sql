@@ -2,6 +2,7 @@ DROP VIEW compromissos;
 DROP TABLE IF EXISTS reserva_divulgacao;
 DROP TABLE IF EXISTS item_divulgacao;
 DROP TABLE IF EXISTS tipo_divulgacao;
+DROP TABLE IF EXISTS mensagem;
 DROP TABLE IF EXISTS reserva;
 DROP TABLE IF EXISTS origem;
 DROP TABLE IF EXISTS destino;
@@ -306,6 +307,14 @@ CREATE TABLE reserva (
 -- (4, 666666, 'false'),
 -- (3, 888888, 'false'),
 -- (5, 333333, 'false');
+
+CREATE TABLE mensagem(
+	id_destinatario VARCHAR(6) NOT NULL,
+	mensagem TEXT NOT NULL,
+	lida BOOLEAN NOT NULL,
+
+	FOREIGN KEY (id_destinatario) REFERENCES aluno(ra_aluno)
+);
 
 CREATE TABLE tipo_divulgacao(
     id_tipo SERIAL PRIMARY KEY,
