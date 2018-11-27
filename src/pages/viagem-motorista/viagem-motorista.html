@@ -13,26 +13,31 @@
 <ion-content padding>
   <ion-item>
     <br>
-    <h3> Origem: {{loc[viagem.id_origem]}}<br>Destino: {{loc[viagem.id_destino]}}</h3>
-    <h4> Dia {{viagem.dia.slice(0,10)}} às {{viagem.hora}}</h4>
+    <h2>Dia <b>{{viagem.dia.slice(0,10)}}</b> às <b>{{viagem.hora}}</b></h2>
+    <h2>Viagem de <b>{{loc[viagem.id_origem]}}</b> para <b>{{loc[viagem.id_destino]}}</b></h2>
+    <br>
+    <h2>Vagas disponíveis: {{viagem.qtd_vagas}}</h2>
+    <h2>Descrição: {{viagem.descricao}}</h2>
   </ion-item>
   <br>
   <ion-list>
     <h4>Reservas Confirmadas</h4>
-    <ion-item *ngFor="let r of reservaConfirmada" >{{r.id_passageiro}}
+    <ion-item *ngFor="let r of reservaConfirmada" >{{r.nome}}
       <ion-avatar item-start>
         <ion-icon name="md-person"></ion-icon>
         <!---<img src="img/avatar-cher.png">-->
       </ion-avatar>
-      <button ion-button icon-end (click)="rejeitarReserva()">
+      <button ion-button icon-end (click)="excluirReserva(r.ra_aluno)">
         <ion-icon name="md-trash"></ion-icon>
       </button>
+      <br>Buscar às <b>{{r.hora}}</b> em: <b>{{loc[r.id_origem]}}</b>
+      <br>Levar até: <b>{{loc[r.id_destino]}}</b>
     </ion-item>
   </ion-list>
 
   <ion-list>
     <h4>Reservas Pendentes</h4>
-    <ion-item *ngFor="let r of reservaPendente">{{r.id_passageiro}}
+    <ion-item *ngFor="let r of reservaPendente">{{r.nome}}
       <ion-avatar item-start>
         <ion-icon name="md-person"></ion-icon>
         <!---<img src="img/avatar-cher.png">-->
@@ -40,9 +45,11 @@
       <button ion-button icon-end (click)="rejeitarReserva()">
         <ion-icon name="md-thumbs-down"></ion-icon>
       </button>
-      <button ion-button icon-end (click)="aceitarReserva()">
+      <button ion-button icon-end (click)="aceitarReserva(r.ra_aluno)">
         <ion-icon name="md-thumbs-up"></ion-icon>
       </button>
+      <br>Buscar às {{r.hora}} em: {{loc[r.id_origem]}}
+      <br>Levar até: {{loc[r.id_destino]}}
     </ion-item>
   </ion-list>
 

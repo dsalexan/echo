@@ -31,14 +31,25 @@ export class ViagemPassageiroPage {
       this.http.get(path).map(res => res.json()).subscribe(data => {
 
         if(data.success) {
-          let alert = this.alertCtrl.create({
-            title: 'Ok!',
-            subTitle: 'Reserva excluída',
-            buttons: ['Dismiss']
-          });
-          alert.present();
-          this.ionViewDidLoad();
-
+          var path2 = 'http://localhost:3000/api/caronas/put/viagem/aumenta_vaga?id=' + this.viagem["id_viagem"]
+          this.http.get(path2).map(res => res.json()).subscribe(data => {
+            if(data.success) { 
+              let alert = this.alertCtrl.create({
+                title: 'Ok!',
+                subTitle: 'Reserva excluída',
+                buttons: ['Dismiss']
+              });
+              alert.present();
+              this.ionViewDidLoad();
+            } else {
+              let alert = this.alertCtrl.create({
+                title: 'Ops!',
+                subTitle: 'Tente novamente',
+                buttons: ['Dismiss']
+              });
+              alert.present();
+            }
+          })
           //enviar mensagem de cancelamento de reserva para o motorista
           
         } else {

@@ -227,11 +227,15 @@ CREATE TABLE localidade(
 );
 INSERT INTO localidade (descricao) VALUES
 ('UNIFESP'),
+('Santa Inês'),
 ('Satélite'),
+('Bosque'),
 ('Parque Industrial'),
-('Urbanova'),
+('Jardim das Indústrias'),
+('Jacareí'),
 ('Chaparral'),
-('Santa Inês');
+('Urbanova'),
+('Taubaté');
 
 CREATE TABLE viagem (
 	id_viagem SERIAL PRIMARY KEY,

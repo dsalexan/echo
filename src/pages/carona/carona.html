@@ -11,10 +11,12 @@
 
 <ion-content padding>
   <ion-card>
-    <h2>{{viagem.hora}}
-    <br>{{viagem.dia}}
-    <br>{{viagem.descricao}}
-    </h2>
+    <h2>{{viagem.dia.slice(0,10)}} às {{viagem.hora}}</h2>
+      <p>Viagem de {{loc[viagem.id_origem]}} para {{loc[viagem.id_destino]}}</p>
+      <!--<p>Motorista: {{viagem.nome}}</p>-->
+      <p>Descrição: {{viagem.descricao}}</p>
+      
+      Reserva {{viagem.status_reserva ? 'confirmada' : 'pendente'}}
   </ion-card>
   <button ion-button (click)="reservar()"> Reservar </button>
 </ion-content>

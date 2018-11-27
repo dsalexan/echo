@@ -19,21 +19,26 @@
       </ion-avatar>
       <h2>Dia {{viagem.dia.slice(0,10)}} às {{viagem.hora}}</h2>
       <p>Viagem de {{loc[viagem.id_origem]}} para {{loc[viagem.id_destino]}}</p>
+      
+      {{!reservas_motorista[viagem.id_viagem] && reservas_motorista[viagem.id_viagem] != undefined ? 'Há reserva(s) pendentes' : ''}}
+
     </button>
   </ion-list>
 
 
   <ion-list>
     <h4> Passageiro </h4>
-    <button ion-item *ngFor="let viagem of viagens_passageiro" (click)="abrirPassageiro(viagem)">{{viagem.descricao}}
+    <button ion-item *ngFor="let viagem of viagens_passageiro" (click)="abrirPassageiro(viagem)">
       <ion-avatar item-start>
         <ion-icon name="md-person"></ion-icon>
-        <!---<img src="img/avatar-cher.png">-->
+        <!---<img src="img/avatar-cher.png">  foto do motorista? -->
       </ion-avatar>
-      <h2>{{viagem.dia}}</h2>
-      <p>{{viagem.hora}}</p>
+      <h2>{{viagem.dia.slice(0,10)}} às {{viagem.hora}}</h2>
+      <p>Viagem de {{loc[viagem.id_origem]}} para {{loc[viagem.id_destino]}}</p>
+      <p>Motorista: {{viagem.nome}}</p>
+      <p>Descrição: {{viagem.descricao}}</p>
       
-      {{viagem.status_reserva ? 'Confirmada' : 'Pendente'}}
+      Reserva {{viagem.status_reserva ? 'confirmada' : 'pendente'}}
 
     </button>
   </ion-list>

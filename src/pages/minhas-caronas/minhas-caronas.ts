@@ -15,6 +15,7 @@ import { ViagemPassageiroPage } from '../viagem-passageiro/viagem-passageiro';
 export class MinhasCaronasPage {
 
   viagens_motorista= [];
+  reservas_motorista= {};
   viagens_passageiro = [];
   loc = {};
 
@@ -22,6 +23,7 @@ export class MinhasCaronasPage {
   }
 
   abrirMotorista(v){
+    console.log(v)
     this.navCtrl.push(ViagemMotoristaPage, {viagem: v, loc:this.loc});
   }
 
@@ -32,12 +34,39 @@ export class MinhasCaronasPage {
   caronasMotorista(){
     var path;
     this.storage.get("aluno_ra").then((usu) => {
-      path = 'http://localhost:3000/api/caronas/get/viagem/motorista?id='+ usu
+      
+      path = 'http://localhost:3000/api/caronas/get/viagem/motorista/reserva?id='+ usu
       console.log(path)
       this.http.get(path).map(res => res.json()).subscribe(data => {
         
         if(data.success) {
-          this.viagens_motorista = data.data;
+          data.data.forEach(element => {
+            if(element.id_viagem in Object.keys(this.reservas_motorista)){
+              if(element.status_reserva == false && this.reservas_motorista[element.id_viagem] == true)
+                this.reservas_motorista[element.id_viagem] = false
+            }
+            else{
+              this.reservas_motorista[element.id_viagem] = element.status_reserva
+            }
+          })
+          
+          var path2 = 'http://localhost:3000/api/caronas/get/viagem/motorista?id='+ usu
+          console.log(path2)
+          this.http.get(path2).map(res => res.json()).subscribe(data2 => {
+            
+            if(data2.success) {
+              this.viagens_motorista = data2.data;
+            } else {
+              let alert = this.alertCtrl.create({
+                title: 'Ops!',
+                subTitle: 'Tente novamente',
+                buttons: ['Dismiss']
+              });
+              alert.present();
+            }
+          }, (err) => {
+            console.log(err)
+          })
         } else {
           let alert = this.alertCtrl.create({
             title: 'Ops!',
@@ -49,10 +78,10 @@ export class MinhasCaronasPage {
       }, (err) => {
         console.log(err)
       })
-
     })
-
   }
+
+
 
   caronasPassageiro(){
     var path;
@@ -62,7 +91,6 @@ export class MinhasCaronasPage {
       this.http.get(path).map(res => res.json()).subscribe(data => {
         
         if(data.success) {
-          console.log(data.data)
           this.viagens_passageiro = data.data;
         } else {
           let alert = this.alertCtrl.create({
@@ -75,10 +103,7 @@ export class MinhasCaronasPage {
       }, (err) => {
         console.log(err)
       })
-
     })
-
-
   }
 
   checkSession() {
@@ -100,7 +125,6 @@ export class MinhasCaronasPage {
         });
         //console.log(this.loc)
       }
-
     }, (err) => {
         console.log(err)
     })
@@ -115,5 +139,4 @@ export class MinhasCaronasPage {
     document.getElementById("tabs").style.display = "none"
     document.getElementById("botao_menu").style.display = "none"
   }
-
 }
