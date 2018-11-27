@@ -220,10 +220,12 @@ export class ViagemMotoristaPage {
   reservaPendente = [];
   reservaConfirmada = [];
   loc = {};
+  msg_rejeicao: String
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController, public popOver: PopoverController) {
     this.viagem = this.navParams.get("viagem");
     this.loc = this.navParams.get("loc");
+    this.msg_rejeicao = ''
   }
 
   editarViagemMotorista(myEvent) {
@@ -238,7 +240,48 @@ export class ViagemMotoristaPage {
       if(usu == null) {
         this.navCtrl.push(LoginPage);
       }
+      this.msg_rejeicao = "O usuário " + usu + " rejeitou a sua reserva."
     })
+  }
+
+
+  rejeitarReserva(id){
+    var path = 'http://localhost:3000/api/caronas/delete/reserva?id=' + this.viagem["id_viagem"] + '&ra=' + id
+    console.log(path)
+    this.http.get(path).map(res => res.json()).subscribe(data => {
+      if(data.success){
+        //enviar mensagem a quem opediu '
+        console.log('asdasd',id)
+        console.log('1',this.msg_rejeicao)
+        var path2 = 'http://localhost:3000/api/mensagem/put/mensagem?id_destinatario=' + id + '&msg=' + this.msg_rejeicao
+        console.log('a', path2)
+        this.http.get(path2).map(res => res.json()).subscribe(data => {
+          if(data.success){
+            let alert = this.alertCtrl.create({
+              title: 'Êba!',
+              subTitle: 'Reserva rejeitada com sucesso',
+              buttons: ['Dismiss']
+            });
+            alert.present();
+          } else {
+            let alert = this.alertCtrl.create({
+              title: 'Ops!',
+              subTitle: 'Tente novamente',
+              buttons: ['Dismiss']
+            });
+            alert.present();
+          }
+        })
+      } else {
+        let alert = this.alertCtrl.create({
+          title: 'Ops!',
+          subTitle: 'Tente novamente',
+          buttons: ['Dismiss']
+        });
+        alert.present();
+      }
+    })
+
   }
 
   excluirReserva(id){
@@ -352,6 +395,7 @@ export class ViagemMotoristaPage {
   ionViewDidLoad() {
     this.checkSession();
     this.buscaReservas();
+    // PENDENCIA: buscar a qtd de vagas nesta tela
     //console.log(this.viagem)
     console.log('ionViewDidLoad ViagemMotoristaPage');
     document.getElementById("tabs").style.display = "none"

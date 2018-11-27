@@ -27,6 +27,7 @@
         <ion-icon name="md-person"></ion-icon>
         <!---<img src="img/avatar-cher.png">-->
       </ion-avatar>
+      <br>
       <button ion-button icon-end (click)="excluirReserva(r.ra_aluno)">
         <ion-icon name="md-trash"></ion-icon>
       </button>
@@ -42,7 +43,8 @@
         <ion-icon name="md-person"></ion-icon>
         <!---<img src="img/avatar-cher.png">-->
       </ion-avatar>
-      <button ion-button icon-end (click)="rejeitarReserva()">
+      <br>
+      <button ion-button icon-end (click)="rejeitarReserva(r.ra_aluno)">
         <ion-icon name="md-thumbs-down"></ion-icon>
       </button>
       <button ion-button icon-end (click)="aceitarReserva(r.ra_aluno)">
