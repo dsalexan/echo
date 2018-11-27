@@ -50,8 +50,8 @@ export class LoginPage {
           this.storage.set("aluno_nome", data.data.nome)
           this.storage.set("aluno_senha", senha)
           this.storage.set("aluno_login", data.data.login)
-          this.storage.set("aluno_email", data.data.email == null ? "" : data.data.ra)
-          this.storage.set("aluno_telefone", data.data.telefone == null ? "" : data.data.ra)
+          this.storage.set("aluno_email", data.data.email == null ? "" : data.data.email)
+          this.storage.set("aluno_telefone", data.data.telefone == null ? "" : data.data.telefone)
 
           this.navCtrl.push(HomePage, {dados: this.dados});
           //this.navCtrl.push(CadastroPage, {dados: this.dados});

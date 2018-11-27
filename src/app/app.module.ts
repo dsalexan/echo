@@ -37,6 +37,7 @@ import { TurmaPage } from '../pages/turma/turma';
 import { InicialDivulgacaoPage } from '../pages/inicial-divulgacao/inicial-divulgacao';
 import { DivulgarDivulgacaoPage } from '../pages/divulgar-divulgacao/divulgar-divulgacao';
 import { FiltrarDivulgacaoPage } from '../pages/filtrar-divulgacao/filtrar-divulgacao';
+import { BugReportPage } from '../pages/bug-report/bug-report';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { FiltrarDivulgacaoPage } from '../pages/filtrar-divulgacao/filtrar-divul
     PopoverOferecerPage,
     InicialDivulgacaoPage,
     DivulgarDivulgacaoPage,
-    FiltrarDivulgacaoPage
+    FiltrarDivulgacaoPage,
+    BugReportPage
   ],
   imports: [
     BrowserModule,
@@ -101,7 +103,8 @@ import { FiltrarDivulgacaoPage } from '../pages/filtrar-divulgacao/filtrar-divul
     PopoverOferecerPage,
     InicialDivulgacaoPage,
     DivulgarDivulgacaoPage,
-    FiltrarDivulgacaoPage
+    FiltrarDivulgacaoPage,
+    BugReportPage
   ],
   providers: [
     StatusBar,
