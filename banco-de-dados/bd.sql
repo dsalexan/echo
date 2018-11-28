@@ -2,6 +2,7 @@ DROP VIEW compromissos;
 DROP TABLE IF EXISTS reserva_divulgacao;
 DROP TABLE IF EXISTS item_divulgacao;
 DROP TABLE IF EXISTS tipo_divulgacao;
+DROP TABLE IF EXISTS mensagem;
 DROP TABLE IF EXISTS reserva;
 DROP TABLE IF EXISTS origem;
 DROP TABLE IF EXISTS destino;
@@ -212,11 +213,15 @@ CREATE TABLE localidade(
 );
 INSERT INTO localidade (descricao) VALUES
 ('UNIFESP'),
+('Santa Inês'),
 ('Satélite'),
+('Bosque'),
 ('Parque Industrial'),
-('Urbanova'),
+('Jardim das Indústrias'),
+('Jacareí'),
 ('Chaparral'),
-('Santa Inês');
+('Urbanova'),
+('Taubaté');
 
 CREATE TABLE viagem (
 	id_viagem SERIAL PRIMARY KEY,
@@ -273,8 +278,8 @@ CREATE TABLE reserva (
 
 	FOREIGN KEY(id_viagem) REFERENCES viagem (id_viagem),
 	FOREIGN KEY(id_passageiro) REFERENCES aluno (ra_aluno),
-	FOREIGN KEY(id_origem) REFERENCES origem (id_origem),
-	FOREIGN KEY(id_destino) REFERENCES destino (id_destino),
+	FOREIGN KEY(id_origem) REFERENCES localidade (id_local),
+	FOREIGN KEY(id_destino) REFERENCES localidade (id_local),
 	PRIMARY KEY(id_viagem, id_passageiro)
 );
 -- INSERT INTO reserva (id_viagem, id_passageiro, id_origem, id_destino, status_reserva) VALUES
@@ -287,6 +292,14 @@ CREATE TABLE reserva (
 -- (4, 666666, 'false'),
 -- (3, 888888, 'false'),
 -- (5, 333333, 'false');
+
+CREATE TABLE mensagem(
+	id_destinatario VARCHAR(6) NOT NULL,
+	mensagem TEXT NOT NULL,
+	lida BOOLEAN NOT NULL,
+
+	FOREIGN KEY (id_destinatario) REFERENCES aluno(ra_aluno)
+);
 
 CREATE TABLE tipo_divulgacao(
     id_tipo SERIAL PRIMARY KEY,

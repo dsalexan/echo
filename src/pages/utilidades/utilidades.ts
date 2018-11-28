@@ -6,9 +6,11 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { InAppBrowser, InAppBrowserOptions  } from '@ionic-native/in-app-browser';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 
 import { LoginPage } from '../login/login';
+import { Http } from '@angular/http';
+import { AES, lib, PBKDF2, pad, mode } from 'crypto-js'
 
 const biblioteca = 'http://www.biblioteca.unifesp.br/biblioteca/index.php';
 const saldoRU = 'https://phpu.unifesp.br/ru_consulta/index.php';
@@ -36,7 +38,7 @@ export class UtilidadesPage {
     shouldPauseOnSuspend : 'no', //Android only  
 };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private iab: InAppBrowser, public storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private iab: InAppBrowser, public storage: Storage, public http: Http, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
   }
 
   checkSession() {
@@ -62,8 +64,37 @@ export class UtilidadesPage {
 
 
   clicksSaldo() {
-    const browser = this.iab.create(saldoRU,target,this.options);
-    browser.show();
+    let loading = this.loadingCtrl.create({
+      content: 'Carregando...'
+    });
+    loading.present();
+
+    this.storage.get("aluno_login").then(aluno_login => {
+      this.storage.get("aluno_senha").then(aluno_senha => {
+        var encryptSenha = this.encrypt(aluno_senha, 'Achilles');
+        var path = 'http://localhost:3000/api/utilidades/get/saldo?login='+ aluno_login + '&senha='+ encryptSenha
+
+        this.http.get(path).map(res => res.json()).subscribe(data => {
+          loading.dismiss();
+          if (data.saldo_ru != null) {
+            let alert = this.alertCtrl.create({
+              message: '<h2>Seu Saldo: ' + String(data.saldo_ru) + '</h2>',
+              buttons: ['Ok'],
+              cssClass: 'alertClass'
+            });
+            alert.present();
+          }
+          else {
+            let alert = this.alertCtrl.create({
+              message: '<h2>Erro</h2>',
+              buttons: ['Ok'],
+              cssClass: 'alertClass'
+            });
+            alert.present();
+          }
+        })
+      })
+    })
   }
 
 
@@ -90,6 +121,31 @@ export class UtilidadesPage {
     browser.show();
   }
 
+  encrypt (msg, pass) {
+    var keySize = 256;
+    var iterations = 100;
+
+    var salt = lib.WordArray.random(128/8);
+    
+    var key = PBKDF2(pass, salt, {
+        keySize: keySize/32,
+        iterations: iterations
+      });
+
+    var iv = lib.WordArray.random(128/8);
+    
+    var encrypted = AES.encrypt(msg, key, { 
+      iv: iv, 
+      padding: pad.Pkcs7,
+      mode: mode.CBC
+      
+    });
+    
+    // salt, iv will be hex 32 in length
+    // append them to the ciphertext for use  in decryption
+    var transitmessage = salt.toString()+ iv.toString() + encrypted.toString();
+    return transitmessage;
+  }
 }
 
 

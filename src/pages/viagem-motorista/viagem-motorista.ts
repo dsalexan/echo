@@ -220,10 +220,12 @@ export class ViagemMotoristaPage {
   reservaPendente = [];
   reservaConfirmada = [];
   loc = {};
+  msg_rejeicao: String
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController, public popOver: PopoverController) {
     this.viagem = this.navParams.get("viagem");
     this.loc = this.navParams.get("loc");
+    this.msg_rejeicao = ''
   }
 
   editarViagemMotorista(myEvent) {
@@ -238,24 +240,38 @@ export class ViagemMotoristaPage {
       if(usu == null) {
         this.navCtrl.push(LoginPage);
       }
+      this.msg_rejeicao = "O usuário " + usu + " rejeitou a sua reserva."
     })
   }
 
-  rejeitarReserva(){
-    var path = 'http://localhost:3000/api/caronas/delete/reserva?id=' + this.viagem["id_viagem"]
+
+  rejeitarReserva(id){
+    var path = 'http://localhost:3000/api/caronas/delete/reserva?id=' + this.viagem["id_viagem"] + '&ra=' + id
+    console.log(path)
     this.http.get(path).map(res => res.json()).subscribe(data => {
-
-      if(data.success) {
-        let alert = this.alertCtrl.create({
-          title: 'Ok!',
-          subTitle: 'Reserva excluída',
-          buttons: ['Dismiss']
-        });
-        alert.present();
-        this.ionViewDidLoad();
-
-        //enviar mensagem de rejeição para o passageiro
-        
+      if(data.success){
+        //enviar mensagem a quem opediu '
+        console.log('asdasd',id)
+        console.log('1',this.msg_rejeicao)
+        var path2 = 'http://localhost:3000/api/mensagem/put/mensagem?id_destinatario=' + id + '&msg=' + this.msg_rejeicao
+        console.log('a', path2)
+        this.http.get(path2).map(res => res.json()).subscribe(data => {
+          if(data.success){
+            let alert = this.alertCtrl.create({
+              title: 'Êba!',
+              subTitle: 'Reserva rejeitada com sucesso',
+              buttons: ['Dismiss']
+            });
+            alert.present();
+          } else {
+            let alert = this.alertCtrl.create({
+              title: 'Ops!',
+              subTitle: 'Tente novamente',
+              buttons: ['Dismiss']
+            });
+            alert.present();
+          }
+        })
       } else {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
@@ -268,21 +284,73 @@ export class ViagemMotoristaPage {
 
   }
 
-  aceitarReserva(){
-    var path = 'http://localhost:3000/api/caronas/put/viagem/reserva?id=' + this.viagem["id_viagem"]
+  excluirReserva(id){
+    var path = 'http://localhost:3000/api/caronas/delete/reserva?id=' + this.viagem["id_viagem"] + '&ra=' + id
+    console.log(path)
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
       if(data.success) {
+        var path2 = 'http://localhost:3000/api/caronas/put/viagem/aumenta_vaga?id=' + this.viagem["id_viagem"]
+        console.log(path2)
+        this.http.get(path2).map(res => res.json()).subscribe(data => {
+          if(data.success) { 
+            let alert = this.alertCtrl.create({
+              title: 'Ok!',
+              subTitle: 'Reserva excluída',
+              buttons: ['Dismiss']
+            });
+            alert.present();
+            this.ionViewDidLoad();
+          } else {
+            let alert = this.alertCtrl.create({
+              title: 'Ops!',
+              subTitle: 'Tente novamente',
+              buttons: ['Dismiss']
+            });
+            alert.present();
+          }
+        })
+        // enviar mensagem de deletamento da reserva pelo motorista
+      } else {
         let alert = this.alertCtrl.create({
-          title: 'Ok!',
-          subTitle: 'Reserva confirmada',
+          title: 'Ops!',
+          subTitle: 'Tente novamente',
           buttons: ['Dismiss']
         });
         alert.present();
-        this.ionViewDidLoad();
+      }
+    })
 
+  }
+
+  aceitarReserva(id_passageiro){
+    var path = 'http://localhost:3000/api/caronas/put/viagem/reserva?id=' + this.viagem["id_viagem"] + "&id_passageiro=" + id_passageiro
+    console.log(path)
+    this.http.get(path).map(res => res.json()).subscribe(data => {
+
+      if(data.success) {
+
+        var path2 = 'http://localhost:3000/api/caronas/put/viagem/diminui_vaga?id=' + this.viagem["id_viagem"]
+        this.http.get(path2).map(res => res.json()).subscribe(data => {
+
+          if(data.success) {
+            let alert = this.alertCtrl.create({
+              title: 'Ok!',
+              subTitle: 'Reserva confirmada',
+              buttons: ['Dismiss']
+            });
+            alert.present();
+            this.ionViewDidLoad();
+          }else {
+            let alert = this.alertCtrl.create({
+              title: 'Ops!',
+              subTitle: 'Tente novamente',
+              buttons: ['Dismiss']
+            });
+            alert.present();
         //enviar mensagem de confirmação para o passageiro
-        
+          }
+        })
       } else {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
@@ -298,16 +366,16 @@ export class ViagemMotoristaPage {
     this.reservaPendente = []
     this.reservaConfirmada = []
 
-    var path = 'http://localhost:3000/api/caronas/get/reserva?id=' + this.viagem["id_viagem"]
+    var path = 'http://localhost:3000/api/caronas/get/viagem/reserva?id=' + this.viagem["id_viagem"]
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
       if(data.success) {
-        console.log(data.data)
+        //console.log(data.data)
         if(data.data.length == 0){
           return
         }
         data.data.forEach(element => {
-          console.log(element)
+          //console.log(element)
           if(element["status_reserva"])
             this.reservaConfirmada.push(element)
           else
@@ -327,7 +395,8 @@ export class ViagemMotoristaPage {
   ionViewDidLoad() {
     this.checkSession();
     this.buscaReservas();
-    console.log(this.viagem)
+    // PENDENCIA: buscar a qtd de vagas nesta tela
+    //console.log(this.viagem)
     console.log('ionViewDidLoad ViagemMotoristaPage');
     document.getElementById("tabs").style.display = "none"
     document.getElementById("botao_menu").style.display = "none"
