@@ -312,6 +312,8 @@ CREATE TABLE mensagem(
 	id_destinatario VARCHAR(6) NOT NULL,
 	mensagem TEXT NOT NULL,
 	lida BOOLEAN NOT NULL,
+	dia DATE,
+	hora TIME,
 
 	FOREIGN KEY (id_destinatario) REFERENCES aluno(ra_aluno)
 );
