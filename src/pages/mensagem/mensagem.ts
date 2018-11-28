@@ -5,32 +5,30 @@ import { Storage } from '@ionic/storage';
 import { LoginPage } from '../login/login'
 import { Http } from '@angular/http';
 
+
 @IonicPage()
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html',
+  selector: 'page-mensagem',
+  templateUrl: 'mensagem.html',
 })
-export class HomePage {
-  
-  tabela = new Array(7);
+export class MensagemPage {
   mensagens = []
-
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http) {
   }
 
 
   exibirMensagens(){
     this.storage.get("aluno_ra"). then(usu => {
-      var path = 'http://localhost:3000/api/mensagem/get/novas?id_destinatario=' + usu
+      var path = 'http://localhost:3000/api/mensagem/get/all?id_destinatario=' + usu
       console.log(path)
       this.http.get(path).map(res => res.json()).subscribe(data => {
         if(data.success){
           this.mensagens = data.data
+          console.log('jisdjoasi', this.mensagens)
         }
       })
     })
   }
-
 
   checkSession() {
     this.storage.get("aluno_nome").then((usu) => {
@@ -40,15 +38,8 @@ export class HomePage {
     })
   }
 
-  ionViewWillEnter() {
-    this.checkSession();
-    this.exibirMensagens();
-    console.log('ionViewWillEnter HomePage');
-    document.getElementById("tabs").style.display = "inline-block"
-    document.getElementById("botao_menu").style.display = "inline-block"
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad MensagemPage');
   }
 
-  clickLogin() {
-    this.navCtrl.push(LoginPage);
-  }
 }

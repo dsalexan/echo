@@ -19,6 +19,7 @@
       </ion-avatar>
       <h2>Dia {{viagem.dia.slice(0,10)}} às {{viagem.hora}}</h2>
       <p>Viagem de {{loc[viagem.id_origem]}} para {{loc[viagem.id_destino]}}</p>
+      <p>Vagas disponíveis: {{viagem.qtd_vagas}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; R$ {{viagem.preco}}</p>
       
       {{!reservas_motorista[viagem.id_viagem] && reservas_motorista[viagem.id_viagem] != undefined ? 'Há reserva(s) pendentes' : ''}}
 

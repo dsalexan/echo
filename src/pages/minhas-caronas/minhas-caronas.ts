@@ -56,6 +56,7 @@ export class MinhasCaronasPage {
             
             if(data2.success) {
               this.viagens_motorista = data2.data;
+              console.log(this.viagens_motorista)
             } else {
               let alert = this.alertCtrl.create({
                 title: 'Ops!',
@@ -92,6 +93,7 @@ export class MinhasCaronasPage {
         
         if(data.success) {
           this.viagens_passageiro = data.data;
+          console.log(this.viagens_passageiro)
         } else {
           let alert = this.alertCtrl.create({
             title: 'Ops!',
@@ -130,12 +132,12 @@ export class MinhasCaronasPage {
     })
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     this.checkSession();
     this.mostrarLocalidade();
     this.caronasMotorista();
     this.caronasPassageiro();
-    console.log('ionViewDidLoad MinhasCaronasPage');
+    console.log('ionViewWillEnter MinhasCaronasPage');
     document.getElementById("tabs").style.display = "none"
     document.getElementById("botao_menu").style.display = "none"
   }

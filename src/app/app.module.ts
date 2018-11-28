@@ -38,6 +38,7 @@ import { InicialDivulgacaoPage } from '../pages/inicial-divulgacao/inicial-divul
 import { DivulgarDivulgacaoPage } from '../pages/divulgar-divulgacao/divulgar-divulgacao';
 import { FiltrarDivulgacaoPage } from '../pages/filtrar-divulgacao/filtrar-divulgacao';
 import { BugReportPage } from '../pages/bug-report/bug-report';
+import { MensagemPage } from '../pages/mensagem/mensagem';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { BugReportPage } from '../pages/bug-report/bug-report';
     InicialDivulgacaoPage,
     DivulgarDivulgacaoPage,
     FiltrarDivulgacaoPage,
-    BugReportPage
+    BugReportPage,
+    MensagemPage
   ],
   imports: [
     BrowserModule,
@@ -104,7 +106,8 @@ import { BugReportPage } from '../pages/bug-report/bug-report';
     InicialDivulgacaoPage,
     DivulgarDivulgacaoPage,
     FiltrarDivulgacaoPage,
-    BugReportPage
+    BugReportPage,
+    MensagemPage
   ],
   providers: [
     StatusBar,
