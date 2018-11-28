@@ -207,7 +207,7 @@ export class PopoverMotoristaPage {
       inputs:[
         {
           name: 'origem',
-          placeholder: 'origem'
+          placeholder: this.viagem
         },
         {
           name: 'destino',
