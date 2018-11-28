@@ -6,8 +6,8 @@ import { Storage } from '@ionic/storage';
 
 import { PerfilPage } from '../pages/perfil/perfil';
 import { LoginPage } from '../pages/login/login';
-import { ConfigPage } from '../pages/configuracoes/configuracoes';
 import { UtilidadesPage } from '../pages/utilidades/utilidades';
+import { BugReportPage } from '../pages/bug-report/bug-report';
 
 import { HomePage } from '../pages/home/home';
 import { TurmaPage } from '../pages/turma/turma';
@@ -45,8 +45,8 @@ export class MyApp {
     this.nav.push(PerfilPage);
   }
 
-  clickConfiguracoes() {
-    this.nav.push(ConfigPage);
+  clickBugReport() {
+    this.nav.push(BugReportPage);
   }
 
   clickLogout() {

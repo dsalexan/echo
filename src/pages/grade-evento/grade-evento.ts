@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http } from '@angular/http';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the GradeEventoPage page.
@@ -18,7 +19,7 @@ export class GradeEventoPage {
 
   dados = {}
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, public storage: Storage) {
     this.dados = navParams.get('dados');
     // console.log(this.dados)
   }
@@ -26,7 +27,7 @@ export class GradeEventoPage {
   ionViewWillEnter() {
     this.carregarDadosTurma()
     console.log('ionViewWillEnter GradeEventoPage');
-    console.log(this.dados)
+    // console.log(this.dados)
     document.getElementById("tabs").style.display = "none"
     document.getElementById("botao_menu").style.display = "none"
   }
@@ -40,6 +41,15 @@ export class GradeEventoPage {
       this.dados["nome_turma"] = info.data.nome_turma
       this.dados["nome_uc"] = info.data.nome_uc
       this.dados["nome_prof"] = info.data.nome_prof
+    })
+
+    this.storage.get("aluno_ra").then(ra_aluno => {
+      var path4 = 'http://localhost:3000/api/grades/get/faltas?id_turma=' + id_turma + '&ra_aluno=' + ra_aluno
+      this.http.get(path4).map(res => res.json()).subscribe(info => {
+        // console.log(info)
+        console.log('info', info)
+        this.dados["faltas"] = info.data.faltas
+      })
     })
 
     this.dados["alunos"] = []
@@ -75,5 +85,23 @@ export class GradeEventoPage {
     if (compromisso.tipo == 'evento')
       return true
     return false
+  }
+
+  addFalta() {
+    this.dados["faltas"] = this.dados["faltas"] + 1
+    this.storage.get("aluno_ra").then(ra_aluno => {
+      var path = 'http://localhost:3000/api/grades/put/addfalta?id_turma=' + this.dados["id_turma"] + '&ra_aluno=' + ra_aluno
+      this.http.get(path).map(res => res.json()).subscribe()
+    })
+  }
+
+  removeFalta() {
+    if (this.dados["faltas"] > 0) {
+      this.dados["faltas"] = this.dados["faltas"] - 1
+      this.storage.get("aluno_ra").then(ra_aluno => {
+        var path = 'http://localhost:3000/api/grades/put/removefalta?id_turma=' + this.dados["id_turma"] + '&ra_aluno=' + ra_aluno
+        this.http.get(path).map(res => res.json()).subscribe()
+      })
+    }
   }
 }

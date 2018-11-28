@@ -1,14 +1,16 @@
-
 <!--Cabeçalho-->
 <ion-header>
   <ion-navbar color="primary">
-    <ion-buttons left><!--botoes do cabeçalho - ESQUERDA-->
+    <ion-buttons left>
+      <!--botoes do cabeçalho - ESQUERDA-->
     </ion-buttons>
     <ion-title center>{{ 'Perfil' }}</ion-title>
-    <ion-buttons right><!--botoes do cabecalho - DIREITA-->
-      <button ion-button icon-only (click)="clickConfig()" class="configuracoes">
-        <ion-icon name='settings'></ion-icon>
-      </button><!--botao configuracoes-->
+    <ion-buttons right>
+      <!--botoes do cabecalho - DIREITA-->
+      <button ion-button icon-only (click)="saveProfile()" class="configuracoes">
+        <ion-icon name='key'></ion-icon>
+      </button>
+      <!--botao configuracoes-->
     </ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -18,58 +20,55 @@
 
     <form *ngIf="form" [formGroup]="form" (ngSubmit)="saveProfile()">
       <div class="upperDiv">
-        <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]"
-               (change)="processWebImage($event)"/>
-        <div class="profile-image-wrapper" (click)="getPicture()">
+        <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]" (change)="processWebImage($event)" />
+        <div class="profile-image-wrapper">
           <div class="profile-image-placeholder" *ngIf="!this.form.controls.image.value">
             <ion-icon name="ios-camera-outline" class="ios-camera-outline" md="ios-camera-outline" style="color: white !important"></ion-icon>
             <div>
             </div>
           </div>
-          <div class="profile-image" [style.backgroundImage]="getProfileImageStyle()"
-               *ngIf="this.form.controls.image.value"></div>
+          <div class="profile-image" [style.backgroundImage]="getProfileImageStyle()" *ngIf="this.form.controls.image.value"></div>
         </div>
         <!--dados do usuario-->
-        <h3 class="full_name">{{account.full_name}}</h3> <!--nome-->
-        <h3 class="userDetails">{{account.about}}</h3> <!--sobre-->
+        <h3 class="full_name">{{account.full_name}}</h3>
+        <!--nome-->
+        <h3 class="userDetails">{{account.about}}</h3>
+        <!--sobre-->
       </div>
 
       <ion-list style="padding: 20px !important; border-bottom: 0.55px solid #fff;">
         <ion-item style="border-top: 0.55px solid #fff;">
-          
+
           <!--CAMPO USUARIO-->
           <ion-label class="usuario">Usuário </ion-label>
-          <ion-input class="inputFields" type="text" formControlName="user_name" (keyup)="changedSmtng()"
-                     disabled="{{isDisabled}}"
-                     [(ngModel)]="account.user_name"></ion-input>
+          <ion-input class="inputFields" type="text" formControlName="user_name" (keyup)="changedSmtng()" disabled="{{isDisabled}}"
+            [(ngModel)]="account.user_name"></ion-input>
         </ion-item>
-        
-         <!--CAMPO RA-->
+
+        <!--CAMPO RA-->
         <ion-item>
           <ion-label class="ra">RA </ion-label>
-          <ion-input class="inputFields" type="text" formControlName="user_RA" (keyup)="changedSmtng()"
-                     disabled="{{isDisabled}}"
-                     [(ngModel)]="account.user_RA"></ion-input>
+          <ion-input class="inputFields" type="text" formControlName="user_RA" (keyup)="changedSmtng()" disabled="{{isDisabled}}"
+            [(ngModel)]="account.user_RA"></ion-input>
         </ion-item>
 
         <!--CAMPO DE EMAIL-->
         <ion-item>
           <ion-label class="email">Email </ion-label>
-          <ion-input class="inputFields" type="email" formControlName="user_email" (keyup)="changedSmtng()"
-                     disabled="{{isDisabled}}"
-                     [(ngModel)]="account.user_email"></ion-input>
+          <ion-input class="inputFields" type="email" formControlName="user_email" [(ngModel)]="account.user_email"></ion-input>
         </ion-item>
 
-        <!--CAMPO DE SENHA-->
+        <!--CAMPO DE TELEFONE-->
         <ion-item>
-          <ion-label class="senha">Senha </ion-label>
-          <ion-input class="inputFields" type="password" formControlName="user_password" (keyup)="changedSmtng()"
-                     disabled="{{isDisabled}}"
-                     [(ngModel)]="account.user_password"></ion-input>
+          <ion-label class="telefone">Telefone </ion-label>
+          <ion-input class="inputFields" type="text" formControlName="user_telefone" [(ngModel)]="account.user_telefone"></ion-input>
         </ion-item>
-        
+
+        <!--CAMPO DE EMAIL-->
+        <ion-item>
+        </ion-item>
+
       </ion-list>
     </form>
   </div>
 </ion-content>
-

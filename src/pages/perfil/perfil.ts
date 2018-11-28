@@ -24,8 +24,13 @@ export class PerfilPage {
   private caption_name: string = "EDITAR";
   
   account: {
-    user_RA: string,user_name: string, user_email: string, user_password: string, profile_image: string,
-    full_name: string, about: string
+    user_RA: string,
+    user_name: string,
+    user_email: string,
+    user_telefone: string,
+    profile_image: string,
+    full_name: string,
+    about: string
   }
   
   constructor(public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder,
@@ -33,17 +38,22 @@ export class PerfilPage {
               public navParams: NavParams) {
 
     this.form = formBuilder.group({
-      image: [''], user_RA: [''], user_name: [''], user_password: [''], user_email: [''], user_state: [''],
+      image: [''],
+      user_RA: [''],
+      user_name: [''],
+      user_telefone: [''],
+      user_email: [''],
+      user_state: [''],
     });
 
     this.account = {
       user_RA: '',
       user_name: '',
       user_email: '',
-      user_password: '',
+      user_telefone: '',
       profile_image: '',
       full_name: '',
-      about: 'Bacharel em Ciência e Tecnologia'
+      about: ''
     }
   }
 
@@ -59,6 +69,11 @@ export class PerfilPage {
 
           this.storage.get("aluno_nome").then((nome) => {
             this.account.full_name = nome
+
+            this.storage.get("aluno_telefone").then((telefone) => {
+              this.account.user_telefone = telefone
+            })
+
           })
 
         })

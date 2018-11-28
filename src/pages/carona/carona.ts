@@ -13,22 +13,25 @@ import { HomePage } from '../home/home';
   templateUrl: 'carona.html',
 })
 export class CaronaPage {
-  carona: any;
-  loc: {}
+  viagem: any;
+  loc: {};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController) {
-    this.carona = this.navParams.get("viagem");
+    this.viagem = this.navParams.get("viagem");
     this.loc = this.navParams.get("loc");
   }
 
   reservar(){
     //criar reserva no banco
-    //console.log(this.carona)
+    console.log(this.viagem)
 
     var path
+    console.log(this.viagem["id_origem"])
+    console.log(this.viagem["id_destino"])
+
     this.storage.get("aluno_ra").then((usu) => {
-      path = 'http://localhost:3000/api/caronas/post/viagem/reserva?id_viagem='+ this.carona.id_viagem + '&id_passageiro='+ usu + '&status_reserva=false'
-      //console.log(path)
+      path = 'http://localhost:3000/api/caronas/post/viagem/reserva?id_viagem='+ this.viagem["id_viagem"] + '&id_passageiro='+ usu + '&id_origem=' + this.viagem["id_origem"] + '&id_destino=' + this.viagem["id_destino"] + '&status_reserva=false'
+      console.log(path)
       this.http.get(path).map(res => res.json()).subscribe(data => {
 
         if(data.success) {
@@ -66,6 +69,7 @@ export class CaronaPage {
   ionViewDidLoad() {
     this.checkSession();
     console.log('ionViewDidLoad CaronaPage');
+    console.log(this.viagem);
     document.getElementById("tabs").style.display = "none"
     document.getElementById("botao_menu").style.display = "none"
   }
