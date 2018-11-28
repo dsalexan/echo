@@ -31,8 +31,7 @@ export class HomePage {
       })
     })
   }
-
-
+  
   checkSession() {
     this.storage.get("aluno_nome").then((usu) => {
       if(usu == null) {
@@ -43,10 +42,6 @@ export class HomePage {
 
   ionViewWillEnter() {
     this.checkSession();
-    this.exibirMensagens();
-    console.log('ionViewWillEnter HomePage');
-    document.getElementById("tabs").style.display = "inline-block"
-    document.getElementById("botao_menu").style.display = "inline-block"
   }
 
   clickLogin() {

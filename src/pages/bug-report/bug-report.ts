@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
 
 import { HomePage } from '../home/home';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the BugReportPage page.
@@ -22,6 +23,18 @@ export class BugReportPage {
   descricao: string = "";
   tipo: string = "";
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController) {
+  }
+
+  ionViewWillEnter() {
+    this.checkSession();
+  }
+
+  checkSession() {
+    this.storage.get("aluno_nome").then((usu) => {
+      if(usu == null) {
+        this.navCtrl.push(LoginPage);
+      }
+    })
   }
 
   ionViewDidLoad() {
