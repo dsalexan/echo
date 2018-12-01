@@ -42,6 +42,9 @@ export class HomePage {
 
   ionViewWillEnter() {
     this.checkSession();
+
+    document.getElementById("tabs").style.display = "block"
+    document.getElementById("botao_menu").style.display = "block"
   }
 
   clickLogin() {

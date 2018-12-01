@@ -31,6 +31,18 @@ perfil-page {
         }
       }
     }
+    
+    .circle-pic{
+      width:100px;
+      height:90px;
+      -webkit-border-radius: 50%;
+      border-radius: 50%;
+     border: 2px solid #fff;
+     box-shadow: 0 0 5px gray;
+     display: inline-block;
+     margin-left: auto;
+     margin-right: auto;
+  }
   
     .amount{
       color:  map_get($colors,light);

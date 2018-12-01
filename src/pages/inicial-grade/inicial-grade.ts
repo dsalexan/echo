@@ -82,7 +82,7 @@ export class InicialGradePage {
             o["ano"] = String(dia.getFullYear())
             var dia_semana:any = this.diasSemana[dia.getDay()]
           }
-
+          
           o["id_turma"] = c.id_turma
           o["nome_uc"] = c.nome_uc
           o["nome"] = c.nome
