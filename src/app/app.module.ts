@@ -4,6 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { File } from '@ionic-native/file';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -40,6 +41,10 @@ import { FiltrarDivulgacaoPage } from '../pages/filtrar-divulgacao/filtrar-divul
 import { BugReportPage } from '../pages/bug-report/bug-report';
 import { CardapioPage } from '../pages/cardapio/cardapio';
 import { MensagemPage } from '../pages/mensagem/mensagem';
+import { MinhasDivulgacaoPage } from '../pages/minhas-divulgacao/minhas-divulgacao';
+import { ResultadoDivulgacaoPage } from '../pages/resultado-divulgacao/resultado-divulgacao';
+import { VendedorDivulgacaoPage } from '../pages/vendedor-divulgacao/vendedor-divulgacao';
+import { CompradorDivulgacaoPage } from '../pages/comprador-divulgacao/comprador-divulgacao';
 
 @NgModule({
   declarations: [
@@ -70,7 +75,12 @@ import { MensagemPage } from '../pages/mensagem/mensagem';
     FiltrarDivulgacaoPage,
     BugReportPage,
     CardapioPage,
-    MensagemPage
+    MensagemPage,
+    MinhasDivulgacaoPage,
+    ResultadoDivulgacaoPage,
+    VendedorDivulgacaoPage,
+    CompradorDivulgacaoPage,
+    BugReportPage
   ],
   imports: [
     BrowserModule,
@@ -110,10 +120,16 @@ import { MensagemPage } from '../pages/mensagem/mensagem';
     FiltrarDivulgacaoPage,
     BugReportPage,
     CardapioPage,
-    MensagemPage
+    MensagemPage,
+    MinhasDivulgacaoPage,
+    ResultadoDivulgacaoPage,
+    VendedorDivulgacaoPage,
+    CompradorDivulgacaoPage,
+    BugReportPage
   ],
   providers: [
     StatusBar,
+    File,
     SplashScreen,
     HTTP,
     {provide: ErrorHandler, useClass: IonicErrorHandler},

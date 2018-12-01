@@ -2,8 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, ViewController, ToastController, LoadingController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Storage } from '@ionic/storage';
+import { Http } from '@angular/http';
 import { Platform, Nav } from 'ionic-angular';
-
+import { AlertController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { ConfigPage } from '../configuracoes/configuracoes'
 
@@ -33,7 +34,7 @@ export class PerfilPage {
     about: string
   }
   
-  constructor(public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder,
+  constructor(public http: Http, public alertCtrl : AlertController, public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder,
               public toastCtrl: ToastController, public loadingCtrl: LoadingController, public storage: Storage,
               public navParams: NavParams) {
 
@@ -117,49 +118,88 @@ export class PerfilPage {
     return 'url(' + this.form.controls['image'].value + ')'
   }
 
-/*
  editProfile() {
-    if (this.caption_name == "EDITAR") {
-      this.isDisabled = false;
-      this.caption_name = "CANCELAR";
-    } else if (this.caption_name == "SALVAR") {
+  const newData = this.alertCtrl.create({
+    title: 'Adicionar Evento',
+    inputs: [
+      {
+        name: 'email',
+        placeholder: this.account.user_email
+      },
+      {
+        name: 'telefone',
+        placeholder: this.account.user_telefone,
+      }
+    ],
+    
+    buttons: [
+      {
+        text: 'Cancelar',
+        handler: values => {
+          console.log('Cancelado!');
+        }
+      },
+      {
+        text: 'Salvar',
+        handler: values => {
+          if(values.email != null)
+            this.account.user_email = values.email;
+          if(values.telefone != null)
+            this.account.user_telefone = values.telefone;
+          console.log('Salvo! Valor: ' + values);
+          this.saveProfile();
+        }
+      }
+    ]
+  });
 
-      console.log(this.isReadyToSave);
-      if (!(this.account.user_name && this.account.user_email && this.account.user_password && this.account.user_RA)) {
-        let toast = this.toastCtrl.create({
-          message: "Campos Inválidos!",
-          duration: 2000,
-          position: 'bottom'
-        });
-        toast.present();
-      } else {
-        let loading = this.loadingCtrl.create({
-          content: 'Please wait...'
-        });
-        loading.present();
-        setTimeout(() => {
-          loading.dismiss();
-          /*carregar dados do usuário no banco
-          *...
-          *...
-          *...
-
-         let toast = this.toastCtrl.create({
-          message: "You have successfully updated your details .",
-          duration: 2000,
-          position: 'top'
-        });
-        this.caption_name = "EDITAR";
-        this.isDisabled = true;
-        toast.present();
-
-      }, 2000);
-    }
-  } else if (this.caption_name == "CANCELAR") {
-    this.isDisabled = true;
-    this.caption_name = "EDITAR";
-  }
 }
-*/
+
+saveProfile(){
+  var erro;
+  var path;
+
+  this.storage.get("aluno_ra").then((usu) => {
+    path = 'http://104.248.9.4:3000/api/aluno/update/email?aluno=' + this.account.user_RA + '&email=' + this.account.user_email
+      console.log(path)
+      this.http.get(path).map(res => res.json()).subscribe(data => {
+
+        if(data.success) {
+          }else {
+            erro = 1
+              let alert = this.alertCtrl.create({
+                title: 'Ops!',
+                subTitle: 'Tente novamente',
+                buttons: ['Dismiss']
+              });
+              alert.present();
+            }
+          })   
+      }, (err) => {
+        console.log(err)
+      })
+
+      this.storage.get("aluno_ra").then((usu) => {
+      path = 'http://104.248.9.4:3000/api/aluno/update/telefone?aluno=' + this.account.user_RA + '&email=' + this.account.user_telefone
+      console.log(path)
+      this.http.get(path).map(res => res.json()).subscribe(data => {
+
+        if(data.success) {
+          }else {
+            erro = 1
+              let alert = this.alertCtrl.create({
+                title: 'Ops!',
+                subTitle: 'Tente novamente',
+                buttons: ['Dismiss']
+              });
+              alert.present();
+            }
+          })   
+      }, (err) => {
+        console.log(err)
+      })
+
+      
+    }  
 
 }

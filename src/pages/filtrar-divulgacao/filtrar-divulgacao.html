@@ -47,10 +47,14 @@
         </ion-item>
         
         <ion-calendar
-          [(ngModel)]="dia"
+          [(ngModel)]="item.dia"
           id="dia"
-          name="dia">
+          name="dia"          
+          (onChange)="onChange($event)"
+          [format]="'YYYY-MM-DD'">
         </ion-calendar>
+        <!-- required #item.dia="ngModel"> -->
+        
   
         <ion-card>
           <ion-card-content>

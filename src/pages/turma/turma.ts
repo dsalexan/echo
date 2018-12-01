@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, FormsModule } from "@angular/forms";
 import { Storage } from '@ionic/storage';
 import { AlertController } from 'ionic-angular';
-
 import { HomePage } from '../home/home';
 import { LoginPage } from '../login/login';
 import { copyInputAttributes } from 'ionic-angular/umd/util/dom';
@@ -164,9 +163,7 @@ export class TurmaPage {
   }
 
   upToBD(categoria,date,hora,desc){
-    /*this.storage.get('aluno_ra').then((usu)=>{
-      // não sei fazer isso ainda
-    });*/
+    
   }
 
   ionViewDidLoad() {
