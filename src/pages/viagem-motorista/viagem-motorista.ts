@@ -149,7 +149,7 @@ export class PopoverMotoristaPage {
                     var hora = (new Date()).toTimeString().split(' ')[0]
                     hora = hora.slice(0, hora.length-3) 
                     
-                    var path5 = 'http://localhost:3000/api/mensagem/put/mensagem?id_destinatario=' + reserva.ra_aluno + '&msg=' + msg + '&dia=' + dia + '&hora=' + hora
+                    var path5 = 'http://localhost:3000/api/mensagem/post/mensagem?id_destinatario=' + reserva.ra_aluno + '&msg=' + msg + '&dia=' + dia + '&hora=' + hora
                     console.log(path5)
                     this.http.get(path5).map(res => res.json()).subscribe(data5 => {
                       
@@ -252,7 +252,7 @@ export class ViagemMotoristaPage {
   msg_exclusao: String
   msg_exclusao_viagem: String
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController, public popOver: PopoverController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController, public popOver: PopoverController, public viewCtrl: ViewController) {
     this.viagem = this.navParams.get("viagem");
     this.loc = this.navParams.get("loc");
     this.msg_aceite = '';
@@ -277,6 +277,60 @@ export class ViagemMotoristaPage {
     })
   }
 
+  close() {
+    this.viewCtrl.dismiss();
+  }
+
+  showConfirmRejeitar(reserva) {
+    this.close()
+    const confirm = this.alertCtrl.create({
+      title: 'Excluir a viagem?',
+      message: 'Tem certeza de que deseja excluir a viagem? Não será possível recuperá-la.',
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log('Disagree clicked');
+            close();
+          }
+        },
+        {
+          text: 'Excluir',
+          handler: () => {
+            console.log('Agree clicked');
+            this.rejeitarReserva(reserva);
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  showConfirmAceitar(reserva) {
+    this.close()
+    const confirm = this.alertCtrl.create({
+      title: 'Excluir a viagem?',
+      message: 'Tem certeza de que deseja excluir a viagem? Não será possível recuperá-la.',
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log('Disagree clicked');
+            close();
+          }
+        },
+        {
+          text: 'Excluir',
+          handler: () => {
+            console.log('Agree clicked');
+            this.aceitarReserva(reserva);
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
 
   rejeitarReserva(reserva){
     var path = 'http://localhost:3000/api/caronas/delete/reserva?id=' + this.viagem["id_viagem"] + '&ra=' + reserva.ra_aluno
@@ -285,12 +339,12 @@ export class ViagemMotoristaPage {
       
       if(data.success){
         let alert = this.alertCtrl.create({
-          title: 'Êba!',
+          title: 'Ok!',
           subTitle: 'Reserva rejeitada com sucesso',
           buttons: ['Dismiss']
         });
         alert.present();
-        this.ionViewDidLoad();
+        this.ionViewWillEnter();
 
       } else {
         let alert = this.alertCtrl.create({
@@ -303,8 +357,7 @@ export class ViagemMotoristaPage {
     })
   }
 
-
-  excluirReserva(reserva){
+  /*excluirReserva(reserva){
     console.log(reserva)
     var path = 'http://localhost:3000/api/caronas/delete/reserva?id=' + this.viagem["id_viagem"] + '&ra=' + reserva.ra_aluno
     console.log(path)
@@ -318,13 +371,13 @@ export class ViagemMotoristaPage {
           if(data2.success){
 
             //mensagem para a carona excluida
-            var msg = this.msg_exclusao + 'referente à viagem do dia ' + this.formatDate(this.viagem["dia"]) /*+ " às " + this.viagem["hora"] */+ ' - ' + this.loc[reserva.id_origem] + '->' + this.loc[reserva.id_destino]
+            var msg = this.msg_exclusao + 'referente à viagem do dia ' + this.formatDate(this.viagem["dia"]) /*+ " às " + this.viagem["hora"] + ' - ' + this.loc[reserva.id_origem] + '->' + this.loc[reserva.id_destino]
 
             var dia = this.formatDate(new Date())
             var hora = (new Date()).toTimeString().split(' ')[0]
             hora = hora.slice(0, hora.length-3) 
 
-            var path3 = 'http://localhost:3000/api/mensagem/put/mensagem?id_destinatario=' + reserva.ra_aluno + '&msg=' + msg + '&dia=' + dia + '&hora=' + hora
+            var path3 = 'http://localhost:3000/api/mensagem/post/mensagem?id_destinatario=' + reserva.ra_aluno + '&msg=' + msg + '&dia=' + dia + '&hora=' + hora
             console.log(path3)
 
             this.http.get(path3).map(res => res.json()).subscribe(data3 => {
@@ -336,7 +389,7 @@ export class ViagemMotoristaPage {
                   buttons: ['Dismiss']
                 });
                 alert.present();
-                this.ionViewDidLoad();
+                this.ionViewWillEnter();
 
               } else {
                 let alert = this.alertCtrl.create({
@@ -367,70 +420,90 @@ export class ViagemMotoristaPage {
         alert.present();
       }
     })
-
-  }
+  }*/
 
   aceitarReserva(reserva){
-    var path = 'http://localhost:3000/api/caronas/put/viagem/reserva?id=' + this.viagem["id_viagem"] + "&id_passageiro=" + reserva.ra_aluno
-    console.log(path)
-    this.http.get(path).map(res => res.json()).subscribe(data => {
 
-      if(data.success) {
+    if(this.viagem["qtd_vagas"] > 0){
+      
+      // apenas se existirem vagas disponiveis ele pode aceitar
+      var path = 'http://localhost:3000/api/caronas/put/viagem/reserva?id=' + this.viagem["id_viagem"] + "&id_passageiro=" + reserva.ra_aluno
+      console.log(path)
+      this.http.get(path).map(res => res.json()).subscribe(data => {
 
-        var path2 = 'http://localhost:3000/api/caronas/put/viagem/diminui_vaga?id=' + this.viagem["id_viagem"]
-        this.http.get(path2).map(res => res.json()).subscribe(data2 => {
+        if(data.success) {
 
-          if(data2.success) {
-            //mandar msg falando que foi aceito
+          var path2 = 'http://localhost:3000/api/caronas/put/viagem/diminui_vaga?id=' + this.viagem["id_viagem"]
+          this.http.get(path2).map(res => res.json()).subscribe(data2 => {
 
-            var msg = this.msg_aceite + 'referente à viagem do dia ' + this.formatDate(this.viagem["dia"]) /*+ " às " + this.viagem["hora"] */+ ' - ' + this.loc[reserva.id_origem] + '->' + this.loc[reserva.id_destino]
+            if(data2.success) {
+              //mandar msg falando que foi aceito
 
-            var dia = this.formatDate(new Date())
-            var hora = (new Date()).toTimeString().split(' ')[0]
-            hora = hora.slice(0, hora.length-3) 
+              var msg = this.msg_aceite + 'referente à viagem do dia ' + this.formatDate(this.viagem["dia"]) /*+ " às " + this.viagem["hora"] */+ ' - ' + this.loc[reserva.id_origem] + '->' + this.loc[reserva.id_destino]
 
-            var path3 = 'http://localhost:3000/api/mensagem/put/mensagem?id_destinatario=' + reserva.ra_aluno + '&msg=' + msg + '&dia=' + dia + '&hora=' + hora
-            console.log(path3)
+              var dia = this.formatDate(new Date())
+              var hora = (new Date()).toTimeString().split(' ')[0]
+              hora = hora.slice(0, hora.length-3) 
 
-            this.http.get(path3).map(res => res.json()).subscribe(data3 => {
+              var path3 = 'http://localhost:3000/api/mensagem/post/mensagem?id_destinatario=' + reserva.ra_aluno + '&msg=' + msg + '&dia=' + dia + '&hora=' + hora
+              console.log(path3)
 
-              if(data3.success) { 
-                let alert = this.alertCtrl.create({
-                  title: 'Ok!',
-                  subTitle: 'Reserva confirmada',
-                  buttons: ['Dismiss']
-                });
-                alert.present();
-                this.ionViewDidLoad();
+              this.http.get(path3).map(res => res.json()).subscribe(data3 => {
 
-              } else {
-                let alert = this.alertCtrl.create({
-                  title: 'Ops!',
-                  subTitle: 'Tente novamente',
-                  buttons: ['Dismiss']
-                });
-                alert.present();
+                if(data3.success) { 
+                  let alert = this.alertCtrl.create({
+                    title: 'Ok!',
+                    subTitle: 'Reserva confirmada',
+                    buttons: ['Dismiss']
+                  });
+                  alert.present();
+                  this.ionViewWillEnter();
+
+                } else {
+                  let alert = this.alertCtrl.create({
+                    title: 'Ops!',
+                    subTitle: 'Tente novamente',
+                    buttons: ['Dismiss']
+                  });
+                  alert.present();
+                }
+              })
+
+              // deletar reservas de vagas em horarios proximos
+              
+              if(reserva.id_destino == 1){
+                var path4 = 'http://localhost:3000/api/caronas/delete/reserva/ida?id_passageiro=' + reserva.ra_aluno + '&dia=' + this.formatDate(this.viagem["dia"]) + '&hora=' + this.viagem["hora"]
               }
-            })
+              else if(reserva.id_origem == 1){
+                var path4 = 'http://localhost:3000/api/caronas/delete/reserva/volta?id_passageiro=' + reserva.ra_aluno + '&dia=' + this.formatDate(this.viagem["dia"]) + '&hora=' + this.viagem["hora"]
+              }
 
-          }else {
-            let alert = this.alertCtrl.create({
-              title: 'Ops!',
-              subTitle: 'Tente novamente',
-              buttons: ['Dismiss']
-            });
-            alert.present();
-          }
-        })
-      } else {
-        let alert = this.alertCtrl.create({
-          title: 'Ops!',
-          subTitle: 'Tente novamente',
-          buttons: ['Dismiss']
-        });
-        alert.present();
-      }
-    })
+            }else {
+              let alert = this.alertCtrl.create({
+                title: 'Ops!',
+                subTitle: 'Tente novamente',
+                buttons: ['Dismiss']
+              });
+              alert.present();
+            }
+          })
+        } else {
+          let alert = this.alertCtrl.create({
+            title: 'Ops!',
+            subTitle: 'Tente novamente',
+            buttons: ['Dismiss']
+          });
+          alert.present();
+        }
+      })
+    } else{
+      let alert = this.alertCtrl.create({
+        title: 'Ops!',
+        subTitle: 'Não há vagas disponíveis!',
+        buttons: ['Dismiss']
+      });
+      alert.present();
+    }
   }
 
   buscaReservas() {
@@ -475,12 +548,12 @@ export class ViagemMotoristaPage {
     return [year, month, day].join('-');
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     this.checkSession();
     this.buscaReservas();
     // PENDENCIA: buscar a qtd de vagas nesta tela
     //console.log(this.viagem)
-    console.log('ionViewDidLoad ViagemMotoristaPage');
+    console.log('ionViewWillEnter ViagemMotoristaPage');
     document.getElementById("tabs").style.display = "none"
     document.getElementById("botao_menu").style.display = "none"
   }
