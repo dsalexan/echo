@@ -67,7 +67,7 @@ CREATE TABLE aula(
   id_analise INTEGER REFERENCES analise(id_analise)
 );
 
-CREATE TABLE reserva(
+CREATE TABLE reserva_sala(
   id_reserva SERIAL PRIMARY KEY,
   texto TEXT NOT NULL,
   duracao INT NOT NULL,
@@ -86,7 +86,7 @@ SELECT A.hash,
   END AS termo,
   SUBSTRING(A.turma, 1, 1) AS turma
 FROM aula A LEFT JOIN
-  reserva R ON A.hash = R.hash_aula;
+  reserva_sala R ON A.hash = R.hash_aula;
 
 CREATE OR REPLACE VIEW visao_reserva AS
 SELECT
@@ -99,7 +99,7 @@ SELECT
   TO_CHAR(datahora AT TIME ZONE 'BRST', 'HH24:MI') AS inicio,
   TO_CHAR(datahora AT TIME ZONE 'BRST' + MAKE_INTERVAL(0, 0, 0, 0, 0, duracao, 0), 'HH24:MI') AS fim,
   duracao
-FROM reserva;
+FROM reserva_sala;
 
 
 DROP TABLE IF EXISTS historico;
