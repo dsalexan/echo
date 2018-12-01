@@ -52,5 +52,7 @@ export class HomePage {
   ionViewWillEnter() {
     this.checkSession();
     this.exibirMensagens();
+    document.getElementById("tabs").style.display = "block"
+    document.getElementById("botao_menu").style.display = "block"
   }
 }
