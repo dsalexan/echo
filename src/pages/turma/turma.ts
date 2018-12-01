@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, FormsModule } from "@angular/forms";
 import { Storage } from '@ionic/storage';
 import { AlertController } from 'ionic-angular';
-
 import { HomePage } from '../home/home';
 import { LoginPage } from '../login/login';
 import { copyInputAttributes } from 'ionic-angular/umd/util/dom';
