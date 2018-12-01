@@ -14,6 +14,7 @@ import { TurmaPage } from '../pages/turma/turma';
 import { InicialCaronaPage } from '../pages/inicial-carona/inicial-carona';
 import { InicialGradePage } from '../pages/inicial-grade/inicial-grade';
 import { InicialDivulgacaoPage } from '../pages/inicial-divulgacao/inicial-divulgacao';
+import { MensagemPage } from '../pages/mensagem/mensagem';
 
 @Component({
   templateUrl: 'app.html'
@@ -42,6 +43,10 @@ export class MyApp {
 
   clickPerfil() {
     this.nav.push(PerfilPage);
+  }
+
+  clickMensagens(){
+    this.nav.push(MensagemPage);
   }
 
   clickBugReport() {

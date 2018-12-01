@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
 
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 
 import { CadastroPage } from '../cadastro/cadastro';
 import { HomePage } from '../home/home';
@@ -18,7 +18,7 @@ export class LoginPage {
 
   dados = {}
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage, public http: Http) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage, public http: Http, public loadingCtrl: LoadingController) {
   }
 
   ionViewWillEnter() {
@@ -37,12 +37,19 @@ export class LoginPage {
     senha = (senha == null || user == '') ? '' : senha
 
     if(user != '' && senha != '') {
+      // Loading message
+      let loading = this.loadingCtrl.create({
+        content: 'Carregando...'
+      });
+      loading.present();
+      
       // Encrypt
       var encryptSenha = this.encrypt(senha, 'Achilles');
 
       var path = 'http://localhost:3000/api/auth/login?login='+ user + '&senha='+ encryptSenha
       //var path = 'http://104.248.9.4.4:3000/api/auth/login?login='+ user + '&senha='+ senha
       this.http.get(path).map(res => res.json()).subscribe(data => {
+        loading.dismiss();
         console.log('data', data.auth)
         console.log('data', data.data)
         if(data.auth && data.data != undefined) {
