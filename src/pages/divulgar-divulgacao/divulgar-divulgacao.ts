@@ -60,7 +60,7 @@ export class DivulgarDivulgacaoPage {
   }
 
   PreencherListaTipo(){
-    var path = 'http://localhost:3000/api/divulgacao/get/todos/tipo'
+    var path = 'http://104.248.9.4:3000/api/divulgacao/get/todos/tipo'
     this.http.get(path).map(res => res.json()).subscribe(data => {
       data.data.forEach(tipo => {
         this.lista.push({id_tipo:tipo.id_tipo, nome_tipo:tipo.nome_tipo})
@@ -72,7 +72,7 @@ export class DivulgarDivulgacaoPage {
 
   divulgar(){ 
     this.storage.get("aluno_ra").then((usu) => {
-      var path = 'http://localhost:3000/api/divulgacao/post/divulgacao?ra_aluno='+ usu + '&id_tipo=' + this.item["categoria"] + '&valor='+ this.item["valor"] + '&dia='+ this.item["dia"] + '&hora_inicio=' + this.item["hora_inicio"] + '&hora_fim=' + this.item["hora_fim"] + '&quantidade=' + this.item["quantidade"] + '&descricao='+ this.item["descricao"]
+      var path = 'http://104.248.9.4:3000/api/divulgacao/post/divulgacao?ra_aluno='+ usu + '&id_tipo=' + this.item["categoria"] + '&valor='+ this.item["valor"] + '&dia='+ this.item["dia"] + '&hora_inicio=' + this.item["hora_inicio"] + '&hora_fim=' + this.item["hora_fim"] + '&quantidade=' + this.item["quantidade"] + '&descricao='+ this.item["descricao"]
       console.log(path)
       this.http.get(path).map(res => res.json()).subscribe(data => {
 

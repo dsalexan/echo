@@ -60,7 +60,7 @@ export class BugReportPage {
       hora = hora.slice(0, hora.length-3) 
       var tipo = this.tipo
       var descricao = this.descricao
-      var path = 'http://localhost:3000/api/bugreport/put/bug?ra_aluno=' + usu + '&dia=' + dia + '&hora=' + hora + '&tipo=' + tipo + '&descricao=' + descricao
+      var path = 'http://104.248.9.4:3000/api/bugreport/put/bug?ra_aluno=' + usu + '&dia=' + dia + '&hora=' + hora + '&tipo=' + tipo + '&descricao=' + descricao
 
       this.http.get(path).map(res => res.json()).subscribe(data => {
         if(data.success) {

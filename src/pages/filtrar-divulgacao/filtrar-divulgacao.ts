@@ -52,7 +52,7 @@ export class FiltrarDivulgacaoPage {
   }
 
   PreencherListaTipo(){
-    var path = 'http://localhost:3000/api/divulgacao/get/todos/tipo'
+    var path = 'http://104.248.9.4:3000/api/divulgacao/get/todos/tipo'
     this.http.get(path).map(res => res.json()).subscribe(data => {
       data.data.forEach(tipo => {
         this.lista.push({id_tipo:tipo.id_tipo, nome_tipo:tipo.nome_tipo})
@@ -65,7 +65,7 @@ export class FiltrarDivulgacaoPage {
 
 
   buscar(){
-    var path = 'http://localhost:3000/api/divulgacao/get/tipo?id_tipo=' + document.getElementById('categoria').getAttribute("ng-reflect-model")
+    var path = 'http://104.248.9.4:3000/api/divulgacao/get/tipo?id_tipo=' + document.getElementById('categoria').getAttribute("ng-reflect-model")
       
     this.http.get(path).map(res => res.json()).subscribe(data => {
       console.log('RESULTADO', data)
