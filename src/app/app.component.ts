@@ -22,7 +22,7 @@ import { ViagemMotoristaPage } from '../pages/viagem-motorista/viagem-motorista'
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = ViagemMotoristaPage//HomePage;
+  rootPage:any = InicialGradePage//HomePage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public storage: Storage) {
     platform.ready().then(() => {

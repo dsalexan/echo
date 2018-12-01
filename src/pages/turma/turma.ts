@@ -164,9 +164,7 @@ export class TurmaPage {
   }
 
   upToBD(categoria,date,hora,desc){
-    /*this.storage.get('aluno_ra').then((usu)=>{
-      // não sei fazer isso ainda
-    });*/
+    
   }
 
   ionViewDidLoad() {
