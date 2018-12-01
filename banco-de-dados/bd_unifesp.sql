@@ -1,14 +1,13 @@
-
-
 DROP VIEW IF EXISTS aula_termo;
 DROP VIEW IF EXISTS visao_reserva;
 
-DROP TABLE IF EXISTS reserva;
+DROP TABLE IF EXISTS reserva_sala;
 DROP TABLE IF EXISTS aula;
 DROP TABLE IF EXISTS sala;
 
 DROP TABLE IF EXISTS uc_alias;
 DROP TABLE IF EXISTS unidade_curricular;
+
 DROP TABLE IF EXISTS analise;
 
 DROP TABLE IF EXISTS unifesp;
@@ -43,6 +42,7 @@ CREATE TABLE uc_alias(
   alias VARCHAR(300) NOT NULL
 );
 
+
 CREATE TABLE sala(
   id_sala SERIAL PRIMARY KEY,
   nome_original TEXT NOT NULL UNIQUE,
@@ -64,6 +64,7 @@ CREATE TABLE aula(
   monitoria BOOLEAN,
   aula BOOLEAN,
   reposicao BOOLEAN,
+  pos BOOLEAN,
   id_analise INTEGER REFERENCES analise(id_analise)
 );
 
@@ -100,6 +101,7 @@ SELECT
   TO_CHAR(datahora AT TIME ZONE 'BRST' + MAKE_INTERVAL(0, 0, 0, 0, 0, duracao, 0), 'HH24:MI') AS fim,
   duracao
 FROM reserva_sala;
+
 
 
 DROP TABLE IF EXISTS historico;
