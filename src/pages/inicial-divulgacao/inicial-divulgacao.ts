@@ -29,7 +29,7 @@ export class InicialDivulgacaoPage {
   }
 
   ionViewWillEnter() {
-    //this.checkSession();
+    this.checkSession();
     console.log('ionViewWillEnter InicialDivulgacaoPage');
     document.getElementById("tabs").style.display = "block"
     document.getElementById("botao_menu").style.display = "block"
