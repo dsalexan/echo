@@ -25,6 +25,7 @@ CREATE TABLE aluno (
 	ra_aluno VARCHAR(10) PRIMARY KEY,
 	nome TEXT NOT NULL,
 	login_intranet TEXT NOT NULL UNIQUE,
+	senha_initranet TEXT NOT NULL,
 	email TEXT NOT NULL,
 	telefone VARCHAR(15)
 );
@@ -294,6 +295,7 @@ CREATE TABLE reserva (
 -- (5, 333333, 'false');
 
 CREATE TABLE mensagem(
+	id_mensagem SERIAL PRIMARY KEY,
 	id_destinatario VARCHAR(6) NOT NULL,
 	mensagem TEXT NOT NULL,
 	lida BOOLEAN NOT NULL,

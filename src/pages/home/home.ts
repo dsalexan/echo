@@ -3,7 +3,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { LoginPage } from '../login/login'
+import { MensagemPage } from '../mensagem/mensagem'
 import { Http } from '@angular/http';
+import { BOOL_TYPE } from '@angular/compiler/src/output/output_ast';
 
 @IonicPage()
 @Component({
@@ -14,8 +16,14 @@ export class HomePage {
   
   tabela = new Array(7);
   mensagens = []
+  nova: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http) {
+    this.nova = false;
+  }
+
+  clickMensagem(){
+    this.navCtrl.push(MensagemPage);
   }
 
 
@@ -24,9 +32,11 @@ export class HomePage {
       var path = 'http://localhost:3000/api/mensagem/get/novas?id_destinatario=' + usu
       console.log(path)
       this.http.get(path).map(res => res.json()).subscribe(data => {
-        if(data.success){
+        if(data.success && data.data.length > 0){
           this.mensagens = data.data
+          this.nova = true
         }
+        console.log(this.nova)
       })
     })
   }
@@ -41,6 +51,7 @@ export class HomePage {
 
   ionViewWillEnter() {
     this.checkSession();
+<<<<<<< HEAD
 
     document.getElementById("tabs").style.display = "block"
     document.getElementById("botao_menu").style.display = "block"
@@ -48,5 +59,8 @@ export class HomePage {
 
   clickLogin() {
     this.navCtrl.push(LoginPage);
+=======
+    this.exibirMensagens();
+>>>>>>> 29e26f75a944465b038d2588da5169f58de5e0c4
   }
 }

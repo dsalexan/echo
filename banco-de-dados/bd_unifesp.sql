@@ -100,3 +100,24 @@ SELECT
   TO_CHAR(datahora AT TIME ZONE 'BRST' + MAKE_INTERVAL(0, 0, 0, 0, 0, duracao, 0), 'HH24:MI') AS fim,
   duracao
 FROM reserva;
+
+
+DROP TABLE IF EXISTS historico;
+DROP TABLE IF EXISTS atestado;
+
+CREATE TABLE historico(
+  id_historico SERIAL PRIMARY KEY,
+  extracao JSONB NOT NULL,
+  datahora TIMESTAMPTZ NOT NULL,
+
+  ra_aluno INT DEFAULT NULL
+);
+
+CREATE TABLE atestado(
+  id_atestado SERIAL PRIMARY KEY,
+  extracao JSONB NOT NULL,
+  datahora TIMESTAMPTZ NOT NULL,
+
+  ra_aluno INT DEFAULT NULL
+);
+

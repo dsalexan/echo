@@ -10,7 +10,12 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
+
+  <div *ngIf="viagens_motorista.length == 0 && viagens_passageiro.length ==0">
+    Você não está cadastrado em viagem alguma!
+  </div>
+
+  <ion-list *ngIf="viagens_motorista.length > 0">
     <h4> Motorista </h4>
     <button ion-item *ngFor="let viagem of viagens_motorista" (click)="abrirMotorista(viagem)">
       <ion-avatar item-start>
@@ -27,7 +32,7 @@
   </ion-list>
 
 
-  <ion-list>
+  <ion-list *ngIf="viagens_passageiro.length > 0">
     <h4> Passageiro </h4>
     <button ion-item *ngFor="let viagem of viagens_passageiro" (click)="abrirPassageiro(viagem)">
       <ion-avatar item-start>
