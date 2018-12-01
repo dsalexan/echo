@@ -6,7 +6,6 @@ import { AlertController } from 'ionic-angular';
 import { LoginPage } from '../login/login'
 import { Http } from '@angular/http';
 import { GradeEventoPage } from '../grade-evento/grade-evento';
-import { AgendaPage } from '../agenda/agenda';
 
 @IonicPage()
 @Component({

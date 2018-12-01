@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
-import { AgendaPage } from '../agenda/agenda';
 
 /**
  * Generated class for the GradeCadastroEventoPage page.
