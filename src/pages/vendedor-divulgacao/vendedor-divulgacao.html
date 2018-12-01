@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons left><!--botoes do cabeçalho - ESQUERDA-->
+    </ion-buttons>
+    <ion-title center>{{ 'Pedidos de Reservas' }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+    <h1> {{itens.nome}} </h1>    
+    <p>Disponível em {{itens.dia.slice(8,10)}}/{{itens.dia.slice(5,7)}}/{{itens.dia.slice(0,4)}} das {{itens.hora_inicio.slice(0,5)}} às {{itens.hora_fim.slice(0,5)}}</p>
+    <br>
+    <ion-item text-wrap *ngFor="let reserva of reservas" (click)="abrirReservas(reserva)">
+      <ion-avatar item-start>
+        <ion-icon name="md-person"></ion-icon>
+      </ion-avatar>
+
+      <h2>{{reserva.nome}} solicitou {{reserva.quantidade}} unidades.</h2>
+    </ion-item>
+  </ion-item>
+  </ion-list>

@@ -191,6 +191,7 @@ INSERT INTO tipo_divulgacao (nome_tipo) VALUES
 CREATE TABLE item_divulgacao (
     id_divulgacao SERIAL PRIMARY KEY,
     ra_aluno VARCHAR(6) NOT NULL,
+	nome TEXT,
     id_tipo INT NOT NULL,
     valor REAL,
     dia DATE NOT NULL,
@@ -208,6 +209,7 @@ CREATE TABLE reserva_divulgacao(
 	id_divulgacao INT NOT NULL,
 	ra_aluno_comprador VARCHAR(6) NOT NULL,
 	quantidade INT,
+	status_reserva BOOLEAN NOT NULL,
 
 	FOREIGN KEY(id_divulgacao) REFERENCES item_divulgacao(id_divulgacao),
 	FOREIGN KEY(ra_aluno_comprador) REFERENCES aluno(ra_aluno)
