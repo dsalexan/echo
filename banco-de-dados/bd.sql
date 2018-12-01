@@ -1,4 +1,4 @@
-DROP VIEW compromissos;
+DROP VIEW IF EXISTS compromissos;
 DROP TABLE IF EXISTS reserva_divulgacao;
 DROP TABLE IF EXISTS item_divulgacao;
 DROP TABLE IF EXISTS tipo_divulgacao;

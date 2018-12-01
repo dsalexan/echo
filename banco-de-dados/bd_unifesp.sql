@@ -1,7 +1,7 @@
 
 
-DROP VIEW aula_termo;
-DROP VIEW visao_reserva;
+DROP VIEW IF EXISTS aula_termo;
+DROP VIEW IF EXISTS visao_reserva;
 
 DROP TABLE IF EXISTS reserva;
 DROP TABLE IF EXISTS aula;
@@ -11,7 +11,7 @@ DROP TABLE IF EXISTS uc_alias;
 DROP TABLE IF EXISTS unidade_curricular;
 DROP TABLE IF EXISTS analise;
 
-DROP TABLE unifesp;
+DROP TABLE IF EXISTS unifesp;
 
 CREATE TABLE unifesp(
   id_extracao SERIAL PRIMARY KEY,
