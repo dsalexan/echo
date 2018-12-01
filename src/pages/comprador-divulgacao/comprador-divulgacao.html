@@ -1,0 +1,50 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <ion-buttons left><!--botoes do cabeçalho - ESQUERDA-->
+      </ion-buttons>
+      <ion-title center>{{ 'Informações' }}</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content padding>
+  <form #reservaForm="ngForm" (ngSubmit)="Reservar()">
+  <ion-item>
+    <h1>{{item.nome}}</h1>
+    <p>{{item.dia.slice(8,10)}}/{{item.dia.slice(5,7)}}/{{item.dia.slice(0,4)}} das {{item.hora_inicio.slice(0,5)}} às {{item.hora_fim.slice(0,5)}}</p>
+    <p>Quantidade Disponível: {{item.quantidade}} &nbsp; Valor: {{item.valor}} cada.</p>
+    <p>Descrição: {{item.descricao}}</p>
+  </ion-item>
+  <!-- <p>Vendedor: {{viagem.nome}}</p>  TEM QUE PEGAR AQUI O NOME DO VENDEDOR N SEI COMO -->
+  
+  <ion-item>
+    <h2>Quantidade desejada:</h2>
+    <div id="botaofaltas">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4>
+            <button ion-button type="button" (click)="subtrair()">
+              <ion-icon name="md-remove-circle"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col col-4>
+            <div id="qtdFaltas">
+              <h2 style="margin-top: 10px; margin-left: 15px;">{{qtd_desejada}}</h2>
+            </div>
+          </ion-col>
+          <ion-col col-4>
+            
+            <button ion-button type="button" (click)="somar()">
+              <ion-icon name="md-add-circle"></ion-icon>
+            </button>
+          </ion-col>
+          <h2>Valor total: {{valor_total}}</h2>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-item>
+
+  
+  <button [disabled]= "!reservaForm.form.valid" type="submit" ion-button round block> Reservar </button>
+  </form>
+  
+</ion-content>

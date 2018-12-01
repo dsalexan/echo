@@ -14,6 +14,7 @@ import { TurmaPage } from '../pages/turma/turma';
 import { InicialCaronaPage } from '../pages/inicial-carona/inicial-carona';
 import { InicialGradePage } from '../pages/inicial-grade/inicial-grade';
 import { InicialDivulgacaoPage } from '../pages/inicial-divulgacao/inicial-divulgacao';
+import { ViagemMotoristaPage } from '../pages/viagem-motorista/viagem-motorista';
 import { MensagemPage } from '../pages/mensagem/mensagem';
 
 @Component({

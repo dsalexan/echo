@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Nav } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { AlertController } from 'ionic-angular';
 
 import { LoginPage } from '../login/login'
 import { Http } from '@angular/http';
@@ -21,7 +22,7 @@ export class InicialGradePage {
   
   semana = new Array(7)
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, public storage: Storage) {
+  constructor(public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, private http: Http, public storage: Storage) {
   }
 
   ionViewDidLoad() {
@@ -55,6 +56,85 @@ export class InicialGradePage {
         this.navCtrl.push(LoginPage);
       }
     })
+  }
+
+  novaTurma(){
+    var nome;
+    var prof;
+    var sala;
+    var hora;
+
+    const confirm = this.alertCtrl.create({
+      title: 'Nova Turma',
+      message: 'Deseja adicionar uma nova turma?',
+      
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: values => {
+            console.log('Cancelado!');
+          }
+        },
+        {
+          text: 'Adicionar',
+          handler: values => {
+            console.log('Adicionar');
+            newTurma.present();
+          }
+        }
+      ]
+    });
+
+    const newTurma = this.alertCtrl.create({
+      title: 'Nova Turma',
+      message: 'Insira os dados da turma:',
+      inputs: [
+        {
+          name: 'nomeT',
+          placeholder: 'Nome da Turma',
+        },
+        {
+          name: 'nomeP',
+          placeholder: 'Nome do Professor',
+        },
+        {
+          name: 'salaT',
+          placeholder: 'Número da Sala'
+        },
+        {
+          name: "horario",
+          placeholder: "Horário",
+          type: "time"
+        }
+      ],
+      
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: values => {
+            console.log('Cancelado!');
+          }
+        },
+        {
+          text: 'Adicionar',
+          handler: values => {
+            console.log('Salvo! Valor: ' + values);
+            nome = values.nomeT;
+            prof = values.nomeP;
+            sala = values.salaT;
+            hora = values.horario;
+
+            this.upToBD(nome,prof,sala,hora);
+          }
+        }
+      ]
+    });
+    
+    confirm.present();
+  }
+
+  upToBD(nome, prof, sala, hora){
+    
   }
 
   adicionarGrade() {

@@ -6,6 +6,7 @@ import { Storage } from '@ionic/storage';
 import { DivulgarDivulgacaoPage } from '../divulgar-divulgacao/divulgar-divulgacao';
 import { FiltrarDivulgacaoPage } from '../filtrar-divulgacao/filtrar-divulgacao';
 import { LoginPage } from '../login/login';
+import { MinhasDivulgacaoPage } from '../minhas-divulgacao/minhas-divulgacao';
 
 
 
@@ -42,4 +43,7 @@ export class InicialDivulgacaoPage {
     this.navCtrl.push(DivulgarDivulgacaoPage);
   }
 
+  clickMinhasDivulgacaoPage() { 
+    this.navCtrl.push(MinhasDivulgacaoPage);
+  }
 }

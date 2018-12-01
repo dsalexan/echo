@@ -8,14 +8,6 @@ import { HomePage } from '../home/home';
 import { MinhasCaronasPage } from '../minhas-caronas/minhas-caronas';
 
 
-
-
-
-
-
-
-
-
 /*
 @Component({
   selector: 'page-viagem-motorista',
@@ -213,9 +205,54 @@ export class PopoverMotoristaPage {
     })
   }
 
-  editarViagem(){
-    // abrir outro popover pra editar
-    //botar no banco
+  editarViagem(origem, destino, horario){
+    var path = 'http://104.248.9.4:3000/api/caronas/delete/viagem_reserva?id=' + this.viagem["id_viagem"]
+    this.http.get(path).map(res => res.json()).subscribe(data => {
+
+    })
+  }
+
+  showEdit(){
+    var origem = String;
+    var destino = String;
+    var horario = String;
+
+    const edit = this.alertCtrl.create({
+      title: 'Edite sua viagem.',
+      message: 'Coloque os novos dado da viagem',
+      inputs:[
+        {
+          name: 'origem',
+          placeholder: this.viagem
+        },
+        {
+          name: 'destino',
+          placeholder: 'destino'
+        },
+        {
+          name: 'horario',
+          placeholder: 'horario'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log('Disagree clicked');
+            close();
+          }
+        },
+        {
+          text: 'Salvar',
+          handler: () => {
+            console.log('Save clicked');
+            this.editarViagem(origem, destino, horario);
+          }
+        }
+      ]
+    });
+
+    edit.present();
   }
 
   formatDate(date) {
