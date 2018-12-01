@@ -46,12 +46,13 @@ export class LoginPage {
       // Encrypt
       var encryptSenha = this.encrypt(senha, 'Achilles');
 
-      var path = 'http://localhost:3000/api/auth/login?login='+ user + '&senha='+ encryptSenha
+      var path = 'http://localhost:3000/api/auth/login' //?login='+ user + '&senha='+ 
+      var params = 'login='+ user + '&senha='+ encryptSenha
+
       //var path = 'http://104.248.9.4.4:3000/api/auth/login?login='+ user + '&senha='+ senha
-      this.http.get(path).map(res => res.json()).subscribe(data => {
+      this.http.post(path, {'login': user, 'senha': encryptSenha}).map(res => res.json()).subscribe(data => {
         loading.dismiss();
-        console.log('data', data.auth)
-        console.log('data', data.data)
+        
         if(data.auth && data.data != undefined) {
           this.storage.set("aluno_ra", data.data.ra)
           this.storage.set("aluno_nome", data.data.nome)
@@ -61,7 +62,6 @@ export class LoginPage {
           this.storage.set("aluno_telefone", data.data.telefone == null ? "" : data.data.telefone)
 
           this.navCtrl.push(HomePage, {dados: this.dados});
-          //this.navCtrl.push(CadastroPage, {dados: this.dados});
         } else {
           let alert = this.alertCtrl.create({
             title: 'Ops!',
