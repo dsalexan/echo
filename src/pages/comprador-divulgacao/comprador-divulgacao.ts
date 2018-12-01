@@ -21,7 +21,6 @@ export class CompradorDivulgacaoPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController) {
     this.item = this.navParams.get("item");
     this.qtd_desejada = 0;
-    this.nova_quantidade = this.item.quantidade;
   }
 
   checkSession() {
