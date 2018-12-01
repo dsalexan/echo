@@ -11,17 +11,16 @@
 
 <ion-content padding>
   <ion-item>
-    <h2>{{viagem.dia.slice(0,10)}} às {{viagem.hora}}</h2>
-    <p>Viagem de {{loc[viagem.id_origem]}} para {{loc[viagem.id_destino]}}</p>
-    <p>Motorista: {{viagem.nome}}</p>
-    <p>Descrição: {{viagem.descricao}}</p>
-    <br>Reserva {{viagem.status_reserva ? 'confirmada' : 'pendente'}}<br>
-    <button ion-item (click)="deletarReserva()">
-      <ion-icon name="md-trash"></ion-icon>   Excluir solicitação de reserva
-    </button>
+    <ion-label text-wrap>
+      <h2>{{viagem.dia.slice(0,10)}} às {{viagem.hora}}</h2>
+      <p>Viagem de {{loc[viagem.id_origem]}} para {{loc[viagem.id_destino]}}</p>
+      <p>Motorista: {{viagem.nome}}</p>
+      <p>Descrição: {{viagem.descricao}}</p>
+      <br>Reserva {{viagem.status_reserva ? 'confirmada' : 'pendente'}}<br>
+      <button ion-item (click)="deletarReserva()">
+        <ion-icon name="md-trash"></ion-icon>   Excluir solicitação de reserva
+      </button>
+    </ion-label>
   </ion-item>
   <br>
-
-
-  
 </ion-content>

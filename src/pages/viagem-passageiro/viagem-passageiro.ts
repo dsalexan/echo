@@ -43,7 +43,7 @@ export class ViagemPassageiroPage {
               var hora = (new Date()).toTimeString().split(' ')[0]
               hora = hora.slice(0, hora.length-3) 
 
-              var path3 = 'http://localhost:3000/api/mensagem/put/mensagem?id_destinatario=' + this.viagem["id_motorista"] + '&msg=' + msg + '&dia=' + dia + '&hora=' + hora
+              var path3 = 'http://localhost:3000/api/mensagem/post/mensagem?id_destinatario=' + this.viagem["id_motorista"] + '&msg=' + msg + '&dia=' + dia + '&hora=' + hora
               console.log(path3)
 
               this.http.get(path3).map(res => res.json()).subscribe(data3 => {
