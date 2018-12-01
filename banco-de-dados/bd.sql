@@ -25,8 +25,12 @@ CREATE TABLE aluno (
 	ra_aluno VARCHAR(10) PRIMARY KEY,
 	nome TEXT NOT NULL,
 	login_intranet TEXT NOT NULL UNIQUE,
+	senha_initranet TEXT NOT NULL,
 	email TEXT NOT NULL,
-	telefone VARCHAR(15)
+	telefone VARCHAR(15),
+
+	historico JSONB DEFAULT {},
+	atestado JSONB DEFAULT {}
 );
 INSERT INTO aluno (ra_aluno, nome, login_intranet, email) VALUES
 ('000000', 'Usuario0', 'user0', 'user0@gmail.com'),
