@@ -38,6 +38,10 @@ import { InicialDivulgacaoPage } from '../pages/inicial-divulgacao/inicial-divul
 import { DivulgarDivulgacaoPage } from '../pages/divulgar-divulgacao/divulgar-divulgacao';
 import { FiltrarDivulgacaoPage } from '../pages/filtrar-divulgacao/filtrar-divulgacao';
 import { BugReportPage } from '../pages/bug-report/bug-report';
+import { MinhasDivulgacaoPage } from '../pages/minhas-divulgacao/minhas-divulgacao';
+import { ResultadoDivulgacaoPage } from '../pages/resultado-divulgacao/resultado-divulgacao';
+import { VendedorDivulgacaoPage } from '../pages/vendedor-divulgacao/vendedor-divulgacao';
+import { CompradorDivulgacaoPage } from '../pages/comprador-divulgacao/comprador-divulgacao';
 
 @NgModule({
   declarations: [
@@ -66,6 +70,10 @@ import { BugReportPage } from '../pages/bug-report/bug-report';
     InicialDivulgacaoPage,
     DivulgarDivulgacaoPage,
     FiltrarDivulgacaoPage,
+    MinhasDivulgacaoPage,
+    ResultadoDivulgacaoPage,
+    VendedorDivulgacaoPage,
+    CompradorDivulgacaoPage,
     BugReportPage
   ],
   imports: [
@@ -104,6 +112,10 @@ import { BugReportPage } from '../pages/bug-report/bug-report';
     InicialDivulgacaoPage,
     DivulgarDivulgacaoPage,
     FiltrarDivulgacaoPage,
+    MinhasDivulgacaoPage,
+    ResultadoDivulgacaoPage,
+    VendedorDivulgacaoPage,
+    CompradorDivulgacaoPage,
     BugReportPage
   ],
   providers: [
