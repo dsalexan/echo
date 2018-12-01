@@ -20,6 +20,17 @@
             <ion-option *ngFor="let i of lista" [value]="i.id_tipo" >{{i.nome_tipo}}</ion-option>
           </ion-select>
       </ion-item>
+
+      <ion-item>
+        <ion-label floating>Título</ion-label>
+        <ion-input
+          type="text"
+          [(ngModel)]="item.nome"
+          id="nome"
+          name="nome"
+          required #nome="ngModel">
+      </ion-input>
+      </ion-item>
       <!-- <button (click) = "teste()">oi</button> -->
 
       <ion-item>
