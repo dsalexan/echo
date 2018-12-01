@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons left><!--botoes do cabeçalho - ESQUERDA-->
+    </ion-buttons>
+    <ion-title center>{{ 'Mensagens' }}</ion-title>
+    <!--<ion-buttons right>
+      <button ion-button icon-only (click)="clickConfig()" class="configuracoes">Config.</button><!--botao configuracoes
+    </ion-buttons>-->
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+      
+   <!-- <ion-item *ngFor="let m of mensagens">-->
+    <ion-grid>
+      <div class="nlidas">
+        <ion-row  *ngFor="let m of mensagens_naolidas">
+          <button ion-col col-10 (click)="exibir(m)">
+            <ion-label><b>{{m.mensagem}}</b>
+              <br><p>{{formatDate(m.dia)}} - {{m.hora}}</p>
+            </ion-label>
+          </button>
+          <ion-col col-2>
+            <ion-fab>
+              <button ion-fab icon-end (click)="excluirMensagem(m)">
+                <ion-icon name="md-trash"></ion-icon>
+              </button>
+            </ion-fab>
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <div class="lidas">
+        <ion-row  *ngFor="let m of mensagens_lidas">
+          <button ion-col col-10 (click)="exibir(m)">
+            <ion-label>{{m.mensagem}}
+              <br><p>{{formatDate(m.dia)}} - {{m.hora}}</p>
+            </ion-label>
+          </button>
+          <ion-col col-2>
+            <ion-fab>
+              <button ion-fab icon-end (click)="excluirMensagem(m)">
+                <ion-icon name="md-trash"></ion-icon>
+              </button>
+            </ion-fab>
+          </ion-col>
+        </ion-row>
+      </div>
+
+    </ion-grid>
+    <!-- </ion-item> -->
+
+  </ion-list>
+
+</ion-content>

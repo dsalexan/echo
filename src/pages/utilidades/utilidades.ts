@@ -9,6 +9,7 @@ import { InAppBrowser, InAppBrowserOptions  } from '@ionic-native/in-app-browser
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 
 import { LoginPage } from '../login/login';
+import { CardapioPage } from '../cardapio/cardapio';
 import { Http } from '@angular/http';
 import { AES, lib, PBKDF2, pad, mode } from 'crypto-js'
 
@@ -97,14 +98,9 @@ export class UtilidadesPage {
     })
   }
 
-
-
   clickCardapio() {
-    const browser = this.iab.create(cardapio,target,this.options);
-    browser.show();
+    this.navCtrl.push(CardapioPage);
   }
-
-
 
   clickEmail() {
     const browser = this.iab.create(email,target,this.options);

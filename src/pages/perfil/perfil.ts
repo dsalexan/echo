@@ -117,7 +117,6 @@ export class PerfilPage {
     return 'url(' + this.form.controls['image'].value + ')'
   }
 
-/*
  editProfile() {
     if (this.caption_name == "EDITAR") {
       this.isDisabled = false;
@@ -143,6 +142,7 @@ export class PerfilPage {
           *...
           *...
           *...
+          */
 
          let toast = this.toastCtrl.create({
           message: "You have successfully updated your details .",
@@ -160,6 +160,6 @@ export class PerfilPage {
     this.caption_name = "EDITAR";
   }
 }
-*/
+
 
 }

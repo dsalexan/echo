@@ -16,11 +16,15 @@
 <ion-content padding>
 
   <h1 style="text-align: center">Home</h1>
+  <!-- {{nova ? 'Há mensagens não lidas' : ''}}   -->
+  
+  <div *ngIf="nova" style="width: 100%; margin-top: 100px; text-align: center; position: absolute">
+    <button ion-button round (click)='clickMensagem()'>
+      <ion-icon name="md-mail">  </ion-icon>
+      &nbsp; Há mensagens não lidas
+    </button>
+  </div>
+  <!-- {{nova ? <button (click)='clickMensagem()'>'Há mensagens não lidas'</button> : ''}} -->
 
-  <ion-list>
-    <ion-item *ngFor="let m of mensagens">
-      {{m.mensagem}}
-    </ion-item>
-  </ion-list>
 
 </ion-content>

@@ -15,6 +15,7 @@ import { InicialCaronaPage } from '../pages/inicial-carona/inicial-carona';
 import { InicialGradePage } from '../pages/inicial-grade/inicial-grade';
 import { InicialDivulgacaoPage } from '../pages/inicial-divulgacao/inicial-divulgacao';
 import { ViagemMotoristaPage } from '../pages/viagem-motorista/viagem-motorista';
+import { MensagemPage } from '../pages/mensagem/mensagem';
 
 @Component({
   templateUrl: 'app.html'
@@ -22,7 +23,7 @@ import { ViagemMotoristaPage } from '../pages/viagem-motorista/viagem-motorista'
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = InicialGradePage//HomePage;
+  rootPage:any = HomePage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public storage: Storage) {
     platform.ready().then(() => {
@@ -43,6 +44,10 @@ export class MyApp {
 
   clickPerfil() {
     this.nav.push(PerfilPage);
+  }
+
+  clickMensagens(){
+    this.nav.push(MensagemPage);
   }
 
   clickBugReport() {
