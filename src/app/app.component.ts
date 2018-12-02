@@ -24,7 +24,7 @@ import { AgendaPage } from '../pages/agenda/agenda';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = AgendaPage;
+  rootPage:any = HomePage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public storage: Storage) {
     platform.ready().then(() => {
