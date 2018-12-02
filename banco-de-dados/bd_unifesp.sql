@@ -1,14 +1,13 @@
-
-
 DROP VIEW IF EXISTS aula_termo;
 DROP VIEW IF EXISTS visao_reserva;
 
-DROP TABLE IF EXISTS reserva;
+DROP TABLE IF EXISTS reserva_sala;
 DROP TABLE IF EXISTS aula;
 DROP TABLE IF EXISTS sala;
 
 DROP TABLE IF EXISTS uc_alias;
 DROP TABLE IF EXISTS unidade_curricular;
+
 DROP TABLE IF EXISTS analise;
 
 DROP TABLE IF EXISTS unifesp;
@@ -43,6 +42,7 @@ CREATE TABLE uc_alias(
   alias VARCHAR(300) NOT NULL
 );
 
+
 CREATE TABLE sala(
   id_sala SERIAL PRIMARY KEY,
   nome_original TEXT NOT NULL UNIQUE,
@@ -64,6 +64,7 @@ CREATE TABLE aula(
   monitoria BOOLEAN,
   aula BOOLEAN,
   reposicao BOOLEAN,
+  pos BOOLEAN,
   id_analise INTEGER REFERENCES analise(id_analise)
 );
 
@@ -102,6 +103,7 @@ SELECT
 FROM reserva_sala;
 
 
+
 DROP TABLE IF EXISTS historico;
 DROP TABLE IF EXISTS atestado;
 
@@ -121,3 +123,17 @@ CREATE TABLE atestado(
   ra_aluno INT DEFAULT NULL
 );
 
+
+CREATE OR REPLACE FUNCTION CONVERT_WEEKDAY(weekday TEXT) RETURNS TEXT AS $$
+  BEGIN
+    CASE
+      WHEN weekday = 'SEG' THEN RETURN 'mon';
+      WHEN weekday = 'TER' THEN RETURN 'tue';
+      WHEN weekday = 'QUA' THEN RETURN 'wed';
+      WHEN weekday = 'QUI' THEN RETURN 'thu';
+      WHEN weekday = 'SEX' THEN RETURN 'fri';
+      WHEN weekday = 'SAB' THEN RETURN 'sat';
+      ELSE RETURN 'sun';
+    END CASE;
+  END;
+$$ LANGUAGE plpgsql;
