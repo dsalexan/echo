@@ -21,8 +21,6 @@ export class PerfilPage {
   isReadyToSave: boolean;
   item: any;
   form: FormGroup;
-  private isDisabled: boolean = true;
-  private caption_name: string = "EDITAR";
   
   account: {
     user_RA: string,
@@ -50,8 +48,8 @@ export class PerfilPage {
     this.account = {
       user_RA: '',
       user_name: '',
-      user_email: '',
-      user_telefone: '',
+      user_email: 'E-mail',
+      user_telefone: 'Telefone',
       profile_image: '',
       full_name: '',
       about: ''
@@ -96,7 +94,7 @@ export class PerfilPage {
   }
 
   ionViewWillEnter() {
-    this.checkSession()
+    //this.checkSession()
     this.getInfomations()
     console.log('ionViewWillEnter PerfilPage');
     document.getElementById("tabs").style.display = "none"
@@ -119,8 +117,18 @@ export class PerfilPage {
   }
 
  editProfile() {
+<<<<<<< HEAD
   const edit = this.alertCtrl.create({
     title: 'Editar Perfil',
+=======
+
+  if(this.account.user_email == null) this.account.user_email = 'E-mail';
+  if(this.account.user_telefone == null) this.account.user_telefone = 'Telefone';
+
+  const edit = this.alertCtrl.create({
+    title: 'Editar informações',
+    message: 'Insira as informações que você deseja editar:',
+>>>>>>> cb1f0ad166f1e6f6667471d71fb00fb4ee0c6511
     inputs: [
       {
         name: 'email',
@@ -142,17 +150,23 @@ export class PerfilPage {
       {
         text: 'Salvar',
         handler: values => {
-          if(values.email != null)
+          if(values.email != '')
             this.account.user_email = values.email;
-          if(values.telefone != null)
+          if(values.telefone != '')
             this.account.user_telefone = values.telefone;
-          console.log('Salvo! Valor: ' + values);
+          console.log('Salvo! Email: ' + values.email + ' Tel: ' + values.telefone);
           this.saveProfile();
         }
       }
     ]
   });
+<<<<<<< HEAD
   edit.present()
+=======
+
+  edit.present();
+
+>>>>>>> cb1f0ad166f1e6f6667471d71fb00fb4ee0c6511
 }
 
 saveProfile(){
