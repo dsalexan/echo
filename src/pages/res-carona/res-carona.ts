@@ -37,7 +37,7 @@ export class ResCaronaPage {
       }
       
       else{
-        var path = 'http://104.248.9.4:3000/api/caronas/get/viagem/passageiro?id=' + usu
+        var path = 'http://localhost:3000/api/caronas/get/viagem/passageiro?id=' + usu
 
         // verificar se ele ja ta reservado na viagem
         this.http.get(path).map(res => res.json()).subscribe(data => {

@@ -58,7 +58,7 @@ export class CardapioPage {
         });
         loading.present();
     
-        var path = 'http://104.248.9.4:3000/api/ru/cardapio'
+        var path = 'http://localhost:3000/api/ru/cardapio'
 
         this.http.get(path).map(res => res.json()).subscribe(data => {
           loading.dismiss();
@@ -135,7 +135,7 @@ export class CardapioPage {
     });
     loading.present();
 
-    var path = 'http://104.248.9.4:3000/api/ru/cardapio'
+    var path = 'http://localhost:3000/api/ru/cardapio'
 
     this.http.get(path).map(res => res.json()).subscribe(data => {
       loading.dismiss();

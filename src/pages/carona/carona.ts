@@ -27,7 +27,7 @@ export class CaronaPage {
     console.log(this.viagem)
 
     this.storage.get("aluno_ra").then((usu) => {
-      var path = 'http://104.248.9.4:3000/api/caronas/post/viagem/reserva?id_viagem='+ this.viagem["id_viagem"] + '&id_passageiro='+ usu + '&id_origem=' + this.viagem["id_origem"] + '&id_destino=' + this.viagem["id_destino"] + '&status_reserva=false'
+      var path = 'http://localhost:3000/api/caronas/post/viagem/reserva?id_viagem='+ this.viagem["id_viagem"] + '&id_passageiro='+ usu + '&id_origem=' + this.viagem["id_origem"] + '&id_destino=' + this.viagem["id_destino"] + '&status_reserva=false'
       console.log(path)
       this.http.get(path).map(res => res.json()).subscribe(data => {
 
@@ -37,7 +37,7 @@ export class CaronaPage {
           var hora = (new Date()).toTimeString().split(' ')[0]
           hora = hora.slice(0, hora.length-3) 
 
-          var path2 = 'http://104.248.9.4:3000/api/mensagem/post/mensagem?id_destinatario=' + this.viagem["id_motorista"] + '&msg=' + this.msg_reserva + '&dia=' + dia + '&hora=' + hora
+          var path2 = 'http://localhost:3000/api/mensagem/post/mensagem?id_destinatario=' + this.viagem["id_motorista"] + '&msg=' + this.msg_reserva + '&dia=' + dia + '&hora=' + hora
           this.http.get(path2).map(res => res.json()).subscribe(data2 => {
             if(data2.success) {
               let alert = this.alertCtrl.create({
