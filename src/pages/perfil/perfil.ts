@@ -21,8 +21,6 @@ export class PerfilPage {
   isReadyToSave: boolean;
   item: any;
   form: FormGroup;
-  private isDisabled: boolean = true;
-  private caption_name: string = "EDITAR";
   
   account: {
     user_RA: string,
@@ -119,7 +117,7 @@ export class PerfilPage {
   }
 
  editProfile() {
-  const newData = this.alertCtrl.create({
+  const edit = this.alertCtrl.create({
     title: 'Adicionar Evento',
     inputs: [
       {
@@ -152,6 +150,8 @@ export class PerfilPage {
       }
     ]
   });
+
+  edit.present();
 
 }
 
