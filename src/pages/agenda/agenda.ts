@@ -60,6 +60,7 @@ export class AgendaPage {
 
             o["id_turma"] = c.id_turma
             o["nome_uc"] = c.nome_uc
+            o["nome"] = c.nome
             if (c.nome == null)
               o["nome"] = "Aula"
             o["turma"] = c.turma
