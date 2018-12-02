@@ -94,7 +94,7 @@ export class PerfilPage {
   }
 
   ionViewWillEnter() {
-    this.checkSession()
+    //this.checkSession()
     this.getInfomations()
     console.log('ionViewWillEnter PerfilPage');
     document.getElementById("tabs").style.display = "none"
@@ -117,8 +117,13 @@ export class PerfilPage {
   }
 
  editProfile() {
+
+  if(this.account.user_email == null) this.account.user_email = 'E-mail';
+  if(this.account.user_telefone == null) this.account.user_telefone = 'Telefone';
+
   const edit = this.alertCtrl.create({
     title: 'Editar informações',
+    message: 'Insira as informações que você deseja editar:',
     inputs: [
       {
         name: 'email',
@@ -140,11 +145,11 @@ export class PerfilPage {
       {
         text: 'Salvar',
         handler: values => {
-          if(values.email != null)
+          if(values.email != '')
             this.account.user_email = values.email;
-          if(values.telefone != null)
+          if(values.telefone != '')
             this.account.user_telefone = values.telefone;
-          console.log('Salvo! Valor: ' + values);
+          console.log('Salvo! Email: ' + values.email + ' Tel: ' + values.telefone);
           this.saveProfile();
         }
       }
