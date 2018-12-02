@@ -6,7 +6,6 @@ import { Http } from '@angular/http';
 import { Platform, Nav } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
-import { ConfigPage } from '../configuracoes/configuracoes'
 
 
 @IonicPage()
@@ -21,8 +20,6 @@ export class PerfilPage {
   isReadyToSave: boolean;
   item: any;
   form: FormGroup;
-  private isDisabled: boolean = true;
-  private caption_name: string = "EDITAR";
   
   account: {
     user_RA: string,
@@ -50,8 +47,8 @@ export class PerfilPage {
     this.account = {
       user_RA: '',
       user_name: '',
-      user_email: '',
-      user_telefone: '',
+      user_email: 'E-mail',
+      user_telefone: 'Telefone',
       profile_image: '',
       full_name: '',
       about: ''
@@ -84,7 +81,6 @@ export class PerfilPage {
   }
 
   clickConfig() { // vai para a pagina de configurações
-    this.navCtrl.push(ConfigPage);
   }
 
   checkSession() {
@@ -96,7 +92,7 @@ export class PerfilPage {
   }
 
   ionViewWillEnter() {
-    this.checkSession()
+    //this.checkSession()
     this.getInfomations()
     console.log('ionViewWillEnter PerfilPage');
     document.getElementById("tabs").style.display = "none"
@@ -119,8 +115,13 @@ export class PerfilPage {
   }
 
  editProfile() {
-  const newData = this.alertCtrl.create({
-    title: 'Adicionar Evento',
+
+  if(this.account.user_email == null) this.account.user_email = 'E-mail';
+  if(this.account.user_telefone == null) this.account.user_telefone = 'Telefone';
+
+  const edit = this.alertCtrl.create({
+    title: 'Editar informações',
+    message: 'Insira as informações que você deseja editar:',
     inputs: [
       {
         name: 'email',
@@ -142,17 +143,18 @@ export class PerfilPage {
       {
         text: 'Salvar',
         handler: values => {
-          if(values.email != null)
+          if(values.email != '')
             this.account.user_email = values.email;
-          if(values.telefone != null)
+          if(values.telefone != '')
             this.account.user_telefone = values.telefone;
-          console.log('Salvo! Valor: ' + values);
+          console.log('Salvo! Email: ' + values.email + ' Tel: ' + values.telefone);
           this.saveProfile();
         }
       }
     ]
   });
 
+  edit.present();
 }
 
 saveProfile(){
@@ -160,30 +162,13 @@ saveProfile(){
   var path;
 
   this.storage.get("aluno_ra").then((usu) => {
-    path = 'http://104.248.9.4:3000/api/aluno/update/email?aluno=' + this.account.user_RA + '&email=' + this.account.user_email
+    path = 'http://localhost:3000/api/alunos/' + this.account.user_RA
       console.log(path)
-      this.http.get(path).map(res => res.json()).subscribe(data => {
-
-        if(data.success) {
-          }else {
-            erro = 1
-              let alert = this.alertCtrl.create({
-                title: 'Ops!',
-                subTitle: 'Tente novamente',
-                buttons: ['Dismiss']
-              });
-              alert.present();
-            }
-          })   
-      }, (err) => {
-        console.log(err)
-      })
-
-      this.storage.get("aluno_ra").then((usu) => {
-      path = 'http://104.248.9.4:3000/api/aluno/update/telefone?aluno=' + this.account.user_RA + '&email=' + this.account.user_telefone
-      console.log(path)
-      this.http.get(path).map(res => res.json()).subscribe(data => {
-
+      this.http.put(path, {
+        "Content-Type": "application/json",
+        email: this.account.user_email,
+        telefone: this.account.user_telefone
+      }).map(res => res.json()).subscribe(data => {
         if(data.success) {
           }else {
             erro = 1

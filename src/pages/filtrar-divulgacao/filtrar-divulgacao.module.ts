@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { FiltrarDivulgacaoPage } from './filtrar-divulgacao';
 
@@ -9,5 +9,8 @@ import { FiltrarDivulgacaoPage } from './filtrar-divulgacao';
   imports: [
     IonicPageModule.forChild(FiltrarDivulgacaoPage),
   ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ]
 })
-export class FiltarDivulgacaoPageModule {}
+export class FiltrarDivulgacaoPageModule {}

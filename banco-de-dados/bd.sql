@@ -57,7 +57,8 @@ CREATE TABLE turma (
 	id_turma SERIAL PRIMARY KEY,
 	id_uc INTEGER REFERENCES uc(id_uc) NOT NULL,
 	id_professor INTEGER REFERENCES professor(id_professor) NOT NULL,
-	nome VARCHAR(5) NOT NULL
+	nome VARCHAR(5) NOT NULL,
+	hash TEXT DEFAULT NULL
 );
 
 CREATE TYPE dia_ordenado AS ENUM ('DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB');
@@ -68,45 +69,45 @@ CREATE TABLE horario (
 );
 
 INSERT INTO horario
-VALUES (DEFAULT, 'seg', '8:00'),
-(DEFAULT, 'seg', '10:00'),
-(DEFAULT, 'seg', '13:30'),
-(DEFAULT, 'seg', '15:30'),
-(DEFAULT, 'seg', '19:00'),
-(DEFAULT, 'seg', '21:00'),
+VALUES (DEFAULT, 'SEG', '8:00'),
+(DEFAULT, 'SEG', '10:00'),
+(DEFAULT, 'SEG', '13:30'),
+(DEFAULT, 'SEG', '15:30'),
+(DEFAULT, 'SEG', '19:00'),
+(DEFAULT, 'SEG', '21:00'),
 
-(DEFAULT, 'ter', '8:00'),
-(DEFAULT, 'ter', '10:00'),
-(DEFAULT, 'ter', '13:30'),
-(DEFAULT, 'ter', '15:30'),
-(DEFAULT, 'ter', '19:00'),
-(DEFAULT, 'ter', '21:00'),
+(DEFAULT, 'TER', '8:00'),
+(DEFAULT, 'TER', '10:00'),
+(DEFAULT, 'TER', '13:30'),
+(DEFAULT, 'TER', '15:30'),
+(DEFAULT, 'TER', '19:00'),
+(DEFAULT, 'TER', '21:00'),
 
-(DEFAULT, 'qua', '8:00'),
-(DEFAULT, 'qua', '10:00'),
-(DEFAULT, 'qua', '13:30'),
-(DEFAULT, 'qua', '15:30'),
-(DEFAULT, 'qua', '19:00'),
-(DEFAULT, 'qua', '21:00'),
+(DEFAULT, 'QUA', '8:00'),
+(DEFAULT, 'QUA', '10:00'),
+(DEFAULT, 'QUA', '13:30'),
+(DEFAULT, 'QUA', '15:30'),
+(DEFAULT, 'QUA', '19:00'),
+(DEFAULT, 'QUA', '21:00'),
 
-(DEFAULT, 'qui', '8:00'),
-(DEFAULT, 'qui', '10:00'),
-(DEFAULT, 'qui', '13:30'),
-(DEFAULT, 'qui', '15:30'),
-(DEFAULT, 'qui', '19:00'),
-(DEFAULT, 'qui', '21:00'),
+(DEFAULT, 'QUI', '8:00'),
+(DEFAULT, 'QUI', '10:00'),
+(DEFAULT, 'QUI', '13:30'),
+(DEFAULT, 'QUI', '15:30'),
+(DEFAULT, 'QUI', '19:00'),
+(DEFAULT, 'QUI', '21:00'),
 
-(DEFAULT, 'sex', '8:00'),
-(DEFAULT, 'sex', '10:00'),
-(DEFAULT, 'sex', '13:30'),
-(DEFAULT, 'sex', '15:30'),
-(DEFAULT, 'sex', '19:00'),
-(DEFAULT, 'sex', '21:00')
+(DEFAULT, 'SEX', '8:00'),
+(DEFAULT, 'SEX', '10:00'),
+(DEFAULT, 'SEX', '13:30'),
+(DEFAULT, 'SEX', '15:30'),
+(DEFAULT, 'SEX', '19:00'),
+(DEFAULT, 'SEX', '21:00')
 
 create table horario_turma (
 	id_turma INTEGER REFERENCES turma(id_turma) NOT NULL,
 	id_horario INTEGER REFERENCES horario(id_horario),
-	sala INTEGER,
+	sala VARCHAR(50),
 	PRIMARY KEY(id_horario, id_turma)
 );
 CREATE TABLE evento(
@@ -263,7 +264,7 @@ CREATE TABLE bug_report(
 );
 
 CREATE VIEW compromissos AS
-SELECT 'aula' AS tipo, ATu.ra_aluno, UC.nome AS nome_uc, NULL AS nome, T.nome AS turma, T.id_turma, H.dia_semana, NULL as dia, H.hora, HT.sala, NULL as descricao
+SELECT 'aula' AS tipo, ATu.ra_aluno, UC.nome AS nome_uc, NULL AS nome, T.nome AS turma, T.id_turma, H.dia_semana, NULL as dia, H.hora, HT.sala::TEXT, NULL as descricao
 FROM uc AS UC
     INNER JOIN turma AS T
         ON UC.id_uc = T.id_uc
@@ -274,7 +275,7 @@ FROM uc AS UC
     INNER JOIN aluno_turma AS ATu
         ON T.id_turma = ATu.id_turma
 UNION
-(SELECT 'evento' AS tipo, ET.ra_aluno, UC.nome AS nome_uc, E.descricao AS nome, T.nome as turma, T.id_turma, NULL as dia_semana, ET.data AS dia, ET.hora, ET.sala, ET.descricao
+(SELECT 'evento' AS tipo, ET.ra_aluno, UC.nome AS nome_uc, E.descricao AS nome, T.nome as turma, T.id_turma, NULL as dia_semana, ET.data AS dia, ET.hora, ET.sala::TEXT, ET.descricao
 FROM evento_turma AS ET
     INNER JOIN turma AS T
         ON ET.id_turma = T.id_turma
