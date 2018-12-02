@@ -49,11 +49,7 @@ export class LoginPage {
       // Encrypt
       var encryptSenha = this.encrypt(senha, 'Achilles');
 
-<<<<<<< HEAD
-      var path = 'http://104.248.9.4.4:3000/api/auth/login' //?login='+ user + '&senha='+ 
-=======
-      var path = 'http://localhost:3000/api/auth/login' //?login='+ user + '&senha='+ 
->>>>>>> 0365b6ba1dbe3f0e991f7dd1437b91b4feb42eae
+      var path = 'http://104.248.9.4:3000/api/auth/login' //?login='+ user + '&senha='+ 
       var params = 'login='+ user + '&senha='+ encryptSenha
 
       //var path = 'http://104.248.9.4.4:3000/api/auth/login?login='+ user + '&senha='+ senha
