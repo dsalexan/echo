@@ -40,7 +40,7 @@ export class ProcurarCaronaPage {
   }
 
   mostrarLocalidade(){
-    var path = 'http://104.248.9.4:3000/api/caronas/get/localidades'
+    var path = 'http://localhost:3000/api/caronas/get/localidades'
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
       if(data.data[0] != undefined) {
@@ -56,7 +56,7 @@ export class ProcurarCaronaPage {
   }
 
   procura1(){
-    var path = 'http://104.248.9.4:3000/api/caronas/get/viagem/data_hora_origem_destino_vagas?data=' + this.viagem["data"]  + '&hora=' + this.viagem["hora"] + '&origem=' + this.viagem["id_origem"] + '&destino=' + this.viagem["id_destino"] + '&qtd_vagas=' + this.viagem["qtd_vagas"]
+    var path = 'http://localhost:3000/api/caronas/get/viagem/data_hora_origem_destino_vagas?data=' + this.viagem["data"]  + '&hora=' + this.viagem["hora"] + '&origem=' + this.viagem["id_origem"] + '&destino=' + this.viagem["id_destino"] + '&qtd_vagas=' + this.viagem["qtd_vagas"]
       
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
@@ -76,7 +76,7 @@ export class ProcurarCaronaPage {
   }
 
   procura2(){
-    var path = 'http://104.248.9.4:3000/api/caronas/get/viagem/data_hora_origem_destino?data=' + this.viagem["data"]  + '&hora=' + this.viagem["hora"] + '&origem=' + this.viagem["id_origem"] + '&destino=' + this.viagem["id_destino"]
+    var path = 'http://localhost:3000/api/caronas/get/viagem/data_hora_origem_destino?data=' + this.viagem["data"]  + '&hora=' + this.viagem["hora"] + '&origem=' + this.viagem["id_origem"] + '&destino=' + this.viagem["id_destino"]
       
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
@@ -96,7 +96,7 @@ export class ProcurarCaronaPage {
   }
 
   procura3(){
-    var path = 'http://104.248.9.4:3000/api/caronas/get/viagem/data_hora_origem?data=' + this.viagem["data"]  + '&hora=' + this.viagem["hora"] + '&origem=' + this.viagem["id_origem"]
+    var path = 'http://localhost:3000/api/caronas/get/viagem/data_hora_origem?data=' + this.viagem["data"]  + '&hora=' + this.viagem["hora"] + '&origem=' + this.viagem["id_origem"]
       
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
@@ -116,7 +116,7 @@ export class ProcurarCaronaPage {
   }
 
   procura4(){
-    var path = 'http://104.248.9.4:3000/api/caronas/get/viagem/data_hora_destino?data=' + this.viagem["data"]  + '&hora=' + this.viagem["hora"] + '&destino=' + this.viagem["id_destino"]
+    var path = 'http://localhost:3000/api/caronas/get/viagem/data_hora_destino?data=' + this.viagem["data"]  + '&hora=' + this.viagem["hora"] + '&destino=' + this.viagem["id_destino"]
       
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
@@ -136,7 +136,7 @@ export class ProcurarCaronaPage {
   }
 
   procura5(){
-    var path = 'http://104.248.9.4:3000/api/caronas/get/viagem/data_origem?data=' + this.viagem["data"] + '&origem=' + this.viagem["id_origem"]
+    var path = 'http://localhost:3000/api/caronas/get/viagem/data_origem?data=' + this.viagem["data"] + '&origem=' + this.viagem["id_origem"]
       
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
@@ -156,7 +156,7 @@ export class ProcurarCaronaPage {
   }
 
   procura6(){
-    var path = 'http://104.248.9.4:3000/api/caronas/get/viagem/data_destino?data=' + this.viagem["data"] + '&destino=' + this.viagem["id_destino"]
+    var path = 'http://localhost:3000/api/caronas/get/viagem/data_destino?data=' + this.viagem["data"] + '&destino=' + this.viagem["id_destino"]
       
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
@@ -176,7 +176,7 @@ export class ProcurarCaronaPage {
   }
   
   procura7(){
-    var path = 'http://104.248.9.4:3000/api/caronas/get/viagem/data_origem_destino?data=' + this.viagem["data"] + '&origem=' + this.viagem["id_origem"] + '&destino=' + this.viagem["id_destino"]
+    var path = 'http://localhost:3000/api/caronas/get/viagem/data_origem_destino?data=' + this.viagem["data"] + '&origem=' + this.viagem["id_origem"] + '&destino=' + this.viagem["id_destino"]
       
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
@@ -196,7 +196,7 @@ export class ProcurarCaronaPage {
   }
 
   procura8(){
-    var path = 'http://104.248.9.4:3000/api/caronas/get/viagem/data_hora_origem_vagas?data=' + this.viagem["data"] + '&hora=' + this.viagem["hora"] + '&origem=' + this.viagem["id_origem"] + '&qtd_vagas=' + this.viagem["qtd_vagas"]
+    var path = 'http://localhost:3000/api/caronas/get/viagem/data_hora_origem_vagas?data=' + this.viagem["data"] + '&hora=' + this.viagem["hora"] + '&origem=' + this.viagem["id_origem"] + '&qtd_vagas=' + this.viagem["qtd_vagas"]
       
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
@@ -216,7 +216,7 @@ export class ProcurarCaronaPage {
   }
 
   procura9(){
-    var path = 'http://104.248.9.4:3000/api/caronas/get/viagem/data_hora_destino_vagas?data=' + this.viagem["data"] + '&hora=' + this.viagem["hora"] + '&destino=' + this.viagem["id_destino"] + '&qtd_vagas=' + this.viagem["qtd_vagas"]
+    var path = 'http://localhost:3000/api/caronas/get/viagem/data_hora_destino_vagas?data=' + this.viagem["data"] + '&hora=' + this.viagem["hora"] + '&destino=' + this.viagem["id_destino"] + '&qtd_vagas=' + this.viagem["qtd_vagas"]
       
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
@@ -236,7 +236,7 @@ export class ProcurarCaronaPage {
   }
 
   procura10(){
-    var path = 'http://104.248.9.4:3000/api/caronas/get/viagem/data_hora_vagas?data=' + this.viagem["data"] + '&hora=' + this.viagem["hora"] + '&qtd_vagas=' + this.viagem["qtd_vagas"]
+    var path = 'http://localhost:3000/api/caronas/get/viagem/data_hora_vagas?data=' + this.viagem["data"] + '&hora=' + this.viagem["hora"] + '&qtd_vagas=' + this.viagem["qtd_vagas"]
       
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
@@ -256,7 +256,7 @@ export class ProcurarCaronaPage {
   }
 
   procura11(){
-    var path = 'http://104.248.9.4:3000/api/caronas/get/viagem/data_vagas?data=' + this.viagem["data"] + '&qtd_vagas=' + this.viagem["qtd_vagas"]
+    var path = 'http://localhost:3000/api/caronas/get/viagem/data_vagas?data=' + this.viagem["data"] + '&qtd_vagas=' + this.viagem["qtd_vagas"]
       
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
@@ -276,7 +276,7 @@ export class ProcurarCaronaPage {
   }
 
   procura12(){
-    var path = 'http://104.248.9.4:3000/api/caronas/get/viagem/data_hora?data=' + this.viagem["data"] + '&hora=' + this.viagem["hora"]
+    var path = 'http://localhost:3000/api/caronas/get/viagem/data_hora?data=' + this.viagem["data"] + '&hora=' + this.viagem["hora"]
       
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
@@ -296,7 +296,7 @@ export class ProcurarCaronaPage {
   }
 
   procura13(){
-    var path = 'http://104.248.9.4:3000/api/caronas/get/viagem/data?data=' + this.viagem["data"]
+    var path = 'http://localhost:3000/api/caronas/get/viagem/data?data=' + this.viagem["data"]
       
     this.http.get(path).map(res => res.json()).subscribe(data => {
 

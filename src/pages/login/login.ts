@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
+import { HTTP } from '@ionic-native/http';
+import { HttpClient } from '@angular/common/http';
+
 import { Storage } from '@ionic/storage';
 
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
@@ -18,7 +21,7 @@ export class LoginPage {
 
   dados = {}
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage, public http: Http, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage, public http: HTTP, public loadingCtrl: LoadingController) {
   }
 
   ionViewWillEnter() {
@@ -46,20 +49,38 @@ export class LoginPage {
       // Encrypt
       var encryptSenha = this.encrypt(senha, 'Achilles');
 
-      var path = 'http://104.248.9.4:3000/api/auth/login' //?login='+ user + '&senha='+ 
+      var path = 'http://104.248.9.4.4:3000/api/auth/login' //?login='+ user + '&senha='+ 
       var params = 'login='+ user + '&senha='+ encryptSenha
 
       //var path = 'http://104.248.9.4.4:3000/api/auth/login?login='+ user + '&senha='+ senha
-      this.http.post(path, {'login': user, 'senha': encryptSenha}).map(res => res.json()).subscribe(data => {
+      // this.http.setDataSerializer('json');
+      // this.http.post(path, {'login': user, 'senha': encryptSenha}).subscribe(result => {
+      //   loading.dismiss();
+      let datas = {
+        'login': user, 'senha': encryptSenha
+    };
+    let headers = {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+    };
+
+      this.http.post(path, {'login': user, 'senha': encryptSenha}, headers).then(result => {
         loading.dismiss();
-        
-        if(data.auth && data.data != undefined) {
-          this.storage.set("aluno_ra", data.data.ra)
-          this.storage.set("aluno_nome", data.data.nome)
+        console.log(result)
+        console.log(result.data)
+        console.log(JSON.parse(result.data))
+        result = JSON.parse(result.data)
+        console.log('A',result["data"])
+        console.log('B', result.data)
+        // console.log(typeof data)
+        /* tslint:disable */
+        if(result["auth"] && result["data"]) {
+          this.storage.set("aluno_ra", result["data"].ra)
+          this.storage.set("aluno_nome", result["data"].nome)
           this.storage.set("aluno_senha", senha)
-          this.storage.set("aluno_login", data.data.login)
-          this.storage.set("aluno_email", data.data.email == null ? "" : data.data.email)
-          this.storage.set("aluno_telefone", data.data.telefone == null ? "" : data.data.telefone)
+          this.storage.set("aluno_login", result["data"].login)
+          this.storage.set("aluno_email", result["data"].email == null ? "" : result["data"].email)
+          this.storage.set("aluno_telefone", result["data"].telefone == null ? "" : result["data"].telefone)
 
           this.navCtrl.push(HomePage, {dados: this.dados});
         } else {
@@ -70,7 +91,8 @@ export class LoginPage {
           });
           alert.present();
         }
-      }, (err) => {
+        /* tslint:enable */
+      }).catch((err) => {
         console.log(err) //quando autenticacao falha, retorna erro 401, com auth false
         let alert = this.alertCtrl.create({
           title: 'Ops!',

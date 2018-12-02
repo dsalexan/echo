@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { OferecerCaronaPage } from './oferecer-carona';
 
@@ -9,5 +9,8 @@ import { OferecerCaronaPage } from './oferecer-carona';
   imports: [
     IonicPageModule.forChild(OferecerCaronaPage),
   ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ]
 })
 export class OferecerCaronaPageModule {}

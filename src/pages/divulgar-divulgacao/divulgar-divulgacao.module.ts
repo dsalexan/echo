@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { DivulgarDivulgacaoPage } from './divulgar-divulgacao';
 
@@ -9,5 +9,8 @@ import { DivulgarDivulgacaoPage } from './divulgar-divulgacao';
   imports: [
     IonicPageModule.forChild(DivulgarDivulgacaoPage),
   ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ]
 })
 export class DivulgarDivulgacaoPageModule {}

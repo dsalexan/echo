@@ -3,9 +3,12 @@
     
     <ion-title center>{{ 'Motorista' }}</ion-title>
     <ion-buttons right>
-        <button ion-button icon-only (click)="editarViagemMotorista($event)">
+        <button ion-item (click)="showConfirm()">
+            <ion-icon name="md-trash"></ion-icon>   Excluir viagem
+          </button>
+        <!-- <button ion-button icon-only (click)="editarViagemMotorista($event)">
           <ion-icon name="more"></ion-icon>
-        </button>
+        </button> -->
     </ion-buttons>
   </ion-navbar>
 </ion-header>

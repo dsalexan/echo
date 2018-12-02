@@ -21,7 +21,7 @@ export class MensagemPage {
     
     //alterar status no banco
     if(!mensagem.lida){
-      var path = 'http://104.248.9.4:3000/api/mensagem/put/mensagem?id_mensagem=' + mensagem.id_mensagem
+      var path = 'http://localhost:3000/api/mensagem/put/mensagem?id_mensagem=' + mensagem.id_mensagem
       console.log(path)
       this.http.get(path).map(res => res.json()).subscribe(data => {
           if(data.success){
@@ -40,7 +40,7 @@ export class MensagemPage {
 
   exibirMensagens(){
     this.storage.get("aluno_ra"). then(usu => {
-      var path = 'http://104.248.9.4:3000/api/mensagem/get/lidas?id_destinatario=' + usu
+      var path = 'http://localhost:3000/api/mensagem/get/lidas?id_destinatario=' + usu
       console.log(path)
       
       this.http.get(path).map(res => res.json()).subscribe(data => {
@@ -50,7 +50,7 @@ export class MensagemPage {
         }
       })
 
-      var path2 = 'http://104.248.9.4:3000/api/mensagem/get/novas?id_destinatario=' + usu
+      var path2 = 'http://localhost:3000/api/mensagem/get/novas?id_destinatario=' + usu
       console.log(path2)
       
       this.http.get(path2).map(res => res.json()).subscribe(data2 => {
@@ -65,7 +65,7 @@ export class MensagemPage {
   }
 
   excluirMensagem(mensagem){
-    var path = 'http://104.248.9.4:3000/api/mensagem/delete/mensagem?id_mensagem=' + mensagem.id_mensagem
+    var path = 'http://localhost:3000/api/mensagem/delete/mensagem?id_mensagem=' + mensagem.id_mensagem
     console.log(path)
     
     this.http.get(path).map(res => res.json()).subscribe(data => {

@@ -6,7 +6,6 @@ import { Http } from '@angular/http';
 import { Platform, Nav } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
-import { ConfigPage } from '../configuracoes/configuracoes'
 
 
 @IonicPage()
@@ -84,7 +83,6 @@ export class PerfilPage {
   }
 
   clickConfig() { // vai para a pagina de configurações
-    this.navCtrl.push(ConfigPage);
   }
 
   checkSession() {
@@ -160,7 +158,7 @@ saveProfile(){
   var path;
 
   this.storage.get("aluno_ra").then((usu) => {
-    path = 'http://104.248.9.4:3000/api/aluno/update/email?aluno=' + this.account.user_RA + '&email=' + this.account.user_email
+    path = 'http://localhost:3000/api/aluno/update/email?aluno=' + this.account.user_RA + '&email=' + this.account.user_email
       console.log(path)
       this.http.get(path).map(res => res.json()).subscribe(data => {
 
@@ -180,7 +178,7 @@ saveProfile(){
       })
 
       this.storage.get("aluno_ra").then((usu) => {
-      path = 'http://104.248.9.4:3000/api/aluno/update/telefone?aluno=' + this.account.user_RA + '&email=' + this.account.user_telefone
+      path = 'http://localhost:3000/api/aluno/update/telefone?aluno=' + this.account.user_RA + '&email=' + this.account.user_telefone
       console.log(path)
       this.http.get(path).map(res => res.json()).subscribe(data => {
 
