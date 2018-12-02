@@ -1,11 +1,10 @@
-<ion-header>
-  <ion-navbar>
-    <ion-buttons left><!--botoes do cabeçalho - ESQUERDA-->
-    </ion-buttons>
-  </ion-navbar>
-</ion-header>
-
 <ion-content padding>
+
+  <div class="navHeight">
+  <ion-title class="backTitle">Agenda semestral</ion-title>
+  <button class="backButton" (click)="clickBack()"><ion-icon class="backIcon" md="md-arrow-back"></ion-icon></button>
+  </div>
+  <div style="height: 65px"></div>
 
   <div id="info" style="--width: 100%; --height: 170px" *ngIf="!eventoOuNao(dados)">
     <div id="tipo"><h2><b>{{dados.nome}}</b></h2></div>

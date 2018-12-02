@@ -4,12 +4,14 @@ import { Http } from '@angular/http';
 import { GradeEventoPage } from '../grade-evento/grade-evento';
 import { Storage } from '@ionic/storage';
 import { GradeCadastroEventoPage } from '../grade-cadastro-evento/grade-cadastro-evento';
+import { InicialGradePage } from '../inicial-grade/inicial-grade';
 
 @IonicPage()
 @Component({
   selector: 'page-agenda',
   templateUrl: 'agenda.html',
 })
+
 export class AgendaPage {
 
   meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
@@ -26,6 +28,10 @@ export class AgendaPage {
     console.log('ionViewWillEnter AgendaPage');
     document.getElementById("tabs").style.display = "none"
     document.getElementById("botao_menu").style.display = "none"
+  }
+
+  clickBack() {
+    this.navCtrl.push(InicialGradePage)
   }
 
   adicionarEventos() {

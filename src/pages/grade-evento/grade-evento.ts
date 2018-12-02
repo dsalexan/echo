@@ -32,6 +32,10 @@ export class GradeEventoPage {
     document.getElementById("botao_menu").style.display = "none"
   }
 
+  clickBack() {
+    this.navCtrl.pop()
+  }
+
   carregarDadosTurma() {
     var id_turma = this.dados["id_turma"];
 

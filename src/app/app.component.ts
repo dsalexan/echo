@@ -16,6 +16,7 @@ import { InicialGradePage } from '../pages/inicial-grade/inicial-grade';
 import { InicialDivulgacaoPage } from '../pages/inicial-divulgacao/inicial-divulgacao';
 import { ViagemMotoristaPage } from '../pages/viagem-motorista/viagem-motorista';
 import { MensagemPage } from '../pages/mensagem/mensagem';
+import { AgendaPage } from '../pages/agenda/agenda';
 
 @Component({
   templateUrl: 'app.html'
@@ -23,7 +24,7 @@ import { MensagemPage } from '../pages/mensagem/mensagem';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = PerfilPage//HomePage;
+  rootPage:any = AgendaPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public storage: Storage) {
     platform.ready().then(() => {
