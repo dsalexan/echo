@@ -123,3 +123,17 @@ CREATE TABLE atestado(
   ra_aluno INT DEFAULT NULL
 );
 
+
+CREATE OR REPLACE FUNCTION CONVERT_WEEKDAY(weekday TEXT) RETURNS TEXT AS $$
+  BEGIN
+    CASE
+      WHEN weekday = 'SEG' THEN RETURN 'mon';
+      WHEN weekday = 'TER' THEN RETURN 'tue';
+      WHEN weekday = 'QUA' THEN RETURN 'wed';
+      WHEN weekday = 'QUI' THEN RETURN 'thu';
+      WHEN weekday = 'SEX' THEN RETURN 'fri';
+      WHEN weekday = 'SAB' THEN RETURN 'sat';
+      ELSE RETURN 'sun';
+    END CASE;
+  END;
+$$ LANGUAGE plpgsql;
