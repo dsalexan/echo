@@ -48,8 +48,8 @@ export class PerfilPage {
     this.account = {
       user_RA: '',
       user_name: '',
-      user_email: '',
-      user_telefone: '',
+      user_email: 'E-mail',
+      user_telefone: 'Telefone',
       profile_image: '',
       full_name: '',
       about: ''
@@ -118,7 +118,7 @@ export class PerfilPage {
 
  editProfile() {
   const edit = this.alertCtrl.create({
-    title: 'Adicionar Evento',
+    title: 'Editar informações',
     inputs: [
       {
         name: 'email',
