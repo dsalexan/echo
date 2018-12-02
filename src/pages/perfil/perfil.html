@@ -23,8 +23,9 @@
         <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]" (change)="processWebImage($event)" />
         <div class="profile-image-wrapper">
           <div class="profile-image-placeholder" *ngIf="!this.form.controls.image.value">
-            <ion-icon name="ios-camera-outline" class="ios-camera-outline" md="ios-camera-outline" style="color: white !important"></ion-icon>
             <div>
+                <img class="circle-pic" 
+                  src="assets/imgs/anonimo.png" />
             </div>
           </div>
           <div class="profile-image" [style.backgroundImage]="getProfileImageStyle()" *ngIf="this.form.controls.image.value"></div>

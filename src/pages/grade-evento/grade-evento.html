@@ -7,10 +7,9 @@
 
 <ion-content padding>
 
-  <div id="info" style="--width: 100%; --height: 170px">
-
+  <div id="info" style="--width: 100%; --height: 170px" *ngIf="!eventoOuNao(dados)">
     <div id="tipo"><h2><b>{{dados.nome}}</b></h2></div>
-    <div id="data"><h2><b><div style="display: inline" *ngIf="eventoOuNao(dados)">{{dados.dia_mes}}/{{dados.mes}} </div>{{dados.hora}}</b></h2></div>
+    <div id="data"><h2><b>{{dados.hora}}</b></h2></div>
     
     <div id="nomeuc">UC: {{dados.nome_uc}}</div>
     <div id="turma">Turma: {{dados.nome_turma}}</div>
@@ -34,6 +33,13 @@
     <div id="hora">{{dados.hora}}</div> -->
     <!-- </div> -->
     
+  </div>
+
+  <div id="info" style="--width: 100%; --height: 100px" *ngIf="eventoOuNao(dados)">
+      <div id="tipo"><h2><b>{{dados.nome}}</b></h2></div>
+      <div id="data"><h2><b>{{dados.dia_mes}}/{{dados.mes}} {{dados.hora}}</b></h2></div>
+      
+      <div id="nomeuc" *ngIf="eventoOuNao(dados)">Turma: {{dados.nome_uc}} - {{dados.nome_turma}}</div>
   </div>
 
   <ng-container *ngIf="eventoOuNao(dados)">

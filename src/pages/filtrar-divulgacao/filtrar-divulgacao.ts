@@ -40,7 +40,7 @@ export class FiltrarDivulgacaoPage {
   }
   
   PreencherListaTipo(){
-    var path = 'http://localhost:3000/api/divulgacao/get/divulgacao/select_tipo'
+    var path = 'http://104.248.9.4:3000/api/divulgacao/get/divulgacao/select_tipo'
     this.http.get(path).map(res => res.json()).subscribe(data => {
       console.log(data)
       data.data.forEach(tipo => {
@@ -52,7 +52,7 @@ export class FiltrarDivulgacaoPage {
   }
 
   busca_divulgacao_dia_hora_inicio(){
-    var path = 'http://localhost:3000/api/divulgacao/get/divulgacao/dia/hora_inicio?dia=' + this.item["dia"] + '&hora_inicio=' + this.item["hora_inicio"]
+    var path = 'http://104.248.9.4:3000/api/divulgacao/get/divulgacao/dia/hora_inicio?dia=' + this.item["dia"] + '&hora_inicio=' + this.item["hora_inicio"]
 
     this.http.get(path).map(res => res.json()).subscribe(data => {
       console.log('RESULTADO', data)
@@ -74,7 +74,7 @@ export class FiltrarDivulgacaoPage {
   }
 
   busca_divulgacao_dia_hora_fim(){
-    var path = 'http://localhost:3000/api/divulgacao/get/divulgacao/dia/hora_inicio?dia=' + this.item["dia"] + '&hora_fim=' + this.item["hora_fim"]
+    var path = 'http://104.248.9.4:3000/api/divulgacao/get/divulgacao/dia/hora_inicio?dia=' + this.item["dia"] + '&hora_fim=' + this.item["hora_fim"]
 
     this.http.get(path).map(res => res.json()).subscribe(data => {
       console.log('RESULTADO', data)
@@ -95,7 +95,7 @@ export class FiltrarDivulgacaoPage {
   }
 
   busca_divulgacao_dia_preco(){
-    var path = 'http://localhost:3000/api/divulgacao/get/divulgacao/dia/preco?dia=' + this.item["dia"] + '&preco=' + this.item["valor"]
+    var path = 'http://104.248.9.4:3000/api/divulgacao/get/divulgacao/dia/preco?dia=' + this.item["dia"] + '&preco=' + this.item["valor"]
 
     this.http.get(path).map(res => res.json()).subscribe(data => {
       console.log('RESULTADO', data)
@@ -116,7 +116,7 @@ export class FiltrarDivulgacaoPage {
   }
 
   busca_divulgacao_dia_quantidade(){
-    var path = 'http://localhost:3000/api/divulgacao/get/divulgacao/dia/quantidade?dia=' + this.item["dia"] + '&quantidade=' + this.item["quantidade"]
+    var path = 'http://104.248.9.4:3000/api/divulgacao/get/divulgacao/dia/quantidade?dia=' + this.item["dia"] + '&quantidade=' + this.item["quantidade"]
 
     this.http.get(path).map(res => res.json()).subscribe(data => {
       console.log('RESULTADO', data)
@@ -137,7 +137,7 @@ export class FiltrarDivulgacaoPage {
   }
   
   busca_divulgacao_dia(){
-    var path = 'http://localhost:3000/api/divulgacao/get/divulgacao/dia?dia=' + this.item["dia"]
+    var path = 'http://104.248.9.4:3000/api/divulgacao/get/divulgacao/dia?dia=' + this.item["dia"]
 
     this.http.get(path).map(res => res.json()).subscribe(data => {
       console.log('RESULTADO', data)
@@ -159,7 +159,7 @@ export class FiltrarDivulgacaoPage {
   }
 
   busca_divulgacao_hora(){
-    var path = 'http://localhost:3000/api/divulgacao/get/divulgacao/hora?hora_inicio=' + this.item["hora_inicio"]
+    var path = 'http://104.248.9.4:3000/api/divulgacao/get/divulgacao/hora?hora_inicio=' + this.item["hora_inicio"]
     this.http.get(path).map(res => res.json()).subscribe(data => {
       console.log('RESULTADO', data)
 
@@ -179,7 +179,7 @@ export class FiltrarDivulgacaoPage {
   }
 
   busca_divulgacao_preco(){
-    var path = 'http://localhost:3000/api/divulgacao/get/divulgacao/preco?preco=' + this.item["valor"]
+    var path = 'http://104.248.9.4:3000/api/divulgacao/get/divulgacao/preco?preco=' + this.item["valor"]
 
     this.http.get(path).map(res => res.json()).subscribe(data => {
       console.log('RESULTADO', data)
@@ -201,7 +201,7 @@ export class FiltrarDivulgacaoPage {
   }
 
   busca_divulgacao_tipo_dia_hora(){
-    var path = 'http://localhost:3000/api/divulgacao/get/divulgacao/tipo/diahora?tipo=' + this.item["tipo"] + '&dia=' + this.item["dia"] + '&hora_inicio=' + this.item["hora_inicio"] 
+    var path = 'http://104.248.9.4:3000/api/divulgacao/get/divulgacao/tipo/diahora?tipo=' + this.item["tipo"] + '&dia=' + this.item["dia"] + '&hora_inicio=' + this.item["hora_inicio"] 
 
     this.http.get(path).map(res => res.json()).subscribe(data => {
       console.log('RESULTADO', data)
@@ -223,7 +223,7 @@ export class FiltrarDivulgacaoPage {
   }
 
   busca_divulgacao_tipo_dia(){
-    var path = 'http://localhost:3000/api/divulgacao/get/divulgacao/tipo/dia?tipo=' + this.item["tipo"] + '&dia=' + this.item["dia"]  
+    var path = 'http://104.248.9.4:3000/api/divulgacao/get/divulgacao/tipo/dia?tipo=' + this.item["tipo"] + '&dia=' + this.item["dia"]  
 
     this.http.get(path).map(res => res.json()).subscribe(data => {
       console.log('RESULTADO', data)
@@ -245,7 +245,7 @@ export class FiltrarDivulgacaoPage {
   }
 
   busca_divulgacao_tipo_preco(){
-    var path = 'http://localhost:3000/api/divulgacao/get/divulgacao/tipo/preco?tipo=' + this.item["tipo"] + '&preco=' + this.item["valor"]  
+    var path = 'http://104.248.9.4:3000/api/divulgacao/get/divulgacao/tipo/preco?tipo=' + this.item["tipo"] + '&preco=' + this.item["valor"]  
 
     this.http.get(path).map(res => res.json()).subscribe(data => {
       console.log('RESULTADO', data)
@@ -267,7 +267,7 @@ export class FiltrarDivulgacaoPage {
   }
   
   busca_divulgacao_tipo_quantidade(){
-    var path = 'http://localhost:3000/api/divulgacao/get/divulgacao/tipo/quantidade?tipo=' + this.item["tipo"] + '&quantidade=' + this.item["quantidade"]  
+    var path = 'http://104.248.9.4:3000/api/divulgacao/get/divulgacao/tipo/quantidade?tipo=' + this.item["tipo"] + '&quantidade=' + this.item["quantidade"]  
 
     this.http.get(path).map(res => res.json()).subscribe(data => {
       console.log('RESULTADO', data)
@@ -289,7 +289,7 @@ export class FiltrarDivulgacaoPage {
   }
 
   busca_divulgacao_tipo(){
-    var path = 'http://localhost:3000/api/divulgacao/get/divulgacao/tipo?id_tipo=' + this.item["categoria"]
+    var path = 'http://104.248.9.4:3000/api/divulgacao/get/divulgacao/tipo?id_tipo=' + this.item["categoria"]
 
     this.http.get(path).map(res => res.json()).subscribe(data => {
       console.log('RESULTADO', data)
@@ -310,7 +310,7 @@ export class FiltrarDivulgacaoPage {
   }
 
   busca_divulgacao(){
-    var path = 'http://localhost:3000/api/divulgacao/get/divulgacao'
+    var path = 'http://104.248.9.4:3000/api/divulgacao/get/divulgacao'
 
     this.http.get(path).map(res => res.json()).subscribe(data => {
       console.log('RESULTADO', data)
@@ -331,7 +331,7 @@ export class FiltrarDivulgacaoPage {
   }
  
   busca_divulgacao_quantidade(){
-    var path = 'http://localhost:3000/api/divulgacao/get/divulgacao/quantidade?quantidade=' + this.item["quantidade"]
+    var path = 'http://104.248.9.4:3000/api/divulgacao/get/divulgacao/quantidade?quantidade=' + this.item["quantidade"]
 
     this.http.get(path).map(res => res.json()).subscribe(data => {
       console.log('RESULTADO', data)

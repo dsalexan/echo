@@ -160,7 +160,7 @@ saveProfile(){
   var path;
 
   this.storage.get("aluno_ra").then((usu) => {
-    path = 'http://localhost:3000/api/aluno/update/email?aluno=' + this.account.user_RA + '&email=' + this.account.user_email
+    path = 'http://104.248.9.4:3000/api/aluno/update/email?aluno=' + this.account.user_RA + '&email=' + this.account.user_email
       console.log(path)
       this.http.get(path).map(res => res.json()).subscribe(data => {
 
@@ -180,7 +180,7 @@ saveProfile(){
       })
 
       this.storage.get("aluno_ra").then((usu) => {
-      path = 'http://localhost:3000/api/aluno/update/telefone?aluno=' + this.account.user_RA + '&email=' + this.account.user_telefone
+      path = 'http://104.248.9.4:3000/api/aluno/update/telefone?aluno=' + this.account.user_RA + '&email=' + this.account.user_telefone
       console.log(path)
       this.http.get(path).map(res => res.json()).subscribe(data => {
 

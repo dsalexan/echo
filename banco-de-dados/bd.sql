@@ -67,13 +67,48 @@ CREATE TABLE horario (
 	hora TIME NOT NULL CHECK ((hora >= '08:00') AND (hora <= '21:00'))
 );
 
+INSERT INTO horario
+VALUES (DEFAULT, 'seg', '8:00'),
+(DEFAULT, 'seg', '10:00'),
+(DEFAULT, 'seg', '13:30'),
+(DEFAULT, 'seg', '15:30'),
+(DEFAULT, 'seg', '19:00'),
+(DEFAULT, 'seg', '21:00'),
+
+(DEFAULT, 'ter', '8:00'),
+(DEFAULT, 'ter', '10:00'),
+(DEFAULT, 'ter', '13:30'),
+(DEFAULT, 'ter', '15:30'),
+(DEFAULT, 'ter', '19:00'),
+(DEFAULT, 'ter', '21:00'),
+
+(DEFAULT, 'qua', '8:00'),
+(DEFAULT, 'qua', '10:00'),
+(DEFAULT, 'qua', '13:30'),
+(DEFAULT, 'qua', '15:30'),
+(DEFAULT, 'qua', '19:00'),
+(DEFAULT, 'qua', '21:00'),
+
+(DEFAULT, 'qui', '8:00'),
+(DEFAULT, 'qui', '10:00'),
+(DEFAULT, 'qui', '13:30'),
+(DEFAULT, 'qui', '15:30'),
+(DEFAULT, 'qui', '19:00'),
+(DEFAULT, 'qui', '21:00'),
+
+(DEFAULT, 'sex', '8:00'),
+(DEFAULT, 'sex', '10:00'),
+(DEFAULT, 'sex', '13:30'),
+(DEFAULT, 'sex', '15:30'),
+(DEFAULT, 'sex', '19:00'),
+(DEFAULT, 'sex', '21:00')
+
 create table horario_turma (
 	id_turma INTEGER REFERENCES turma(id_turma) NOT NULL,
 	id_horario INTEGER REFERENCES horario(id_horario),
 	sala INTEGER,
 	PRIMARY KEY(id_horario, id_turma)
 );
-
 CREATE TABLE evento(
 	id_evento SERIAL PRIMARY KEY,
 	descricao TEXT NOT NULL
@@ -168,6 +203,7 @@ CREATE TABLE reserva (
 );
 
 CREATE TABLE mensagem(
+	id_mensagem SERIAL PRIMARY KEY,
 	id_destinatario VARCHAR(6) NOT NULL,
 	mensagem TEXT NOT NULL,
 	lida BOOLEAN NOT NULL,

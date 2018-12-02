@@ -24,7 +24,7 @@ export class VendedorDivulgacaoPage {
   abrirReservas(){
     this.storage.get("aluno_ra").then((usu) => {
       
-      var path = 'http://localhost:3000/api/reserva_divulgacao/get/reservas?id_divulgacao=' + this.itens.id_divulgacao
+      var path = 'http://104.248.9.4:3000/api/reserva_divulgacao/get/reservas?id_divulgacao=' + this.itens.id_divulgacao
       this.http.get(path).map(res => res.json()).subscribe(data => {
         
         if(data.success) {

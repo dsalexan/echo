@@ -29,6 +29,7 @@ export class CardapioPage {
   janta_opcao_vegetariana = [];
   janta_guarnicao = [];
   janta_sobremesa = [];
+  semana = "oi";
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
   }
@@ -49,6 +50,7 @@ export class CardapioPage {
 
   checkCardapio() {
     this.storage.get("cardapio_atual").then((cardapio) => {
+      console.log(JSON.parse(cardapio))
       if(cardapio == null) {
 
         let loading = this.loadingCtrl.create({
@@ -56,13 +58,15 @@ export class CardapioPage {
         });
         loading.present();
     
-        var path = 'http://localhost:3000/api/ru/cardapio'
+        var path = 'http://104.248.9.4:3000/api/ru/cardapio'
 
         this.http.get(path).map(res => res.json()).subscribe(data => {
           loading.dismiss();
           if (data.success) {
             this.storage.set("cardapio_atual", data.cardapio_json.json_cardapio)
             this.storage.set("cardapio_data_atualizacao", data.cardapio_json.data.data_solicitacao)
+
+            this.semana = JSON.parse(data.cardapio_json.json_cardapio)["semana"]
             
             var cardapio = JSON.parse(data.cardapio_json.json_cardapio)["cardapio"]
             
@@ -96,12 +100,13 @@ export class CardapioPage {
         })
 
       } else {
+        this.semana = JSON.parse(cardapio)["semana"]
         var cardapio = JSON.parse(cardapio)["cardapio"]
 
         let loading = this.loadingCtrl.create({
           content: 'Carregando...'
         });
-        loading.present();
+        loading.present();   
 
         this.almoco_prato_base = [cardapio.almoco.segunda.prato_base, cardapio.almoco.terca.prato_base, cardapio.almoco.quarta.prato_base, cardapio.almoco.quinta.prato_base, cardapio.almoco.sexta.prato_base];
         this.almoco_prato_principal = [cardapio.almoco.segunda.prato_principal, cardapio.almoco.terca.prato_principal, cardapio.almoco.quarta.prato_principal, cardapio.almoco.quinta.prato_principal, cardapio.almoco.sexta.prato_principal];
@@ -130,13 +135,15 @@ export class CardapioPage {
     });
     loading.present();
 
-    var path = 'http://localhost:3000/api/ru/cardapio'
+    var path = 'http://104.248.9.4:3000/api/ru/cardapio'
 
     this.http.get(path).map(res => res.json()).subscribe(data => {
       loading.dismiss();
       if (data.success) {
         this.storage.set("cardapio_atual", data.cardapio_json.json_cardapio)
         this.storage.set("cardapio_data_atualizacao", data.cardapio_json.data.data_solicitacao)
+
+        this.semana = JSON.parse(data.cardapio_json.json_cardapio)["semana"]
         
         var cardapio = JSON.parse(data.cardapio_json.json_cardapio)["cardapio"]
         
