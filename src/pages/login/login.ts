@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { HTTP } from '@ionic-native/http';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Storage } from '@ionic/storage';
 
@@ -21,11 +21,39 @@ export class LoginPage {
 
   dados = {}
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage, public http: HTTP, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage, public http: HttpClient, public loadingCtrl: LoadingController) {
   }
 
   ionViewWillEnter() {
     console.log('ionViewWillEnter LoginPage');
+    var he = new Headers()
+    he.append('Content-Type', 'application/json')
+    let sr = '104.248.9.4'
+    // let sr = 'localhost'
+    // this.http.post('https://webhook.site/47b7ba5c-0fd0-487c-a161-f83921024e02', {'bla': '1'}, {headers: he}).map(res => res.json()).subscribe(result => {
+    // this.http.post('http://' + sr + ':3000/teste', {'login': user, 'senha': encryptSenha}, {headers: new HttpHeaders()}).subscribe(result => {
+    
+    // this.http.put('http://' + sr + ':3000/teste', {'bla': '1'}, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe(result => {
+    this.http.get('http://' + sr + ':3000/teste', {responseType: 'text'}).subscribe(result => {
+      console.log(result)
+      let alert = this.alertCtrl.create({
+        title: 'Ops!',
+        subTitle: 'Verifique as informações inseridas',
+        buttons: ['Dismiss']
+      });
+      alert.present();
+    }, err => {
+      console.log(err)
+      console.log(Object.keys(err))
+      console.log(Object.values(err))
+      let alert = this.alertCtrl.create({
+        title: err.name,
+        subTitle: err.message,
+        buttons: ['Dismiss']
+      });
+      alert.present();
+    })
+
     document.getElementById("tabs").style.display = "none"
     document.getElementById("botao_menu").style.display = "none"
   }
@@ -49,7 +77,7 @@ export class LoginPage {
       // Encrypt
       var encryptSenha = this.encrypt(senha, 'Achilles');
 
-      var path = 'http://localhost:3000/api/auth/login' //?login='+ user + '&senha='+ 
+      var path = 'http://104.248.9.4:3000/api/auth/login' //?login='+ user + '&senha='+ 
       var params = 'login='+ user + '&senha='+ encryptSenha
 
       //var path = 'http://104.248.9.4.4:3000/api/auth/login?login='+ user + '&senha='+ senha
@@ -60,47 +88,88 @@ export class LoginPage {
         'login': user, 'senha': encryptSenha
     };
     let headers = {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
+        'Content-Type': 'text/plain'
     };
+    var he = new Headers()
+    he.append('Content-Type', 'application/json')
+    // , ...headers
 
-      this.http.post(path, {'login': user, 'senha': encryptSenha}, headers).then(result => {
-        loading.dismiss();
-        console.log(result)
-        console.log(result.data)
-        console.log(JSON.parse(result.data))
-        result = JSON.parse(result.data)
-        console.log('A',result["data"])
-        console.log('B', result.data)
-        // console.log(typeof data)
-        /* tslint:disable */
-        if(result["auth"] && result["data"]) {
-          this.storage.set("aluno_ra", result["data"].ra)
-          this.storage.set("aluno_nome", result["data"].nome)
-          this.storage.set("aluno_senha", senha)
-          this.storage.set("aluno_login", result["data"].login)
-          this.storage.set("aluno_email", result["data"].email == null ? "" : result["data"].email)
-          this.storage.set("aluno_telefone", result["data"].telefone == null ? "" : result["data"].telefone)
+    this.http.post(path, {'login': user, 'senha': encryptSenha}, {headers: new HttpHeaders()}).subscribe(result => {
+      loading.dismiss();
+      console.log(result)
+      // console.log(result.data)
+      // console.log(JSON.parse(result.data))
+      // result = JSON.parse(result.data)
+      // console.log('A',result["data"])
+      // console.log('B', result.data)
+      // console.log(typeof data)
+      /* tslint:disable */
+      if(result["auth"] && result["data"]) {
+        this.storage.set("aluno_ra", result["data"].ra)
+        this.storage.set("aluno_nome", result["data"].nome)
+        this.storage.set("aluno_senha", senha)
+        this.storage.set("aluno_login", result["data"].login)
+        this.storage.set("aluno_email", result["data"].email == null ? "" : result["data"].email)
+        this.storage.set("aluno_telefone", result["data"].telefone == null ? "" : result["data"].telefone)
 
-          this.navCtrl.push(HomePage, {dados: this.dados});
-        } else {
-          let alert = this.alertCtrl.create({
-            title: 'Ops!',
-            subTitle: 'Verifique as informações inseridas',
-            buttons: ['Dismiss']
-          });
-          alert.present();
-        }
-        /* tslint:enable */
-      }).catch((err) => {
-        console.log(err) //quando autenticacao falha, retorna erro 401, com auth false
+        this.navCtrl.push(HomePage, {dados: this.dados});
+      } else {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
           subTitle: 'Verifique as informações inseridas',
           buttons: ['Dismiss']
         });
         alert.present();
-      })
+      }
+      /* tslint:enable */
+    },(err) => {
+      console.log(err) //quando autenticacao falha, retorna erro 401, com auth false
+      let alert = this.alertCtrl.create({
+        title: 'Ops!',
+        subTitle: 'Verifique as informações inseridas',
+        buttons: ['Dismiss']
+      });
+      alert.present();
+})
+    // this.http.post(path, datas, {headers: he}).map(res => res.json()).subscribe(result => {
+      // this.http.post(path, {'login': user, 'senha': encryptSenha}, headers).then(result => {
+      //   loading.dismiss();
+      //   console.log(result)
+      //   console.log(result.data)
+      //   // console.log(JSON.parse(result.data))
+      //   // result = JSON.parse(result.data)
+      //   // console.log('A',result["data"])
+      //   console.log('B', result.data)
+      //   // console.log(typeof data)
+      //   /* tslint:disable */
+      //   if(result.data && result.data) {
+      //     this.storage.set("aluno_ra", result.data.ra)
+      //     this.storage.set("aluno_nome", result.data.nome)
+      //     this.storage.set("aluno_senha", senha)
+      //     this.storage.set("aluno_login", result.data.login)
+      //     this.storage.set("aluno_email", result.data.email == null ? "" : result.data.email)
+      //     this.storage.set("aluno_telefone", result.data.telefone == null ? "" : result.data.telefone)
+
+      //     this.navCtrl.push(HomePage, {dados: this.dados});
+      //   } else {
+      //     let alert = this.alertCtrl.create({
+      //       title: 'Ops!',
+      //       subTitle: 'Verifique as informações inseridas',
+      //       buttons: ['Dismiss']
+      //     });
+      //     alert.present();
+      //   }
+      //   /* tslint:enable */
+      // },(err) => {
+      //   loading.dismiss();
+      //   console.log(err) //quando autenticacao falha, retorna erro 401, com auth false
+      //   let alert = this.alertCtrl.create({
+      //     title: 'Ops!',
+      //     subTitle: 'Verifique as informações inseridas',
+      //     buttons: ['Dismiss']
+      //   });
+      //   alert.present();
+      // })
     } else {
       let alert = this.alertCtrl.create({
         title: 'Ops!',

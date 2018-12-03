@@ -1,4 +1,0 @@
-#Sun Dec 02 00:02:05 BRST 2018
-base.0=D\:\\Gustavo\\Desktop\\Software Development\\echo\\platforms\\android\\app\\build\\intermediates\\transforms\\dex\\release\\0
-path.0=classes.dex
-renamed.0=classes.dex
