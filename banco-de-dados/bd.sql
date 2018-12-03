@@ -110,6 +110,7 @@ create table horario_turma (
 	sala VARCHAR(50),
 	PRIMARY KEY(id_horario, id_turma)
 );
+
 CREATE TABLE evento(
 	id_evento SERIAL PRIMARY KEY,
 	descricao TEXT NOT NULL
@@ -149,6 +150,7 @@ CREATE TABLE localidade(
 	id_local SERIAL PRIMARY KEY,
 	descricao VARCHAR(50) NOT NULL
 );
+
 INSERT INTO localidade (descricao) VALUES
 ('UNIFESP'),
 ('Santa Inês'),
