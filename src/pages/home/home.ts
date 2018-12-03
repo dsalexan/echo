@@ -29,14 +29,14 @@ export class HomePage {
 
   exibirMensagens(){
     this.storage.get("aluno_ra"). then(usu => {
-      var path = 'http://104.248.9.4:3000/api/mensagem/get/novas?id_destinatario=' + usu
+      var path = 'http://localhost:3000/api/mensagem/get/novas?id_destinatario=' + usu
       console.log(path)
       this.http.get(path).map(res => res.json()).subscribe(data => {
         if(data.success && data.data.length > 0){
           this.mensagens = data.data
           this.nova = true
         }
-        console.log(this.nova)
+        //console.log(this.nova)
       })
     })
   }

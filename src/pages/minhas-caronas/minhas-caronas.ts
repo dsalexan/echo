@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, AlertController, Navbar } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
 
 import { LoginPage } from '../login/login'
 import { ViagemMotoristaPage } from '../viagem-motorista/viagem-motorista';
 import { ViagemPassageiroPage } from '../viagem-passageiro/viagem-passageiro';
+import { InicialCaronaPage } from '../inicial-carona/inicial-carona';
 
 @IonicPage()
 @Component({
@@ -13,6 +14,7 @@ import { ViagemPassageiroPage } from '../viagem-passageiro/viagem-passageiro';
   templateUrl: 'minhas-caronas.html',
 })
 export class MinhasCaronasPage {
+  @ViewChild(Navbar)navBar: Navbar;
 
   viagens_motorista= [];
   reservas_motorista= {};
@@ -35,7 +37,7 @@ export class MinhasCaronasPage {
     var path;
     this.storage.get("aluno_ra").then((usu) => {
       
-      path = 'http://104.248.9.4:3000/api/caronas/get/viagem/motorista/reserva?id='+ usu
+      path = 'http://localhost:3000/api/caronas/get/viagem/motorista/reserva?id='+ usu
       console.log(path)
       this.http.get(path).map(res => res.json()).subscribe(data => {
         
@@ -50,7 +52,7 @@ export class MinhasCaronasPage {
             }
           })
           
-          var path2 = 'http://104.248.9.4:3000/api/caronas/get/viagem/motorista?id='+ usu
+          var path2 = 'http://localhost:3000/api/caronas/get/viagem/motorista?id='+ usu
           console.log(path2)
           this.http.get(path2).map(res => res.json()).subscribe(data2 => {
             
@@ -61,7 +63,7 @@ export class MinhasCaronasPage {
               let alert = this.alertCtrl.create({
                 title: 'Ops!',
                 subTitle: 'Tente novamente',
-                buttons: ['Dismiss']
+                buttons: ['Fechar']
               });
               alert.present();
             }
@@ -72,7 +74,7 @@ export class MinhasCaronasPage {
           let alert = this.alertCtrl.create({
             title: 'Ops!',
             subTitle: 'Tente novamente',
-            buttons: ['Dismiss']
+            buttons: ['Fechar']
           });
           alert.present();
         }
@@ -87,7 +89,7 @@ export class MinhasCaronasPage {
   caronasPassageiro(){
     var path;
     this.storage.get("aluno_ra").then((usu) => {
-      path = 'http://104.248.9.4:3000/api/caronas/get/viagem/passageiro?id='+ usu
+      path = 'http://localhost:3000/api/caronas/get/viagem/passageiro?id='+ usu
       console.log(path)
       this.http.get(path).map(res => res.json()).subscribe(data => {
         
@@ -98,7 +100,7 @@ export class MinhasCaronasPage {
           let alert = this.alertCtrl.create({
             title: 'Ops!',
             subTitle: 'Tente novamente',
-            buttons: ['Dismiss']
+            buttons: ['Fechar']
           });
           alert.present();
         }
@@ -117,7 +119,7 @@ export class MinhasCaronasPage {
   }
 
   mostrarLocalidade(){
-    var path = 'http://104.248.9.4:3000/api/caronas/get/localidades'
+    var path = 'http://localhost:3000/api/caronas/get/localidades'
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
       if(data.data[0] != undefined) {
@@ -132,8 +134,18 @@ export class MinhasCaronasPage {
     })
   }
 
+  
   ionViewWillEnter() {
     this.checkSession();
+    // this.navBar.backButtonClick = () => {
+    //   //this.navCtrl.push(InicialCaronaPage)
+    //     let pages = [
+    //     {
+    //     page: InicialCaronaPage
+    //     }
+    //     ];
+    //     this.navCtrl.setPages(pages);
+    // }
     this.mostrarLocalidade();
     this.caronasMotorista();
     this.caronasPassageiro();

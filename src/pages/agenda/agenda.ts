@@ -4,12 +4,14 @@ import { Http } from '@angular/http';
 import { GradeEventoPage } from '../grade-evento/grade-evento';
 import { Storage } from '@ionic/storage';
 import { GradeCadastroEventoPage } from '../grade-cadastro-evento/grade-cadastro-evento';
+import { InicialGradePage } from '../inicial-grade/inicial-grade';
 
 @IonicPage()
 @Component({
   selector: 'page-agenda',
   templateUrl: 'agenda.html',
 })
+
 export class AgendaPage {
 
   meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
@@ -28,6 +30,10 @@ export class AgendaPage {
     document.getElementById("botao_menu").style.display = "none"
   }
 
+  clickBack() {
+    this.navCtrl.push(InicialGradePage)
+  }
+
   adicionarEventos() {
     // console.log(this.storage.get("aluno_ra"))
 
@@ -41,7 +47,7 @@ export class AgendaPage {
     var ultimo_dia = String(ultimo.getDate())
 
     this.storage.get("aluno_ra").then(ra_aluno => {
-      var path = 'http://104.248.9.4:3000/api/grades/get/compromissos/aluno?ra_aluno=' + ra_aluno +
+      var path = 'http://localhost:3000/api/grades/get/compromissos/aluno?ra_aluno=' + ra_aluno +
                  '&dt_inicio=' + today.getFullYear() + '-' + mes_inicio + '-' + '01' +
                  '&dt_fim=' + today.getFullYear() + '-' + mes_fim + '-' + ultimo_dia
       // console.log(path)

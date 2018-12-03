@@ -49,6 +49,11 @@ export class UtilidadesPage {
       }
     })
   }
+
+  clickBack() {
+    this.navCtrl.pop()
+  }
+  
   openUrl(){ window.open('https://google.com', '_system'); }
   ionViewWillEnter() {
     this.checkSession();
@@ -73,7 +78,7 @@ export class UtilidadesPage {
     this.storage.get("aluno_login").then(aluno_login => {
       this.storage.get("aluno_senha").then(aluno_senha => {
         var encryptSenha = this.encrypt(aluno_senha, 'Achilles');
-        var path = 'http://104.248.9.4:3000/api/utilidades/get/saldo?login='+ aluno_login + '&senha='+ encryptSenha
+        var path = 'http://localhost:3000/api/utilidades/get/saldo?login='+ aluno_login + '&senha='+ encryptSenha
 
         this.http.get(path).map(res => res.json()).subscribe(data => {
           loading.dismiss();

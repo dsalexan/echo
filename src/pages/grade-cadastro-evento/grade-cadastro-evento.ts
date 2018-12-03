@@ -35,9 +35,13 @@ export class GradeCadastroEventoPage {
     document.getElementById("botao_menu").style.display = "none"
   }
 
+  clickBack() {
+    this.navCtrl.push(AgendaPage)
+  }
+
   preencherDropDown() {
     this.storage.get("aluno_ra").then(ra_aluno => {
-      var path = 'http://104.248.9.4:3000/api/grades/get/turma/aluno?ra_aluno=' + ra_aluno
+      var path = 'http://localhost:3000/api/grades/get/turma/aluno?ra_aluno=' + ra_aluno
       this.http.get(path).map(res => res.json()).subscribe(data => {
         // console.log(data)
         data.data.forEach(t => {
@@ -52,7 +56,7 @@ export class GradeCadastroEventoPage {
       })
     })
 
-    var path2 = 'http://104.248.9.4:3000/api/grades/get/eventos'
+    var path2 = 'http://localhost:3000/api/grades/get/eventos'
     this.http.get(path2).map(res => res.json()).subscribe(data => {
       // console.log(data)
       data.data.forEach(e => {
@@ -72,7 +76,7 @@ export class GradeCadastroEventoPage {
     var descricao = ('descricao' in this.evento) ? '&descricao=' + this.evento["descricao"] : ''
     console.log(this.evento)
     this.storage.get("aluno_ra").then((ra_aluno) => {
-      var path = 'http://104.248.9.4:3000/api/grades/post/evento_turma?' +
+      var path = 'http://localhost:3000/api/grades/post/evento_turma?' +
       'id_evento=' + this.evento["id_evento"] + '&' +
       'id_turma=' + this.evento["id_turma"] + '&' +
       'ra_aluno=' + ra_aluno + '&' +

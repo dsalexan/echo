@@ -1,21 +1,26 @@
-<!--Cabeçalho-->
-<ion-header>
-  <ion-navbar color="primary">
-    <ion-buttons left>
-      <!--botoes do cabeçalho - ESQUERDA-->
-    </ion-buttons>
-    <ion-title center>{{ 'Perfil' }}</ion-title>
-    <ion-buttons right>
-      <!--botoes do cabecalho - DIREITA-->
-      <button ion-button icon-only (click)="editProfile()" class="editar">
-        <ion-icon name='key'></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-navbar>
-</ion-header>
 
 <ion-content>
-  <div class="fixed-content">
+    <div class="navHeight">
+    <ion-title class="backTitle">Perfil</ion-title>
+    <button class="backButton" (click) = "clickBack()"><ion-icon class="backIcon" md="md-arrow-back"></ion-icon></button>
+    <button icon-only style="
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        height: 50px;
+        width: 50px;
+        padding: 0px;
+        margin: 0px;
+        background: #ffc107;
+        border: 1px solid #ffe082;
+        z-index: 1;
+        color: #444444;"
+    (click)="editProfile()" class="configuracoes">
+      <ion-icon name='key'></ion-icon>
+    </button>
+    </div>
+    <div style="height: 65px"></div>
+  <div>
 
     <form *ngIf="form" [formGroup]="form" (ngSubmit)="saveProfile()">
       <div class="upperDiv">

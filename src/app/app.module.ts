@@ -4,7 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-//import { File } from '@ionic-native/file';
+import { File } from '@ionic-native/file';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -15,72 +15,39 @@ import { CalendarModule } from "ion2-calendar";
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
-import { GradeCadastroEventoPage } from '../pages/grade-cadastro-evento/grade-cadastro-evento';
+import { GradeCadastroEventoPageModule } from '../pages/grade-cadastro-evento/grade-cadastro-evento.module';
 
-import { LoginPage } from '../pages/login/login';
-import { CadastroPage } from '../pages/cadastro/cadastro';
-import { PerfilPage } from '../pages/perfil/perfil';
-import { ConfigPage } from '../pages/configuracoes/configuracoes';
-import { UtilidadesPage} from '../pages/utilidades/utilidades';
-import { HomePage } from '../pages/home/home';
-import { InicialCaronaPage } from '../pages/inicial-carona/inicial-carona';
-import { OferecerCaronaPage, PopoverOferecerPage } from '../pages/oferecer-carona/oferecer-carona';
-import { ProcurarCaronaPage } from '../pages/procurar-carona/procurar-carona';
-import { InicialGradePage } from '../pages/inicial-grade/inicial-grade';
-import { ResCaronaPage } from '../pages/res-carona/res-carona';
-import { GradeEventoPage } from '../pages/grade-evento/grade-evento';
-import { AgendaPage } from '../pages/agenda/agenda';
-import { CaronaPage } from '../pages/carona/carona';
-import { MinhasCaronasPage } from '../pages/minhas-caronas/minhas-caronas';
-import { ViagemMotoristaPage, PopoverMotoristaPage } from '../pages/viagem-motorista/viagem-motorista';
-import { ViagemPassageiroPage } from '../pages/viagem-passageiro/viagem-passageiro';
-import { TurmaPage } from '../pages/turma/turma';
-import { InicialDivulgacaoPage } from '../pages/inicial-divulgacao/inicial-divulgacao';
-import { DivulgarDivulgacaoPage } from '../pages/divulgar-divulgacao/divulgar-divulgacao';
-import { FiltrarDivulgacaoPage } from '../pages/filtrar-divulgacao/filtrar-divulgacao';
-import { BugReportPage } from '../pages/bug-report/bug-report';
-import { CardapioPage } from '../pages/cardapio/cardapio';
-import { MensagemPage } from '../pages/mensagem/mensagem';
-import { MinhasDivulgacaoPage } from '../pages/minhas-divulgacao/minhas-divulgacao';
-import { ResultadoDivulgacaoPage } from '../pages/resultado-divulgacao/resultado-divulgacao';
-import { VendedorDivulgacaoPage } from '../pages/vendedor-divulgacao/vendedor-divulgacao';
-import { CompradorDivulgacaoPage } from '../pages/comprador-divulgacao/comprador-divulgacao';
+import { LoginPageModule } from '../pages/login/login.module';
+import { CadastroPageModule } from '../pages/cadastro/cadastro.module';
+import { PerfilPageModule } from '../pages/perfil/perfil.module';
+import { UtilidadesPageModule } from '../pages/utilidades/utilidades.module';
+import { HomePageModule } from '../pages/home/home.module';
+import { InicialCaronaPageModule } from '../pages/inicial-carona/inicial-carona.module';
+import { OferecerCaronaPageModule } from '../pages/oferecer-carona/oferecer-carona.module';
+import { ProcurarCaronaPageModule } from '../pages/procurar-carona/procurar-carona.module';
+import { InicialGradePageModule } from '../pages/inicial-grade/inicial-grade.module';
+import { ResCaronaPageModule } from '../pages/res-carona/res-carona.module';
+import { GradeEventoPageModule } from '../pages/grade-evento/grade-evento.module';
+import { AgendaPageModule } from '../pages/agenda/agenda.module';
+import { CaronaPageModule } from '../pages/carona/carona.module';
+import { MinhasCaronasPageModule } from '../pages/minhas-caronas/minhas-caronas.module';
+import { ViagemMotoristaPageModule } from '../pages/viagem-motorista/viagem-motorista.module';
+import { ViagemPassageiroPageModule } from '../pages/viagem-passageiro/viagem-passageiro.module';
+import { TurmaPageModule } from '../pages/turma/turma.module';
+import { InicialDivulgacaoPageModule } from '../pages/inicial-divulgacao/inicial-divulgacao.module';
+import { DivulgarDivulgacaoPageModule } from '../pages/divulgar-divulgacao/divulgar-divulgacao.module';
+import { FiltrarDivulgacaoPageModule } from '../pages/filtrar-divulgacao/filtrar-divulgacao.module';
+import { BugReportPageModule } from '../pages/bug-report/bug-report.module';
+import { CardapioPageModule } from '../pages/cardapio/cardapio.module';
+import { MensagemPageModule } from '../pages/mensagem/mensagem.module';
+import { MinhasDivulgacaoPageModule } from '../pages/minhas-divulgacao/minhas-divulgacao.module';
+import { ResultadoDivulgacaoPageModule } from '../pages/resultado-divulgacao/resultado-divulgacao.module';
+import { VendedorDivulgacaoPageModule } from '../pages/vendedor-divulgacao/vendedor-divulgacao.module';
+import { CompradorDivulgacaoPageModule } from '../pages/comprador-divulgacao/comprador-divulgacao.module';
 
 @NgModule({
   declarations: [
-    MyApp,
-    LoginPage,
-    CadastroPage,
-    PerfilPage,
-    ConfigPage,
-    UtilidadesPage,
-    HomePage,
-    InicialCaronaPage,
-    OferecerCaronaPage,
-    ProcurarCaronaPage,
-    InicialGradePage,
-    ResCaronaPage,
-    GradeEventoPage,
-    AgendaPage,
-    GradeCadastroEventoPage,
-    CaronaPage,
-    MinhasCaronasPage,
-    TurmaPage,
-    ViagemMotoristaPage,
-    ViagemPassageiroPage,
-    PopoverMotoristaPage,
-    PopoverOferecerPage,
-    InicialDivulgacaoPage,
-    DivulgarDivulgacaoPage,
-    FiltrarDivulgacaoPage,
-    BugReportPage,
-    CardapioPage,
-    MensagemPage,
-    MinhasDivulgacaoPage,
-    ResultadoDivulgacaoPage,
-    VendedorDivulgacaoPage,
-    CompradorDivulgacaoPage,
-    BugReportPage
+    MyApp
   ],
   imports: [
     BrowserModule,
@@ -89,43 +56,39 @@ import { CompradorDivulgacaoPage } from '../pages/comprador-divulgacao/comprador
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     CalendarModule,
-    BrowserModule
+    BrowserModule,
+    LoginPageModule,
+    CadastroPageModule,
+    PerfilPageModule,
+    UtilidadesPageModule,
+    HomePageModule,
+    InicialCaronaPageModule,
+    OferecerCaronaPageModule,
+    ProcurarCaronaPageModule,
+    InicialGradePageModule,
+    ResCaronaPageModule,
+    GradeEventoPageModule,
+    AgendaPageModule,
+    GradeCadastroEventoPageModule,
+    CaronaPageModule,
+    MinhasCaronasPageModule,
+    TurmaPageModule,
+    ViagemMotoristaPageModule,
+    ViagemPassageiroPageModule,
+    InicialDivulgacaoPageModule,
+    DivulgarDivulgacaoPageModule,
+    FiltrarDivulgacaoPageModule,
+    BugReportPageModule,
+    CardapioPageModule,
+    MensagemPageModule,
+    MinhasDivulgacaoPageModule,
+    ResultadoDivulgacaoPageModule,
+    VendedorDivulgacaoPageModule,
+    CompradorDivulgacaoPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    LoginPage,
-    CadastroPage,
-    PerfilPage,
-    ConfigPage,
-    UtilidadesPage,
-    HomePage,
-    InicialCaronaPage,
-    OferecerCaronaPage,
-    ProcurarCaronaPage,
-    InicialGradePage,
-    ResCaronaPage,
-    GradeEventoPage,
-    AgendaPage,
-    GradeCadastroEventoPage,
-    CaronaPage,
-    MinhasCaronasPage,
-    TurmaPage,
-    ViagemMotoristaPage,
-    ViagemPassageiroPage,
-    PopoverMotoristaPage,
-    PopoverOferecerPage,
-    InicialDivulgacaoPage,
-    DivulgarDivulgacaoPage,
-    FiltrarDivulgacaoPage,
-    BugReportPage,
-    CardapioPage,
-    MensagemPage,
-    MinhasDivulgacaoPage,
-    ResultadoDivulgacaoPage,
-    VendedorDivulgacaoPage,
-    CompradorDivulgacaoPage,
-    BugReportPage
   ],
   providers: [
     StatusBar,

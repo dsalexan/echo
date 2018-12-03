@@ -50,7 +50,7 @@ export class MinhasDivulgacaoPage {
     
     this.storage.get("aluno_ra").then((usu) => {
       
-      var path = 'http://104.248.9.4:3000/api/divulgacao/get/divulgacao/vendedor/ra_aluno?ra_aluno='+ usu
+      var path = 'http://localhost:3000/api/divulgacao/get/divulgacao/vendedor/ra_aluno?ra_aluno='+ usu
       this.http.get(path).map(res => res.json()).subscribe(data => {
         
         if(data.success) {
@@ -81,7 +81,7 @@ export class MinhasDivulgacaoPage {
     
     this.storage.get("aluno_ra").then((usu) => {
       
-      var path = 'http://104.248.9.4:3000/api/divulgacao/get/divulgacao/comprador/ra_aluno?ra_aluno='+ usu
+      var path = 'http://localhost:3000/api/divulgacao/get/divulgacao/comprador/ra_aluno?ra_aluno='+ usu
       console.log(path)
 
       this.http.get(path).map(res => res.json()).subscribe(data => {

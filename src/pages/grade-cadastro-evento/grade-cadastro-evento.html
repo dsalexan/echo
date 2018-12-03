@@ -8,6 +8,12 @@
 
 <ion-content padding>
 
+  <div class="navHeight">
+  <ion-title class="backTitle">Agenda semestral</ion-title>
+  <button class="backButton" (click)="clickBack()"><ion-icon class="backIcon" md="md-arrow-back"></ion-icon></button>
+  </div>
+  <div style="height: 65px"></div>
+
   <div style="padding-top: 10px"></div>
 
   <form #eventoForm="ngForm" (ngSubmit)="cadastrar()">
@@ -19,9 +25,9 @@
           [(ngModel)]="evento.data"
           id="data"
           name="data"
-          [format]="'DD-MM-YYYY'"
           required #data="ngModel">
         </ion-calendar>
+        <!-- [format]="'DD-MM-YYYY'" -->
         <!--<p>{{viagem.data}}</p>-->
       </ion-card-content>
     </ion-card>

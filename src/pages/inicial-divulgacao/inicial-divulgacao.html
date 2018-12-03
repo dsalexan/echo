@@ -1,17 +1,14 @@
 
-<!--Cabeçalho-->
-<ion-header>
-  <ion-navbar color="primary">
-    <ion-buttons left><!--botoes do cabeçalho - ESQUERDA-->
-    </ion-buttons>
-    <ion-title center>{{ 'Divulgação' }}</ion-title>
-  </ion-navbar>
-</ion-header>
 
 <ion-content>
-  <div class="fixed-content" style="width: 100%; text-align: center; position: absolute">
-      <button ion-button round (click)="clickFiltrarDivulgacaoPage()" class="filtrar-divulgacao"> Buscar </button><br>
-      <button ion-button round (click)="clickDivulgarDivulgacaoPage()" class="divulgar-divulgacao"> Divulgar </button><br><br><br><br><br>
-      <button ion-button round (click)="clickMinhasDivulgacaoPage()" class="minhas-divulgacao"> MUITO MINHAS s2 </button>
+    <div class="navHeight">
+    <ion-title class="backTitle">Divulgação</ion-title>
+    <!-- <button class="backButton" (click) = "clickBack()"><ion-icon class="backIcon" md="md-arrow-back"></ion-icon></button> -->
+    </div>
+    <div style="height: 65px"></div>
+  <div class="fixed-content" style="width: 100%; text-align: center; position: absolute; top: 85px">
+      <button ion-button round style="width: 75%" (click)="clickFiltrarDivulgacaoPage()" class="filtrar-divulgacao"> Buscar </button><br>
+      <button ion-button round style="width: 75%" (click)="clickDivulgarDivulgacaoPage()" class="divulgar-divulgacao"> Divulgar </button><br><br><br><br><br>
+      <button ion-button round style="width: 75%" (click)="clickMinhasDivulgacaoPage()" class="minhas-divulgacao"> MUITO MINHAS s2 </button>
   </div>
 </ion-content>

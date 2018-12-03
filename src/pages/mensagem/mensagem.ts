@@ -20,8 +20,9 @@ export class MensagemPage {
   exibir(mensagem){
     
     //alterar status no banco
+    console.log('mensagem', mensagem)
     if(!mensagem.lida){
-      var path = 'http://104.248.9.4:3000/api/mensagem/put/mensagem?id_mensagem=' + mensagem.id_mensagem
+      var path = 'http://localhost:3000/api/mensagem/put/mensagem?id_mensagem=' + mensagem.id_mensagem
       console.log(path)
       this.http.get(path).map(res => res.json()).subscribe(data => {
           if(data.success){
@@ -40,7 +41,7 @@ export class MensagemPage {
 
   exibirMensagens(){
     this.storage.get("aluno_ra"). then(usu => {
-      var path = 'http://104.248.9.4:3000/api/mensagem/get/lidas?id_destinatario=' + usu
+      var path = 'http://localhost:3000/api/mensagem/get/lidas?id_destinatario=' + usu
       console.log(path)
       
       this.http.get(path).map(res => res.json()).subscribe(data => {
@@ -50,7 +51,7 @@ export class MensagemPage {
         }
       })
 
-      var path2 = 'http://104.248.9.4:3000/api/mensagem/get/novas?id_destinatario=' + usu
+      var path2 = 'http://localhost:3000/api/mensagem/get/novas?id_destinatario=' + usu
       console.log(path2)
       
       this.http.get(path2).map(res => res.json()).subscribe(data2 => {
@@ -65,7 +66,7 @@ export class MensagemPage {
   }
 
   excluirMensagem(mensagem){
-    var path = 'http://104.248.9.4:3000/api/mensagem/delete/mensagem?id_mensagem=' + mensagem.id_mensagem
+    var path = 'http://localhost:3000/api/mensagem/delete/mensagem?id_mensagem=' + mensagem.id_mensagem
     console.log(path)
     
     this.http.get(path).map(res => res.json()).subscribe(data => {
@@ -109,9 +110,15 @@ export class MensagemPage {
     })
   }
 
+  clickBack() {
+    this.navCtrl.pop()
+  }
+
   ionViewWillEnter() {
     this.exibirMensagens();
     console.log('ionViewWillEnter MensagemPage');
+    document.getElementById("tabs").style.display = "none"
+    document.getElementById("botao_menu").style.display = "none"
   }
 
 }
