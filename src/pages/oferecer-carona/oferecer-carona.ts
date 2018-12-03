@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, PopoverController, ViewController, Navbar } from 'ionic-angular';
+import { DatePicker } from '@ionic-native/date-picker';
 import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
 
@@ -24,10 +25,11 @@ export class OferecerCaronaPage {
   horateste = {}
   c = 0
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController, public popOver: PopoverController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController, public popOver: PopoverController, private datePicker: DatePicker) {
     this.origem = new Array
     this.destino = new Array
   }
+
 
   criaDic() {
     for (var i = 0; i < this.origem.length; i++) {
