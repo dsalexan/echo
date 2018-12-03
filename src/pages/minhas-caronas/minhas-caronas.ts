@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, AlertController, Navbar } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
 
 import { LoginPage } from '../login/login'
 import { ViagemMotoristaPage } from '../viagem-motorista/viagem-motorista';
 import { ViagemPassageiroPage } from '../viagem-passageiro/viagem-passageiro';
+import { InicialCaronaPage } from '../inicial-carona/inicial-carona';
 
 @IonicPage()
 @Component({
@@ -13,6 +14,7 @@ import { ViagemPassageiroPage } from '../viagem-passageiro/viagem-passageiro';
   templateUrl: 'minhas-caronas.html',
 })
 export class MinhasCaronasPage {
+  @ViewChild(Navbar)navBar: Navbar;
 
   viagens_motorista= [];
   reservas_motorista= {};
@@ -61,7 +63,7 @@ export class MinhasCaronasPage {
               let alert = this.alertCtrl.create({
                 title: 'Ops!',
                 subTitle: 'Tente novamente',
-                buttons: ['Dismiss']
+                buttons: ['Fechar']
               });
               alert.present();
             }
@@ -72,7 +74,7 @@ export class MinhasCaronasPage {
           let alert = this.alertCtrl.create({
             title: 'Ops!',
             subTitle: 'Tente novamente',
-            buttons: ['Dismiss']
+            buttons: ['Fechar']
           });
           alert.present();
         }
@@ -98,7 +100,7 @@ export class MinhasCaronasPage {
           let alert = this.alertCtrl.create({
             title: 'Ops!',
             subTitle: 'Tente novamente',
-            buttons: ['Dismiss']
+            buttons: ['Fechar']
           });
           alert.present();
         }
@@ -132,8 +134,18 @@ export class MinhasCaronasPage {
     })
   }
 
+  
   ionViewWillEnter() {
     this.checkSession();
+    // this.navBar.backButtonClick = () => {
+    //   //this.navCtrl.push(InicialCaronaPage)
+    //     let pages = [
+    //     {
+    //     page: InicialCaronaPage
+    //     }
+    //     ];
+    //     this.navCtrl.setPages(pages);
+    // }
     this.mostrarLocalidade();
     this.caronasMotorista();
     this.caronasPassageiro();

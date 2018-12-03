@@ -1,15 +1,11 @@
 <ion-header>
   <ion-navbar color="primary">
-    
-    <ion-title center>{{ 'Motorista' }}</ion-title>
-    <ion-buttons right>
-        <button ion-item (click)="showConfirm()">
-            <ion-icon name="md-trash"></ion-icon>   Excluir viagem
-          </button>
-        <!-- <button ion-button icon-only (click)="editarViagemMotorista($event)">
-          <ion-icon name="more"></ion-icon>
-        </button> -->
+    <ion-buttons left><!--botoes do cabeçalho - ESQUERDA-->
     </ion-buttons>
+    <ion-title center>{{ 'Motorista' }}</ion-title>
+    <!--<ion-buttons right>
+      <button ion-button icon-only (click)="clickConfig()" class="configuracoes">Config.</button><!--botao configuracoes
+    </ion-buttons>-->
   </ion-navbar>
 </ion-header>
 
@@ -22,6 +18,9 @@
       <br>
       <h2>Vagas disponíveis: {{viagem.qtd_vagas}}</h2>
       <h2>Descrição: {{viagem.descricao}}</h2>
+      <button ion-item (click)="showConfirm()">
+        <ion-icon name="md-trash"></ion-icon>   Excluir viagem
+      </button>
     </ion-label>
   </ion-item>
   <br>

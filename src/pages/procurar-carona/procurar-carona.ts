@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, AlertController, Navbar } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
 
 import { LoginPage } from '../login/login';
 import { HomePage } from '../home/home';
 import { ResCaronaPage } from '../res-carona/res-carona';
+import { InicialCaronaPage } from '../inicial-carona/inicial-carona';
 
 
 @IonicPage()
@@ -14,6 +15,8 @@ import { ResCaronaPage } from '../res-carona/res-carona';
   templateUrl: 'procurar-carona.html',
 })
 export class ProcurarCaronaPage {
+  @ViewChild(Navbar)navBar: Navbar;
+
   date: string;
   viagem = {}
   lista = []
@@ -28,7 +31,7 @@ export class ProcurarCaronaPage {
   }
 
   onChange($event) {
-    console.log($event);
+    //console.log($event);
   }
 
   checkSession() {
@@ -66,7 +69,7 @@ export class ProcurarCaronaPage {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
           subTitle: 'Tente novamente',
-          buttons: ['Dismiss']
+          buttons: ['Fechar']
         });
         alert.present();
       }
@@ -86,7 +89,7 @@ export class ProcurarCaronaPage {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
           subTitle: 'Tente novamente',
-          buttons: ['Dismiss']
+          buttons: ['Fechar']
         });
         alert.present();
       }
@@ -106,7 +109,7 @@ export class ProcurarCaronaPage {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
           subTitle: 'Tente novamente',
-          buttons: ['Dismiss']
+          buttons: ['Fechar']
         });
         alert.present();
       }
@@ -126,7 +129,7 @@ export class ProcurarCaronaPage {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
           subTitle: 'Tente novamente',
-          buttons: ['Dismiss']
+          buttons: ['Fechar']
         });
         alert.present();
       }
@@ -146,7 +149,7 @@ export class ProcurarCaronaPage {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
           subTitle: 'Tente novamente',
-          buttons: ['Dismiss']
+          buttons: ['Fechar']
         });
         alert.present();
       }
@@ -166,7 +169,7 @@ export class ProcurarCaronaPage {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
           subTitle: 'Tente novamente',
-          buttons: ['Dismiss']
+          buttons: ['Fechar']
         });
         alert.present();
       }
@@ -186,7 +189,7 @@ export class ProcurarCaronaPage {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
           subTitle: 'Tente novamente',
-          buttons: ['Dismiss']
+          buttons: ['Fechar']
         });
         alert.present();
       }
@@ -206,7 +209,7 @@ export class ProcurarCaronaPage {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
           subTitle: 'Tente novamente',
-          buttons: ['Dismiss']
+          buttons: ['Fechar']
         });
         alert.present();
       }
@@ -226,7 +229,7 @@ export class ProcurarCaronaPage {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
           subTitle: 'Tente novamente',
-          buttons: ['Dismiss']
+          buttons: ['Fechar']
         });
         alert.present();
       }
@@ -246,7 +249,7 @@ export class ProcurarCaronaPage {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
           subTitle: 'Tente novamente',
-          buttons: ['Dismiss']
+          buttons: ['Fechar']
         });
         alert.present();
       }
@@ -266,7 +269,7 @@ export class ProcurarCaronaPage {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
           subTitle: 'Tente novamente',
-          buttons: ['Dismiss']
+          buttons: ['Fechar']
         });
         alert.present();
       }
@@ -286,7 +289,7 @@ export class ProcurarCaronaPage {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
           subTitle: 'Tente novamente',
-          buttons: ['Dismiss']
+          buttons: ['Fechar']
         });
         alert.present();
       }
@@ -306,7 +309,7 @@ export class ProcurarCaronaPage {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
           subTitle: 'Tente novamente',
-          buttons: ['Dismiss']
+          buttons: ['Fechar']
         });
         alert.present();
       }
@@ -316,7 +319,7 @@ export class ProcurarCaronaPage {
   }
 
   procurar(){
-    console.log(this.viagem)
+    //console.log(this.viagem)
     if(this.viagem["data"] != undefined && this.viagem["hora"] != undefined && this.viagem["id_origem"] != undefined && this.viagem["id_destino"] != undefined && this.viagem["qtd_vagas"] != undefined)
       //console.log('dia hora origem destino vagas')
       this.procura1();
@@ -368,10 +371,28 @@ export class ProcurarCaronaPage {
     else if(this.viagem["data"] != undefined && this.viagem["hora"] == undefined && this.viagem["id_origem"] == undefined && this.viagem["id_destino"] == undefined && this.viagem["qtd_vagas"] == undefined)
       //console.log('dia')
       this.procura13();
+
+    else{
+      let alert = this.alertCtrl.create({
+        title: 'Ops!',
+        subTitle: 'Altere os dados de sua busca!',
+        buttons: ['Fechar']
+      });
+      alert.present();
+    }
   }
   
   ionViewWillEnter() {
     this.checkSession();
+    this.navBar.backButtonClick = () => {
+      // you can set a full custom history here if you want 
+        let pages = [
+        {
+      page: InicialCaronaPage
+      }
+      ];
+      this.navCtrl.setPages(pages);
+    }
     this.mostrarLocalidade();
     console.log('ionViewWillEnter OferecerCaronaPage');
     document.getElementById("tabs").style.display = "none"

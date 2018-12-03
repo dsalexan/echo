@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, PopoverController, ViewController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, AlertController, PopoverController, ViewController, Navbar } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
 
@@ -8,15 +8,14 @@ import { HomePage } from '../home/home';
 import { MinhasCaronasPage } from '../minhas-caronas/minhas-caronas';
 
 
-/*CLASSE VIAGEM MOTORISTA*/
-
 @IonicPage()
 @Component({
   selector: 'page-viagem-motorista',
   templateUrl: 'viagem-motorista.html',
 })
 export class ViagemMotoristaPage {
-
+  @ViewChild(Navbar)navBar: Navbar;
+  
   viagem: any;
   reservaPendente = [];
   reservaConfirmada = [];
@@ -47,12 +46,8 @@ export class ViagemMotoristaPage {
     })
   }
 
-  close() {
-    this.viewCtrl.dismiss();
-  }
-
   showConfirm() {
-    this.close()
+    //this.close()
     const confirm = this.alertCtrl.create({
       title: 'Excluir a viagem?',
       message: 'Tem certeza de que deseja excluir a viagem? Não será possível recuperá-la.',
@@ -109,7 +104,7 @@ export class ViagemMotoristaPage {
                   //enviar mensagem de cancelamento para o(s) passageiro(s) confirmado(s)
                   this.reservaConfirmada.forEach(reserva =>{
 
-                    var msg = this.msg_exclusao + 'referente à viagem do dia ' + this.formatDate(this.viagem["dia"]) /*+ " às " + this.viagem["hora"] */+ ' - ' + this.loc[reserva.id_origem] + '->' + this.loc[reserva.id_destino]
+                    var msg = this.msg_exclusao_viagem + 'referente à viagem do dia ' + this.formatDate(this.viagem["dia"]) /*+ " às " + this.viagem["hora"] */+ ' - ' + this.loc[reserva.id_origem] + '->' + this.loc[reserva.id_destino]
                     
                     var dia = this.formatDate(new Date())
                     var hora = (new Date()).toTimeString().split(' ')[0]
@@ -230,7 +225,7 @@ export class ViagemMotoristaPage {
   }
 
   showConfirmRejeitar(reserva) {
-    this.close()
+    //this.close()
     const confirm = this.alertCtrl.create({
       title: 'Excluir a viagem?',
       message: 'Tem certeza de que deseja excluir a viagem? Não será possível recuperá-la.',
@@ -255,10 +250,10 @@ export class ViagemMotoristaPage {
   }
 
   showConfirmAceitar(reserva) {
-    this.close()
+    //this.close()
     const confirm = this.alertCtrl.create({
-      title: 'Excluir a viagem?',
-      message: 'Tem certeza de que deseja excluir a viagem? Não será possível recuperá-la.',
+      title: 'Confirmar reserva?',
+      message: 'Tem certeza de que deseja confirmar a reserva?.',
       buttons: [
         {
           text: 'Cancelar',
@@ -268,7 +263,7 @@ export class ViagemMotoristaPage {
           }
         },
         {
-          text: 'Excluir',
+          text: 'Confirmar',
           handler: () => {
             console.log('Agree clicked');
             this.aceitarReserva(reserva);
@@ -289,7 +284,7 @@ export class ViagemMotoristaPage {
         let alert = this.alertCtrl.create({
           title: 'Ok!',
           subTitle: 'Reserva rejeitada com sucesso',
-          buttons: ['Dismiss']
+          buttons: ['Fechar']
         });
         alert.present();
         this.ionViewWillEnter();
@@ -298,7 +293,7 @@ export class ViagemMotoristaPage {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
           subTitle: 'Tente novamente',
-          buttons: ['Dismiss']
+          buttons: ['Fechar']
         });
         alert.present();
       }
@@ -334,7 +329,7 @@ export class ViagemMotoristaPage {
                 let alert = this.alertCtrl.create({
                   title: 'Ok!',
                   subTitle: 'Reserva excluída',
-                  buttons: ['Dismiss']
+                  buttons: ['Fechar']
                 });
                 alert.present();
                 this.ionViewWillEnter();
@@ -343,7 +338,7 @@ export class ViagemMotoristaPage {
                 let alert = this.alertCtrl.create({
                   title: 'Ops!',
                   subTitle: 'Tente novamente',
-                  buttons: ['Dismiss']
+                  buttons: ['Fechar']
                 });
                 alert.present();
               }
@@ -353,7 +348,7 @@ export class ViagemMotoristaPage {
             let alert = this.alertCtrl.create({
               title: 'Ops!',
               subTitle: 'Tente novamente',
-              buttons: ['Dismiss']
+              buttons: ['Fechar']
             });
             alert.present();
           }
@@ -363,7 +358,7 @@ export class ViagemMotoristaPage {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
           subTitle: 'Tente novamente',
-          buttons: ['Dismiss']
+          buttons: ['Fechar']
         });
         alert.present();
       }
@@ -402,7 +397,7 @@ export class ViagemMotoristaPage {
                   let alert = this.alertCtrl.create({
                     title: 'Ok!',
                     subTitle: 'Reserva confirmada',
-                    buttons: ['Dismiss']
+                    buttons: ['Fechar']
                   });
                   alert.present();
                   this.ionViewWillEnter();
@@ -411,7 +406,7 @@ export class ViagemMotoristaPage {
                   let alert = this.alertCtrl.create({
                     title: 'Ops!',
                     subTitle: 'Tente novamente',
-                    buttons: ['Dismiss']
+                    buttons: ['Fechar']
                   });
                   alert.present();
                 }
@@ -430,7 +425,7 @@ export class ViagemMotoristaPage {
               let alert = this.alertCtrl.create({
                 title: 'Ops!',
                 subTitle: 'Tente novamente',
-                buttons: ['Dismiss']
+                buttons: ['Fechar']
               });
               alert.present();
             }
@@ -439,7 +434,7 @@ export class ViagemMotoristaPage {
           let alert = this.alertCtrl.create({
             title: 'Ops!',
             subTitle: 'Tente novamente',
-            buttons: ['Dismiss']
+            buttons: ['Fechar']
           });
           alert.present();
         }
@@ -448,7 +443,7 @@ export class ViagemMotoristaPage {
       let alert = this.alertCtrl.create({
         title: 'Ops!',
         subTitle: 'Não há vagas disponíveis!',
-        buttons: ['Dismiss']
+        buttons: ['Fechar']
       });
       alert.present();
     }
@@ -477,7 +472,7 @@ export class ViagemMotoristaPage {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
           subTitle: 'Tente novamente',
-          buttons: ['Dismiss']
+          buttons: ['Fechar']
         });
         alert.present();
       }
@@ -498,6 +493,15 @@ export class ViagemMotoristaPage {
 
   ionViewWillEnter() {
     this.checkSession();
+    this.navBar.backButtonClick = () => {
+      // you can set a full custom history here if you want 
+        let pages = [
+        {
+      page: MinhasCaronasPage
+      }
+      ];
+      this.navCtrl.setPages(pages);
+    }
     this.buscaReservas();
     // PENDENCIA: buscar a qtd de vagas nesta tela
     //console.log(this.viagem)

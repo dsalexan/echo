@@ -2,7 +2,7 @@
     <ion-navbar color="primary">
       <ion-buttons left><!--botoes do cabeçalho - ESQUERDA-->
       </ion-buttons>
-      <ion-title center>{{ 'Caronas' }}</ion-title>
+      <ion-title center>{{ 'Procurar carona' }}</ion-title>
       <!--<ion-buttons right>
         <button ion-button icon-only (click)="clickConfig()" class="configuracoes">Config.</button><!--botao configuracoes
       </ion-buttons>-->
@@ -22,8 +22,7 @@
             (onChange)="onChange($event)"
             required #data="ngModel">
           </ion-calendar>
-          <!-- [format]="'YYYY-MM-DD'" -->
-          <!--<p>{{viagem.data}}</p>-->
+          <!-- <p>{{viagem.data}}</p> -->
         </ion-card-content>
       </ion-card>
       
