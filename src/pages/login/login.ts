@@ -34,25 +34,25 @@ export class LoginPage {
     // this.http.post('http://' + sr + ':3000/teste', {'login': user, 'senha': encryptSenha}, {headers: new HttpHeaders()}).subscribe(result => {
     
     // this.http.put('http://' + sr + ':3000/teste', {'bla': '1'}, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe(result => {
-    this.http.get('http://' + sr + ':3000/teste', {responseType: 'text'}).subscribe(result => {
-      console.log(result)
-      let alert = this.alertCtrl.create({
-        title: 'Ops!',
-        subTitle: 'Verifique as informações inseridas',
-        buttons: ['Dismiss']
-      });
-      alert.present();
-    }, err => {
-      console.log(err)
-      console.log(Object.keys(err))
-      console.log(Object.values(err))
-      let alert = this.alertCtrl.create({
-        title: err.name,
-        subTitle: err.message,
-        buttons: ['Dismiss']
-      });
-      alert.present();
-    })
+    // this.http.get('http://' + sr + ':3000/teste', {responseType: 'text'}).subscribe(result => {
+    //   console.log(result)
+    //   let alert = this.alertCtrl.create({
+    //     title: 'Ops!',
+    //     subTitle: 'Verifique as informações inseridas',
+    //     buttons: ['Dismiss']
+    //   });
+    //   alert.present();
+    // }, err => {
+    //   console.log(err)
+    //   console.log(Object.keys(err))
+    //   console.log(Object.values(err))
+    //   let alert = this.alertCtrl.create({
+    //     title: err.name,
+    //     subTitle: err.message,
+    //     buttons: ['Dismiss']
+    //   });
+    //   alert.present();
+    // })
 
     document.getElementById("tabs").style.display = "none"
     document.getElementById("botao_menu").style.display = "none"

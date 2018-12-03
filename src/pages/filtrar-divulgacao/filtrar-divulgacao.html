@@ -45,6 +45,7 @@
               value ="1">
             </ion-input>
         </ion-item>
+        
 
         <ion-item>
           <ion-label floating> Data </ion-label>
@@ -52,7 +53,7 @@
             displayFormat="YYYY-MM-DD"
             [(ngModel)]="item.dia"
             id="dia"
-            name="dia"
+            name="dia"          
             (onChange)="onChange($event)">
           </ion-datetime>
         </ion-item>
