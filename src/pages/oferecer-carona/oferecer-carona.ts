@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController, PopoverController
 import { DatePicker } from '@ionic-native/date-picker';
 import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { LoginPage } from '../login/login'
 import { InicialCaronaPage } from '../inicial-carona/inicial-carona';
@@ -25,7 +26,7 @@ export class OferecerCaronaPage {
   horateste = {}
   c = 0
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController, public popOver: PopoverController, private datePicker: DatePicker) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient, public alertCtrl: AlertController, public popOver: PopoverController, private datePicker: DatePicker) {
     this.origem = new Array
     this.destino = new Array
   }
@@ -53,12 +54,13 @@ export class OferecerCaronaPage {
   }
 
   mostrarLocalidade(){
-    var path = 'http://localhost:3000/api/caronas/get/localidades'
-    this.http.get(path).map(res => res.json()).subscribe(data => {
+    var path = 'http://104.248.9.4:3000/api/caronas/get/localidades'
+    this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+    // this.http.get(path).map(res => res.json()).subscribe(data => {
 
-      if(data.data[0] != undefined) {
+      if(data["data"][0] != undefined) {
         console.log(data)
-        data.data.forEach(element => {
+        data["data"].forEach(element => {
           this.loc[element["id_local"]] = element ["descricao"]
           this.lista.push(element)
         });
@@ -92,18 +94,20 @@ export class OferecerCaronaPage {
     var path2
 
     this.storage.get("aluno_ra").then((usu) => {
-      path = 'http://localhost:3000/api/caronas/post/viagem?id_motorista='+ usu + '&dia='+ this.viagem["data"] + '&preco='+ this.viagem["preco"] + '&qtd_vagas=' + this.viagem["qtd_vagas"] + '&descricao='+ this.viagem["descricao"]
+      path = 'http://104.248.9.4:3000/api/caronas/post/viagem?id_motorista='+ usu + '&dia='+ this.viagem["data"] + '&preco='+ this.viagem["preco"] + '&qtd_vagas=' + this.viagem["qtd_vagas"] + '&descricao='+ this.viagem["descricao"]
       console.log(path)
-      this.http.get(path).map(res => res.json()).subscribe(data => {
+      this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+      // this.http.get(path).map(res => res.json()).subscribe(data => {
 
-        if(data.success) {
-          var id = data.data.id_viagem
+        if(data["success"]) {
+          var id = data["data"].id_viagem
           var erro = 0
           Object.keys(this.horateste).forEach( key => {
-            path = 'http://localhost:3000/api/caronas/post/viagem/origem?id_viagem=' + id + '&hora=' + this.horateste[key] + '&origem=' + key 
+            path = 'http://104.248.9.4:3000/api/caronas/post/viagem/origem?id_viagem=' + id + '&hora=' + this.horateste[key] + '&origem=' + key 
             console.log(path)
-            this.http.get(path).map(res => res.json()).subscribe(or => {
-              if(data.success) {
+            this.http.get(path, {headers: new HttpHeaders()}).subscribe(or => {
+            // this.http.get(path).map(res => res.json()).subscribe(or => {
+              if(data["success"]) {
               }else {
                 erro = 1
                 let alert = this.alertCtrl.create({
@@ -118,11 +122,12 @@ export class OferecerCaronaPage {
         
           var i = 0
           while (i < this.destino.length) {
-            path2 = 'http://localhost:3000/api/caronas/post/viagem/destino?id_viagem=' + id + '&destino=' + this.destino[i]
+            path2 = 'http://104.248.9.4:3000/api/caronas/post/viagem/destino?id_viagem=' + id + '&destino=' + this.destino[i]
             console.log(path2)
             i++
-            this.http.get(path2).map(res => res.json()).subscribe(or => {
-              if(data.success) {
+            this.http.get(path2, {headers: new HttpHeaders()}).subscribe(or => {
+            // this.http.get(path2).map(res => res.json()).subscribe(or => {
+              if(data["success"]) {
               }else {
                 erro = 1
                 let alert = this.alertCtrl.create({

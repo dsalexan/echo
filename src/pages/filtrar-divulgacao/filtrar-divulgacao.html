@@ -45,13 +45,17 @@
               value ="1">
             </ion-input>
         </ion-item>
-        
-        <ion-calendar
-          [(ngModel)]="item.dia"
-          id="dia"
-          name="dia"          
-          (onChange)="onChange($event)">
-        </ion-calendar>
+
+        <ion-item>
+          <ion-label floating> Data </ion-label>
+          <ion-datetime
+            displayFormat="YYYY-MM-DD"
+            [(ngModel)]="item.dia"
+            id="dia"
+            name="dia"
+            (onChange)="onChange($event)">
+          </ion-datetime>
+        </ion-item>
         <!-- [format]="'YYYY-MM-DD'"> -->
         <!-- required #item.dia="ngModel"> -->
         

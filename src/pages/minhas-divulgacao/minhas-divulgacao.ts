@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { LoginPage } from '../login/login'
 import { TitleCasePipe } from '@angular/common';
@@ -21,7 +22,7 @@ export class MinhasDivulgacaoPage {
   itens_comprador_validos = [];
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient, public alertCtrl: AlertController) {
   }
 
 
@@ -50,12 +51,13 @@ export class MinhasDivulgacaoPage {
     
     this.storage.get("aluno_ra").then((usu) => {
       
-      var path = 'http://localhost:3000/api/divulgacao/get/divulgacao/vendedor/ra_aluno?ra_aluno='+ usu
-      this.http.get(path).map(res => res.json()).subscribe(data => {
+      var path = 'http://104.248.9.4:3000/api/divulgacao/get/divulgacao/vendedor/ra_aluno?ra_aluno='+ usu
+      this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+      // this.http.get(path).map(res => res.json()).subscribe(data => {
         
-        if(data.success) {
-          console.log(data.data)
-              this.itens_vendedor = data.data;        
+        if(data["success"]) {
+          console.log(data["data"])
+              this.itens_vendedor = data["data"];        
         } else {
           let alert = this.alertCtrl.create({
             title: 'Ops!',
@@ -81,14 +83,15 @@ export class MinhasDivulgacaoPage {
     
     this.storage.get("aluno_ra").then((usu) => {
       
-      var path = 'http://localhost:3000/api/divulgacao/get/divulgacao/comprador/ra_aluno?ra_aluno='+ usu
+      var path = 'http://104.248.9.4:3000/api/divulgacao/get/divulgacao/comprador/ra_aluno?ra_aluno='+ usu
       console.log(path)
 
-      this.http.get(path).map(res => res.json()).subscribe(data => {
+      this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+      // this.http.get(path).map(res => res.json()).subscribe(data => {
         
-        if(data.success) {
-          console.log(data.data)
-              this.itens_comprador = data.data;        
+        if(data["success"]) {
+          console.log(data["data"])
+              this.itens_comprador = data["data"];        
         } else {
           let alert = this.alertCtrl.create({
             title: 'Ops!',

@@ -234,7 +234,7 @@ Alternatively, switch to another plugin that provides the same functionality but
 
 For the time being push support on the browser will only work using the PhoneGap push server.
 
-When you run `phonegap serve` to test browser push point your browser at `http://localhost:3000`. The browser push implementation uses the W3C Push Spec's implementation which relies on ServiceWorkers and ServiceWorkers can only be accessed via the `https` protocol or via `http://localhost`. Pointing your browser at `localhost` will be the easiest way to test.
+When you run `phonegap serve` to test browser push point your browser at `http://104.248.9.4:3000`. The browser push implementation uses the W3C Push Spec's implementation which relies on ServiceWorkers and ServiceWorkers can only be accessed via the `https` protocol or via `http://localhost`. Pointing your browser at `localhost` will be the easiest way to test.
 
 ### Browser Support
 

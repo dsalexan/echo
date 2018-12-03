@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, PopoverController, ViewController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { LoginPage } from '../login/login'
 import { InicialDivulgacaoPage } from '../inicial-divulgacao/inicial-divulgacao';
@@ -30,7 +31,7 @@ export class DivulgarDivulgacaoPage {
   item = {} // {} tipo: objetoF
   lista = []
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController, public popOver: PopoverController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient, public alertCtrl: AlertController, public popOver: PopoverController) {
   }
 
   ionViewWillEnter() {
@@ -60,10 +61,11 @@ export class DivulgarDivulgacaoPage {
   }
 
   PreencherListaTipo(){
-    var path = 'http://localhost:3000/api/divulgacao/get/divulgacao/select_tipo'
-    this.http.get(path).map(res => res.json()).subscribe(data => {
+    var path = 'http://104.248.9.4:3000/api/divulgacao/get/divulgacao/select_tipo'
+    this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+    // this.http.get(path).map(res => res.json()).subscribe(data => {
       console.log(data)
-      data.data.forEach(tipo => {
+      data["data"].forEach(tipo => {
         this.lista.push({id_tipo:tipo.id_tipo, nome_tipo:tipo.nome_tipo})
       })
     }, (err) => {
@@ -73,11 +75,12 @@ export class DivulgarDivulgacaoPage {
 
   divulgar(){ 
     this.storage.get("aluno_ra").then((usu) => {
-      var path = 'http://localhost:3000/api/divulgacao/post/divulgacao?ra_aluno='+ usu + '&id_tipo=' + this.item["categoria"] + '&nome=' + this.item["nome"]  + '&valor='+ this.item["valor"] + '&dia='+ this.item["dia"] + '&hora_inicio=' + this.item["hora_inicio"] + '&hora_fim=' + this.item["hora_fim"] + '&quantidade=' + this.item["quantidade"] + '&descricao='+ this.item["descricao"]
+      var path = 'http://104.248.9.4:3000/api/divulgacao/post/divulgacao?ra_aluno='+ usu + '&id_tipo=' + this.item["categoria"] + '&nome=' + this.item["nome"]  + '&valor='+ this.item["valor"] + '&dia='+ this.item["dia"] + '&hora_inicio=' + this.item["hora_inicio"] + '&hora_fim=' + this.item["hora_fim"] + '&quantidade=' + this.item["quantidade"] + '&descricao='+ this.item["descricao"]
       console.log(path)
-      this.http.get(path).map(res => res.json()).subscribe(data => {
+      this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+      // this.http.get(path).map(res => res.json()).subscribe(data => {
 
-        if(data.success){
+        if(data["success"]){
           let alert = this.alertCtrl.create({
             title: 'Ok!',
             subTitle: 'Divulgação realizada com sucesso',

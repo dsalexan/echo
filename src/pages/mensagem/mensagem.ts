@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { LoginPage } from '../login/login'
 import { Http } from '@angular/http';
@@ -14,7 +15,7 @@ import { Http } from '@angular/http';
 export class MensagemPage {
   mensagens_lidas = []
   mensagens_naolidas = []
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient, public alertCtrl: AlertController) {
   }
 
   exibir(mensagem){
@@ -22,10 +23,11 @@ export class MensagemPage {
     //alterar status no banco
     console.log('mensagem', mensagem)
     if(!mensagem.lida){
-      var path = 'http://localhost:3000/api/mensagem/put/mensagem?id_mensagem=' + mensagem.id_mensagem
+      var path = 'http://104.248.9.4:3000/api/mensagem/put/mensagem?id_mensagem=' + mensagem.id_mensagem
       console.log(path)
-      this.http.get(path).map(res => res.json()).subscribe(data => {
-          if(data.success){
+      this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+      // this.http.get(path).map(res => res.json()).subscribe(data => {
+          if(data["success"]){
             this.ionViewWillEnter()
           }
         })
@@ -41,22 +43,24 @@ export class MensagemPage {
 
   exibirMensagens(){
     this.storage.get("aluno_ra"). then(usu => {
-      var path = 'http://localhost:3000/api/mensagem/get/lidas?id_destinatario=' + usu
+      var path = 'http://104.248.9.4:3000/api/mensagem/get/lidas?id_destinatario=' + usu
       console.log(path)
       
-      this.http.get(path).map(res => res.json()).subscribe(data => {
-        if(data.success){
-          this.mensagens_lidas = data.data
+      this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+      // this.http.get(path).map(res => res.json()).subscribe(data => {
+        if(data["success"]){
+          this.mensagens_lidas = data["data"]
           //console.log('jisdjoasi', this.mensagens)
         }
       })
 
-      var path2 = 'http://localhost:3000/api/mensagem/get/novas?id_destinatario=' + usu
+      var path2 = 'http://104.248.9.4:3000/api/mensagem/get/novas?id_destinatario=' + usu
       console.log(path2)
       
-      this.http.get(path2).map(res => res.json()).subscribe(data2 => {
-        if(data2.success){
-          this.mensagens_naolidas = data2.data
+      this.http.get(path2, {headers: new HttpHeaders()}).subscribe(data2 => {
+      // this.http.get(path2).map(res => res.json()).subscribe(data2 => {
+        if(data2["success"]){
+          this.mensagens_naolidas = data2["data"]
           //console.log('jisdjoasi', this.mensagens)
         }
       })
@@ -66,11 +70,12 @@ export class MensagemPage {
   }
 
   excluirMensagem(mensagem){
-    var path = 'http://localhost:3000/api/mensagem/delete/mensagem?id_mensagem=' + mensagem.id_mensagem
+    var path = 'http://104.248.9.4:3000/api/mensagem/delete/mensagem?id_mensagem=' + mensagem.id_mensagem
     console.log(path)
     
-    this.http.get(path).map(res => res.json()).subscribe(data => {
-      if(data.success){
+    this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+    // this.http.get(path).map(res => res.json()).subscribe(data => {
+      if(data["success"]){
         let alert = this.alertCtrl.create({
           title: 'Ok!',
           subTitle: 'Mensagem excluída!',

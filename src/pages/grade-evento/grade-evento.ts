@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 /**
  * Generated class for the GradeEventoPage page.
@@ -19,7 +20,7 @@ export class GradeEventoPage {
 
   dados = {}
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, public storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient, public storage: Storage) {
     this.dados = navParams.get('dados');
     // console.log(this.dados)
   }
@@ -39,29 +40,32 @@ export class GradeEventoPage {
   carregarDadosTurma() {
     var id_turma = this.dados["id_turma"];
 
-    var path = 'http://localhost:3000/api/grades/get/turma/id?id_turma=' + id_turma
-    this.http.get(path).map(res => res.json()).subscribe(info => {
+    var path = 'http://104.248.9.4:3000/api/grades/get/turma/id?id_turma=' + id_turma
+    this.http.get(path, {headers: new HttpHeaders()}).subscribe(info => {
+    // this.http.get(path).map(res => res.json()).subscribe(info => {
       // console.log(info)
-      this.dados["nome_turma"] = info.data.nome_turma
-      this.dados["nome_uc"] = info.data.nome_uc
-      this.dados["nome_prof"] = info.data.nome_prof
+      this.dados["nome_turma"] = info["data"].nome_turma
+      this.dados["nome_uc"] = info["data"].nome_uc
+      this.dados["nome_prof"] = info["data"].nome_prof
     })
 
     this.storage.get("aluno_ra").then(ra_aluno => {
-      var path4 = 'http://localhost:3000/api/grades/get/faltas?id_turma=' + id_turma + '&ra_aluno=' + ra_aluno
-      this.http.get(path4).map(res => res.json()).subscribe(info => {
+      var path4 = 'http://104.248.9.4:3000/api/grades/get/faltas?id_turma=' + id_turma + '&ra_aluno=' + ra_aluno
+      this.http.get(path4, {headers: new HttpHeaders()}).subscribe(info => {
+      // this.http.get(path4).map(res => res.json()).subscribe(info => {
         // console.log(info)
         console.log('info', info)
-        this.dados["faltas"] = info.data.faltas
+        this.dados["faltas"] = info["data"].faltas
       })
     })
 
     this.dados["alunos"] = []
 
-    var path2 = 'http://localhost:3000/api/grades/get/aluno/turma?id_turma=' + id_turma
-    this.http.get(path2).map(res => res.json()).subscribe(data => {
+    var path2 = 'http://104.248.9.4:3000/api/grades/get/aluno/turma?id_turma=' + id_turma
+    this.http.get(path2, {headers: new HttpHeaders()}).subscribe(data => {
+    // this.http.get(path2).map(res => res.json()).subscribe(data => {
       // console.log(data)
-      data.data.forEach(aluno => {
+      data["data"].forEach(aluno => {
         var a = {nome: aluno.nome, ra: aluno.ra_aluno}
         this.dados["alunos"].push(a)
       })
@@ -69,10 +73,11 @@ export class GradeEventoPage {
 
     this.dados["eventos"] = []
 
-    var path3 = 'http://localhost:3000/api/grades/get/evento/turma?id_turma=' + id_turma
-    this.http.get(path3).map(res => res.json()).subscribe(data => {
+    var path3 = 'http://104.248.9.4:3000/api/grades/get/evento/turma?id_turma=' + id_turma
+    this.http.get(path3, {headers: new HttpHeaders()}).subscribe(data => {
+    // this.http.get(path3).map(res => res.json()).subscribe(data => {
       // console.log(data)
-      data.data.forEach(evento => {
+      data["data"].forEach(evento => {
         var o = {
           descricao_evento: evento.descricao_evento,
           data: evento.data,
@@ -94,8 +99,9 @@ export class GradeEventoPage {
   addFalta() {
     this.dados["faltas"] = this.dados["faltas"] + 1
     this.storage.get("aluno_ra").then(ra_aluno => {
-      var path = 'http://localhost:3000/api/grades/put/addfalta?id_turma=' + this.dados["id_turma"] + '&ra_aluno=' + ra_aluno
-      this.http.get(path).map(res => res.json()).subscribe()
+      var path = 'http://104.248.9.4:3000/api/grades/put/addfalta?id_turma=' + this.dados["id_turma"] + '&ra_aluno=' + ra_aluno
+      this.http.get(path, {headers: new HttpHeaders()}).subscribe()
+      // this.http.get(path).map(res => res.json()).subscribe()
     })
   }
 
@@ -103,8 +109,9 @@ export class GradeEventoPage {
     if (this.dados["faltas"] > 0) {
       this.dados["faltas"] = this.dados["faltas"] - 1
       this.storage.get("aluno_ra").then(ra_aluno => {
-        var path = 'http://localhost:3000/api/grades/put/removefalta?id_turma=' + this.dados["id_turma"] + '&ra_aluno=' + ra_aluno
-        this.http.get(path).map(res => res.json()).subscribe()
+        var path = 'http://104.248.9.4:3000/api/grades/put/removefalta?id_turma=' + this.dados["id_turma"] + '&ra_aluno=' + ra_aluno
+        this.http.get(path, {headers: new HttpHeaders()}).subscribe()
+        // this.http.get(path).map(res => res.json()).subscribe()
       })
     }
   }

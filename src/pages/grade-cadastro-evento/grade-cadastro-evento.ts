@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
 import { AgendaPage } from '../agenda/agenda';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 /**
  * Generated class for the GradeCadastroEventoPage page.
@@ -22,7 +23,7 @@ export class GradeCadastroEventoPage {
   lista_tipos_evento = []
   lista_turmas_aluno = []
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, private http: Http, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, private http: HttpClient, public alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
@@ -41,10 +42,11 @@ export class GradeCadastroEventoPage {
 
   preencherDropDown() {
     this.storage.get("aluno_ra").then(ra_aluno => {
-      var path = 'http://localhost:3000/api/grades/get/turma/aluno?ra_aluno=' + ra_aluno
-      this.http.get(path).map(res => res.json()).subscribe(data => {
+      var path = 'http://104.248.9.4:3000/api/grades/get/turma/aluno?ra_aluno=' + ra_aluno
+      this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+      // this.http.get(path).map(res => res.json()).subscribe(data => {
         // console.log(data)
-        data.data.forEach(t => {
+        data["data"].forEach(t => {
           this.lista_turmas_aluno.push({
             id_turma: t.id_turma,
             nome_uc: t.nome_uc,
@@ -56,10 +58,11 @@ export class GradeCadastroEventoPage {
       })
     })
 
-    var path2 = 'http://localhost:3000/api/grades/get/eventos'
-    this.http.get(path2).map(res => res.json()).subscribe(data => {
+    var path2 = 'http://104.248.9.4:3000/api/grades/get/eventos'
+    this.http.get(path2, {headers: new HttpHeaders()}).subscribe(data => {
+    // this.http.get(path2).map(res => res.json()).subscribe(data => {
       // console.log(data)
-      data.data.forEach(e => {
+      data["data"].forEach(e => {
         this.lista_tipos_evento.push({
           id_evento: e.id_evento,
           descricao: e.descricao
@@ -76,16 +79,17 @@ export class GradeCadastroEventoPage {
     var descricao = ('descricao' in this.evento) ? '&descricao=' + this.evento["descricao"] : ''
     console.log(this.evento)
     this.storage.get("aluno_ra").then((ra_aluno) => {
-      var path = 'http://localhost:3000/api/grades/post/evento_turma?' +
+      var path = 'http://104.248.9.4:3000/api/grades/post/evento_turma?' +
       'id_evento=' + this.evento["id_evento"] + '&' +
       'id_turma=' + this.evento["id_turma"] + '&' +
       'ra_aluno=' + ra_aluno + '&' +
       'data=' + this.evento["data"] +
       hora + sala + descricao
       console.log(path)
-      this.http.get(path).map(res => res.json()).subscribe(data => {
+      this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+      // this.http.get(path).map(res => res.json()).subscribe(data => {
 
-        if(data.success) {
+        if(data["success"]) {
           let alert = this.alertCtrl.create({
             title: 'Ok!',
             subTitle: 'Evento criado com sucesso',

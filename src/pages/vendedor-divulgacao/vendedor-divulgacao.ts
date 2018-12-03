@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, PopoverController, ViewController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Http } from '@angular/http';
 
 import { LoginPage } from '../login/login';
@@ -16,7 +17,7 @@ export class VendedorDivulgacaoPage {
   reservas = []
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController, public popOver: PopoverController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient, public alertCtrl: AlertController, public popOver: PopoverController) {
     this.itens = this.navParams.get("item");
     console.log( 'items da pag anterior', this.itens)
   }
@@ -24,12 +25,13 @@ export class VendedorDivulgacaoPage {
   abrirReservas(){
     this.storage.get("aluno_ra").then((usu) => {
       
-      var path = 'http://localhost:3000/api/reserva_divulgacao/get/reservas?id_divulgacao=' + this.itens.id_divulgacao
-      this.http.get(path).map(res => res.json()).subscribe(data => {
+      var path = 'http://104.248.9.4:3000/api/reserva_divulgacao/get/reservas?id_divulgacao=' + this.itens.id_divulgacao
+      this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+      // this.http.get(path).map(res => res.json()).subscribe(data => {
         
-        if(data.success) {
-              this.reservas = data.data;      
-              console.log('items buscados do banco', data.data)  
+        if(data["success"]) {
+              this.reservas = data["data"];      
+              console.log('items buscados do banco', data["data"])  
         } else {
           let alert = this.alertCtrl.create({
             title: 'Ops!',

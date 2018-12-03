@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, Navbar } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { LoginPage } from '../login/login'
 import { HomePage } from '../home/home';
@@ -21,7 +22,7 @@ export class ViagemPassageiroPage {
   loc = {};
   mensagem_exclusao: String
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient, public alertCtrl: AlertController) {
     this.viagem = this.navParams.get("viagem");
     this.loc = this.navParams.get("loc");
     this.mensagem_exclusao = '';
@@ -31,14 +32,16 @@ export class ViagemPassageiroPage {
     console.log(this.mensagem_exclusao)
 
     this.storage.get("aluno_ra").then((usu) => {
-      var path = 'http://localhost:3000/api/caronas/delete/reserva?id=' + this.viagem["id_viagem"] + '&ra=' + usu
+      var path = 'http://104.248.9.4:3000/api/caronas/delete/reserva?id=' + this.viagem["id_viagem"] + '&ra=' + usu
       
-      this.http.get(path).map(res => res.json()).subscribe(data => {
+      this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+      // this.http.get(path).map(res => res.json()).subscribe(data => {
 
-        if(data.success) {
-          var path2 = 'http://localhost:3000/api/caronas/put/viagem/aumenta_vaga?id=' + this.viagem["id_viagem"]
-          this.http.get(path2).map(res => res.json()).subscribe(data2 => {
-            if(data2.success) { 
+        if(data["success"]) {
+          var path2 = 'http://104.248.9.4:3000/api/caronas/put/viagem/aumenta_vaga?id=' + this.viagem["id_viagem"]
+          this.http.get(path2, {headers: new HttpHeaders()}).subscribe(data2 => {
+          // this.http.get(path2).map(res => res.json()).subscribe(data2 => {
+            if(data2["success"]) { 
 
               var msg = this.mensagem_exclusao + 'referente à viagem do dia ' + this.formatDate(this.viagem["dia"]) + " às " + this.viagem["hora"] + ' - ' + this.loc[this.viagem.id_origem] + '->' + this.loc[this.viagem.id_destino]
 
@@ -46,12 +49,13 @@ export class ViagemPassageiroPage {
               var hora = (new Date()).toTimeString().split(' ')[0]
               hora = hora.slice(0, hora.length-3) 
 
-              var path3 = 'http://localhost:3000/api/mensagem/post/mensagem?id_destinatario=' + this.viagem["id_motorista"] + '&msg=' + msg + '&dia=' + dia + '&hora=' + hora
+              var path3 = 'http://104.248.9.4:3000/api/mensagem/post/mensagem?id_destinatario=' + this.viagem["id_motorista"] + '&msg=' + msg + '&dia=' + dia + '&hora=' + hora
               console.log(path3)
 
-              this.http.get(path3).map(res => res.json()).subscribe(data3 => {
+              this.http.get(path3, {headers: new HttpHeaders()}).subscribe(data3 => {
+              // this.http.get(path3).map(res => res.json()).subscribe(data3 => {
 
-                if(data3.success) { 
+                if(data3["success"]) { 
                   let alert = this.alertCtrl.create({
                     title: 'Ok!',
                     subTitle: 'Reserva confirmada',

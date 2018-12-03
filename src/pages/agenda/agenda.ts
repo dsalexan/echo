@@ -6,6 +6,8 @@ import { Storage } from '@ionic/storage';
 import { GradeCadastroEventoPage } from '../grade-cadastro-evento/grade-cadastro-evento';
 import { InicialGradePage } from '../inicial-grade/inicial-grade';
 
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 @IonicPage()
 @Component({
   selector: 'page-agenda',
@@ -17,7 +19,7 @@ export class AgendaPage {
   meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
   eventos = {'Janeiro': [], 'Fevereiro': [], 'Março': [], 'Abril': [], 'Maio': [], 'Junho': [], 'Julho': [], 'Agosto': [], 'Setembro': [], 'Outubro': [], 'Novembro': [], 'Dezembro': []}
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, public storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient, public storage: Storage) {
   }
 
   ionViewDidLoad() {
@@ -47,13 +49,14 @@ export class AgendaPage {
     var ultimo_dia = String(ultimo.getDate())
 
     this.storage.get("aluno_ra").then(ra_aluno => {
-      var path = 'http://localhost:3000/api/grades/get/compromissos/aluno?ra_aluno=' + ra_aluno +
+      var path = 'http://104.248.9.4:3000/api/grades/get/compromissos/aluno?ra_aluno=' + ra_aluno +
                  '&dt_inicio=' + today.getFullYear() + '-' + mes_inicio + '-' + '01' +
                  '&dt_fim=' + today.getFullYear() + '-' + mes_fim + '-' + ultimo_dia
       // console.log(path)
-      this.http.get(path).map(res => res.json()).subscribe(data => {
+      this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+      // this.http.get(path).map(res => res.json()).subscribe(data => {
         // console.log(data)
-        data.data.forEach(c => {
+        data["data"].forEach(c => {
           if (c.tipo == 'evento')
           {
             var o = {}

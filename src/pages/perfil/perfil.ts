@@ -169,7 +169,7 @@ saveProfile(){
   var path;
 
   this.storage.get("aluno_ra").then((usu) => {
-    path = 'http://localhost:3000/api/alunos/' + this.account.user_RA
+    path = 'http://104.248.9.4:3000/api/alunos/' + this.account.user_RA
       console.log(path)
       this.http.put(path, {
         "Content-Type": "application/json",

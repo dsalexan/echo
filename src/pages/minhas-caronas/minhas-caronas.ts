@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, Navbar } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { LoginPage } from '../login/login'
 import { ViagemMotoristaPage } from '../viagem-motorista/viagem-motorista';
@@ -21,7 +22,7 @@ export class MinhasCaronasPage {
   viagens_passageiro = [];
   loc = {};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient, public alertCtrl: AlertController) {
   }
 
   abrirMotorista(v){
@@ -37,12 +38,13 @@ export class MinhasCaronasPage {
     var path;
     this.storage.get("aluno_ra").then((usu) => {
       
-      path = 'http://localhost:3000/api/caronas/get/viagem/motorista/reserva?id='+ usu
+      path = 'http://104.248.9.4:3000/api/caronas/get/viagem/motorista/reserva?id='+ usu
       console.log(path)
-      this.http.get(path).map(res => res.json()).subscribe(data => {
+      this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+      // this.http.get(path).map(res => res.json()).subscribe(data => {
         
-        if(data.success) {
-          data.data.forEach(element => {
+        if(data["success"]) {
+          data["data"].forEach(element => {
             if(element.id_viagem in Object.keys(this.reservas_motorista)){
               if(element.status_reserva == false && this.reservas_motorista[element.id_viagem] == true)
                 this.reservas_motorista[element.id_viagem] = false
@@ -52,12 +54,13 @@ export class MinhasCaronasPage {
             }
           })
           
-          var path2 = 'http://localhost:3000/api/caronas/get/viagem/motorista?id='+ usu
+          var path2 = 'http://104.248.9.4:3000/api/caronas/get/viagem/motorista?id='+ usu
           console.log(path2)
-          this.http.get(path2).map(res => res.json()).subscribe(data2 => {
+          this.http.get(path2, {headers: new HttpHeaders()}).subscribe(data2 => {
+          // this.http.get(path2).map(res => res.json()).subscribe(data2 => {
             
-            if(data2.success) {
-              this.viagens_motorista = data2.data;
+            if(data2["success"]) {
+              this.viagens_motorista = data2["data"];
               console.log(this.viagens_motorista)
             } else {
               let alert = this.alertCtrl.create({
@@ -89,12 +92,13 @@ export class MinhasCaronasPage {
   caronasPassageiro(){
     var path;
     this.storage.get("aluno_ra").then((usu) => {
-      path = 'http://localhost:3000/api/caronas/get/viagem/passageiro?id='+ usu
+      path = 'http://104.248.9.4:3000/api/caronas/get/viagem/passageiro?id='+ usu
       console.log(path)
-      this.http.get(path).map(res => res.json()).subscribe(data => {
+      this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+      // this.http.get(path).map(res => res.json()).subscribe(data => {
         
-        if(data.success) {
-          this.viagens_passageiro = data.data;
+        if(data["success"]) {
+          this.viagens_passageiro = data["data"];
           console.log(this.viagens_passageiro)
         } else {
           let alert = this.alertCtrl.create({
@@ -119,12 +123,13 @@ export class MinhasCaronasPage {
   }
 
   mostrarLocalidade(){
-    var path = 'http://localhost:3000/api/caronas/get/localidades'
-    this.http.get(path).map(res => res.json()).subscribe(data => {
+    var path = 'http://104.248.9.4:3000/api/caronas/get/localidades'
+    this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+    // this.http.get(path).map(res => res.json()).subscribe(data => {
 
-      if(data.data[0] != undefined) {
+      if(data["data"][0] != undefined) {
         //console.log(data)
-        data.data.forEach(element => {
+        data["data"].forEach(element => {
           this.loc[element["id_local"]] = element ["descricao"]
         });
         //console.log(this.loc)

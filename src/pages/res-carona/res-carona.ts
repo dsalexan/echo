@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { Http } from '@angular/http'; 
+import { Http } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { LoginPage } from '../login/login'
 import { CaronaPage } from '../carona/carona'
@@ -21,7 +22,7 @@ export class ResCaronaPage {
   loc: {}
   viagens_disponiveis = []
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient, public alertCtrl: AlertController) {
     this.dados = this.navParams.get("p1");
     this.loc = this.navParams.get("loc");
     this.viagens = this.navParams.get("p2")
@@ -38,17 +39,19 @@ export class ResCaronaPage {
       }
       else{
         //console.log("Verificando se há reservas para o mesmo passageiro na viagem")
-        var path = 'http://localhost:3000/api/caronas/get/viagem/passageiro/reserva?id_viagem=' + item.id_viagem + '&id_passageiro=' + usu
-        this.http.get(path).map(res => res.json()).subscribe(data => {
-          if(data.success){
-            if(data.data.length == 0){ //nao ta reservado
+        var path = 'http://104.248.9.4:3000/api/caronas/get/viagem/passageiro/reserva?id_viagem=' + item.id_viagem + '&id_passageiro=' + usu
+        this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+        // this.http.get(path).map(res => res.json()).subscribe(data => {
+          if(data["success"]){
+            if(data["data"].length == 0){ //nao ta reservado
               this.navCtrl.push(CaronaPage, {viagem: item, loc:this.loc, disponiveis: this.viagens_disponiveis})
             }
             else{ //busca infos pra enviar pra prox pagina
-              var path2 = 'http://localhost:3000/api/caronas/get/viagem/passageiro?id=' + usu
-              this.http.get(path2).map(res => res.json()).subscribe(data2 => {
-                if(data2.success && data2.data.length > 0){
-                  data2.data.forEach(viagem =>{
+              var path2 = 'http://104.248.9.4:3000/api/caronas/get/viagem/passageiro?id=' + usu
+              this.http.get(path2, {headers: new HttpHeaders()}).subscribe(data2 => {
+              // this.http.get(path2).map(res => res.json()).subscribe(data2 => {
+                if(data2["success"] && data2["data"].length > 0){
+                  data2["data"].forEach(viagem =>{
                     if(viagem.id_viagem == item.id_viagem){ //passageiro já solicitou reserva
                       this.navCtrl.push(ViagemPassageiroPage, {viagem: viagem, loc: this.loc})
                     }

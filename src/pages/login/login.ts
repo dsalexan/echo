@@ -96,7 +96,6 @@ export class LoginPage {
 
     this.http.post(path, {'login': user, 'senha': encryptSenha}, {headers: new HttpHeaders()}).subscribe(result => {
       loading.dismiss();
-      console.log(result)
       // console.log(result.data)
       // console.log(JSON.parse(result.data))
       // result = JSON.parse(result.data)

@@ -8,6 +8,7 @@ import { Storage } from '@ionic/storage';
 import { InAppBrowser, InAppBrowserOptions  } from '@ionic-native/in-app-browser';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginPage } from '../login/login';
 import { CardapioPage } from '../cardapio/cardapio';
 import { Http } from '@angular/http';
@@ -39,7 +40,7 @@ export class UtilidadesPage {
     shouldPauseOnSuspend : 'no', //Android only  
 };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private iab: InAppBrowser, public storage: Storage, public http: Http, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private iab: InAppBrowser, public storage: Storage, public http: HttpClient, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
   }
 
   checkSession() {
@@ -78,13 +79,14 @@ export class UtilidadesPage {
     this.storage.get("aluno_login").then(aluno_login => {
       this.storage.get("aluno_senha").then(aluno_senha => {
         var encryptSenha = this.encrypt(aluno_senha, 'Achilles');
-        var path = 'http://localhost:3000/api/utilidades/get/saldo?login='+ aluno_login + '&senha='+ encryptSenha
+        var path = 'http://104.248.9.4:3000/api/utilidades/get/saldo?login='+ aluno_login + '&senha='+ encryptSenha
 
-        this.http.get(path).map(res => res.json()).subscribe(data => {
+        this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+        // this.http.get(path).map(res => res.json()).subscribe(data => {
           loading.dismiss();
-          if (data.saldo_ru != null) {
+          if (data["saldo_ru"] != null) {
             let alert = this.alertCtrl.create({
-              message: '<h2>Seu Saldo: ' + String(data.saldo_ru) + '</h2>',
+              message: '<h2>Seu Saldo: ' + String(data["saldo_ru"]) + '</h2>',
               buttons: ['Ok'],
               cssClass: 'alertClass'
             });

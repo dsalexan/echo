@@ -1,15 +1,9 @@
-<ion-header>
-  <ion-navbar color="primary">
-    <ion-buttons left><!--botoes do cabeçalho - ESQUERDA-->
-    </ion-buttons>
-    <ion-title center>{{ 'Cadastrar evento' }}</ion-title>
-  </ion-navbar>
-</ion-header>
+
 
 <ion-content padding>
 
   <div class="navHeight">
-  <ion-title class="backTitle">Agenda semestral</ion-title>
+  <ion-title class="backTitle">Cadastrar Evento</ion-title>
   <button class="backButton" (click)="clickBack()"><ion-icon class="backIcon" md="md-arrow-back"></ion-icon></button>
   </div>
   <div style="height: 65px"></div>
@@ -18,19 +12,16 @@
 
   <form #eventoForm="ngForm" (ngSubmit)="cadastrar()">
 
-    <ion-card>
-      <ion-card-content>
-        <ion-card-title> Data </ion-card-title>
-        <ion-calendar
-          [(ngModel)]="evento.data"
-          id="data"
-          name="data"
-          required #data="ngModel">
-        </ion-calendar>
-        <!-- [format]="'DD-MM-YYYY'" -->
-        <!--<p>{{viagem.data}}</p>-->
-      </ion-card-content>
-    </ion-card>
+    <ion-item>
+      <ion-label floating> Data </ion-label>
+      <ion-datetime
+        displayFormat="YYYY-MM-DD"
+        [(ngModel)]="evento.data"
+        id="data"
+        name="data"
+        required #data="ngModel">
+      </ion-datetime>
+    </ion-item>
 
     <ion-item>
       <ion-label floating> Hora </ion-label>

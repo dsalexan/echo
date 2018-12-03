@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, PopoverController, ViewController, Navbar } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { LoginPage } from '../login/login';
 import { HomePage } from '../home/home';
@@ -24,7 +25,7 @@ export class ViagemMotoristaPage {
   msg_exclusao: String
   msg_exclusao_viagem: String
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController, public popOver: PopoverController, public viewCtrl: ViewController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient, public alertCtrl: AlertController, public popOver: PopoverController, public viewCtrl: ViewController) {
     this.viagem = this.navParams.get("viagem");
     this.loc = this.navParams.get("loc");
     this.msg_aceite = '';
@@ -73,26 +74,30 @@ export class ViagemMotoristaPage {
 
   excluirViagem(){
 
-    var path = 'http://localhost:3000/api/caronas/delete/viagem_reserva?id=' + this.viagem["id_viagem"]
+    var path = 'http://104.248.9.4:3000/api/caronas/delete/viagem_reserva?id=' + this.viagem["id_viagem"]
     console.log(path)
-    this.http.get(path).map(res => res.json()).subscribe(data => {
+    this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+    // this.http.get(path).map(res => res.json()).subscribe(data => {
             
-      if(data.success) {
-        var path2 = 'http://localhost:3000/api/caronas/delete/viagem_destino?id=' + this.viagem["id_viagem"]
+      if(data["success"]) {
+        var path2 = 'http://104.248.9.4:3000/api/caronas/delete/viagem_destino?id=' + this.viagem["id_viagem"]
         console.log(path2)
-        this.http.get(path2).map(res => res.json()).subscribe(data2 => {
+        this.http.get(path2, {headers: new HttpHeaders()}).subscribe(data2 => {
+        // this.http.get(path2).map(res => res.json()).subscribe(data2 => {
 
-          if(data2.success) {
-          var path3 = 'http://localhost:3000/api/caronas/delete/viagem_origem?id=' + this.viagem["id_viagem"]
+          if(data2["success"]) {
+          var path3 = 'http://104.248.9.4:3000/api/caronas/delete/viagem_origem?id=' + this.viagem["id_viagem"]
           console.log(path3)
-          this.http.get(path3).map(res => res.json()).subscribe(data3 => {
+          this.http.get(path3, {headers: new HttpHeaders()}).subscribe(data3 => {
+          // this.http.get(path3).map(res => res.json()).subscribe(data3 => {
           
-            if(data3.success) {
-            var path4 = 'http://localhost:3000/api/caronas/delete/viagem?id=' + this.viagem["id_viagem"]
+            if(data3["success"]) {
+            var path4 = 'http://104.248.9.4:3000/api/caronas/delete/viagem?id=' + this.viagem["id_viagem"]
             console.log(path4)
-            this.http.get(path4).map(res => res.json()).subscribe(data4 => {
+            this.http.get(path4, {headers: new HttpHeaders()}).subscribe(data4 => {
+            // this.http.get(path4).map(res => res.json()).subscribe(data4 => {
 
-              if(data4.success) {
+              if(data4["success"]) {
                 if(this.reservaConfirmada.length == 0){
                   let alert = this.alertCtrl.create({
                     title: 'Ok!',
@@ -110,11 +115,12 @@ export class ViagemMotoristaPage {
                     var hora = (new Date()).toTimeString().split(' ')[0]
                     hora = hora.slice(0, hora.length-3) 
                     
-                    var path5 = 'http://localhost:3000/api/mensagem/post/mensagem?id_destinatario=' + reserva.ra_aluno + '&msg=' + msg + '&dia=' + dia + '&hora=' + hora
+                    var path5 = 'http://104.248.9.4:3000/api/mensagem/post/mensagem?id_destinatario=' + reserva.ra_aluno + '&msg=' + msg + '&dia=' + dia + '&hora=' + hora
                     console.log(path5)
-                    this.http.get(path5).map(res => res.json()).subscribe(data5 => {
+                    this.http.get(path5, {headers: new HttpHeaders()}).subscribe(data5 => {
+                    // this.http.get(path5).map(res => res.json()).subscribe(data5 => {
                       
-                      if(data5.success){
+                      if(data5["success"]){
                         let alert = this.alertCtrl.create({
                           title: 'Ok!',
                           subTitle: 'Viagem cancelada',
@@ -175,8 +181,9 @@ export class ViagemMotoristaPage {
   }
 
   editarViagem(origem, destino, horario){
-    var path = 'http://localhost:3000/api/caronas/delete/viagem_reserva?id=' + this.viagem["id_viagem"]
-    this.http.get(path).map(res => res.json()).subscribe(data => {
+    var path = 'http://104.248.9.4:3000/api/caronas/delete/viagem_reserva?id=' + this.viagem["id_viagem"]
+    this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+    // this.http.get(path).map(res => res.json()).subscribe(data => {
 
     })
   }
@@ -276,11 +283,12 @@ export class ViagemMotoristaPage {
 
 
   rejeitarReserva(reserva){
-    var path = 'http://localhost:3000/api/caronas/delete/reserva?id=' + this.viagem["id_viagem"] + '&ra=' + reserva.ra_aluno
+    var path = 'http://104.248.9.4:3000/api/caronas/delete/reserva?id=' + this.viagem["id_viagem"] + '&ra=' + reserva.ra_aluno
     console.log(path)
-    this.http.get(path).map(res => res.json()).subscribe(data => {
+    this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+    // this.http.get(path).map(res => res.json()).subscribe(data => {
       
-      if(data.success){
+      if(data["success"]){
         let alert = this.alertCtrl.create({
           title: 'Ok!',
           subTitle: 'Reserva rejeitada com sucesso',
@@ -302,16 +310,16 @@ export class ViagemMotoristaPage {
 
   /*excluirReserva(reserva){
     console.log(reserva)
-    var path = 'http://localhost:3000/api/caronas/delete/reserva?id=' + this.viagem["id_viagem"] + '&ra=' + reserva.ra_aluno
+    var path = 'http://104.248.9.4:3000/api/caronas/delete/reserva?id=' + this.viagem["id_viagem"] + '&ra=' + reserva.ra_aluno
     console.log(path)
     this.http.get(path).map(res => res.json()).subscribe(data => {
 
-      if(data.success) {
-        var path2 = 'http://localhost:3000/api/caronas/put/viagem/aumenta_vaga?id=' + this.viagem["id_viagem"]
+      if(data["success"]) {
+        var path2 = 'http://104.248.9.4:3000/api/caronas/put/viagem/aumenta_vaga?id=' + this.viagem["id_viagem"]
         console.log(path2)
         this.http.get(path2).map(res => res.json()).subscribe(data2 => {
           
-          if(data2.success){
+          if(data2["success"]){
 
             //mensagem para a carona excluida
             var msg = this.msg_exclusao + 'referente à viagem do dia ' + this.formatDate(this.viagem["dia"]) /*+ " às " + this.viagem["hora"] + ' - ' + this.loc[reserva.id_origem] + '->' + this.loc[reserva.id_destino]
@@ -320,12 +328,12 @@ export class ViagemMotoristaPage {
             var hora = (new Date()).toTimeString().split(' ')[0]
             hora = hora.slice(0, hora.length-3) 
 
-            var path3 = 'http://localhost:3000/api/mensagem/post/mensagem?id_destinatario=' + reserva.ra_aluno + '&msg=' + msg + '&dia=' + dia + '&hora=' + hora
+            var path3 = 'http://104.248.9.4:3000/api/mensagem/post/mensagem?id_destinatario=' + reserva.ra_aluno + '&msg=' + msg + '&dia=' + dia + '&hora=' + hora
             console.log(path3)
 
             this.http.get(path3).map(res => res.json()).subscribe(data3 => {
 
-              if(data3.success) { 
+              if(data3["success"]) { 
                 let alert = this.alertCtrl.create({
                   title: 'Ok!',
                   subTitle: 'Reserva excluída',
@@ -370,16 +378,18 @@ export class ViagemMotoristaPage {
     if(this.viagem["qtd_vagas"] > 0){
       
       // apenas se existirem vagas disponiveis ele pode aceitar
-      var path = 'http://localhost:3000/api/caronas/put/viagem/reserva?id=' + this.viagem["id_viagem"] + "&id_passageiro=" + reserva.ra_aluno
+      var path = 'http://104.248.9.4:3000/api/caronas/put/viagem/reserva?id=' + this.viagem["id_viagem"] + "&id_passageiro=" + reserva.ra_aluno
       console.log(path)
-      this.http.get(path).map(res => res.json()).subscribe(data => {
+      this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+      // this.http.get(path).map(res => res.json()).subscribe(data => {
 
-        if(data.success) {
+        if(data["success"]) {
 
-          var path2 = 'http://localhost:3000/api/caronas/put/viagem/diminui_vaga?id=' + this.viagem["id_viagem"]
-          this.http.get(path2).map(res => res.json()).subscribe(data2 => {
+          var path2 = 'http://104.248.9.4:3000/api/caronas/put/viagem/diminui_vaga?id=' + this.viagem["id_viagem"]
+          this.http.get(path2, {headers: new HttpHeaders()}).subscribe(data2 => {
+          // this.http.get(path2).map(res => res.json()).subscribe(data2 => {
 
-            if(data2.success) {
+            if(data2["success"]) {
               //mandar msg falando que foi aceito
 
               var msg = this.msg_aceite + 'referente à viagem do dia ' + this.formatDate(this.viagem["dia"]) /*+ " às " + this.viagem["hora"] */+ ' - ' + this.loc[reserva.id_origem] + '->' + this.loc[reserva.id_destino]
@@ -388,12 +398,13 @@ export class ViagemMotoristaPage {
               var hora = (new Date()).toTimeString().split(' ')[0]
               hora = hora.slice(0, hora.length-3) 
 
-              var path3 = 'http://localhost:3000/api/mensagem/post/mensagem?id_destinatario=' + reserva.ra_aluno + '&msg=' + msg + '&dia=' + dia + '&hora=' + hora
+              var path3 = 'http://104.248.9.4:3000/api/mensagem/post/mensagem?id_destinatario=' + reserva.ra_aluno + '&msg=' + msg + '&dia=' + dia + '&hora=' + hora
               console.log(path3)
 
-              this.http.get(path3).map(res => res.json()).subscribe(data3 => {
+              this.http.get(path3, {headers: new HttpHeaders()}).subscribe(data3 => {
+              // this.http.get(path3).map(res => res.json()).subscribe(data3 => {
 
-                if(data3.success) { 
+                if(data3["success"]) { 
                   let alert = this.alertCtrl.create({
                     title: 'Ok!',
                     subTitle: 'Reserva confirmada',
@@ -415,10 +426,10 @@ export class ViagemMotoristaPage {
               // deletar reservas de vagas em horarios proximos
               
               if(reserva.id_destino == 1){
-                var path4 = 'http://localhost:3000/api/caronas/delete/reserva/ida?id_passageiro=' + reserva.ra_aluno + '&dia=' + this.formatDate(this.viagem["dia"]) + '&hora=' + this.viagem["hora"]
+                var path4 = 'http://104.248.9.4:3000/api/caronas/delete/reserva/ida?id_passageiro=' + reserva.ra_aluno + '&dia=' + this.formatDate(this.viagem["dia"]) + '&hora=' + this.viagem["hora"]
               }
               else if(reserva.id_origem == 1){
-                var path4 = 'http://localhost:3000/api/caronas/delete/reserva/volta?id_passageiro=' + reserva.ra_aluno + '&dia=' + this.formatDate(this.viagem["dia"]) + '&hora=' + this.viagem["hora"]
+                var path4 = 'http://104.248.9.4:3000/api/caronas/delete/reserva/volta?id_passageiro=' + reserva.ra_aluno + '&dia=' + this.formatDate(this.viagem["dia"]) + '&hora=' + this.viagem["hora"]
               }
 
             }else {
@@ -453,15 +464,16 @@ export class ViagemMotoristaPage {
     this.reservaPendente = []
     this.reservaConfirmada = []
 
-    var path = 'http://localhost:3000/api/caronas/get/viagem/reserva?id=' + this.viagem["id_viagem"]
-    this.http.get(path).map(res => res.json()).subscribe(data => {
+    var path = 'http://104.248.9.4:3000/api/caronas/get/viagem/reserva?id=' + this.viagem["id_viagem"]
+    this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+    // this.http.get(path).map(res => res.json()).subscribe(data => {
 
-      if(data.success) {
-        //console.log(data.data)
-        if(data.data.length == 0){
+      if(data["success"]) {
+        //console.log(data["data"])
+        if(data["data"].length == 0){
           return
         }
-        data.data.forEach(element => {
+        data["data"].forEach(element => {
           //console.log(element)
           if(element["status_reserva"])
             this.reservaConfirmada.push(element)

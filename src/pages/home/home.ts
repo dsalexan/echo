@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { LoginPage } from '../login/login'
 import { MensagemPage } from '../mensagem/mensagem'
@@ -18,7 +19,7 @@ export class HomePage {
   mensagens = []
   nova: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient) {
     this.nova = false;
   }
 
@@ -29,11 +30,12 @@ export class HomePage {
 
   exibirMensagens(){
     this.storage.get("aluno_ra"). then(usu => {
-      var path = 'http://localhost:3000/api/mensagem/get/novas?id_destinatario=' + usu
+      var path = 'http://104.248.9.4:3000/api/mensagem/get/novas?id_destinatario=' + usu
       console.log(path)
-      this.http.get(path).map(res => res.json()).subscribe(data => {
-        if(data.success && data.data.length > 0){
-          this.mensagens = data.data
+      this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+      // this.http.get(path).map(res => res.json()).subscribe(data => {
+        if(data["success"] && data["data"].length > 0){
+          this.mensagens = data["data"]
           this.nova = true
         }
         //console.log(this.nova)

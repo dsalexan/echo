@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { HomePage } from '../home/home';
 import { LoginPage } from '../login/login';
@@ -22,7 +23,7 @@ export class BugReportPage {
 
   descricao: string = "";
   tipo: string = "";
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient, public alertCtrl: AlertController) {
   }
 
   ionViewWillEnter() {
@@ -66,10 +67,11 @@ export class BugReportPage {
       hora = hora.slice(0, hora.length-3) 
       var tipo = this.tipo
       var descricao = this.descricao
-      var path = 'http://localhost:3000/api/bugreport/put/bug?ra_aluno=' + usu + '&dia=' + dia + '&hora=' + hora + '&tipo=' + tipo + '&descricao=' + descricao
+      var path = 'http://104.248.9.4:3000/api/bugreport/put/bug?ra_aluno=' + usu + '&dia=' + dia + '&hora=' + hora + '&tipo=' + tipo + '&descricao=' + descricao
 
-      this.http.get(path).map(res => res.json()).subscribe(data => {
-        if(data.success) {
+      this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+      // this.http.get(path).map(res => res.json()).subscribe(data => {
+        if(data["success"]) {
           alert.present();
           this.navCtrl.push(HomePage);
         }else {
