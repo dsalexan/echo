@@ -12,6 +12,7 @@ import { HttpModule } from '@angular/http';
 import { Http } from '@angular/http';
 import { HTTP } from '@ionic-native/http';
 import { CalendarModule } from "ion2-calendar";
+import { DatePicker } from '@ionic-native/date-picker';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -96,7 +97,8 @@ import { CompradorDivulgacaoPageModule } from '../pages/comprador-divulgacao/com
     SplashScreen,
     HTTP,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    InAppBrowser
+    InAppBrowser,
+    DatePicker
   ]
 })
 export class AppModule {}
