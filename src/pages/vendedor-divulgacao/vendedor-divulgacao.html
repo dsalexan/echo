@@ -10,8 +10,10 @@
 <ion-content padding>
   <ion-list>
     <ion-item>
-    <h1> {{itens.nome}} </h1>    
+    <h1> {{itens.nome}}  </h1>    
     <p>Disponível em {{itens.dia.slice(8,10)}}/{{itens.dia.slice(5,7)}}/{{itens.dia.slice(0,4)}} das {{itens.hora_inicio.slice(0,5)}} às {{itens.hora_fim.slice(0,5)}}</p>
+    <p>Quantidade: {{itens.quantidade}} &nbsp; Valor: {{itens.valor}}</p>
+   
     <br>
     <ion-item text-wrap *ngFor="let reserva of reservas" (click)="abrirReservas(reserva)">
       <ion-avatar item-start>
@@ -19,6 +21,17 @@
       </ion-avatar>
 
       <h2>{{reserva.nome}} solicitou {{reserva.quantidade}} unidades.</h2>
+      
     </ion-item>
   </ion-item>
-  </ion-list>
+</ion-list>
+
+
+  <div style="width: 100%; text-align: center; position: absolute">
+      <button ion-button round ><ion-icon name="md-trash" (click)="showConfirm()"> Excluir </ion-icon></button>
+      <button ion-button round><ion-icon name="brush" (click)="editarOferta()"> Editar </ion-icon></button>
+  </div>
+  
+
+  
+</ion-content>

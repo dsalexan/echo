@@ -1,12 +1,20 @@
 <ion-header>
     <ion-navbar color="primary">
-      <ion-buttons left><!--botoes do cabeçalho - ESQUERDA-->
+      <ion-buttons left>
       </ion-buttons>
       <ion-title center>{{ 'Informações' }}</ion-title>
     </ion-navbar>
   </ion-header>
 
 <ion-content padding>
+
+  <!-- <div class="navHeight">
+    <ion-title class="backTitle">Informações</ion-title>
+    <button class="backButton" (click) = "clickBack()"><ion-icon class="backIcon" md="md-arrow-back"></ion-icon></button>
+    </div>
+    <div style="height: 65px"></div> -->
+
+
   <form #reservaForm="ngForm" (ngSubmit)="Reservar()">
   <ion-item>
     <h1>{{item.nome}}</h1>
@@ -14,7 +22,6 @@
     <p>Quantidade Disponível: {{item.quantidade}} &nbsp; Valor: {{item.valor}} cada.</p>
     <p>Descrição: {{item.descricao}}</p>
   </ion-item>
-  <!-- <p>Vendedor: {{viagem.nome}}</p>  TEM QUE PEGAR AQUI O NOME DO VENDEDOR N SEI COMO -->
   
   <ion-item>
     <h2>Quantidade desejada:</h2>

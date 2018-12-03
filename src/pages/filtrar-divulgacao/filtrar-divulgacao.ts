@@ -158,8 +158,8 @@ export class FiltrarDivulgacaoPage {
 
   }
 
-  busca_divulgacao_hora(){
-    var path = 'http://localhost:3000/api/divulgacao/get/divulgacao/hora?hora_inicio=' + this.item["hora_inicio"]
+  busca_divulgacao_hora_inicio(){
+    var path = 'http://localhost:3000/api/divulgacao/get/divulgacao/hora_inicio?hora_inicio=' + this.item["hora_inicio"]
     this.http.get(path).map(res => res.json()).subscribe(data => {
       console.log('RESULTADO', data)
 
@@ -177,6 +177,27 @@ export class FiltrarDivulgacaoPage {
       console.log(err)
     })
   }
+
+  busca_divulgacao_hora_fim(){
+    var path = 'http://localhost:3000/api/divulgacao/get/divulgacao/hora_fim?hora_fim=' + this.item["hora_fim"]
+    this.http.get(path).map(res => res.json()).subscribe(data => {
+      console.log('RESULTADO', data)
+
+      if(data.data.length != 0) {
+        this.navCtrl.push(ResultadoDivulgacaoPage, {data: data.data});
+      } else {
+        let alert = this.alertCtrl.create({
+          title: 'Ops!',
+          subTitle: 'Tente novamente',
+          buttons: ['Fechar']
+        });
+        alert.present();
+      }
+    }, (err) => {
+      console.log(err)
+    })
+  }
+
 
   busca_divulgacao_preco(){
     var path = 'http://localhost:3000/api/divulgacao/get/divulgacao/preco?preco=' + this.item["valor"]
@@ -370,7 +391,10 @@ export class FiltrarDivulgacaoPage {
       this.busca_divulgacao_dia();
 
     else if(this.item["hora_inicio"] != undefined && this.item["quantidade"] == undefined && this.item["dia"] == undefined && this.item["hora_fim"] == undefined && this.item["valor"] == undefined && this.item["categoria"] == undefined)
-      this.busca_divulgacao_hora();
+      this.busca_divulgacao_hora_inicio();
+
+    else if(this.item["hora_fim"] != undefined && this.item["quantidade"] == undefined && this.item["dia"] == undefined && this.item["hora_inicio"] == undefined && this.item["valor"] == undefined && this.item["categoria"] == undefined)
+    this.busca_divulgacao_hora_fim();
     
     else if(this.item["valor"] != undefined && this.item["quantidade"] == undefined && this.item["hora_inicio"] == undefined && this.item["hora_fim"] == undefined && this.item["dia"] == undefined && this.item["categoria"] == undefined)
       this.busca_divulgacao_preco();

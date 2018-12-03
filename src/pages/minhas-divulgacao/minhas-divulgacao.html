@@ -2,7 +2,7 @@
   <ion-navbar color="primary">
     <ion-buttons left><!--botoes do cabeçalho - ESQUERDA-->
     </ion-buttons>
-    <ion-title center>{{ 'MUITO MINHAS s2' }}</ion-title>
+    <ion-title center>{{ 'Minhas Transações' }}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -14,13 +14,10 @@
         <ion-icon name="md-person"></ion-icon>
       </ion-avatar>
 
-      <h2>{{itens.nome}}</h2>
+      <h2>{{itens.nome}}</h2> 
       <p>{{itens.dia.slice(8,10)}}/{{itens.dia.slice(5,7)}}/{{itens.dia.slice(0,4)}} das {{itens.hora_inicio.slice(0,5)}} às {{itens.hora_fim.slice(0,5)}}</p>
-      <p>Quantidade: {{itens.quantidade}} &nbsp; Valor: {{itens.valor}}</p>
+      <p>Quantidade: {{itens.quantidade}} &nbsp; Valor: {{itens.valor}}</p> 
       <p>{{itens.descricao}}</p>
-
-      <!-- isso aqui é um if
-      {{!reservas_motorista[viagem.id_viagem] && reservas_motorista[viagem.id_viagem] != undefined ? 'Há reserva(s) pendentes' : ''}} -->
 
     </button>
   </ion-list>
@@ -37,8 +34,12 @@
       <h3>Anunciado por {{itens.vendedor}}</h3>
       <p>Disponível em {{itens.dia.slice(8,10)}}/{{itens.dia.slice(5,7)}}/{{itens.dia.slice(0,4)}} das {{itens.hora_inicio.slice(0,5)}} às {{itens.hora_fim.slice(0,5)}}</p>
       <p>{{itens.descricao}}</p>
-      <p>Quantidade: {{itens.quantidade}} &nbsp; Valor: {{itens.valor}}</p>
-      <h3>Valor total: {{itens.valor * itens.quantidade}} </h3>
+      <p>Quantidade reservada: {{itens.quantidade}} &nbsp; Valor: {{itens.valor}} cada</p>  
+      <p>Valor total: {{itens.valor * itens.quantidade}} </p>
+   
+            <button ion-button round ><ion-icon name="md-trash" (click)="showConfirm(itens)"> Excluir </ion-icon></button>
+      
+   
     </ion-item>
   </ion-list>
 </ion-content>
