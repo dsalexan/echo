@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, AlertController, Navbar } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
 
 import { LoginPage } from '../login/login'
 import { HomePage } from '../home/home';
+import { ResCaronaPage } from '../res-carona/res-carona'
 
 
 @IonicPage()
@@ -13,13 +14,17 @@ import { HomePage } from '../home/home';
   templateUrl: 'carona.html',
 })
 export class CaronaPage {
+  @ViewChild(Navbar)navBar: Navbar;
+
   viagem: any;
   loc: {};
   msg_reserva: String;
+  disponiveis = []
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController) {
     this.viagem = this.navParams.get("viagem");
     this.loc = this.navParams.get("loc");
+    this.disponiveis = this.navParams.get("disponiveis")
     this.msg_reserva = ''
   }
 
@@ -43,7 +48,7 @@ export class CaronaPage {
               let alert = this.alertCtrl.create({
                 title: 'Ok!',
                 subTitle: 'Reserva solicitada',
-                buttons: ['Dismiss']
+                buttons: ['Fechar']
               });
               alert.present();
               this.navCtrl.push(HomePage);
@@ -51,7 +56,7 @@ export class CaronaPage {
               let alert = this.alertCtrl.create({
                 title: 'Ops!',
                 subTitle: 'Tente novamente',
-                buttons: ['Dismiss']
+                buttons: ['Fechar']
               });
               alert.present();
             }
@@ -60,7 +65,7 @@ export class CaronaPage {
           let alert = this.alertCtrl.create({
             title: 'Ops!',
             subTitle: 'Tente novamente',
-            buttons: ['Dismiss']
+            buttons: ['Fechar']
           });
           alert.present();
         }
@@ -87,14 +92,14 @@ export class CaronaPage {
       if(usu == null) {
         this.navCtrl.push(LoginPage);
       }
-      this.msg_reserva = 'O usuário ' + usu + ' fez uma solicitação de reserva referente à viagem do dia ' + this.formatDate(this.viagem["dia"]) + " às " /*+ this.viagem["hora"] + */+ ' - ' + this.loc[this.viagem.id_origem] + '->' + this.loc[this.viagem.id_destino]
+      this.msg_reserva = 'O usuário ' + usu + ' fez uma solicitação de reserva referente à viagem do dia ' + this.formatDate(this.viagem["dia"]) + /*" às " + this.viagem["hora"] + */+ ' - ' + this.loc[this.viagem.id_origem] + '->' + this.loc[this.viagem.id_destino]
     })
   }
 
   ionViewDidLoad() {
     this.checkSession();
     console.log('ionViewDidLoad CaronaPage');
-    console.log(this.viagem);
+    //console.log(this.viagem);
     document.getElementById("tabs").style.display = "none"
     document.getElementById("botao_menu").style.display = "none"
   }

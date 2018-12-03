@@ -20,6 +20,7 @@ export class MensagemPage {
   exibir(mensagem){
     
     //alterar status no banco
+    console.log('mensagem', mensagem)
     if(!mensagem.lida){
       var path = 'http://localhost:3000/api/mensagem/put/mensagem?id_mensagem=' + mensagem.id_mensagem
       console.log(path)

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, PopoverController, ViewController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, AlertController, PopoverController, ViewController, Navbar } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
 
@@ -8,85 +8,31 @@ import { HomePage } from '../home/home';
 import { MinhasCaronasPage } from '../minhas-caronas/minhas-caronas';
 
 
-
-
-
-
-
-
-
-
-/*
+@IonicPage()
 @Component({
   selector: 'page-viagem-motorista',
-  template: `
-    <ion-list>
-      <ion-list-header>Opções</ion-list-header>
-      <button ion-item (click)="excluirViagem()">
-        <ion-icon name="md-trash"></ion-icon>   Excluir viagem
-      </button>
-      <button ion-item (click)="editarViagem()">
-        <ion-icon name="md-create"></ion-icon>    Editar viagem</button>
-    </ion-list>
-  `
+  templateUrl: 'viagem-motorista.html',
 })
-export class PopoverMotoristaExclusaoViagemPage {
-  constructor(public viewCtrl: ViewController) {}
-
-  cancelar() {
-    this.viewCtrl.dismiss();
-  }
-
-  excluir(){
-    //excluir do banco de dados
-    //enviar notificação a quem tem reserva
-  }
-
-}
-*/
-
-
-
-
-
-
-
-
-
-/*CLASSE POPOVER DE EXCLUIR/EDITAR VIAGEM*/
-
-@Component({
-  selector: 'page-viagem-motorista',
-  template: `
-    <ion-list>
-      <ion-list-header>Opções</ion-list-header>
-      <button ion-item (click)="showConfirm()">
-        <ion-icon name="md-trash"></ion-icon>   Excluir viagem
-      </button>
-      <button ion-item (click)="editarViagem()">
-        <ion-icon name="md-create"></ion-icon>    Editar viagem</button>
-    </ion-list>
-  `
-})
-export class PopoverMotoristaPage {
+export class ViagemMotoristaPage {
+  @ViewChild(Navbar)navBar: Navbar;
+  
   viagem: any;
-  confirmadas = [];
-  mensagem_exclusao: String;
-  loc: any;
+  reservaPendente = [];
+  reservaConfirmada = [];
+  loc = {};
+  msg_aceite: String
+  msg_exclusao: String
+  msg_exclusao_viagem: String
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public alertCtrl: AlertController, public http: Http) {
-    this.viagem = navParams.get('v');
-    this.confirmadas = navParams.get('c');
-    this.mensagem_exclusao = navParams.get('msg');
-    this.loc = navParams.get('loc');
-  }
-
-  close() {
-    this.viewCtrl.dismiss();
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController, public popOver: PopoverController, public viewCtrl: ViewController) {
+    this.viagem = this.navParams.get("viagem");
+    this.loc = this.navParams.get("loc");
+    this.msg_aceite = '';
+    this.msg_exclusao_viagem = '';
   }
 
   showConfirm() {
-    this.close()
+    //this.close()
     const confirm = this.alertCtrl.create({
       title: 'Excluir a viagem?',
       message: 'Tem certeza de que deseja excluir a viagem? Não será possível recuperá-la.',
@@ -132,7 +78,7 @@ export class PopoverMotoristaPage {
             this.http.get(path4).map(res => res.json()).subscribe(data4 => {
 
               if(data4.success) {
-                if(this.confirmadas.length == 0){
+                if(this.reservaConfirmada.length == 0){
                   let alert = this.alertCtrl.create({
                     title: 'Ok!',
                     subTitle: 'Viagem cancelada',
@@ -141,9 +87,9 @@ export class PopoverMotoristaPage {
                   this.navCtrl.push(MinhasCaronasPage)
                 } else{           
                   //enviar mensagem de cancelamento para o(s) passageiro(s) confirmado(s)
-                  this.confirmadas.forEach(reserva =>{
+                  this.reservaConfirmada.forEach(reserva =>{
 
-                    var msg = this.mensagem_exclusao + 'referente à viagem do dia ' + this.formatDate(this.viagem["dia"]) /*+ " às " + this.viagem["hora"] */+ ' - ' + this.loc[reserva.id_origem] + '->' + this.loc[reserva.id_destino]
+                    var msg = this.msg_exclusao_viagem + 'referente à viagem do dia ' + this.formatDate(this.viagem["dia"]) /*+ " às " + this.viagem["hora"] */+ ' - ' + this.loc[reserva.id_origem] + '->' + this.loc[reserva.id_destino]
                     
                     var dia = this.formatDate(new Date())
                     var hora = (new Date()).toTimeString().split(' ')[0]
@@ -213,58 +159,7 @@ export class PopoverMotoristaPage {
     })
   }
 
-  editarViagem(){
-    // abrir outro popover pra editar
-    //botar no banco
-  }
 
-  formatDate(date) {
-    var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
-
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
-
-    return [year, month, day].join('-');
-  }
-
-}
-
-
-
-
-/*CLASSE VIAGEM MOTORISTA*/
-
-@IonicPage()
-@Component({
-  selector: 'page-viagem-motorista',
-  templateUrl: 'viagem-motorista.html',
-})
-export class ViagemMotoristaPage {
-
-  viagem: any;
-  reservaPendente = [];
-  reservaConfirmada = [];
-  loc = {};
-  msg_aceite: String
-  msg_exclusao: String
-  msg_exclusao_viagem: String
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController, public popOver: PopoverController, public viewCtrl: ViewController) {
-    this.viagem = this.navParams.get("viagem");
-    this.loc = this.navParams.get("loc");
-    this.msg_aceite = '';
-    this.msg_exclusao_viagem = '';
-  }
-
-  editarViagemMotorista(myEvent) {
-    let popover = this.popOver.create(PopoverMotoristaPage, {v: this.viagem, c: this.reservaConfirmada, msg: this.msg_exclusao_viagem, loc: this.loc});
-    popover.present({
-      ev: myEvent
-    });
-  }
 
   checkSession() {
     this.storage.get("aluno_nome").then((usu) => {
@@ -282,7 +177,7 @@ export class ViagemMotoristaPage {
   }
 
   showConfirmRejeitar(reserva) {
-    this.close()
+    //this.close()
     const confirm = this.alertCtrl.create({
       title: 'Excluir a viagem?',
       message: 'Tem certeza de que deseja excluir a viagem? Não será possível recuperá-la.',
@@ -307,10 +202,10 @@ export class ViagemMotoristaPage {
   }
 
   showConfirmAceitar(reserva) {
-    this.close()
+    //this.close()
     const confirm = this.alertCtrl.create({
-      title: 'Excluir a viagem?',
-      message: 'Tem certeza de que deseja excluir a viagem? Não será possível recuperá-la.',
+      title: 'Confirmar reserva?',
+      message: 'Tem certeza de que deseja confirmar a reserva?.',
       buttons: [
         {
           text: 'Cancelar',
@@ -320,7 +215,7 @@ export class ViagemMotoristaPage {
           }
         },
         {
-          text: 'Excluir',
+          text: 'Confirmar',
           handler: () => {
             console.log('Agree clicked');
             this.aceitarReserva(reserva);
@@ -341,7 +236,7 @@ export class ViagemMotoristaPage {
         let alert = this.alertCtrl.create({
           title: 'Ok!',
           subTitle: 'Reserva rejeitada com sucesso',
-          buttons: ['Dismiss']
+          buttons: ['Fechar']
         });
         alert.present();
         this.ionViewWillEnter();
@@ -350,7 +245,7 @@ export class ViagemMotoristaPage {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
           subTitle: 'Tente novamente',
-          buttons: ['Dismiss']
+          buttons: ['Fechar']
         });
         alert.present();
       }
@@ -386,7 +281,7 @@ export class ViagemMotoristaPage {
                 let alert = this.alertCtrl.create({
                   title: 'Ok!',
                   subTitle: 'Reserva excluída',
-                  buttons: ['Dismiss']
+                  buttons: ['Fechar']
                 });
                 alert.present();
                 this.ionViewWillEnter();
@@ -395,7 +290,7 @@ export class ViagemMotoristaPage {
                 let alert = this.alertCtrl.create({
                   title: 'Ops!',
                   subTitle: 'Tente novamente',
-                  buttons: ['Dismiss']
+                  buttons: ['Fechar']
                 });
                 alert.present();
               }
@@ -405,7 +300,7 @@ export class ViagemMotoristaPage {
             let alert = this.alertCtrl.create({
               title: 'Ops!',
               subTitle: 'Tente novamente',
-              buttons: ['Dismiss']
+              buttons: ['Fechar']
             });
             alert.present();
           }
@@ -415,7 +310,7 @@ export class ViagemMotoristaPage {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
           subTitle: 'Tente novamente',
-          buttons: ['Dismiss']
+          buttons: ['Fechar']
         });
         alert.present();
       }
@@ -454,7 +349,7 @@ export class ViagemMotoristaPage {
                   let alert = this.alertCtrl.create({
                     title: 'Ok!',
                     subTitle: 'Reserva confirmada',
-                    buttons: ['Dismiss']
+                    buttons: ['Fechar']
                   });
                   alert.present();
                   this.ionViewWillEnter();
@@ -463,7 +358,7 @@ export class ViagemMotoristaPage {
                   let alert = this.alertCtrl.create({
                     title: 'Ops!',
                     subTitle: 'Tente novamente',
-                    buttons: ['Dismiss']
+                    buttons: ['Fechar']
                   });
                   alert.present();
                 }
@@ -482,7 +377,7 @@ export class ViagemMotoristaPage {
               let alert = this.alertCtrl.create({
                 title: 'Ops!',
                 subTitle: 'Tente novamente',
-                buttons: ['Dismiss']
+                buttons: ['Fechar']
               });
               alert.present();
             }
@@ -491,7 +386,7 @@ export class ViagemMotoristaPage {
           let alert = this.alertCtrl.create({
             title: 'Ops!',
             subTitle: 'Tente novamente',
-            buttons: ['Dismiss']
+            buttons: ['Fechar']
           });
           alert.present();
         }
@@ -500,7 +395,7 @@ export class ViagemMotoristaPage {
       let alert = this.alertCtrl.create({
         title: 'Ops!',
         subTitle: 'Não há vagas disponíveis!',
-        buttons: ['Dismiss']
+        buttons: ['Fechar']
       });
       alert.present();
     }
@@ -529,7 +424,7 @@ export class ViagemMotoristaPage {
         let alert = this.alertCtrl.create({
           title: 'Ops!',
           subTitle: 'Tente novamente',
-          buttons: ['Dismiss']
+          buttons: ['Fechar']
         });
         alert.present();
       }
@@ -550,6 +445,15 @@ export class ViagemMotoristaPage {
 
   ionViewWillEnter() {
     this.checkSession();
+    this.navBar.backButtonClick = () => {
+      // you can set a full custom history here if you want 
+        let pages = [
+        {
+      page: MinhasCaronasPage
+      }
+      ];
+      this.navCtrl.setPages(pages);
+    }
     this.buscaReservas();
     // PENDENCIA: buscar a qtd de vagas nesta tela
     //console.log(this.viagem)

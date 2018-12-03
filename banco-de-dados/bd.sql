@@ -168,6 +168,7 @@ CREATE TABLE reserva (
 );
 
 CREATE TABLE mensagem(
+	id_mensagem SERIAL PRIMARY KEY,
 	id_destinatario VARCHAR(6) NOT NULL,
 	mensagem TEXT NOT NULL,
 	lida BOOLEAN NOT NULL,

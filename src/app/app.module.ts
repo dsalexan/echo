@@ -23,7 +23,7 @@ import { ConfigPage } from '../pages/configuracoes/configuracoes';
 import { UtilidadesPage} from '../pages/utilidades/utilidades';
 import { HomePage } from '../pages/home/home';
 import { InicialCaronaPage } from '../pages/inicial-carona/inicial-carona';
-import { OferecerCaronaPage, PopoverOferecerPage } from '../pages/oferecer-carona/oferecer-carona';
+import { OferecerCaronaPage } from '../pages/oferecer-carona/oferecer-carona';
 import { ProcurarCaronaPage } from '../pages/procurar-carona/procurar-carona';
 import { InicialGradePage } from '../pages/inicial-grade/inicial-grade';
 import { ResCaronaPage } from '../pages/res-carona/res-carona';
@@ -31,7 +31,7 @@ import { GradeEventoPage } from '../pages/grade-evento/grade-evento';
 import { AgendaPage } from '../pages/agenda/agenda';
 import { CaronaPage } from '../pages/carona/carona';
 import { MinhasCaronasPage } from '../pages/minhas-caronas/minhas-caronas';
-import { ViagemMotoristaPage, PopoverMotoristaPage } from '../pages/viagem-motorista/viagem-motorista';
+import { ViagemMotoristaPage } from '../pages/viagem-motorista/viagem-motorista';
 import { ViagemPassageiroPage } from '../pages/viagem-passageiro/viagem-passageiro';
 import { TurmaPage } from '../pages/turma/turma';
 import { InicialDivulgacaoPage } from '../pages/inicial-divulgacao/inicial-divulgacao';
@@ -63,8 +63,6 @@ import { MensagemPage } from '../pages/mensagem/mensagem';
     TurmaPage,
     ViagemMotoristaPage,
     ViagemPassageiroPage,
-    PopoverMotoristaPage,
-    PopoverOferecerPage,
     InicialDivulgacaoPage,
     DivulgarDivulgacaoPage,
     FiltrarDivulgacaoPage,
@@ -103,8 +101,6 @@ import { MensagemPage } from '../pages/mensagem/mensagem';
     TurmaPage,
     ViagemMotoristaPage,
     ViagemPassageiroPage,
-    PopoverMotoristaPage,
-    PopoverOferecerPage,
     InicialDivulgacaoPage,
     DivulgarDivulgacaoPage,
     FiltrarDivulgacaoPage,

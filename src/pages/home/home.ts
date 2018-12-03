@@ -36,7 +36,7 @@ export class HomePage {
           this.mensagens = data.data
           this.nova = true
         }
-        console.log(this.nova)
+        //console.log(this.nova)
       })
     })
   }
