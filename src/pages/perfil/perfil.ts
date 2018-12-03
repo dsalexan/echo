@@ -47,8 +47,8 @@ export class PerfilPage {
     this.account = {
       user_RA: '',
       user_name: '',
-      user_email: 'E-mail',
-      user_telefone: 'Telefone',
+      user_email: '',
+      user_telefone: '',
       profile_image: '',
       full_name: '',
       about: ''
@@ -96,7 +96,7 @@ export class PerfilPage {
   }
 
   ionViewWillEnter() {
-    //this.checkSession()
+    this.checkSession()
     this.getInfomations()
     console.log('ionViewWillEnter PerfilPage');
     document.getElementById("tabs").style.display = "none"
@@ -159,6 +159,9 @@ export class PerfilPage {
   });
 
   edit.present();
+
+  if(this.account.user_email == 'E-mail') this.account.user_email = null;
+  if(this.account.user_telefone == 'Telefone') this.account.user_telefone = null;
 }
 
 saveProfile(){

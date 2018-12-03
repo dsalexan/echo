@@ -60,13 +60,13 @@
         <!--CAMPO DE EMAIL-->
         <ion-item>
           <ion-label class="email">Email </ion-label>
-          <ion-input class="inputFields" type="email" formControlName="user_email" [(ngModel)]="account.user_email"></ion-input>
+          <ion-input class="inputFields" type="email" formControlName="user_email" [(ngModel)]="account.user_email" disabled="{{isDisabled}}"></ion-input>
         </ion-item>
 
         <!--CAMPO DE TELEFONE-->
         <ion-item>
           <ion-label class="telefone">Telefone </ion-label>
-          <ion-input class="inputFields" type="text" formControlName="user_telefone" [(ngModel)]="account.user_telefone"></ion-input>
+          <ion-input class="inputFields" type="text" formControlName="user_telefone" [(ngModel)]="account.user_telefone" disabled="{{isDisabled}}"></ion-input>
         </ion-item>
 
         <!--CAMPO DE EMAIL-->
