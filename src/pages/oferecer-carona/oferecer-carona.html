@@ -12,19 +12,16 @@
 <ion-content padding>
   <form #viagemForm="ngForm" (ngSubmit)="oferecer()">
 
-    <ion-card>
-      <ion-card-content>
-        <ion-card-title> Data </ion-card-title>
-        <ion-calendar
-          [(ngModel)]="viagem.data"
-          id="data"
-          name="date"
-          (onChange)="onChange($event)"
-          required #data="ngModel">
-        </ion-calendar>
-        <!-- [format]="'YYYY-MM-DD'" -->
-      </ion-card-content>
-    </ion-card>
+    <ion-item>
+      <ion-label floating> Data </ion-label>
+      <ion-datetime
+        displayFormat="YYYY-MM-DD"
+        [(ngModel)]="viagem.data"
+        id="data"
+        name="data"
+        required #data="ngModel">
+      </ion-datetime>
+    </ion-item>
   
     <!--
     <button ion-item (click)="abrirData($event)">

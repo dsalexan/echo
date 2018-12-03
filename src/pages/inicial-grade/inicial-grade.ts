@@ -59,10 +59,6 @@ export class InicialGradePage {
   }
 
   novaTurma(){
-    var nome;
-    var prof;
-    var sala;
-    var hora;
 
     const confirm = this.alertCtrl.create({
       title: 'Nova Turma',
@@ -105,6 +101,10 @@ export class InicialGradePage {
           name: "horario",
           placeholder: "Horário",
           type: "time"
+        },
+        {
+          name: "data",
+          placeholder: "Dias",
         }
       ],
       
@@ -118,13 +118,9 @@ export class InicialGradePage {
         {
           text: 'Adicionar',
           handler: values => {
-            console.log('Salvo! Valor: ' + values);
-            nome = values.nomeT;
-            prof = values.nomeP;
-            sala = values.salaT;
-            hora = values.horario;
+            console.log('Salvo!');
 
-            this.upToBD(nome,prof,sala,hora);
+            this.upToBD(values.nome,values.prof,values.sala,values.hora,values.data);
           }
         }
       ]
@@ -133,7 +129,7 @@ export class InicialGradePage {
     confirm.present();
   }
 
-  upToBD(nome, prof, sala, hora){
+  upToBD(nome, prof, sala, hora, data){
     
   }
 
