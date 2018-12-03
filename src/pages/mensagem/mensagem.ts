@@ -109,9 +109,15 @@ export class MensagemPage {
     })
   }
 
+  clickBack() {
+    this.navCtrl.pop()
+  }
+
   ionViewWillEnter() {
     this.exibirMensagens();
     console.log('ionViewWillEnter MensagemPage');
+    document.getElementById("tabs").style.display = "none"
+    document.getElementById("botao_menu").style.display = "none"
   }
 
 }

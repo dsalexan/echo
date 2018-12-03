@@ -3,17 +3,18 @@
 <ion-menu [content]="content">
 
     <ion-content padding>
-        <button ion-button round menuClose style="width: 100%" (click)="clickPerfil()">Perfil</button><br>
-        <button ion-button round menuClose style="width: 100%" (click)="clickUtilidade()">Utilidades</button><br>
-        <button ion-button round menuClose style="width: 100%" (click)="clickMensagens()">Mensagens</button><br>
-        <button ion-button round menuClose style="width: 100%" (click)="clickBugReport()">Bug Report</button><br>
-        <button ion-button round menuClose style="width: 100%" (click)="clickLogout()">Logout</button><br>
+        <h1 style="text-align: center">Menu</h1>
+        <button id="btnTab1" ion-button round menuClose style="width: 100%" (click)="clickPerfil()">Perfil</button><br>
+        <button id="btnTab2" ion-button round menuClose style="width: 100%" (click)="clickUtilidade()">Utilidades</button><br>
+        <button id="btnTab3" ion-button round menuClose style="width: 100%" (click)="clickMensagens()">Mensagens</button><br>
+        <button id="btnTab4" ion-button round menuClose style="width: 100%" (click)="clickBugReport()">Bug Report</button><br>
+        <button id="btnTab5" ion-button round menuClose style="width: 100%" (click)="clickLogout()">Logout</button><br>
     </ion-content>
 
 </ion-menu>
 
-<button ion-button icon-only menuToggle style="display: none; height: 40px; z-index: 1" id="botao_menu">
-    <ion-icon name="md-menu"></ion-icon>
+<button menuToggle class="menuButton" id="botao_menu">
+    <ion-icon md="md-menu" class="menuIcon"></ion-icon>
 </button>
 
 <div style="width: 100%; text-align: center; position: absolute; bottom: 0px">
@@ -30,9 +31,9 @@
         <button ion-button large icon-only (click)="clickDivulgacao()">
             <ion-icon name="md-pricetags"></ion-icon>
         </button>
-        <button ion-button large icon-only (click)="clickTurma()">
+        <!-- <button ion-button large icon-only (click)="clickTurma()">
             <ion-icon name="logo-angular"></ion-icon>
-        </button>
+        </button> -->
     </div>
 </div>
 

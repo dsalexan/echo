@@ -55,6 +55,10 @@ export class PerfilPage {
     }
   }
 
+  clickBack() {
+    this.navCtrl.pop()
+  }
+
   getInfomations() { //busca no banco de dados as informações do usuario
     this.storage.get("aluno_login").then((usu) => {
       this.account.user_name = usu

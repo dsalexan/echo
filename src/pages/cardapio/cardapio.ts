@@ -38,6 +38,10 @@ export class CardapioPage {
     this.checkSession();
   }
 
+  clickBack() {
+    this.navCtrl.pop()
+  }
+
   checkSession() {
     this.storage.get("aluno_nome").then((usu) => {
       if(usu == null) {

@@ -49,6 +49,11 @@ export class UtilidadesPage {
       }
     })
   }
+
+  clickBack() {
+    this.navCtrl.pop()
+  }
+  
   openUrl(){ window.open('https://google.com', '_system'); }
   ionViewWillEnter() {
     this.checkSession();
