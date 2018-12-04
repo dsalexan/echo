@@ -26,14 +26,14 @@ export class LoginPage {
 
   ionViewWillEnter() {
     console.log('ionViewWillEnter LoginPage');
-    var he = new Headers()
-    he.append('Content-Type', 'application/json')
-    let sr = '104.248.9.4'
-    // let sr = 'localhost'
-    // this.http.post('https://webhook.site/47b7ba5c-0fd0-487c-a161-f83921024e02', {'bla': '1'}, {headers: he}).map(res => res.json()).subscribe(result => {
-    // this.http.post('http://' + sr + ':3000/teste', {'login': user, 'senha': encryptSenha}, {headers: new HttpHeaders()}).subscribe(result => {
+    // var he = new Headers()
+    // he.append('Content-Type', 'application/json')
+    // let sr = '104.248.9.4'
+    // // let sr = 'localhost'
+    // // this.http.post('https://webhook.site/47b7ba5c-0fd0-487c-a161-f83921024e02', {'bla': '1'}, {headers: he}).map(res => res.json()).subscribe(result => {
+    // // this.http.post('http://' + sr + ':3000/teste', {'login': user, 'senha': encryptSenha}, {headers: new HttpHeaders()}).subscribe(result => {
     
-    // this.http.put('http://' + sr + ':3000/teste', {'bla': '1'}, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe(result => {
+    // // this.http.put('http://' + sr + ':3000/teste', {'bla': '1'}, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe(result => {
     // this.http.get('http://' + sr + ':3000/teste', {responseType: 'text'}).subscribe(result => {
     //   console.log(result)
     //   let alert = this.alertCtrl.create({
@@ -113,6 +113,7 @@ export class LoginPage {
 
         this.navCtrl.push(HomePage, {dados: this.dados});
       } else {
+        loading.dismiss();
         let alert = this.alertCtrl.create({
           title: 'Ops!',
           subTitle: 'Verifique as informações inseridas',

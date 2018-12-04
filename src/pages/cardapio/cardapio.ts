@@ -96,6 +96,7 @@ export class CardapioPage {
             alert.present();
           }
           else {
+            loading.dismiss();
             let alert = this.alertCtrl.create({
               message: 'Problema ao carregar o cardápio',
               buttons: ['Ok'],
