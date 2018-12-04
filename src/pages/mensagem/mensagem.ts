@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginPage } from '../login/login'
 import { Http } from '@angular/http';
 
+import endpoints from '../../../constants/endpoints'
 
 @IonicPage()
 @Component({
@@ -23,11 +24,10 @@ export class MensagemPage {
     //alterar status no banco
     console.log('mensagem', mensagem)
     if(!mensagem.lida){
-      var path = 'http://104.248.9.4:3000/api/mensagem/put/mensagem?id_mensagem=' + mensagem.id_mensagem
-      console.log(path)
-      this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
-      // this.http.get(path).map(res => res.json()).subscribe(data => {
-          if(data["success"]){
+      var path = endpoints.api.mensagens._ + '/' + mensagem.id_mensagem
+      
+      this.http.put(path, {headers: new HttpHeaders()}).subscribe((data: any) => {
+          if(data.success){
             this.ionViewWillEnter()
           }
         })
@@ -43,39 +43,29 @@ export class MensagemPage {
 
   exibirMensagens(){
     this.storage.get("aluno_ra"). then(usu => {
-      var path = 'http://104.248.9.4:3000/api/mensagem/get/lidas?id_destinatario=' + usu
-      console.log(path)
+      var path = endpoints.api.mensagens.lidas + '?id_destinatario=' + usu
       
-      this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
-      // this.http.get(path).map(res => res.json()).subscribe(data => {
-        if(data["success"]){
-          this.mensagens_lidas = data["data"]
-          //console.log('jisdjoasi', this.mensagens)
+      this.http.get(path, {headers: new HttpHeaders()}).subscribe((data: any) => {
+        if(data.success){
+          this.mensagens_lidas = data.data
         }
       })
 
-      var path2 = 'http://104.248.9.4:3000/api/mensagem/get/novas?id_destinatario=' + usu
-      console.log(path2)
+      var path2 = endpoints.api.menagens.novas + '?id_destinatario=' + usu
       
-      this.http.get(path2, {headers: new HttpHeaders()}).subscribe(data2 => {
-      // this.http.get(path2).map(res => res.json()).subscribe(data2 => {
-        if(data2["success"]){
-          this.mensagens_naolidas = data2["data"]
-          //console.log('jisdjoasi', this.mensagens)
+      this.http.get(path2, {headers: new HttpHeaders()}).subscribe((data: any) => {
+        if(data.success){
+          this.mensagens_naolidas = data.data
         }
       })
-
-
     })
   }
 
   excluirMensagem(mensagem){
-    var path = 'http://104.248.9.4:3000/api/mensagem/delete/mensagem?id_mensagem=' + mensagem.id_mensagem
-    console.log(path)
+    var path = endpoints.api.mensagens._ + '/' + mensagem.id_mensagem
     
-    this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
-    // this.http.get(path).map(res => res.json()).subscribe(data => {
-      if(data["success"]){
+    this.http.delete(path, {headers: new HttpHeaders()}).subscribe((data: any) => {
+      if(data.success){
         let alert = this.alertCtrl.create({
           title: 'Ok!',
           subTitle: 'Mensagem excluída!',
