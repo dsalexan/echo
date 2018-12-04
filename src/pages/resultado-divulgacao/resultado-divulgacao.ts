@@ -33,10 +33,15 @@ export class ResultadoDivulgacaoPage {
     })
   }
 
+  clickBack(){
+    this.navCtrl.push(FiltrarDivulgacaoPage)
+  }
+
   validarResultados(){
     var total = 0
     this.resultados.forEach(item=> {
       this.storage.get("aluno_ra").then((ra) => {
+        console.log('teste', item.dia, this.formatDate(new Date()), item.dia >= this.formatDate(new Date()))
         if(item.dia >= this.formatDate(new Date()) && item.ra_aluno != ra && item.quantidade > 0){
           this.resultados_validos.push(item)
         }
@@ -69,10 +74,8 @@ export class ResultadoDivulgacaoPage {
   }
 
   Redirecionar(item){
-    this.navCtrl.push(CompradorDivulgacaoPage, {item: item});
+    this.navCtrl.push(CompradorDivulgacaoPage, {item: item, resultados: this.resultados});
   }
-
-
 
   ionViewDidLoad() {
     this.checkSession();
