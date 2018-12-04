@@ -102,7 +102,7 @@ VALUES (DEFAULT, 'SEG', '8:00'),
 (DEFAULT, 'SEX', '13:30'),
 (DEFAULT, 'SEX', '15:30'),
 (DEFAULT, 'SEX', '19:00'),
-(DEFAULT, 'SEX', '21:00')
+(DEFAULT, 'SEX', '21:00');
 
 create table horario_turma (
 	id_turma INTEGER REFERENCES turma(id_turma) NOT NULL,
