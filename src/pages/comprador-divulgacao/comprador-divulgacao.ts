@@ -75,7 +75,7 @@ export class CompradorDivulgacaoPage {
       this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
       // this.http.get(path).map(res => res.json()).subscribe(data => {
         if(data["success"]) {
-          var path2 = 'http://localhost:3000/api/divulgacao/put/quantidade?id_divulgacao=' + this.item.id_divulgacao + '&quantidade=' + this.qtd_desejada
+          var path2 = 'http://104.248.9.4:3000/api/divulgacao/put/quantidade?id_divulgacao=' + this.item.id_divulgacao + '&quantidade=' + this.qtd_desejada
           this.http.get(path2, {headers: new HttpHeaders()}).subscribe(data2 => {
           // this.http.get(path2).map(res => res.json()).subscribe(data2 => {
             if(data2["success"]){
@@ -83,7 +83,7 @@ export class CompradorDivulgacaoPage {
               var hora = (new Date()).toTimeString().split(' ')[0]
               hora = hora.slice(0, hora.length-3) 
 
-              var path3 = 'http://localhost:3000/api/mensagem/post/mensagem?id_destinatario=' + this.item.ra_aluno + '&msg=' + this.msg_reserva + '&dia=' + dia + '&hora=' + hora
+              var path3 = 'http://104.248.9.4:3000/api/mensagem/post/mensagem?id_destinatario=' + this.item.ra_aluno + '&msg=' + this.msg_reserva + '&dia=' + dia + '&hora=' + hora
               this.http.get(path3, {headers: new HttpHeaders()}).subscribe(data3 => {
               // this.http.get(path3).map(res => res.json()).subscribe(data3 => {
                 if(data3["success"]) {

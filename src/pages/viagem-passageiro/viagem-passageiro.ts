@@ -27,6 +27,10 @@ export class ViagemPassageiroPage {
     this.loc = this.navParams.get("loc");
     this.mensagem_exclusao = '';
   }
+  
+  clickBack() {
+    this.navCtrl.pop()
+  }
 
   deletarReserva(){
     console.log(this.mensagem_exclusao)
@@ -119,15 +123,15 @@ export class ViagemPassageiroPage {
 
   ionViewDidLoad() {
     this.checkSession();
-    this.navBar.backButtonClick = () => {
-      // you can set a full custom history here if you want 
-        let pages = [
-        {
-        page: MinhasCaronasPage, ResCaronaPage
-        }
-      ];
-      this.navCtrl.setPages(pages);
-    }
+    // this.navBar.backButtonClick = () => {
+    //   // you can set a full custom history here if you want 
+    //     let pages = [
+    //     {
+    //     page: MinhasCaronasPage, ResCaronaPage
+    //     }
+    //   ];
+    //   this.navCtrl.setPages(pages);
+    // }
     //console.log(this.viagem)
     console.log('ionViewDidLoad ViagemPassageiroPage');
     document.getElementById("tabs").style.display = "none"

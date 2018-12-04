@@ -87,7 +87,7 @@ export class VendedorDivulgacaoPage {
             handler: data => {
               this.navCtrl.push(MinhasDivulgacaoPage)
               if (data.quantidade != null) {
-                var path = 'http://localhost:3000/api/divulgacao/put/setar_quantidade?id_divulgacao=' + this.itens.id_divulgacao + '&quantidade=' + data.quantidade
+                var path = 'http://104.248.9.4:3000/api/divulgacao/put/setar_quantidade?id_divulgacao=' + this.itens.id_divulgacao + '&quantidade=' + data.quantidade
                 this.http.get(path, {headers: new HttpHeaders()}).subscribe(data1 => {
                 // this.http.get(path).map(res => res.json()).subscribe(data1 => {
                   if(data1["success"]){
@@ -110,7 +110,7 @@ export class VendedorDivulgacaoPage {
   
 
   deletarOferta(){
-    var path = 'http://localhost:3000/api/reserva_divulgacao/get/reservas?id_divulgacao=' + this.itens.id_divulgacao
+    var path = 'http://104.248.9.4:3000/api/reserva_divulgacao/get/reservas?id_divulgacao=' + this.itens.id_divulgacao
     this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
     // this.http.get(path).map(res => res.json()).subscribe(data => {
       if(data["success"]) {
@@ -121,7 +121,7 @@ export class VendedorDivulgacaoPage {
           var hora = (new Date()).toTimeString().split(' ')[0]
           hora = hora.slice(0, hora.length-3)
 
-          var path5 = 'http://localhost:3000/api/mensagem/post/mensagem?id_destinatario=' + element.ra_aluno_comprador + '&msg=' + this.mensagem_exclusao + '&dia=' + dia + '&hora=' + hora
+          var path5 = 'http://104.248.9.4:3000/api/mensagem/post/mensagem?id_destinatario=' + element.ra_aluno_comprador + '&msg=' + this.mensagem_exclusao + '&dia=' + dia + '&hora=' + hora
             console.log(path5)
             this.http.get(path5, {headers: new HttpHeaders()}).subscribe(data5 => {
             // this.http.get(path5).map(res => res.json()).subscribe(data5 => {
@@ -129,12 +129,12 @@ export class VendedorDivulgacaoPage {
         });
 
         if(data["data"].length != 0){
-          var path2 = 'http://localhost:3000/api/reserva_divulgacao/delete/todas_reservas?id_divulgacao=' + this.itens.id_divulgacao
+          var path2 = 'http://104.248.9.4:3000/api/reserva_divulgacao/delete/todas_reservas?id_divulgacao=' + this.itens.id_divulgacao
           this.http.get(path2, {headers: new HttpHeaders()}).subscribe(data2 => {
           // this.http.get(path2).map(res => res.json()).subscribe(data2 => {
             if(data2["success"]){
               //manda mensagem pras reserva avisando que cancelou        
-              var path3 = 'http://localhost:3000/api/divulgacao/delete/divulgacao?id_divulgacao=' + this.itens.id_divulgacao
+              var path3 = 'http://104.248.9.4:3000/api/divulgacao/delete/divulgacao?id_divulgacao=' + this.itens.id_divulgacao
               this.http.get(path3, {headers: new HttpHeaders()}).subscribe(data3 => {
               // this.http.get(path3).map(res => res.json()).subscribe(data3 => {
                 if(data3["success"]){
@@ -151,7 +151,7 @@ export class VendedorDivulgacaoPage {
           })
         }
         if(data["data"].length == 0){
-          var path3 = 'http://localhost:3000/api/divulgacao/delete/divulgacao?id_divulgacao=' + this.itens.id_divulgacao
+          var path3 = 'http://104.248.9.4:3000/api/divulgacao/delete/divulgacao?id_divulgacao=' + this.itens.id_divulgacao
           this.http.get(path3, {headers: new HttpHeaders()}).subscribe(data3 => {
           // this.http.get(path3).map(res => res.json()).subscribe(data3 => {
             if(data3["success"]){

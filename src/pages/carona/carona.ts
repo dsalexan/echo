@@ -22,11 +22,23 @@ export class CaronaPage {
   msg_reserva: String;
   disponiveis = []
 
+  tp1 = []
+  tp2 = {}
+  tloc = {}
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient, public alertCtrl: AlertController) {
     this.viagem = this.navParams.get("viagem");
     this.loc = this.navParams.get("loc");
     this.disponiveis = this.navParams.get("disponiveis")
     this.msg_reserva = ''
+
+    this.tp1 = this.navParams.get("tp1")
+    this.tp2 = this.navParams.get("tp2")
+    this.tloc = this.navParams.get("tloc")
+  }
+
+  clickBack() {
+    this.navCtrl.push(ResCaronaPage, {dados: this.tp1, viagens: this.tp2, loc: this.tloc})
   }
 
   reservar(){

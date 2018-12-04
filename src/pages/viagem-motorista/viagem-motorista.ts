@@ -35,6 +35,10 @@ export class ViagemMotoristaPage {
   editarViagemMotorista(myEvent) {
 
   }
+  
+  clickBack() {
+    this.navCtrl.pop()
+  }
 
   checkSession() {
     this.storage.get("aluno_nome").then((usu) => {
@@ -505,15 +509,15 @@ export class ViagemMotoristaPage {
 
   ionViewWillEnter() {
     this.checkSession();
-    this.navBar.backButtonClick = () => {
-      // you can set a full custom history here if you want 
-        let pages = [
-        {
-      page: MinhasCaronasPage
-      }
-      ];
-      this.navCtrl.setPages(pages);
-    }
+    // this.navBar.backButtonClick = () => {
+    //   // you can set a full custom history here if you want 
+    //     let pages = [
+    //     {
+    //   page: MinhasCaronasPage
+    //   }
+    //   ];
+    //   this.navCtrl.setPages(pages);
+    // }
     this.buscaReservas();
     // PENDENCIA: buscar a qtd de vagas nesta tela
     //console.log(this.viagem)

@@ -22,11 +22,18 @@ export class ResCaronaPage {
   loc: {}
   viagens_disponiveis = []
 
+  temp_p1 = []
+  temp_p2 = {}
+  temp_loc = {}
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient, public alertCtrl: AlertController) {
     this.dados = this.navParams.get("p1");
     this.loc = this.navParams.get("loc");
     this.viagens = this.navParams.get("p2")
 
+    this.temp_p1 = this.navParams.get("p1");
+    this.temp_p2 = this.navParams.get("p2")
+    this.temp_loc = this.navParams.get("loc");
   }
 
   clickBack() {
@@ -48,7 +55,7 @@ export class ResCaronaPage {
         // this.http.get(path).map(res => res.json()).subscribe(data => {
           if(data["success"]){
             if(data["data"].length == 0){ //nao ta reservado
-              this.navCtrl.push(CaronaPage, {viagem: item, loc:this.loc, disponiveis: this.viagens_disponiveis})
+              this.navCtrl.push(CaronaPage, {viagem: item, loc:this.loc, disponiveis: this.viagens_disponiveis, tp1: this.temp_p1, tp2:this.temp_p2, tloc:this.temp_loc})
             }
             else{ //busca infos pra enviar pra prox pagina
               var path2 = 'http://104.248.9.4:3000/api/caronas/get/viagem/passageiro?id=' + usu

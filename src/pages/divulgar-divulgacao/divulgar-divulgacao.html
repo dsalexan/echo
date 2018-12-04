@@ -79,13 +79,17 @@
             required #descricao="ngModel">
           </ion-input>
         </ion-item>
-        
-        <ion-calendar
-          [(ngModel)]="item.dia"
-          id="dia"
-          name="dia"
-          required #dia="ngModel">
-        </ion-calendar>
+
+        <ion-item>
+          <ion-label floating> Data </ion-label>
+          <ion-datetime
+            displayFormat="YYYY-MM-DD"
+            [(ngModel)]="item.dia"
+            id="dia"
+            name="dia"
+            required #data="ngModel">
+          </ion-datetime>
+        </ion-item>
   
         <ion-card>
           <ion-card-content>
