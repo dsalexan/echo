@@ -24,7 +24,10 @@ export class VendedorDivulgacaoPage {
     this.mensagem_exclusao = ''
   }
 
-
+  clickBack(){
+    this.navCtrl.push(MinhasDivulgacaoPage)
+  }
+  
   formatDate(date) {
     var d = new Date(date),
         month = '' + (d.getMonth() + 1),

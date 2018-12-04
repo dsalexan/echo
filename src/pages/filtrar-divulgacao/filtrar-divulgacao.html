@@ -1,21 +1,28 @@
-<ion-header>
+<!-- <ion-header>
     <ion-navbar color="primary">
-      <ion-buttons left><!--botoes do cabeçalho - ESQUERDA-->
+      <ion-buttons left>
       </ion-buttons>
       <ion-title center>{{ 'Buscar' }}</ion-title>
     </ion-navbar>
   </ion-header>
-  
+   -->
   <ion-content padding>
+
+      <div class="navHeight">
+          <ion-title class="backTitle">Buscar</ion-title>
+          <button class="backButton" (click) = "clickBack()"><ion-icon class="backIcon" md="md-arrow-back"></ion-icon></button>
+          </div>
+          <div style="height: 65px"></div>
+
     <form #item_divulgacaoForm="ngForm" (ngSubmit)="buscar()">
 
       <ion-item>
         <ion-label floating>Categoria</ion-label>
           <ion-select
             type="number"
-            [(ngModel)]="item.categoria"
-            id="categoria"
-            name="categoria">
+            [(ngModel)]="item.id_tipo"
+            id="id_tipo"
+            name="id_tipo">
             <ion-option *ngFor="let i of lista" [value]="i.id_tipo" >{{i.nome_tipo}}</ion-option>
           </ion-select>
       </ion-item>

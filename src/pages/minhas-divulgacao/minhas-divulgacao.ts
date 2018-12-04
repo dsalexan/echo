@@ -7,6 +7,7 @@ import { LoginPage } from '../login/login'
 import { TitleCasePipe } from '@angular/common';
 import { CompradorDivulgacaoPage } from '../comprador-divulgacao/comprador-divulgacao';
 import { VendedorDivulgacaoPage } from '../vendedor-divulgacao/vendedor-divulgacao';
+import { InicialDivulgacaoPage } from '../inicial-divulgacao/inicial-divulgacao';
 
 @IonicPage()
 @Component({
@@ -28,6 +29,9 @@ export class MinhasDivulgacaoPage {
     this.mensagem_exclusao = ''
   }
 
+  clickBack(){
+    this.navCtrl.push(InicialDivulgacaoPage)
+  }
 
   abrirVendedor(v){
     console.log(v)

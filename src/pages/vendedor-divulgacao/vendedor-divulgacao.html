@@ -1,13 +1,19 @@
-<ion-header>
+<!-- <ion-header>
   <ion-navbar color="primary">
-    <ion-buttons left><!--botoes do cabeçalho - ESQUERDA-->
+    <ion-buttons left>
     </ion-buttons>
     <ion-title center>{{ 'Pedidos de Reservas' }}</ion-title>
   </ion-navbar>
-</ion-header>
+</ion-header> -->
 
 
 <ion-content padding>
+    <div class="navHeight">
+        <ion-title class="backTitle">Pedidos de Reservas</ion-title>
+        <button class="backButton" (click) = "clickBack()"><ion-icon class="backIcon" md="md-arrow-back"></ion-icon></button>
+        </div>
+        <div style="height: 65px"></div>
+
   <ion-list>
     <ion-item>
     <h1> {{itens.nome}}  </h1>    

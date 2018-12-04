@@ -17,6 +17,7 @@ import { ResultadoDivulgacaoPage } from '../resultado-divulgacao/resultado-divul
 export class CompradorDivulgacaoPage {
   item: any;
   qtd_desejada: any;
+  resultados: any;
 
   valor_total = 0  
   msg_reserva: String;
@@ -24,6 +25,7 @@ export class CompradorDivulgacaoPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController) {
     this.item = this.navParams.get("item");
+    this.resultados = this.navParams.get("resultados");
     console.log(this.item)
     this.qtd_desejada = 0;    
     this.msg_reserva = ''
@@ -31,7 +33,7 @@ export class CompradorDivulgacaoPage {
   }
   
   clickBack() {
-    this.navCtrl.push(ResultadoDivulgacaoPage)
+    this.navCtrl.push(ResultadoDivulgacaoPage, {data: this.resultados})
   }
 
   formatDate(date) {

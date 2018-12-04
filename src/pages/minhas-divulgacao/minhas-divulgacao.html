@@ -1,12 +1,19 @@
-<ion-header>
+<!-- <ion-header>
   <ion-navbar color="primary">
-    <ion-buttons left><!--botoes do cabeçalho - ESQUERDA-->
+    <ion-buttons left>
     </ion-buttons>
     <ion-title center>{{ 'Minhas Transações' }}</ion-title>
   </ion-navbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content padding>
+
+    <div class="navHeight">
+        <ion-title class="backTitle">Minhas Transações</ion-title>
+        <button class="backButton" (click) = "clickBack()"><ion-icon class="backIcon" md="md-arrow-back"></ion-icon></button>
+        </div>
+        <div style="height: 65px"></div>
+        
   <ion-list>
     <h4> Ofertas </h4>
     <button ion-item *ngFor="let itens of itens_vendedor_validos" (click)="abrirVendedor(itens)">
