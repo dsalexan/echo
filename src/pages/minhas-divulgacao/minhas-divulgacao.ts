@@ -26,7 +26,7 @@ export class MinhasDivulgacaoPage {
   mensagem_exclusao: String;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController, public viewCtrl: ViewController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient, public alertCtrl: AlertController, public viewCtrl: ViewController) {
     this.mensagem_exclusao = ''
   }
 
@@ -60,19 +60,22 @@ export class MinhasDivulgacaoPage {
     this.mensagem_exclusao = 'O usuário ' + usu + ' cancelou a reserva de ' + item.quantidade + item.nome + ' do ' + item.dia.slice(8,10) +'/'+item.dia.slice(5,7)+'/'+item.dia.slice(0,4)
 
     var path = 'http://localhost:3000/api/reserva_divulgacao/delete/reservas?id_reserva=' + item.id_reserva
-    this.http.get(path).map(res => res.json()).subscribe(data => {
-      if(data.success) {
+    this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+    // this.http.get(path).map(res => res.json()).subscribe(data => {
+      if(data["success"]) {
 
         var dia = this.formatDate(new Date())
         var hora = (new Date()).toTimeString().split(' ')[0]
         hora = hora.slice(0, hora.length-3)
 
         var path5 = 'http://localhost:3000/api/mensagem/post/mensagem?id_destinatario=' + item.ra_aluno + '&msg=' + this.mensagem_exclusao + '&dia=' + dia + '&hora=' + hora
-          this.http.get(path5).map(res => res.json()).subscribe(data5 => {
+        this.http.get(path5, {headers: new HttpHeaders()}).subscribe(data5 => {
+          // this.http.get(path5).map(res => res.json()).subscribe(data5 => {
           }) 
 
         var path2 = 'http://localhost:3000/api/divulgacao/put/quantidade?id_divulgacao=' + item.id_divulgacao + '&quantidade=' + -item.quantidade
-        this.http.get(path2).map(res => res.json()).subscribe()
+        this.http.get(path2, {headers: new HttpHeaders()}).subscribe()
+        // this.http.get(path2).map(res => res.json()).subscribe()
         
         let alert = this.alertCtrl.create({
           title: 'Ok!',

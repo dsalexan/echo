@@ -20,7 +20,7 @@ export class FiltrarDivulgacaoPage {
   item = {} // {} tipo: objetoF
   lista = []
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient, public alertCtrl: AlertController) {
     this.item["id_tipo"] = undefined;
     this.item["valor"] = undefined;
     this.item["hora_inicio"] = undefined;
@@ -172,14 +172,15 @@ export class FiltrarDivulgacaoPage {
 
   busca_divulgacao_hora_inicio(){
     var path = 'http://localhost:3000/api/divulgacao/get/divulgacao/hora_inicio?hora_inicio=' + this.item["hora_inicio"]
-    this.http.get(path).map(res => res.json()).subscribe(data => {
-      console.log('RESULTADO', data.data)
+    this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+    // this.http.get(path).map(res => res.json()).subscribe(data => {
+      console.log('RESULTADO', data["data"])
 
-      console.log('len', data.data.length)
-      if(data.data.length != 0) {
-        this.navCtrl.push(ResultadoDivulgacaoPage, {data: data.data});
+      console.log('len', data["data"].length)
+      if(data["data"].length != 0) {
+        this.navCtrl.push(ResultadoDivulgacaoPage, {data: data["data"]});
       } else {
-        console.log('len2', data.data.length)
+        console.log('len2', data["data"].length)
         let alert = this.alertCtrl.create({
           title: 'Ops!',
           subTitle: 'Tente novamente',
@@ -194,7 +195,8 @@ export class FiltrarDivulgacaoPage {
 
   busca_divulgacao_hora_fim(){
     var path = 'http://localhost:3000/api/divulgacao/get/divulgacao/hora_fim?hora_fim=' + this.item["hora_fim"]
-    this.http.get(path).map(res => res.json()).subscribe(data => {
+    this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+    // this.http.get(path).map(res => res.json()).subscribe(data => {
       console.log('RESULTADO', data)
 
       if(data["data"].length != 0) {

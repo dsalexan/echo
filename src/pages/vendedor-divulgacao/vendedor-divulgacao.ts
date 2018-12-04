@@ -20,7 +20,7 @@ export class VendedorDivulgacaoPage {
   reservas = []
   mensagem_exclusao: String;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: Http, public alertCtrl: AlertController, public popOver: PopoverController, public viewCtrl: ViewController, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient, public alertCtrl: AlertController, public popOver: PopoverController, public viewCtrl: ViewController, public modalCtrl: ModalController) {
     this.itens = this.navParams.get("item");
     this.mensagem_exclusao = ''
   }
@@ -88,8 +88,9 @@ export class VendedorDivulgacaoPage {
               this.navCtrl.push(MinhasDivulgacaoPage)
               if (data.quantidade != null) {
                 var path = 'http://localhost:3000/api/divulgacao/put/setar_quantidade?id_divulgacao=' + this.itens.id_divulgacao + '&quantidade=' + data.quantidade
-                this.http.get(path).map(res => res.json()).subscribe(data1 => {
-                  if(data1.success){
+                this.http.get(path, {headers: new HttpHeaders()}).subscribe(data1 => {
+                // this.http.get(path).map(res => res.json()).subscribe(data1 => {
+                  if(data1["success"]){
                     let alert = this.alertCtrl.create({
                       title: 'Ok!',
                       subTitle: 'Alteração realizada!',
@@ -110,29 +111,33 @@ export class VendedorDivulgacaoPage {
 
   deletarOferta(){
     var path = 'http://localhost:3000/api/reserva_divulgacao/get/reservas?id_divulgacao=' + this.itens.id_divulgacao
-    this.http.get(path).map(res => res.json()).subscribe(data => {
-      if(data.success) {
+    this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+    // this.http.get(path).map(res => res.json()).subscribe(data => {
+      if(data["success"]) {
       console.log(data)
-      console.log(data.data)
-        data.data.forEach(element => {
+      console.log(data["data"])
+        data["data"].forEach(element => {
           var dia = this.formatDate(new Date())
           var hora = (new Date()).toTimeString().split(' ')[0]
           hora = hora.slice(0, hora.length-3)
 
           var path5 = 'http://localhost:3000/api/mensagem/post/mensagem?id_destinatario=' + element.ra_aluno_comprador + '&msg=' + this.mensagem_exclusao + '&dia=' + dia + '&hora=' + hora
             console.log(path5)
-            this.http.get(path5).map(res => res.json()).subscribe(data5 => {
+            this.http.get(path5, {headers: new HttpHeaders()}).subscribe(data5 => {
+            // this.http.get(path5).map(res => res.json()).subscribe(data5 => {
             })          
         });
 
-        if(data.data.length != 0){
+        if(data["data"].length != 0){
           var path2 = 'http://localhost:3000/api/reserva_divulgacao/delete/todas_reservas?id_divulgacao=' + this.itens.id_divulgacao
-          this.http.get(path2).map(res => res.json()).subscribe(data2 => {
-            if(data2.success){
+          this.http.get(path2, {headers: new HttpHeaders()}).subscribe(data2 => {
+          // this.http.get(path2).map(res => res.json()).subscribe(data2 => {
+            if(data2["success"]){
               //manda mensagem pras reserva avisando que cancelou        
               var path3 = 'http://localhost:3000/api/divulgacao/delete/divulgacao?id_divulgacao=' + this.itens.id_divulgacao
-              this.http.get(path3).map(res => res.json()).subscribe(data3 => {
-                if(data3.success){
+              this.http.get(path3, {headers: new HttpHeaders()}).subscribe(data3 => {
+              // this.http.get(path3).map(res => res.json()).subscribe(data3 => {
+                if(data3["success"]){
                   let alert = this.alertCtrl.create({
                     title: 'Ok!',
                     subTitle: 'Oferta cancelada!',
@@ -145,10 +150,11 @@ export class VendedorDivulgacaoPage {
             }
           })
         }
-        if(data.data.length == 0){
+        if(data["data"].length == 0){
           var path3 = 'http://localhost:3000/api/divulgacao/delete/divulgacao?id_divulgacao=' + this.itens.id_divulgacao
-          this.http.get(path3).map(res => res.json()).subscribe(data3 => {
-            if(data3.success){
+          this.http.get(path3, {headers: new HttpHeaders()}).subscribe(data3 => {
+          // this.http.get(path3).map(res => res.json()).subscribe(data3 => {
+            if(data3["success"]){
               let alert = this.alertCtrl.create({
                 title: 'Ok!',
                 subTitle: 'Oferta cancelada!',

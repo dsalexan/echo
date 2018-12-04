@@ -29,6 +29,10 @@ export class ResCaronaPage {
 
   }
 
+  clickBack() {
+    this.navCtrl.push(ProcurarCaronaPage)
+  }
+
   selecionar(item){
     // console.log("item: ")
     // console.log(item)

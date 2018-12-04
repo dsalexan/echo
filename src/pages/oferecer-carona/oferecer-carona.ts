@@ -31,6 +31,9 @@ export class OferecerCaronaPage {
     this.destino = new Array
   }
 
+  clickBack() {
+    this.navCtrl.push(InicialCaronaPage)
+  }
 
   criaDic() {
     for (var i = 0; i < this.origem.length; i++) {
@@ -165,15 +168,15 @@ export class OferecerCaronaPage {
 
   ionViewWillEnter() {
     this.checkSession();
-    this.navBar.backButtonClick = () => {
-      // you can set a full custom history here if you want 
-        let pages = [
-        {
-      page: InicialCaronaPage
-      }
-      ];
-      this.navCtrl.setPages(pages);
-    }
+    // this.navBar.backButtonClick = () => {
+    //   // you can set a full custom history here if you want 
+    //     let pages = [
+    //     {
+    //   page: InicialCaronaPage
+    //   }
+    //   ];
+    //   this.navCtrl.setPages(pages);
+    // }
     this.mostrarLocalidade();
     console.log('ionViewWillEnter OferecerCaronaPage');
     document.getElementById("tabs").style.display = "none"
