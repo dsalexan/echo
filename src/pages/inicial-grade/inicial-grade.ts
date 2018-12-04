@@ -9,6 +9,8 @@ import { Http } from '@angular/http';
 import { GradeEventoPage } from '../grade-evento/grade-evento';
 import { AgendaPage } from '../agenda/agenda';
 
+import endpoints from '../../../constants/endpoints'
+
 @IonicPage()
 @Component({
   selector: 'page-inicial-grade',
@@ -137,9 +139,9 @@ export class InicialGradePage {
   adicionarGrade() {
     // console.log(this.storage.get("aluno_ra"))
     this.storage.get("aluno_ra").then(ra_aluno => {
-      var path = 'http://104.248.9.4:3000/api/grades/get/compromissos/aluno?ra_aluno=' + ra_aluno +
-                 '&dt_inicio=' + this.semana[0].yyyy + '-' + this.semana[0].mm + '-' + this.semana[0].dd +
-                 '&dt_fim=' + this.semana[6].yyyy + '-' + this.semana[6].mm + '-' + this.semana[6].dd
+      var path = `${endpoints.api.grade._}/${ra_aluno}/compromissos` +
+                 '?data_inicio=' + this.semana[0].yyyy + '-' + this.semana[0].mm + '-' + this.semana[0].dd +
+                 '&data_fim=' + this.semana[6].yyyy + '-' + this.semana[6].mm + '-' + this.semana[6].dd
       // console.log(this.semana)
       this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
       // this.http.get(path).map(res => res.json()).subscribe(data => {
@@ -147,8 +149,7 @@ export class InicialGradePage {
         data["data"].forEach(c => {
           var o = {}
 
-          if (c.tipo == 'aula')
-          {
+          if (c.tipo == 'aula'){
             var dia_semana = this.extenso[c.dia_semana]
             o["dia_mes"] = ""
           }

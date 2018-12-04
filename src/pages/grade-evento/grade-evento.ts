@@ -4,6 +4,8 @@ import { Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+import endpoints from '../../../constants/endpoints'
+
 /**
  * Generated class for the GradeEventoPage page.
  *
@@ -40,28 +42,23 @@ export class GradeEventoPage {
   carregarDadosTurma() {
     var id_turma = this.dados["id_turma"];
 
-    var path = 'http://104.248.9.4:3000/api/grades/get/turma/id?id_turma=' + id_turma
+    var path = endpoints.api.grade.turmas + '/' + id_turma
     this.http.get(path, {headers: new HttpHeaders()}).subscribe(info => {
-    // this.http.get(path).map(res => res.json()).subscribe(info => {
-      // console.log(info)
       this.dados["nome_turma"] = info["data"].nome_turma
       this.dados["nome_uc"] = info["data"].nome_uc
       this.dados["nome_prof"] = info["data"].nome_prof
     })
 
     this.storage.get("aluno_ra").then(ra_aluno => {
-      var path4 = 'http://104.248.9.4:3000/api/grades/get/faltas?id_turma=' + id_turma + '&ra_aluno=' + ra_aluno
+      var path4 = `${endpoints.api.grade}/${ra_aluno}/turmas/${id_turma}/faltas`
       this.http.get(path4, {headers: new HttpHeaders()}).subscribe(info => {
-      // this.http.get(path4).map(res => res.json()).subscribe(info => {
-        // console.log(info)
-        console.log('info', info)
         this.dados["faltas"] = info["data"].faltas
       })
     })
 
     this.dados["alunos"] = []
 
-    var path2 = 'http://104.248.9.4:3000/api/grades/get/aluno/turma?id_turma=' + id_turma
+    var path2 = `${endpoints.api.grade.turmas}/${id_turma}/alunos`
     this.http.get(path2, {headers: new HttpHeaders()}).subscribe(data => {
     // this.http.get(path2).map(res => res.json()).subscribe(data => {
       // console.log(data)

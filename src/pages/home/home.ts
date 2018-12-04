@@ -8,6 +8,8 @@ import { MensagemPage } from '../mensagem/mensagem'
 import { Http } from '@angular/http';
 import { BOOL_TYPE } from '@angular/compiler/src/output/output_ast';
 
+import endpoints from '../../../constants/endpoints'
+
 @IonicPage()
 @Component({
   selector: 'page-home',
@@ -30,15 +32,12 @@ export class HomePage {
 
   exibirMensagens(){
     this.storage.get("aluno_ra"). then(usu => {
-      var path = 'http://104.248.9.4:3000/api/mensagem/get/novas?id_destinatario=' + usu
-      console.log(path)
-      this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
-      // this.http.get(path).map(res => res.json()).subscribe(data => {
-        if(data["success"] && data["data"].length > 0){
-          this.mensagens = data["data"]
+      var path = endpoints.api.mensagens.novas + '?id_destinatario=' + usu
+      this.http.get(path, {headers: new HttpHeaders()}).subscribe((data: any) => {
+        if(data.success && data.data.length > 0){
+          this.mensagens = data.data
           this.nova = true
         }
-        //console.log(this.nova)
       })
     })
   }
