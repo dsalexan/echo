@@ -24,6 +24,11 @@ export class MinhasCaronasPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient, public alertCtrl: AlertController) {
   }
+  
+
+  clickBack() {
+    this.navCtrl.push(InicialCaronaPage)
+  }
 
   abrirMotorista(v){
     console.log(v)

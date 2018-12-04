@@ -31,6 +31,10 @@ export class ProcurarCaronaPage {
     this.viagem["qtd_vagas"] = undefined;
   }
 
+  clickBack() {
+    this.navCtrl.push(InicialCaronaPage)
+  }
+
   onChange($event) {
     //console.log($event);
   }
@@ -399,15 +403,15 @@ export class ProcurarCaronaPage {
   
   ionViewWillEnter() {
     this.checkSession();
-    this.navBar.backButtonClick = () => {
-      // you can set a full custom history here if you want 
-        let pages = [
-        {
-      page: InicialCaronaPage
-      }
-      ];
-      this.navCtrl.setPages(pages);
-    }
+    // this.navBar.backButtonClick = () => {
+    //   // you can set a full custom history here if you want 
+    //     let pages = [
+    //     {
+    //   page: InicialCaronaPage
+    //   }
+    //   ];
+    //   this.navCtrl.setPages(pages);
+    // }
     this.mostrarLocalidade();
     console.log('ionViewWillEnter OferecerCaronaPage');
     document.getElementById("tabs").style.display = "none"

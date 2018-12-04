@@ -7,6 +7,7 @@ import { DivulgarDivulgacaoPage } from '../divulgar-divulgacao/divulgar-divulgac
 import { FiltrarDivulgacaoPage } from '../filtrar-divulgacao/filtrar-divulgacao';
 import { LoginPage } from '../login/login';
 import { MinhasDivulgacaoPage } from '../minhas-divulgacao/minhas-divulgacao';
+import { HomePage } from '../home/home';
 
 
 
@@ -26,6 +27,10 @@ export class InicialDivulgacaoPage {
         this.navCtrl.push(LoginPage);
       }
     })
+  }
+
+  clickBack(){
+    this.navCtrl.push(HomePage)
   }
 
   ionViewWillEnter() {

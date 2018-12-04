@@ -1,16 +1,9 @@
-<ion-header>
-  <ion-navbar color="primary">
-    <ion-buttons left><!--botoes do cabeçalho - ESQUERDA-->
-    </ion-buttons>
-    <ion-title center>{{ 'Produtos' }}</ion-title>
-    <!--<ion-buttons right>
-      <button ion-button icon-only (click)="clickConfig()" class="configuracoes">Config.</button><!--botao configuracoes
-    </ion-buttons>-->
-  </ion-navbar>
-</ion-header>
-
-
 <ion-content padding>
+    <div class="navHeight">
+        <ion-title class="backTitle">Produtos</ion-title>
+        <button class="backButton" (click) = "clickBack()"><ion-icon class="backIcon" md="md-arrow-back"></ion-icon></button>
+        </div>
+        <div style="height: 65px"></div>
 
   <ion-list>
       <button ion-item *ngFor = "let resultado of resultados_validos" (click)="Redirecionar(resultado)"> 

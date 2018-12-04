@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { LoginPage } from '../login/login'
 import { InicialDivulgacaoPage } from '../inicial-divulgacao/inicial-divulgacao';
+import { MinhasDivulgacaoPage } from '../minhas-divulgacao/minhas-divulgacao';
 
 
 export class PopoverDivulgarPage {
@@ -39,6 +40,10 @@ export class DivulgarDivulgacaoPage {
     document.getElementById("tabs").style.display = "none"
     document.getElementById("botao_menu").style.display = "none"
     this.PreencherListaTipo()
+  }
+
+  clickBack(){
+    this.navCtrl.push(InicialDivulgacaoPage)
   }
 
   checkSession() {
@@ -75,7 +80,7 @@ export class DivulgarDivulgacaoPage {
 
   divulgar(){ 
     this.storage.get("aluno_ra").then((usu) => {
-      var path = 'http://104.248.9.4:3000/api/divulgacao/post/divulgacao?ra_aluno='+ usu + '&id_tipo=' + this.item["categoria"] + '&nome=' + this.item["nome"]  + '&valor='+ this.item["valor"] + '&dia='+ this.item["dia"] + '&hora_inicio=' + this.item["hora_inicio"] + '&hora_fim=' + this.item["hora_fim"] + '&quantidade=' + this.item["quantidade"] + '&descricao='+ this.item["descricao"]
+      var path = 'http://localhost:3000/api/divulgacao/post/divulgacao?ra_aluno='+ usu + '&id_tipo=' + this.item["id_tipo"] + '&nome=' + this.item["nome"]  + '&valor='+ this.item["valor"] + '&dia='+ this.item["dia"] + '&hora_inicio=' + this.item["hora_inicio"] + '&hora_fim=' + this.item["hora_fim"] + '&quantidade=' + this.item["quantidade"] + '&descricao='+ this.item["descricao"]
       console.log(path)
       this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
       // this.http.get(path).map(res => res.json()).subscribe(data => {
@@ -87,7 +92,7 @@ export class DivulgarDivulgacaoPage {
             buttons: ['Fechar']
           });
           alert.present();
-          this.navCtrl.push(InicialDivulgacaoPage);
+          this.navCtrl.push(MinhasDivulgacaoPage);
         }
         else {
           let alert = this.alertCtrl.create({
