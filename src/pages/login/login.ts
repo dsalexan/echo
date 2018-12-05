@@ -123,6 +123,7 @@ export class LoginPage {
       }
       /* tslint:enable */
     },(err) => {
+      loading.dismiss();
       console.log(err) //quando autenticacao falha, retorna erro 401, com auth false
       let alert = this.alertCtrl.create({
         title: 'Ops!',
@@ -130,7 +131,7 @@ export class LoginPage {
         buttons: ['Dismiss']
       });
       alert.present();
-})
+    })
     // this.http.post(path, datas, {headers: he}).map(res => res.json()).subscribe(result => {
       // this.http.post(path, {'login': user, 'senha': encryptSenha}, headers).then(result => {
       //   loading.dismiss();
