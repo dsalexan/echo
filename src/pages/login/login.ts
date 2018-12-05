@@ -79,6 +79,7 @@ export class LoginPage {
       var encryptSenha = this.encrypt(senha, 'Achilles');
 
       this.http.post(endpoints.api.auth.login, {'login': user, 'senha': encryptSenha}, {headers: new HttpHeaders()}).subscribe((result: any) => {
+        console.log(result)
         loading.dismiss();
 
         if(result.auth && result.data) {
@@ -90,24 +91,25 @@ export class LoginPage {
           this.storage.set("aluno_telefone", result.data.telefone == null ? "" : result.data.telefone)
 
           this.navCtrl.push(HomePage, {dados: this.dados});
-        } else {
-          loading.dismiss();
+        }
+        /* tslint:enable */
+      },(err) => {
+        loading.dismiss();
+        if(err.status == 401){
           let alert = this.alertCtrl.create({
             title: 'Ops!',
             subTitle: 'Verifique as informações inseridas',
             buttons: ['Continuar']
           });
           alert.present();
+        }else{
+          let alert = this.alertCtrl.create({
+            title: 'Ops!',
+            subTitle: 'Houve um erro ao tentar falar com o servidor',
+            buttons: ['Continuar']
+          });
+          alert.present();
         }
-        /* tslint:enable */
-      },(err) => {
-        loading.dismiss();
-        let alert = this.alertCtrl.create({
-          title: 'Ops!',
-          subTitle: 'Houve um erro ao tentar falar com o servidor',
-          buttons: ['Continuar']
-        });
-        alert.present();
       })
     } else {
       let alert = this.alertCtrl.create({
