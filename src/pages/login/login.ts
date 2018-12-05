@@ -76,9 +76,10 @@ export class LoginPage {
       loading.present();
       
       // Encrypt
-      var encryptSenha = this.encrypt(senha, 'Achilles');
+      var encryptLogin = this.encrypt(user, 'Achilles')
+      var encryptSenha = this.encrypt(senha, 'Achilles')
 
-      this.http.post(endpoints.api.auth.login, {'login': user, 'senha': encryptSenha}, {headers: new HttpHeaders()}).subscribe((result: any) => {
+      this.http.post(endpoints.api.auth.login, {'login': encryptLogin, 'senha': encryptSenha}, {headers: new HttpHeaders()}).subscribe((result: any) => {
         loading.dismiss();
 
         if(result.auth && result.data) {

@@ -28,7 +28,8 @@ CREATE TABLE aluno (
 	login_intranet TEXT NOT NULL UNIQUE,
 	senha_intranet TEXT NOT NULL,
 	email TEXT NOT NULL,
-	telefone VARCHAR(15)
+	telefone VARCHAR(15),
+	perfil JSONB DEFAULT '{}'
 );
 
 CREATE TABLE professor (
