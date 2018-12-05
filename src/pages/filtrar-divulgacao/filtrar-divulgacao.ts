@@ -8,6 +8,7 @@ import { LoginPage } from '../login/login';
 import { ResultadoDivulgacaoPage } from '../resultado-divulgacao/resultado-divulgacao'
 import { InicialDivulgacaoPage } from '../inicial-divulgacao/inicial-divulgacao';
 
+import endpoints from '../../../constants/endpoints'
 
 @IonicPage()
 @Component({

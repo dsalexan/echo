@@ -10,6 +10,8 @@ import { ResCaronaPage } from '../res-carona/res-carona';
 import { InicialCaronaPage } from '../inicial-carona/inicial-carona';
 
 
+import endpoints from '../../../constants/endpoints'
+
 @IonicPage()
 @Component({
   selector: 'page-procurar-carona',
@@ -48,9 +50,7 @@ export class ProcurarCaronaPage {
   }
 
   mostrarLocalidade(){
-    var path = 'http://104.248.9.4:3000/api/caronas/get/localidades'
-    this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
-    // this.http.get(path).map(res => res.json()).subscribe(data => {
+    this.http.get(endpoints.api.caronas.localidades, {headers: new HttpHeaders()}).subscribe(data => {
 
       if(data["data"][0] != undefined) {
         data["data"].forEach(element => {

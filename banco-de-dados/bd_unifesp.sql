@@ -106,13 +106,14 @@ FROM reserva_sala;
 
 DROP TABLE IF EXISTS historico;
 DROP TABLE IF EXISTS atestado;
+DROP TABLE IF EXISTS saldo_ru;
 
 CREATE TABLE historico(
   id_historico SERIAL PRIMARY KEY,
   extracao JSONB NOT NULL,
   datahora TIMESTAMPTZ NOT NULL,
 
-  ra_aluno INT DEFAULT NULL
+  ra_aluno VARCHAR(10) DEFAULT NULL
 );
 
 CREATE TABLE atestado(
@@ -120,7 +121,15 @@ CREATE TABLE atestado(
   extracao JSONB NOT NULL,
   datahora TIMESTAMPTZ NOT NULL,
 
-  ra_aluno INT DEFAULT NULL
+  ra_aluno VARCHAR(10) DEFAULT NULL
+);
+
+CREATE TABLE saldo_ru(
+  id_saldo SERIAL PRIMARY KEY,
+  extracao JSONB NOT NULL,
+  datahora TIMESTAMPTZ NOT NULL,
+
+  ra_aluno VARCHAR(10) DEFAULT NULL
 );
 
 
