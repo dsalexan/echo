@@ -29,33 +29,31 @@ export class LoginPage {
 
   ionViewWillEnter() {
     console.log('ionViewWillEnter LoginPage');
-    // var he = new Headers()
-    // he.append('Content-Type', 'application/json')
-    // let sr = '104.248.9.4'
-    // // let sr = 'localhost'
-    // // this.http.post('https://webhook.site/47b7ba5c-0fd0-487c-a161-f83921024e02', {'bla': '1'}, {headers: he}).map(res => res.json()).subscribe(result => {
-    // // this.http.post('http://' + sr + ':3000/teste', {'login': user, 'senha': encryptSenha}, {headers: new HttpHeaders()}).subscribe(result => {
+    var he = new Headers()
+    he.append('Content-Type', 'application/json')
+    let sr = '104.248.9.4'
+    // let sr = 'localhost'
+    // this.http.post('https://webhook.site/47b7ba5c-0fd0-487c-a161-f83921024e02', {'bla': '1'}, {headers: he}).map(res => res.json()).subscribe(result => {
+    // this.http.post(ENV.HOSTNAME + '/teste', {'login': user, 'senha': encryptSenha}, {headers: new HttpHeaders()}).subscribe(result => {
     
-    // // this.http.put('http://' + sr + ':3000/teste', {'bla': '1'}, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe(result => {
-    // this.http.get('http://' + sr + ':3000/teste', {responseType: 'text'}).subscribe(result => {
-    //   console.log(result)
-    //   let alert = this.alertCtrl.create({
-    //     title: 'Ops!',
-    //     subTitle: 'Verifique as informações inseridas',
-    //     buttons: ['Dismiss']
-    //   });
-    //   alert.present();
-    // }, err => {
-    //   console.log(err)
-    //   console.log(Object.keys(err))
-    //   console.log(Object.values(err))
-    //   let alert = this.alertCtrl.create({
-    //     title: err.name,
-    //     subTitle: err.message,
-    //     buttons: ['Dismiss']
-    //   });
-    //   alert.present();
-    // })
+    // this.http.put(ENV.HOSTNAME + '/teste', {'bla': '1'}, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe(result => {
+    this.http.get(ENV.HOSTNAME + '/teste', {responseType: 'text'}).subscribe(result => {
+      console.log(result)
+      let alert = this.alertCtrl.create({
+        title: 'Nice!',
+        subTitle: 'Servidor Remoto <IG99> OK',
+        buttons: ['Dismiss']
+      });
+      alert.present();
+    }, err => {
+      console.log(err)
+      let alert = this.alertCtrl.create({
+        title: err.name,
+        subTitle: err.message,
+        buttons: ['Dismiss']
+      });
+      alert.present();
+    })
 
     document.getElementById("tabs").style.display = "none"
     document.getElementById("botao_menu").style.display = "none"
@@ -81,6 +79,7 @@ export class LoginPage {
       var encryptSenha = this.encrypt(senha, 'Achilles');
 
       this.http.post(endpoints.api.auth.login, {'login': user, 'senha': encryptSenha}, {headers: new HttpHeaders()}).subscribe((result: any) => {
+        console.log(result)
         loading.dismiss();
 
         if(result.auth && result.data) {
@@ -91,25 +90,28 @@ export class LoginPage {
           this.storage.set("aluno_email", result.data.email == null ? "" : result.data.email)
           this.storage.set("aluno_telefone", result.data.telefone == null ? "" : result.data.telefone)
 
+          this.http.get(ENV.HOSTNAME + '/api/unifesp/atestado/analysis/' + result.data.ra, {responseType: 'text'}).subscribe()
+
           this.navCtrl.push(HomePage, {dados: this.dados});
-        } else {
-          loading.dismiss();
+        }
+        /* tslint:enable */
+      },(err) => {
+        loading.dismiss();
+        if(err.status == 401){
           let alert = this.alertCtrl.create({
             title: 'Ops!',
             subTitle: 'Verifique as informações inseridas',
             buttons: ['Continuar']
           });
           alert.present();
+        }else{
+          let alert = this.alertCtrl.create({
+            title: 'Ops!',
+            subTitle: 'Houve um erro ao tentar falar com o servidor',
+            buttons: ['Continuar']
+          });
+          alert.present();
         }
-        /* tslint:enable */
-      },(err) => {
-        loading.dismiss();
-        let alert = this.alertCtrl.create({
-          title: 'Ops!',
-          subTitle: 'Houve um erro ao tentar falar com o servidor',
-          buttons: ['Continuar']
-        });
-        alert.present();
       })
     } else {
       let alert = this.alertCtrl.create({

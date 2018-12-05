@@ -112,11 +112,24 @@ export class UtilidadesPage {
   }
 
   clickAtestado() {
-    const browser = this.iab.create(atestado,target,this.options);
-    browser.show();
+    // const browser = this.iab.create(atestado,target,this.options);
+    // browser.show();
+    var path = 'http://localhost:3000/getPdf'
+          
+    this.http.get(path ,{responseType: 'arraybuffer', headers: new HttpHeaders()} )
+    .subscribe(response => this.downLoadFile(response, "application/pdf"));
   }
 
- clickHistorico() {
+  downLoadFile(data: any, type: string) {
+    var blob = new Blob([data], { type: type});
+    var url = window.URL.createObjectURL(blob);
+    var pwa = window.open(url);
+    if (!pwa || pwa.closed || typeof pwa.closed == 'undefined') {
+        alert( 'Please disable your Pop-up blocker and try again.');
+    }
+  }
+
+  clickHistorico() {
     const browser = this.iab.create(historico,target,this.options);
     browser.show();
   }
