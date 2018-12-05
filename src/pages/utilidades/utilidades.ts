@@ -13,6 +13,7 @@ import { LoginPage } from '../login/login';
 import { CardapioPage } from '../cardapio/cardapio';
 import { Http } from '@angular/http';
 import { AES, lib, PBKDF2, pad, mode } from 'crypto-js'
+import endpoints from '../../../constants/endpoints';
 
 const biblioteca = 'http://www.biblioteca.unifesp.br/biblioteca/index.php';
 const saldoRU = 'https://phpu.unifesp.br/ru_consulta/index.php';
@@ -76,31 +77,27 @@ export class UtilidadesPage {
     });
     loading.present();
 
-    this.storage.get("aluno_login").then(aluno_login => {
-      this.storage.get("aluno_senha").then(aluno_senha => {
-        var encryptSenha = this.encrypt(aluno_senha, 'Achilles');
-        var path = 'http://104.248.9.4:3000/api/utilidades/get/saldo?login='+ aluno_login + '&senha='+ encryptSenha
+    this.storage.get("aluno_ra").then(aluno => {      
+      var path = endpoints.api.utilidades.saldo + '/' + aluno
 
-        this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
-        // this.http.get(path).map(res => res.json()).subscribe(data => {
-          loading.dismiss();
-          if (data["saldo_ru"] != null) {
-            let alert = this.alertCtrl.create({
-              message: '<h2>Seu Saldo: ' + String(data["saldo_ru"]) + '</h2>',
-              buttons: ['Ok'],
-              cssClass: 'alertClass'
-            });
-            alert.present();
-          }
-          else {
-            let alert = this.alertCtrl.create({
-              message: '<h2>Erro</h2>',
-              buttons: ['Ok'],
-              cssClass: 'alertClass'
-            });
-            alert.present();
-          }
-        })
+      this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+        loading.dismiss();
+        if (data["saldo_ru"] != null) {
+          let alert = this.alertCtrl.create({
+            message: '<h2>Seu Saldo: ' + String(data["saldo_ru"]) + '</h2>',
+            buttons: ['Ok'],
+            cssClass: 'alertClass'
+          });
+          alert.present();
+        }
+        else {
+          let alert = this.alertCtrl.create({
+            message: '<h2>Erro</h2>',
+            buttons: ['Ok'],
+            cssClass: 'alertClass'
+          });
+          alert.present();
+        }
       })
     })
   }

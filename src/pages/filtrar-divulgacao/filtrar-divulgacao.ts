@@ -7,6 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginPage } from '../login/login';
 import { ResultadoDivulgacaoPage } from '../resultado-divulgacao/resultado-divulgacao'
 
+import endpoints from '../../../constants/endpoints'
 
 @IonicPage()
 @Component({

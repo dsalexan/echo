@@ -7,6 +7,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HomePage } from '../home/home';
 import { LoginPage } from '../login/login';
 
+
+import endpoints from '../../../constants/endpoints'
+
 /**
  * Generated class for the BugReportPage page.
  *
@@ -67,10 +70,14 @@ export class BugReportPage {
       hora = hora.slice(0, hora.length-3) 
       var tipo = this.tipo
       var descricao = this.descricao
-      var path = 'http://104.248.9.4:3000/api/bugreport/put/bug?ra_aluno=' + usu + '&dia=' + dia + '&hora=' + hora + '&tipo=' + tipo + '&descricao=' + descricao
 
-      this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
-      // this.http.get(path).map(res => res.json()).subscribe(data => {
+      this.http.post(endpoints.bug.report, {
+        ra_aluno: usu,
+        dia,
+        hora,
+        tipo,
+        descricao
+      }, {headers: new HttpHeaders()}).subscribe(data => {
         if(data["success"]) {
           alert.present();
           this.navCtrl.push(HomePage);

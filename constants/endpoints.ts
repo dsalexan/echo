@@ -11,11 +11,23 @@ let _ = {
             lidas: '/api/mensagens/lidas'
         },
         grade: {
-            _: 'api/grade',
-            turmas: {
-                _: '/api/grade/turmas/'
-            }
+            _: '/api/grade',
+            turmas: '/api/grade/turmas',
+            eventos: '/api/grade/eventos'
+        },
+        alunos: {
+            _: '/api/alunos'
+        },
+        utilidades: {
+            saldo: '/api/utilidades/saldo'
+        },
+        caronas: {
+            _: '/api/caronas',
+            localidades: '/api/caronas/localidades'
         }
+    },
+    bug: {
+        report: '/bug/report'
     }
 }
 

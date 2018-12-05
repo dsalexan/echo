@@ -1,4 +1,4 @@
 export const ENV = {
     PRODUCTION: false,
-    HOSTNAME: 'https://localhost:3000'
+    HOSTNAME: 'http://104.248.9.4:3000'
 };

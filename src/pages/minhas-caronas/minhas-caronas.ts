@@ -9,6 +9,9 @@ import { ViagemMotoristaPage } from '../viagem-motorista/viagem-motorista';
 import { ViagemPassageiroPage } from '../viagem-passageiro/viagem-passageiro';
 import { InicialCaronaPage } from '../inicial-carona/inicial-carona';
 
+
+import endpoints from '../../../constants/endpoints'
+
 @IonicPage()
 @Component({
   selector: 'page-minhas-caronas',

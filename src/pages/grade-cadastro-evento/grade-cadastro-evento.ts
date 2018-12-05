@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
 import { AgendaPage } from '../agenda/agenda';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import endpoints from '../../../constants/endpoints';
 
 /**
  * Generated class for the GradeCadastroEventoPage page.
@@ -42,10 +43,8 @@ export class GradeCadastroEventoPage {
 
   preencherDropDown() {
     this.storage.get("aluno_ra").then(ra_aluno => {
-      var path = 'http://104.248.9.4:3000/api/grades/get/turma/aluno?ra_aluno=' + ra_aluno
+      var path = `${endpoints.api.grade._}/${ra_aluno}/turmas`
       this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
-      // this.http.get(path).map(res => res.json()).subscribe(data => {
-        // console.log(data)
         data["data"].forEach(t => {
           this.lista_turmas_aluno.push({
             id_turma: t.id_turma,
@@ -58,10 +57,8 @@ export class GradeCadastroEventoPage {
       })
     })
 
-    var path2 = 'http://104.248.9.4:3000/api/grades/get/eventos'
+    var path2 = `${endpoints.api.grade.eventos}`
     this.http.get(path2, {headers: new HttpHeaders()}).subscribe(data => {
-    // this.http.get(path2).map(res => res.json()).subscribe(data => {
-      // console.log(data)
       data["data"].forEach(e => {
         this.lista_tipos_evento.push({
           id_evento: e.id_evento,
@@ -74,21 +71,13 @@ export class GradeCadastroEventoPage {
   }
 
   cadastrar() {
-    var hora = ('hora' in this.evento) ? '&hora=' + this.evento["hora"] : ''
-    var sala = ('sala' in this.evento) ? '&sala=' + this.evento["sala"] : ''
-    var descricao = ('descricao' in this.evento) ? '&descricao=' + this.evento["descricao"] : ''
-    console.log(this.evento)
     this.storage.get("aluno_ra").then((ra_aluno) => {
-      var path = 'http://104.248.9.4:3000/api/grades/post/evento_turma?' +
-      'id_evento=' + this.evento["id_evento"] + '&' +
-      'id_turma=' + this.evento["id_turma"] + '&' +
-      'ra_aluno=' + ra_aluno + '&' +
-      'data=' + this.evento["data"] +
-      hora + sala + descricao
-      console.log(path)
-      this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
-      // this.http.get(path).map(res => res.json()).subscribe(data => {
 
+      var path = `${endpoints.api.grade._}/${ra_aluno}/turmas/${this.evento['id_turma']}/eventos`
+      
+      this.http.post(path, {
+        ...this.evento
+      }, {headers: new HttpHeaders()}).subscribe(data => {
         if(data["success"]) {
           let alert = this.alertCtrl.create({
             title: 'Ok!',

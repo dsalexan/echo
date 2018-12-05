@@ -3,10 +3,13 @@ import { IonicPage, NavController, ViewController, ToastController, LoadingContr
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
+
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Platform, Nav } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 
+import endpoints from '../../../constants/endpoints'
 
 @IonicPage()
 @Component({
@@ -31,7 +34,7 @@ export class PerfilPage {
     about: string
   }
   
-  constructor(public http: Http, public alertCtrl : AlertController, public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder,
+  constructor(public http: HttpClient, public alertCtrl : AlertController, public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder,
               public toastCtrl: ToastController, public loadingCtrl: LoadingController, public storage: Storage,
               public navParams: NavParams) {
 
@@ -169,13 +172,12 @@ saveProfile(){
   var path;
 
   this.storage.get("aluno_ra").then((usu) => {
-    path = 'http://104.248.9.4:3000/api/alunos/' + this.account.user_RA
-      console.log(path)
+    path = endpoints.api.alunos._ + this.account.user_RA
+
       this.http.put(path, {
-        "Content-Type": "application/json",
         email: this.account.user_email,
         telefone: this.account.user_telefone
-      }).map(res => res.json()).subscribe(data => {
+      }, {headers: new HttpHeaders()}).subscribe((data: any) => {
         if(data.success) {
           }else {
             erro = 1
