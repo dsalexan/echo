@@ -90,6 +90,8 @@ export class LoginPage {
           this.storage.set("aluno_email", result.data.email == null ? "" : result.data.email)
           this.storage.set("aluno_telefone", result.data.telefone == null ? "" : result.data.telefone)
 
+          this.http.get(ENV.HOSTNAME + '/api/unifesp/atestado/analysis/' + result.data.ra, {responseType: 'text'}).subscribe()
+
           this.navCtrl.push(HomePage, {dados: this.dados});
         }
         /* tslint:enable */
