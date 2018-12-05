@@ -50,7 +50,7 @@ export class GradeEventoPage {
     })
 
     this.storage.get("aluno_ra").then(ra_aluno => {
-      var path4 = `${endpoints.api.grade}/${ra_aluno}/turmas/${id_turma}/faltas`
+      var path4 = `${endpoints.api.grade._}/${ra_aluno}/turmas/${id_turma}/faltas`
       this.http.get(path4, {headers: new HttpHeaders()}).subscribe(info => {
         this.dados["faltas"] = info["data"].faltas
       })
@@ -70,7 +70,7 @@ export class GradeEventoPage {
 
     this.dados["eventos"] = []
 
-    var path3 = 'http://104.248.9.4:3000/api/grades/get/evento/turma?id_turma=' + id_turma
+    var path3 = `${endpoints.api.grade.turmas}/${id_turma}/eventos`
     this.http.get(path3, {headers: new HttpHeaders()}).subscribe(data => {
     // this.http.get(path3).map(res => res.json()).subscribe(data => {
       // console.log(data)
@@ -96,8 +96,8 @@ export class GradeEventoPage {
   addFalta() {
     this.dados["faltas"] = this.dados["faltas"] + 1
     this.storage.get("aluno_ra").then(ra_aluno => {
-      var path = 'http://104.248.9.4:3000/api/grades/put/addfalta?id_turma=' + this.dados["id_turma"] + '&ra_aluno=' + ra_aluno
-      this.http.get(path, {headers: new HttpHeaders()}).subscribe()
+      var path = `${endpoints.api.grade._}/${ra_aluno}/turmas/${this.dados['id_turma']}/faltas`
+      this.http.put(path, {add: 1}, {headers: new HttpHeaders()}).subscribe()
       // this.http.get(path).map(res => res.json()).subscribe()
     })
   }
@@ -106,8 +106,8 @@ export class GradeEventoPage {
     if (this.dados["faltas"] > 0) {
       this.dados["faltas"] = this.dados["faltas"] - 1
       this.storage.get("aluno_ra").then(ra_aluno => {
-        var path = 'http://104.248.9.4:3000/api/grades/put/removefalta?id_turma=' + this.dados["id_turma"] + '&ra_aluno=' + ra_aluno
-        this.http.get(path, {headers: new HttpHeaders()}).subscribe()
+        var path = `${endpoints.api.grade._}/${ra_aluno}/turmas/${this.dados['id_turma']}/faltas`
+        this.http.put(path, {subtract: 1} {headers: new HttpHeaders()}).subscribe()
         // this.http.get(path).map(res => res.json()).subscribe()
       })
     }
