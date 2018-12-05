@@ -172,7 +172,7 @@ saveProfile(){
   var path;
 
   this.storage.get("aluno_ra").then((usu) => {
-    path = endpoints.api.alunos._ + this.account.user_RA
+    path = endpoints.api.alunos._ + "/" + this.account.user_RA
 
       this.http.put(path, {
         email: this.account.user_email,
