@@ -69,7 +69,7 @@ export class DivulgarDivulgacaoPage {
     var path = 'http://104.248.9.4:3000/api/divulgacao/get/divulgacao/select_tipo'
     this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
     // this.http.get(path).map(res => res.json()).subscribe(data => {
-      console.log(data)
+      // console.log(data)
       data["data"].forEach(tipo => {
         this.lista.push({id_tipo:tipo.id_tipo, nome_tipo:tipo.nome_tipo})
       })
@@ -81,7 +81,7 @@ export class DivulgarDivulgacaoPage {
   divulgar(){ 
     this.storage.get("aluno_ra").then((usu) => {
       var path = 'http://104.248.9.4:3000/api/divulgacao/post/divulgacao?ra_aluno='+ usu + '&id_tipo=' + this.item["id_tipo"] + '&nome=' + this.item["nome"]  + '&valor='+ this.item["valor"] + '&dia='+ this.item["dia"] + '&hora_inicio=' + this.item["hora_inicio"] + '&hora_fim=' + this.item["hora_fim"] + '&quantidade=' + this.item["quantidade"] + '&descricao='+ this.item["descricao"]
-      console.log(path)
+      // console.log(path)
       this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
       // this.http.get(path).map(res => res.json()).subscribe(data => {
 

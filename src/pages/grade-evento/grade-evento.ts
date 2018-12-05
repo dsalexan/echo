@@ -107,7 +107,7 @@ export class GradeEventoPage {
       this.dados["faltas"] = this.dados["faltas"] - 1
       this.storage.get("aluno_ra").then(ra_aluno => {
         var path = `${endpoints.api.grade._}/${ra_aluno}/turmas/${this.dados['id_turma']}/faltas`
-        this.http.put(path, {subtract: 1} {headers: new HttpHeaders()}).subscribe()
+        this.http.put(path, {subtract: 1}, {headers: new HttpHeaders()}).subscribe()
         // this.http.get(path).map(res => res.json()).subscribe()
       })
     }

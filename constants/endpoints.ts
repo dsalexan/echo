@@ -3,31 +3,31 @@ import { ENV } from './env'
 let _ = {
     api: {
         auth: {
-            login: '/api/auth/login'
+            login: ENV.HOSTNAME + '/api/auth/login'
         },
         mensagens: {
-            _: '/api/mensagens',
-            novas: '/api/mensagens/novas',
-            lidas: '/api/mensagens/lidas'
+            _: ENV.HOSTNAME + '/api/mensagens',
+            novas: ENV.HOSTNAME + '/api/mensagens/novas',
+            lidas: ENV.HOSTNAME + '/api/mensagens/lidas'
         },
         grade: {
-            _: '/api/grade',
-            turmas: '/api/grade/turmas',
-            eventos: '/api/grade/eventos'
+            _: ENV.HOSTNAME + '/api/grade',
+            turmas: ENV.HOSTNAME + '/api/grade/turmas',
+            eventos: ENV.HOSTNAME + '/api/grade/eventos'
         },
         alunos: {
-            _: '/api/alunos'
+            _: ENV.HOSTNAME + '/api/alunos'
         },
         utilidades: {
-            saldo: '/api/utilidades/saldo'
+            saldo: ENV.HOSTNAME + '/api/utilidades/saldo'
         },
         caronas: {
-            _: '/api/caronas',
-            localidades: '/api/caronas/localidades'
+            _: ENV.HOSTNAME + '/api/caronas',
+            localidades: ENV.HOSTNAME + '/api/caronas/localidades'
         }
     },
     bug: {
-        report: '/bug/report'
+        report: ENV.HOSTNAME + '/bug/report'
     }
 }
 
@@ -36,6 +36,7 @@ let _ = {
 export default ((urls, hostname) => {
     let change = (nivel) => {
         if(typeof nivel == 'string'){
+            console.log(hostname, nivel)
             return hostname + nivel
         }else{
             for(let k of nivel){
@@ -46,6 +47,8 @@ export default ((urls, hostname) => {
         }
     }
 
-    return change(urls)
+    let ___  = change(urls)
+
+    return ___
     
 })(_, ENV.HOSTNAME)

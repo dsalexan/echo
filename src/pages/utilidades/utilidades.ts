@@ -14,11 +14,14 @@ import { CardapioPage } from '../cardapio/cardapio';
 import { Http } from '@angular/http';
 import { AES, lib, PBKDF2, pad, mode } from 'crypto-js'
 import endpoints from '../../../constants/endpoints';
+import { ENV } from '../../../constants/env';
 
 const biblioteca = 'http://www.biblioteca.unifesp.br/biblioteca/index.php';
 const saldoRU = 'https://phpu.unifesp.br/ru_consulta/index.php';
 const cardapio = 'https://www.unifesp.br/campus/sjc/servicosnae/restaurante/1647-cardapio-semanal-do-ru.html';
 const email = 'https://email.unifesp.br/';
+const bla = ENV.HOSTNAME + '/getPdf/historico';
+const bla2 = ENV.HOSTNAME + '/getPdf/atestado';
 const atestado = 'https://intranet.unifesp.br/restrict/index3.php';
 const historico = 'https://intranet.unifesp.br/restrict/index3.php';
 const target = '_blank';
@@ -112,13 +115,35 @@ export class UtilidadesPage {
   }
 
   clickAtestado() {
-    const browser = this.iab.create(atestado,target,this.options);
-    browser.show();
+    // const browser = this.iab.create(atestado,target,this.options);
+    // browser.show();
+    // var path = 'http://localhost:3000/getPdf'
+    // let headers = new HttpHeaders();
+    // headers = headers.set('Accept', 'application/pdf');
+    // this.http.get(path ,{responseType: 'arraybuffer', headers: headers} )
+    // .subscribe(response => this.downLoadFile(response, "application/pdf"));
+    this.storage.get("aluno_ra").then(ra_aluno => {
+      const browser = this.iab.create(bla2 + '?ra_aluno=' + ra_aluno, target,this.options);
+      browser.show();
+    })
   }
 
- clickHistorico() {
-    const browser = this.iab.create(historico,target,this.options);
-    browser.show();
+  downLoadFile(data: any, type: string) {
+    var blob = new Blob([data], { type: type});
+    var url = window.URL.createObjectURL(blob);
+    var pwa = window.open(url);
+    if (!pwa || pwa.closed || typeof pwa.closed == 'undefined') {
+        alert( 'Please disable your Pop-up blocker and try again.');
+    }
+  }
+
+  clickHistorico() {
+    // const browser = this.iab.create(historico,target,this.options);
+    // browser.show();\
+    this.storage.get("aluno_ra").then(ra_aluno => {
+      const browser = this.iab.create(bla + '?ra_aluno=' + ra_aluno, target,this.options);
+      browser.show();
+    })
   }
 
   encrypt (msg, pass) {
