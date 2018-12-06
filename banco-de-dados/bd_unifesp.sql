@@ -136,7 +136,9 @@ CREATE TABLE saldo_ru(
 CREATE TABLE servico(
   id_servico SERIAL PRIMARY KEY,
   nome TEXT NOT NULL,
-  ativo BOOLEAN NOT NULL
+  ativo BOOLEAN NOT NULL,
+  datahora TIMESTAMPTZ NOT NULL,
+  ra_aluno VARCHAR(10) DEFAULT NULL
 );
 
 

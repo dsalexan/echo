@@ -73,22 +73,37 @@ export class UtilidadesPage {
   }
 
 
+  clicksSaldo(force=false) {
+    let loading_text = 'Carregando...'
+    if(force)
+      loading_text = '<span>Carregando...</span><br/><span>Isso pode levar um tempo...</span>'
 
-  clicksSaldo() {
     let loading = this.loadingCtrl.create({
-      content: 'Carregando...'
+      content: loading_text,
+      cssClass: 'loading-message'
     });
     loading.present();
 
     this.storage.get("aluno_ra").then(aluno => {      
       var path = endpoints.api.utilidades.saldo + '/' + aluno
+      if(force)
+        path += '?force=true'
 
-      this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+      this.http.get(path, {headers: new HttpHeaders()}).subscribe((data: any) => {
         loading.dismiss();
-        if (data["saldo_ru"] != null) {
+        if (data.saldo != null) {
           let alert = this.alertCtrl.create({
-            message: '<h2>Seu Saldo: ' + String(data["saldo_ru"]) + '</h2>',
-            buttons: ['Ok'],
+            message: `<h2>Seu Saldo: ${data.saldo}</h2>` +
+                      '</br>' + 
+                      `<span style="color: gray">Atualizado às: </span>${data.datahora}`,
+            buttons: [{
+              text: 'Atualizar',
+              handler: () => {
+                this.clicksSaldo(true)
+              }
+            },{
+              text: 'Ok',
+            }],
             cssClass: 'alertClass'
           });
           alert.present();
