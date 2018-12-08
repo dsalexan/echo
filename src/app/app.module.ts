@@ -45,6 +45,7 @@ import { MinhasDivulgacaoPageModule } from '../pages/minhas-divulgacao/minhas-di
 import { ResultadoDivulgacaoPageModule } from '../pages/resultado-divulgacao/resultado-divulgacao.module';
 import { VendedorDivulgacaoPageModule } from '../pages/vendedor-divulgacao/vendedor-divulgacao.module';
 import { CompradorDivulgacaoPageModule } from '../pages/comprador-divulgacao/comprador-divulgacao.module';
+import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 
 @NgModule({
   declarations: [
@@ -98,7 +99,8 @@ import { CompradorDivulgacaoPageModule } from '../pages/comprador-divulgacao/com
     HTTP,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     InAppBrowser,
-    DatePicker
+    DatePicker,
+    AuthServiceProvider
   ]
 })
 export class AppModule {}

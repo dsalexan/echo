@@ -140,6 +140,15 @@ CREATE TABLE servico(
   datahora TIMESTAMPTZ NOT NULL,
   ra_aluno VARCHAR(10) DEFAULT NULL
 );
+  
+CREATE TABLE schedule(
+  id_schedule SERIAL PRIMARY KEY,
+  servico TEXT NOT NULL,
+  args TEXT[] NOT NULL,
+  datahora TIMESTAMPTZ NOT NULL,
+  repetir JSONB DEFAULT '{}',
+  id_servico INTEGER DEFAULT NULL
+);
 
 
 
