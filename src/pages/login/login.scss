@@ -20,13 +20,13 @@ page-login {
         }
 
         div.logo{
-            margin-top: 12.5vh;
+            margin-top: 17.5vh;
             $border-width: 20px;
             width: auto;
 
             img{
                 border-radius: 50%;
-                height: calc(25vh + #{$border-width});
+                height: calc(20vh + #{$border-width});
                 // border: solid calc(#{$border-widsth} / 2) rgba(color($colors, primary), 0.2);
 
                 box-shadow:
