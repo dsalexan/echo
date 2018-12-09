@@ -18,6 +18,13 @@ import { ViagemMotoristaPage } from '../pages/viagem-motorista/viagem-motorista'
 import { MensagemPage } from '../pages/mensagem/mensagem';
 import { AgendaPage } from '../pages/agenda/agenda';
 
+
+export interface PageInterface {
+  title: string;
+  pageName: string;
+  icon: string;
+}
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -26,13 +33,29 @@ export class MyApp {
 
   rootPage:any = HomePage;
 
+  pages: PageInterface[] = [
+    { title: 'Perfil', pageName: 'PerfilPage', icon: 'person' },
+    { title: 'Utilidades', pageName: 'UtilidadesPage', icon: 'albums' },
+    { title: 'Bug', pageName: 'BugReportPage', icon: 'bug' },
+  ];
+
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public storage: Storage) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
+      statusBar.styleDefault(); 
       splashScreen.hide();
     });
+  }
+
+  openPage(page: string){
+    if(page == 'PerfilPage'){
+      this.nav.push(PerfilPage)
+    }else if(page == 'UtilidadesPage'){
+      this.nav.push(UtilidadesPage)
+    }else if(page == 'BugReportPage'){
+      this.nav.push(BugReportPage)
+    }
   }
 
   clickHome() {

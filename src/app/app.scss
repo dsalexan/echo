@@ -15,73 +15,6 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-// .ion-page > ion-content
-// {
-//    top: 30px;//your headers height
-// }
-
-div#tabs {
-    display: inline-block;
-    position: relative;
-    z-index: 1;
-    bottom: 0px;
-
-    width: 100%;
-    height: 76px;
-    border: solid black 1px;
-    background-color: #ffe082;
-    padding: 5px;
-}
-
-// .menuButton {
-//     font-size: 15px;
-//     background: #ffc107;
-//     top: 10px;
-//     left: 10px;
-//     height: 50px;
-//     width: 50px;
-//     position: absolute;
-//     padding: 0px;
-//     margin: 0px;
-//     border: 1px solid #ffe082;
-
-//     display: none;
-//     z-index: 1;
-//     color: #444444;
-// }
-
-
-.backTitle {
-    position: absolute;
-    top: 0px;
-    height: 70px;
-    left: 60px;
-}
-
-.backButton {
-    background: #ffc107;
-    top: 10px;
-    left: 10px;
-    height: 50px;
-    width: 50px;
-    position: absolute;
-    border-radius: 100%;
-    padding: 0px;
-    margin: 0px;
-    border: 1px solid #ffe082;
-}
-
-.backIcon {
-    font-size: 40px;
-    position: absolute;
-    top: calc(50% - 20px);
-    left: calc(50% - 15px);
-    // transform: translate(-50%, -50%);
-    width: 10px;
-    height: 10px;
-    color: #444444;
-    // display: block;
-}
 
 .navHeight {
     height: 70px;
@@ -115,4 +48,105 @@ div#tabs {
     height: 10px;
     color: #444444;
     // display: block;
+}
+
+
+ion-menu{
+    .content-md, .content-ios{
+        @include linear-gradient(rgba(color($colors, primary), 0.075), 0%, color($colors, dark), 100%);
+    }
+    .list-md, .list-ios{
+        button.item, .item-block, ion-item, .item-md, .item-ios{
+            background: transparent;
+            font-size: 1em;
+
+            &.activated{
+                background: #353017;
+
+                .item-inner{
+                    color: color($colors, primary);
+                }
+            }
+
+            &::after{
+                $border-width: 90%;
+                content: "";
+                position: absolute;
+                width: $border-width;
+                margin: 0 calc((100% - #{$border-width}) / 2);
+                top: calc(100% - 1px);
+                height: 1px;
+                background-color: #474747;
+            }
+            
+            .item-inner{
+                padding-left: 16px;
+                border: none;
+                margin-bottom: 1px;
+            }
+
+            ion-label{
+                font-weight: 300;
+            }
+
+            ion-icon{
+                font-size: 1em;
+            }
+
+            &.avatar{
+                text-align: center;
+            
+                ion-row{
+                    text-align: center;
+
+                    ion-col.icon-wrapper{
+                        text-align: left;
+                        font-size: 1.9em;
+
+                        ion-icon[empty]{
+                            opacity: 0.5;
+                        }
+
+                        ion-icon[new]{
+                            color: color($colors, primary);
+                        }
+                    }
+                }
+
+                ion-avatar{
+                    $border-width: 4px;
+                    display: inline-block;
+
+                    ion-img,  img{
+                        $img-size: 15vh;
+                        height: $img-size;
+                        width: $img-size;
+
+                        border: solid $border-width rgba(color($colors, primary), 0.85);
+                    }
+                }
+
+                div.name{
+                    margin-top: 1em;
+                    font-size: 1.35em;
+                    width: 100%;
+                }
+            }
+
+            &.logout{
+                position: fixed;
+                bottom: 0;
+
+                color: rgba(color($colors, light), 0.65);
+
+                &.activated{
+                    background: #363636;
+                    
+                    .item-inner{
+                        color: color($colors, light);
+                    }
+                }
+            }
+        }
+    }
 }
