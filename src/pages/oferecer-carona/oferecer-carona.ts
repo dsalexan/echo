@@ -134,9 +134,9 @@ export class OferecerCaronaPage {
           var i = 0
           while (i < this.destino.length) {
             path2 = `${endpoints.api.caronas._}/${id}/destino`
-            i++
+            console.log('destinos', this.destino)
             this.http.put(path2, {
-              destino: this.destino[i]
+              destino: this.destino[i++]
             }, {headers: new HttpHeaders()}).subscribe(or => {
             // this.http.get(path2).map(res => res.json()).subscribe(or => {
               if(data["success"]) {
