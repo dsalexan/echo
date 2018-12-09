@@ -28,6 +28,8 @@ A plataforma de anúncios do aplicativo também facilita a venda de produtos ofe
 
 ### Estrutura do banco de dados
 
+![Database](https://github.com/dsalexan/echo/tree/master/imgs/database.jpg)
+
 ### Desenvolvedores
 
 * **Andrew Medeiros Campos** - [AndrewCampos](https://github.com/AndrewCampos)
