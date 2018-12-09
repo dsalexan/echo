@@ -1,16 +1,22 @@
-<ion-content padding>
-  <ion-label id="teste"></ion-label>
+<ion-content>
+  <div class="logo">
+    <img src="assets/imgs/ideia_logo.png" alt="Logo">
+  </div>
 
   <form (ngSubmit)="clickLogin()">
-    <ion-item>
-      <ion-label floating>Usuário</ion-label>
-      <ion-input type="text" [(ngModel)]="dados.usuario" name="usuario" required></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label floating>Senha</ion-label>
-      <ion-input type="password" [(ngModel)]="dados.senha" name="senha"></ion-input>
-    </ion-item>
-    <button ion-button round type="submit" block>Login</button>
+    <ion-list padding>
+      <ion-item>
+        <ion-label floating><ion-icon name="person"></ion-icon> Usuário</ion-label>
+        <ion-input type="text" [(ngModel)]="dados.usuario" name="usuario" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating><ion-icon name="key"></ion-icon> Senha</ion-label>
+        <ion-input type="password" [(ngModel)]="dados.senha" name="senha"></ion-input>
+      </ion-item>
+      <ion-item></ion-item>
+    </ion-list>
+
+    <button ion-button full type="submit" large>Login</button>
   </form>
 
 </ion-content>

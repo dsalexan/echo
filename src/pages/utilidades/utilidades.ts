@@ -14,11 +14,14 @@ import { CardapioPage } from '../cardapio/cardapio';
 import { Http } from '@angular/http';
 import { AES, lib, PBKDF2, pad, mode } from 'crypto-js'
 import endpoints from '../../../constants/endpoints';
+import { ENV } from '../../../constants/env';
 
 const biblioteca = 'http://www.biblioteca.unifesp.br/biblioteca/index.php';
 const saldoRU = 'https://phpu.unifesp.br/ru_consulta/index.php';
 const cardapio = 'https://www.unifesp.br/campus/sjc/servicosnae/restaurante/1647-cardapio-semanal-do-ru.html';
 const email = 'https://email.unifesp.br/';
+const bla = ENV.HOSTNAME + '/getPdf/historico';
+const bla2 = ENV.HOSTNAME + '/getPdf/atestado';
 const atestado = 'https://intranet.unifesp.br/restrict/index3.php';
 const historico = 'https://intranet.unifesp.br/restrict/index3.php';
 const target = '_blank';
@@ -70,22 +73,37 @@ export class UtilidadesPage {
   }
 
 
+  clicksSaldo(force=false) {
+    let loading_text = 'Carregando...'
+    if(force)
+      loading_text = '<span>Carregando...</span><br/><span>Isso pode levar um tempo...</span>'
 
-  clicksSaldo() {
     let loading = this.loadingCtrl.create({
-      content: 'Carregando...'
+      content: loading_text,
+      cssClass: 'loading-message'
     });
     loading.present();
 
     this.storage.get("aluno_ra").then(aluno => {      
       var path = endpoints.api.utilidades.saldo + '/' + aluno
+      if(force)
+        path += '?force=true'
 
-      this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+      this.http.get(path, {headers: new HttpHeaders()}).subscribe((data: any) => {
         loading.dismiss();
-        if (data["saldo_ru"] != null) {
+        if (data.saldo != null) {
           let alert = this.alertCtrl.create({
-            message: '<h2>Seu Saldo: ' + String(data["saldo_ru"]) + '</h2>',
-            buttons: ['Ok'],
+            message: `<h2>Seu Saldo: ${data.saldo}</h2>` +
+                      '</br>' + 
+                      `<span style="color: gray">Atualizado às: </span>${data.datahora}`,
+            buttons: [{
+              text: 'Atualizar',
+              handler: () => {
+                this.clicksSaldo(true)
+              }
+            },{
+              text: 'Ok',
+            }],
             cssClass: 'alertClass'
           });
           alert.present();
@@ -114,10 +132,15 @@ export class UtilidadesPage {
   clickAtestado() {
     // const browser = this.iab.create(atestado,target,this.options);
     // browser.show();
-    var path = 'http://localhost:3000/getPdf'
-          
-    this.http.get(path ,{responseType: 'arraybuffer', headers: new HttpHeaders()} )
-    .subscribe(response => this.downLoadFile(response, "application/pdf"));
+    // var path = 'http://localhost:3000/getPdf'
+    // let headers = new HttpHeaders();
+    // headers = headers.set('Accept', 'application/pdf');
+    // this.http.get(path ,{responseType: 'arraybuffer', headers: headers} )
+    // .subscribe(response => this.downLoadFile(response, "application/pdf"));
+    this.storage.get("aluno_ra").then(ra_aluno => {
+      const browser = this.iab.create(bla2 + '?ra_aluno=' + ra_aluno, target,this.options);
+      browser.show();
+    })
   }
 
   downLoadFile(data: any, type: string) {
@@ -130,8 +153,12 @@ export class UtilidadesPage {
   }
 
   clickHistorico() {
-    const browser = this.iab.create(historico,target,this.options);
-    browser.show();
+    // const browser = this.iab.create(historico,target,this.options);
+    // browser.show();\
+    this.storage.get("aluno_ra").then(ra_aluno => {
+      const browser = this.iab.create(bla + '?ra_aluno=' + ra_aluno, target,this.options);
+      browser.show();
+    })
   }
 
   encrypt (msg, pass) {

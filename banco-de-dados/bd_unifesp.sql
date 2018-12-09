@@ -107,6 +107,7 @@ FROM reserva_sala;
 DROP TABLE IF EXISTS historico;
 DROP TABLE IF EXISTS atestado;
 DROP TABLE IF EXISTS saldo_ru;
+DROP TABLE IF EXISTS servico;
 
 CREATE TABLE historico(
   id_historico SERIAL PRIMARY KEY,
@@ -131,6 +132,24 @@ CREATE TABLE saldo_ru(
 
   ra_aluno VARCHAR(10) DEFAULT NULL
 );
+
+CREATE TABLE servico(
+  id_servico SERIAL PRIMARY KEY,
+  nome TEXT NOT NULL,
+  ativo BOOLEAN NOT NULL,
+  datahora TIMESTAMPTZ NOT NULL,
+  ra_aluno VARCHAR(10) DEFAULT NULL
+);
+  
+CREATE TABLE schedule(
+  id_schedule SERIAL PRIMARY KEY,
+  servico TEXT NOT NULL,
+  args TEXT[] NOT NULL,
+  datahora TIMESTAMPTZ NOT NULL,
+  repetir JSONB DEFAULT '{}',
+  id_servico INTEGER DEFAULT NULL
+);
+
 
 
 CREATE OR REPLACE FUNCTION CONVERT_WEEKDAY(weekday TEXT) RETURNS TEXT AS $$

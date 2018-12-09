@@ -29,31 +29,31 @@ export class LoginPage {
 
   ionViewWillEnter() {
     console.log('ionViewWillEnter LoginPage');
-    var he = new Headers()
-    he.append('Content-Type', 'application/json')
-    let sr = '104.248.9.4'
-    // let sr = 'localhost'
-    // this.http.post('https://webhook.site/47b7ba5c-0fd0-487c-a161-f83921024e02', {'bla': '1'}, {headers: he}).map(res => res.json()).subscribe(result => {
-    // this.http.post(ENV.HOSTNAME + '/teste', {'login': user, 'senha': encryptSenha}, {headers: new HttpHeaders()}).subscribe(result => {
+    // var he = new Headers()
+    // he.append('Content-Type', 'application/json')
+    // let sr = '104.248.9.4'
+    // // let sr = 'localhost'
+    // // this.http.post('https://webhook.site/47b7ba5c-0fd0-487c-a161-f83921024e02', {'bla': '1'}, {headers: he}).map(res => res.json()).subscribe(result => {
+    // // this.http.post(ENV.HOSTNAME + '/teste', {'login': user, 'senha': encryptSenha}, {headers: new HttpHeaders()}).subscribe(result => {
     
-    // this.http.put(ENV.HOSTNAME + '/teste', {'bla': '1'}, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe(result => {
-    this.http.get(ENV.HOSTNAME + '/teste', {responseType: 'text'}).subscribe(result => {
-      console.log(result)
-      let alert = this.alertCtrl.create({
-        title: 'Nice!',
-        subTitle: 'Servidor Remoto <IG99> OK',
-        buttons: ['Dismiss']
-      });
-      alert.present();
-    }, err => {
-      console.log(err)
-      let alert = this.alertCtrl.create({
-        title: err.name,
-        subTitle: err.message,
-        buttons: ['Dismiss']
-      });
-      alert.present();
-    })
+    // // this.http.put(ENV.HOSTNAME + '/teste', {'bla': '1'}, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe(result => {
+    // this.http.get(ENV.HOSTNAME + '/teste', {responseType: 'text'}).subscribe(result => {
+    //   console.log(result)
+    //   let alert = this.alertCtrl.create({
+    //     title: 'Nice!',
+    //     subTitle: 'Servidor Remoto <IG99> OK',
+    //     buttons: ['Dismiss']
+    //   });
+    //   alert.present();
+    // }, err => {
+    //   console.log(err)
+    //   let alert = this.alertCtrl.create({
+    //     title: err.name,
+    //     subTitle: err.message,
+    //     buttons: ['Dismiss']
+    //   });
+    //   alert.present();
+    // })
 
     document.getElementById("tabs").style.display = "none"
     document.getElementById("botao_menu").style.display = "none"
@@ -76,10 +76,10 @@ export class LoginPage {
       loading.present();
       
       // Encrypt
-      var encryptSenha = this.encrypt(senha, 'Achilles');
+      var encryptLogin = this.encrypt(user, 'Achilles')
+      var encryptSenha = this.encrypt(senha, 'Achilles')
 
-      this.http.post(endpoints.api.auth.login, {'login': user, 'senha': encryptSenha}, {headers: new HttpHeaders()}).subscribe((result: any) => {
-        console.log(result)
+      this.http.post(endpoints.api.auth.login, {'login': encryptLogin, 'senha': encryptSenha}, {headers: new HttpHeaders()}).subscribe((result: any) => {
         loading.dismiss();
 
         if(result.auth && result.data) {
