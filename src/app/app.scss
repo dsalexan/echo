@@ -16,39 +16,39 @@
 // automatically applied to the <body> element in the app.
 
 
-.navHeight {
-    height: 70px;
-    top: 0px;
-    left: 0px;
-    position: absolute;
-    width: 100%;
-    background: #ffe082;
-}
+// .navHeight {
+//     height: 70px;
+//     top: 0px;
+//     left: 0px;
+//     position: absolute;
+//     width: 100%;
+//     background: #ffe082;
+// }
 
-.menuButton {
-    z-index: 1;
-    background: #ffc107;
-    top: 10px;
-    left: 10px;
-    height: 50px;
-    width: 50px;
-    position: absolute;
-    padding: 0px;
-    margin: 0px;
-    border: 1px solid #ffe082;
-}
+// .menuButton {
+//     z-index: 1;
+//     background: #ffc107;
+//     top: 10px;
+//     left: 10px;
+//     height: 50px;
+//     width: 50px;
+//     position: absolute;
+//     padding: 0px;
+//     margin: 0px;
+//     border: 1px solid #ffe082;
+// }
 
-.menuIcon {
-    font-size: 30px;
-    position: absolute;
-    top: calc(50% - 14px);
-    left: calc(50% - 12px);
-    // transform: translate(-50%, -50%);
-    width: 10px;
-    height: 10px;
-    color: #444444;
-    // display: block;
-}
+// .menuIcon {
+//     font-size: 30px;
+//     position: absolute;
+//     top: calc(50% - 14px);
+//     left: calc(50% - 12px);
+//     // transform: translate(-50%, -50%);
+//     width: 10px;
+//     height: 10px;
+//     color: #444444;
+//     // display: block;
+// }
 
 
 ion-menu{
