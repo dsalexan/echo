@@ -2,14 +2,17 @@
 
 <ion-menu [content]="content">
 
-    <ion-content padding>
+    <ion-navbar color = "primary">
+            <ion-title>Teste</ion-title>
+    </ion-navbar>
+    <!-- <ion-content padding> -->
         <h1 style="text-align: center">Menu</h1>
         <button id="btnTab1" ion-button round menuClose style="width: 100%" (click)="clickPerfil()">Perfil</button><br>
         <button id="btnTab2" ion-button round menuClose style="width: 100%" (click)="clickUtilidade()">Utilidades</button><br>
         <button id="btnTab3" ion-button round menuClose style="width: 100%" (click)="clickMensagens()">Mensagens</button><br>
         <button id="btnTab4" ion-button round menuClose style="width: 100%" (click)="clickBugReport()">Bug Report</button><br>
         <button id="btnTab5" ion-button round menuClose style="width: 100%" (click)="clickLogout()">Logout</button><br>
-    </ion-content>
+    <!-- </ion-content> -->
 
 </ion-menu>
 

@@ -23,7 +23,12 @@
   
 
   <div *ngFor="let item of mensagens">
-    {{item.qtd}} - {{item.nome}}
+    <div class="rounded-rectangle" style="--width: 5%">
+      {{item.qtd}}
+    </div>
+    <div class="rounded-rectangle" style="--width: 95%">
+      {{item.nome}}
+    </div>
   </div>
   <!-- <div *ngIf="nova" style="width: 100%; margin-top: 100px; text-align: center; position: absolute">
     <button ion-button round (click)='clickMensagem()'>

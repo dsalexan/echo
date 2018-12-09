@@ -1,2 +1,14 @@
 page-home {
+    .rounded-rectangle {
+        display: table-cell;
+        // color: black;
+        // background-color: white;
+        vertical-align: middle;
+        width: var(--width);
+        height: 50px;
+        border: solid white 1px;
+        // border-radius: 10px 10px 10px 10px;
+        padding: 5px 10px;
+        margin-top: 10px;
+    }
 }
