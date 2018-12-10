@@ -521,9 +521,6 @@ export class ViagemMotoristaPage {
     this.buscaReservas();
     // PENDENCIA: buscar a qtd de vagas nesta tela
     //console.log(this.viagem)
-    console.log('ionViewWillEnter ViagemMotoristaPage');
-    document.getElementById("tabs").style.display = "none"
-    document.getElementById("botao_menu").style.display = "none"
   }
 
 }

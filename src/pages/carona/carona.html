@@ -1,19 +1,45 @@
 
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
 
-<ion-content padding>
+    <ion-title>Carona</ion-title>
 
-  <div class="navHeight">
-      <ion-title class="backTitle">Carona</ion-title>
-      <button class="backButton" (click) = "clickBack()"><ion-icon class="backIcon" md="md-arrow-back"></ion-icon></button>
-      </div>
-      <div style="height: 65px"></div>
-  <ion-card>
-    <h2>{{viagem.dia.slice(0,10)}} às {{viagem.hora}}</h2>
-      <p>Viagem de {{loc[viagem.id_origem]}} para {{loc[viagem.id_destino]}}</p>
-      <!--<p>Motorista: {{viagem.nome}}</p>-->
-      <p>Descrição: {{viagem.descricao}}</p>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="options"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+    
+  <div class="ion-navbar-extension">
+    <ion-title>{{loc[viagem.id_origem]}} <span style="font-weight: 300;">para</span> {{loc[viagem.id_destino]}}</ion-title>
+  </div>
+</ion-header>
+
+
+<ion-content>
+    <ion-list>
+      <ion-item class="title">
+          <b>{{viagem.dia.slice(0,10)}}</b> <div style="display: inline-block; margin-left: 1em;">{{viagem.hora}}</div>
+      </ion-item>
+
+      <ion-item-divider color="light">Dados</ion-item-divider>
+
+      <ion-item class="labeled" *ngIf="viagem.nome != undefined">
+        <span>motorista</span> <b style="text-transform: capitalize;">{{viagem.nome[0] + viagem.nome.substring(1, viagem.nome.length).toLowerCase()}}</b>
+      </ion-item>
+      <ion-item class="labeled">
+        <span>descrição</span> <b>{{viagem.descricao}}</b> 
+      </ion-item>
+      <ion-item class="labeled">
+        <span>reserva</span> <b>{{viagem.status_reserva ? 'Confirmada' : 'Pendente'}}</b> 
+      </ion-item>
+
       
-      Reserva {{viagem.status_reserva ? 'confirmada' : 'pendente'}}
-  </ion-card>
-  <button ion-button (click)="reservar()"> Reservar </button>
+    <button ion-button (click)="reservar()" full large> Reservar </button>
+        
+    </ion-list>
 </ion-content>

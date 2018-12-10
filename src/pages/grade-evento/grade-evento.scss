@@ -123,23 +123,6 @@ page-grade-evento {
     }
 
 
-    div.ion-navbar-extension{
-        min-height: $navbar-md-height;
-        display: block;
-        background: color($colors, primary);
-        display: flex;
-        align-items: center;
-        text-align: center;
-        padding: 1.2em 0.5em;
-
-        ion-title .toolbar-title-md, ion-title .toolbar-title-ios {
-            color: black;
-            // font-size: 1.75em;
-            text-transform: uppercase;
-            white-space: normal;
-        }
-    }
-
     ion-navbar{
         ion-title{
             .toolbar-title, .toolbar-title-md, .toolbar-title-ios{

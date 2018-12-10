@@ -10,6 +10,7 @@ import { ViagemMotoristaPage } from '../viagem-motorista/viagem-motorista';
 import { ProcurarCaronaPage } from '../procurar-carona/procurar-carona';
 import { ViagemPassageiroPage } from '../viagem-passageiro/viagem-passageiro';
 
+import { ENV } from '../../../constants/env'
 
 @IonicPage()
 @Component({
@@ -50,7 +51,7 @@ export class ResCaronaPage {
       }
       else{
         //console.log("Verificando se há reservas para o mesmo passageiro na viagem")
-        var path = 'http://104.248.9.4:3000/api/caronas/get/viagem/passageiro/reserva?id_viagem=' + item.id_viagem + '&id_passageiro=' + usu
+        var path = ENV.HOSTNAME + '/api/caronas/get/viagem/passageiro/reserva?id_viagem=' + item.id_viagem + '&id_passageiro=' + usu
         this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
         // this.http.get(path).map(res => res.json()).subscribe(data => {
           if(data["success"]){
@@ -58,7 +59,7 @@ export class ResCaronaPage {
               this.navCtrl.push(CaronaPage, {viagem: item, loc:this.loc, disponiveis: this.viagens_disponiveis, tp1: this.temp_p1, tp2:this.temp_p2, tloc:this.temp_loc})
             }
             else{ //busca infos pra enviar pra prox pagina
-              var path2 = 'http://104.248.9.4:3000/api/caronas/get/viagem/passageiro?id=' + usu
+              var path2 = ENV.HOSTNAME + '/api/caronas/get/viagem/passageiro?id=' + usu
               this.http.get(path2, {headers: new HttpHeaders()}).subscribe(data2 => {
               // this.http.get(path2).map(res => res.json()).subscribe(data2 => {
                 if(data2["success"] && data2["data"].length > 0){
@@ -114,10 +115,7 @@ export class ResCaronaPage {
       alert.present();
       this.navCtrl.push(ProcurarCaronaPage);
     }
-    console.log('ionViewDidLoad ResCaronaPage');
     this.validaViagens();
-    document.getElementById("tabs").style.display = "none"
-    document.getElementById("botao_menu").style.display = "none"
   }
 
 }

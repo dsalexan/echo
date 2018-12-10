@@ -133,9 +133,6 @@ export class ViagemPassageiroPage {
     //   this.navCtrl.setPages(pages);
     // }
     //console.log(this.viagem)
-    console.log('ionViewDidLoad ViagemPassageiroPage');
-    document.getElementById("tabs").style.display = "none"
-    document.getElementById("botao_menu").style.display = "none"
   }
 
 }

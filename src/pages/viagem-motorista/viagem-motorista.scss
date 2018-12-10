@@ -1,3 +1,104 @@
 page-viagem-motorista {
+    &.ion-page{
+        div.ion-navbar-extension{
+            ion-title .toolbar-title-md, ion-title .toolbar-title-ios {
+                color: black;
+                white-space: normal;
 
+                span{
+                    text-transform: none;
+                }
+            }
+        }
+    }
+
+    ion-navbar{
+        ion-title{
+            .toolbar-title, .toolbar-title-md, .toolbar-title-ios{
+                text-align: center;
+            }
+        }
+
+        ion-buttons[end]{
+            margin-right: 11px;
+            margin-left: 11px;
+            opacity: 0;
+            pointer-events: none;
+        }
+    }    
+    
+
+    
+    ion-list, ion-list.list-md{
+        ion-item, ion-item.item-block, button.item, button.item-md, button.item-ios{
+            &.labeled{
+                ion-label{
+                    position: relative;
+
+                    &::before{
+                        content: "";
+                        width: calc(70px + 1em);
+                        height: 1em;
+                        display: inline-block;
+                    }
+
+                    span{
+                        position: absolute;
+                        left: 0;
+
+                        color: grey;
+                        font-weight: 300;
+                        display: inline-block;
+                        margin-right: 1em;
+                    }
+                }
+            }
+
+            &.title{
+                $padding-item: 0.5em;
+                padding-top: $padding-item;
+                padding-bottom: $padding-item;
+
+                .item-inner{
+                    border-bottom: none;
+                }
+            }
+            
+            ion-avatar{
+                display: flex;
+                align-items: center;
+                text-align: center;
+
+                img{
+                    border-radius: 50%;
+                    border: 2px solid rgba(color($colors, primary), 0.8);
+                }
+            }
+
+            h2{
+                margin-bottom: 0.5em;
+            }
+
+            p{
+                font-weight: 300;
+            }
+        }
+        ion-item-divider{
+            text-align: center;
+            
+            // &.item-divider-md, &.item-divider-ios{
+            //     padding-right: 2em;
+            // }
+        }
+    }
+    
+
+    &.ion-page{
+        button[ion-fab] {
+            ion-label {
+                top: -2px;
+                right: 60px;
+            }
+        }
+    }
 }

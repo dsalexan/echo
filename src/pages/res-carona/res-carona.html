@@ -1,11 +1,22 @@
 
+<ion-header>
+    <ion-navbar color="primary">
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+  
+      <ion-title>Caronas</ion-title>
 
-<ion-content padding>
-  <div class="navHeight">
-  <ion-title class="backTitle">Caronas</ion-title>
-  <button class="backButton" (click) = "clickBack()"><ion-icon class="backIcon" md="md-arrow-back"></ion-icon></button>
-  </div>
-  <div style="height: 65px"></div>
+      <ion-buttons end>
+        <button ion-button icon-only>
+          <ion-icon name="options"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+
+
+<ion-content>
   
   <!--<ion-list>
     <ion-item *ngFor="let d of dados" >{{d.descricao}}
@@ -21,11 +32,10 @@
   <ion-list>
     <button ion-item *ngFor="let d of viagens_disponiveis" (click)="selecionar(d)">
       <ion-avatar item-start>
-        <ion-icon name="md-person"></ion-icon>
-        <!---<img src="img/avatar-cher.png">-->
+          <img src="assets/imgs/anonimo.png">
       </ion-avatar>
-      <h2>Dia {{d.dia.slice(0,10)}} às {{d.hora}}</h2>
-      <p>De {{loc[d.id_origem]}} para {{loc[d.id_destino]}}</p>
+      <h2>{{d.dia.slice(0,10)}} <span style="font-weight: 300;">às</span> {{d.hora}}</h2>
+      <p>De <b>{{loc[d.id_origem]}}</b> para <b>{{loc[d.id_destino]}}</b></p>
     </button>
   </ion-list>
 
