@@ -34,6 +34,8 @@ export class MyApp {
 
   rootPage:any = LoginPage;
 
+  nome: string
+
   pages: PageInterface[] = [
     { title: 'Perfil', pageName: 'PerfilPage', icon: 'person' },
     { title: 'Utilidades', pageName: 'UtilidadesPage', icon: 'albums' },
@@ -47,9 +49,14 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault(); 
-      splashScreen.hide();
+      splashScreen.hide(); 
+
+      this.storage.get("aluno_nome").then((usu) => {
+        this.nome = usu.toLowerCase()
+      })
     });
   }
+
 
   openPage(page: string){
     if(page == 'PerfilPage'){
