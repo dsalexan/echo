@@ -80,9 +80,6 @@ export class ResultadoDivulgacaoPage {
   ionViewDidLoad() {
     this.checkSession();
     this.validarResultados();
-    console.log('ionViewDidLoad ResultadoDivulgacaoPage');
-    document.getElementById("tabs").style.display = "none"
-    document.getElementById("botao_menu").style.display = "none"
   }
 
 

@@ -131,9 +131,6 @@ export class CompradorDivulgacaoPage {
 
   ionViewDidLoad() {
     this.checkSession();
-    console.log('ionViewDidLoad CompradorDivulgacaoPage');
-    document.getElementById("tabs").style.display = "none"
-    document.getElementById("botao_menu").style.display = "none"
   }
 
 }

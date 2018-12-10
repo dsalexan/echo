@@ -1,10 +1,15 @@
-<ion-content padding>
 
-  <div class="navHeight">
-    <ion-title class="backTitle">Informações</ion-title>
-    <button class="backButton" (click) = "clickBack()"><ion-icon class="backIcon" md="md-arrow-back"></ion-icon></button>
-    </div>
-    <div style="height: 65px"></div>
+<ion-header>
+    <ion-navbar color="primary">
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+  
+      <ion-title>Informações</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content >
 
 
   <form #reservaForm="ngForm" (ngSubmit)="Reservar()">

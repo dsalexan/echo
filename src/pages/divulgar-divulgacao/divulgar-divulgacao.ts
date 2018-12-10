@@ -36,9 +36,6 @@ export class DivulgarDivulgacaoPage {
   }
 
   ionViewWillEnter() {
-    console.log('ionViewWillEnter DivulgarDivulgacaoPage');
-    document.getElementById("tabs").style.display = "none"
-    document.getElementById("botao_menu").style.display = "none"
     this.PreencherListaTipo()
   }
 

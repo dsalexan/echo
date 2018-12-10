@@ -28,9 +28,6 @@ export class CadastroPage {
 
   ionViewWillEnter() {
     this.checkSession()
-    console.log('ionViewWillEnter CadastroPage');
-    document.getElementById("tabs").style.display = "none"
-    document.getElementById("botao_menu").style.display = "none"
   }
 
   storeEmail(email) {

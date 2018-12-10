@@ -453,9 +453,6 @@ export class FiltrarDivulgacaoPage {
   ionViewWillEnter() {
     this.checkSession();
     this.PreencherListaTipo();
-    console.log('ionViewWillEnterFiltrarDivulgacaoPage');
-    document.getElementById("tabs").style.display = "none"
-    document.getElementById("botao_menu").style.display = "none"
   }
 
 }

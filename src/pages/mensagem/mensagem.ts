@@ -111,9 +111,6 @@ export class MensagemPage {
 
   ionViewWillEnter() {
     this.exibirMensagens();
-    console.log('ionViewWillEnter MensagemPage');
-    document.getElementById("tabs").style.display = "none"
-    document.getElementById("botao_menu").style.display = "none"
   }
 
 }

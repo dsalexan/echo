@@ -31,8 +31,6 @@ export class BugReportPage {
 
   ionViewWillEnter() {
     this.checkSession();
-    document.getElementById("tabs").style.display = "none"
-    document.getElementById("botao_menu").style.display = "none"
   }
 
   clickBack() {

@@ -1,9 +1,15 @@
-<ion-content padding>
-    <div class="navHeight">
-        <ion-title class="backTitle">Produtos</ion-title>
-        <button class="backButton" (click) = "clickBack()"><ion-icon class="backIcon" md="md-arrow-back"></ion-icon></button>
-        </div>
-        <div style="height: 65px"></div>
+
+<ion-header>
+    <ion-navbar color="primary">
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+  
+      <ion-title>Produtos</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
 
   <ion-list>
       <button ion-item *ngFor = "let resultado of resultados_validos" (click)="Redirecionar(resultado)"> 

@@ -101,9 +101,6 @@ export class PerfilPage {
   ionViewWillEnter() {
     this.checkSession()
     this.getInfomations()
-    console.log('ionViewWillEnter PerfilPage');
-    document.getElementById("tabs").style.display = "none"
-    document.getElementById("botao_menu").style.display = "none"
   }
 
   processWebImage(event) {

@@ -206,9 +206,6 @@ export class VendedorDivulgacaoPage {
   ionViewDidLoad() {
     this.checkSession();
     this.abrirReservas();
-    console.log('ionViewDidLoad VendedorDivulgacaoPage');
-    document.getElementById("tabs").style.display = "none"
-    document.getElementById("botao_menu").style.display = "none"
   }
 
 }

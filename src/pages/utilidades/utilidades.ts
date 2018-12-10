@@ -62,9 +62,6 @@ export class UtilidadesPage {
   openUrl(){ window.open('https://google.com', '_system'); }
   ionViewWillEnter() {
     this.checkSession();
-    console.log('ionViewWillEnter UtilidadesPage');
-    document.getElementById("tabs").style.display = "none"
-    document.getElementById("botao_menu").style.display = "none"
   }
 
   clickBiblioteca() {
