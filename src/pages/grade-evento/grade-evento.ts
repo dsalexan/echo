@@ -29,10 +29,6 @@ export class GradeEventoPage {
 
   ionViewWillEnter() {
     this.carregarDadosTurma()
-    console.log('ionViewWillEnter GradeEventoPage');
-    // console.log(this.dados)
-    document.getElementById("tabs").style.display = "none"
-    document.getElementById("botao_menu").style.display = "none"
   }
 
   clickBack() {

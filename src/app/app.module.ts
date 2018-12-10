@@ -70,7 +70,10 @@ import {InicialDivulgacaoPage} from '../pages/inicial-divulgacao/inicial-divulga
     BrowserModule,
     HttpClientModule,
     HttpModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      tabsPlacement: 'bottom',
+      tabsHideOnSubPages: true
+    }),
     IonicStorageModule.forRoot(),
     CalendarModule,
     BrowserModule,

@@ -181,4 +181,22 @@ ion-menu{
     ion-content{
         background: rgb(241, 241, 241);
     }
+
+    .list-header-md{
+        margin-bottom: 3px;
+        margin-top: 10px;
+        background: #fafafa;
+
+        &:first-of-type{
+            margin-top: 0px;
+        }
+    }
+    .fab-md-secondary {
+        color: color($colors, primary);
+    }
+
+
+    button.button-md[large], button.button-ios[large]{
+        font-size: 1.8rem;
+    }
 }

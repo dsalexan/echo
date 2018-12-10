@@ -18,6 +18,15 @@ import endpoints from '../../../constants/endpoints'
 
 export class AgendaPage {
 
+  parseMesInt = (mes: string) => {
+    for(let i = 0; i < this.meses.length; i++){
+      if(mes == this.meses[i]){
+        return i + 1
+      }
+    }
+
+    return 12
+  }
   meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
   eventos = {'Janeiro': [], 'Fevereiro': [], 'Março': [], 'Abril': [], 'Maio': [], 'Junho': [], 'Julho': [], 'Agosto': [], 'Setembro': [], 'Outubro': [], 'Novembro': [], 'Dezembro': []}
 
@@ -30,8 +39,6 @@ export class AgendaPage {
 
   ionViewWillEnter() {
     console.log('ionViewWillEnter AgendaPage');
-    document.getElementById("tabs").style.display = "none"
-    document.getElementById("botao_menu").style.display = "none"
   }
 
   clickBack() {

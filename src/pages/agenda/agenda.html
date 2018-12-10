@@ -5,31 +5,42 @@
   Ionic pages and navigation.
 -->
 
-<ion-content padding>
-  <div class="navHeight">
-  <ion-title class="backTitle">Agenda semestral</ion-title>
-  <button class="backButton" (click) = "clickBack()"><ion-icon class="backIcon" md="md-arrow-back"></ion-icon></button>
-  </div>
-  <div style="height: 65px"></div>
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
 
-  <div style="width: 100%; text-align: center;">
-    <button ion-button round style="display: inline-block; position: relative" (click) = "clickCadastrar()">Cadastrar evento</button>
-  </div>
+    <ion-title>Agenda</ion-title>
+  </ion-navbar>
+</ion-header>
 
-  <div *ngFor="let mes of meses; let m = index">
-    <div *ngIf="eventos[mes].length > 0" class="rounded-rectangle" style="--width: 100%; --color: #cccccc">
-      {{mes}}
-    </div>
-    <ng-container *ngFor="let evento of eventos[mes]; let e = index">
-      <div (click)="selecionarCompromisso(mes, e)" class="rectangle" [ngClass]="(e == eventos[mes].length-1) ? 'arredondado' : 'nada'" style="--width: 100%; --height: 65px; --color: #eeeeee">
-          {{evento.nome_uc}} - {{evento.turma}}
-          <div style="float: right"><h2><b>{{evento.dia_mes}}</b></h2></div>
-          <div style="float: bottom; margin-top: 10px">
-            <div style="float: left">{{evento.nome}}</div>
-            <div *ngIf="horaInObject(evento)" style="float: right; margin-right: -27px">{{evento.hora}}</div>
+<ion-content>
+    <ion-fab top right edge>
+        <button ion-fab mini color="secondary"><ion-icon name="add"></ion-icon></button>
+        <ion-fab-list>
+          <button ion-fab (click) = "clickCadastrar()"><ion-icon name="bookmark"></ion-icon><ion-label>Novo Evento</ion-label></button>
+        </ion-fab-list>
+      </ion-fab>
+
+  <ion-list>
+      <ng-container *ngFor="let mes of meses; let m = index">
+        <ion-list-header *ngIf="eventos[mes].length > 0">
+            {{mes}}
+        </ion-list-header>
+  
+        <ion-item *ngFor="let evento of eventos[mes]; let e = index" (click)="selecionarCompromisso(mes, c)">
+          <div>
+            {{evento.nome_uc}} - {{evento.turma}}
+            <div style="float: right"><h2 style="display: inline-block"><b>{{evento.dia_mes}}</b>/</h2>{{parseMesInt(mes)}}</div>
+
+            <div style="float: bottom; margin-top: 10px; font-weight: 300;">
+              <div style="float: left">{{evento.nome}}</div>
+              <div *ngIf="horaInObject(evento)" style="float: right">{{evento.hora}}</div>
+            </div>
           </div>
-      </div>
-    </ng-container>
-  </div>
+        </ion-item>
+      </ng-container>
+    </ion-list>
 
 </ion-content>

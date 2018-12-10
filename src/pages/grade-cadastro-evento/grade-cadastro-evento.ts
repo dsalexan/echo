@@ -32,9 +32,6 @@ export class GradeCadastroEventoPage {
   }
 
   ionViewWillEnter() {
-    console.log('ionViewWillEnter GradeCadastroEventoPage');
-    document.getElementById("tabs").style.display = "none"
-    document.getElementById("botao_menu").style.display = "none"
   }
 
   clickBack() {
