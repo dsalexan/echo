@@ -1,11 +1,11 @@
-page-login {
+page-login{
     ion-content{
         $minumum-margin-bottom: 8.75vh;
 
         text-align: center; 
-        background-image: url("../assets/imgs/unifesp_ict.jpg");
-        background-size: auto 120%;
-        background-position-y: 85%;
+        background-image: url("../../assets/imgs/unifesp_ict.jpg") !important;
+        background-size: auto 120% !important;
+        background-position-y: 85% !important;
 
         &::before{
             @include linear-gradient(rgba(color($colors, dark), 0.1), 20%, color($colors, dark), 80%);
@@ -48,7 +48,12 @@ page-login {
                 ion-item.item-md, ion-item.item-ios{ 
                     background-color: transparent;
                     padding-right: 16px;
+
+                    ion-input{
+                        color: rgba(color($colors, light), 0.85);
+                    }
                 }
+                
             }
 
             button.button-md, button.button-ios{

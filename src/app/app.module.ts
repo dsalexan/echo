@@ -47,9 +47,24 @@ import { VendedorDivulgacaoPageModule } from '../pages/vendedor-divulgacao/vende
 import { CompradorDivulgacaoPageModule } from '../pages/comprador-divulgacao/comprador-divulgacao.module';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 
+
+
+import {TabsPage} from '../pages/tabs/tabs'
+import {LoginPage} from '../pages/login/login'
+import {HomePage} from '../pages/home/home'
+import {InicialGradePage} from '../pages/inicial-grade/inicial-grade'
+import {InicialCaronaPage} from '../pages/inicial-carona/inicial-carona'
+import {InicialDivulgacaoPage} from '../pages/inicial-divulgacao/inicial-divulgacao'
+
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
+    TabsPage,
+    HomePage,
+    InicialGradePage,
+    InicialCaronaPage,
+    InicialDivulgacaoPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -59,15 +74,15 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     IonicStorageModule.forRoot(),
     CalendarModule,
     BrowserModule,
-    LoginPageModule,
+    // LoginPageModule,
     CadastroPageModule,
     PerfilPageModule,
     UtilidadesPageModule,
-    HomePageModule,
-    InicialCaronaPageModule,
+    // HomePageModule,
+    // InicialCaronaPageModule,
     OferecerCaronaPageModule,
     ProcurarCaronaPageModule,
-    InicialGradePageModule,
+    // InicialGradePageModule,
     ResCaronaPageModule,
     GradeEventoPageModule,
     AgendaPageModule,
@@ -77,7 +92,7 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     TurmaPageModule,
     ViagemMotoristaPageModule,
     ViagemPassageiroPageModule,
-    InicialDivulgacaoPageModule,
+    // InicialDivulgacaoPageModule,
     DivulgarDivulgacaoPageModule,
     FiltrarDivulgacaoPageModule,
     BugReportPageModule,
@@ -91,6 +106,12 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    TabsPage,
+    HomePage,
+    InicialGradePage,
+    InicialCaronaPage,
+    InicialDivulgacaoPage,
+    LoginPage
   ],
   providers: [
     StatusBar,

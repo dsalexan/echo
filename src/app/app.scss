@@ -50,6 +50,11 @@
 //     // display: block;
 // }
 
+.md, .ios{
+    .menu-inner{
+        background-color: color($colors, dark);
+    }
+}
 
 ion-menu{
     .content-md, .content-ios{
@@ -57,6 +62,7 @@ ion-menu{
     }
     .list-md, .list-ios{
         button.item, .item-block, ion-item, .item-md, .item-ios{
+            color: #eeeeee;
             background: transparent;
             font-size: 1em;
 
@@ -100,15 +106,35 @@ ion-menu{
                     text-align: center;
 
                     ion-col.icon-wrapper{
-                        text-align: left;
-                        font-size: 1.9em;
+                        button{
+                            background: transparent;
+                            box-shadow: none;
+                            overflow: visible;
 
-                        ion-icon[empty]{
-                            opacity: 0.5;
-                        }
+                            text-align: left;
+                            font-size: 1.9em;
 
-                        ion-icon[new]{
-                            color: color($colors, primary);
+                            ion-icon[empty]{
+                                opacity: 0.5;
+                            }
+
+                            ion-icon[new]{
+                                color: color($colors, primary);
+                            }
+
+                            ion-badge {
+                                position: absolute;
+                                top: 0rem;
+                                right: 1.3rem;
+                                opacity: 0.9;
+                                border-radius: 50%;
+                                padding: 0.3rem 0.6rem;
+
+                        
+                                & ~ ion-icon {
+                                    margin-right: 1.2rem;
+                                }
+                            }
                         }
                     }
                 }
@@ -117,7 +143,7 @@ ion-menu{
                     $border-width: 4px;
                     display: inline-block;
 
-                    ion-img,  img{
+                    ion-img, img{
                         $img-size: 15vh;
                         height: $img-size;
                         width: $img-size;
@@ -148,5 +174,11 @@ ion-menu{
                 }
             }
         }
+    }
+}
+
+.ion-page{
+    ion-content{
+        background: rgb(241, 241, 241);
     }
 }

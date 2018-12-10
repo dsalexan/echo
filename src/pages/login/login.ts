@@ -14,6 +14,7 @@ import { AES, lib, PBKDF2, pad, mode } from 'crypto-js'
 
 import { ENV } from '../../../constants/env'
 import endpoints from '../../../constants/endpoints'
+import { TabsPage } from '../tabs/tabs';
 
 @IonicPage()
 @Component({
@@ -28,35 +29,12 @@ export class LoginPage {
   }
 
   ionViewWillEnter() {
-    console.log('ionViewWillEnter LoginPage');
-    // var he = new Headers()
-    // he.append('Content-Type', 'application/json')
-    // let sr = '104.248.9.4'
-    // // let sr = 'localhost'
-    // // this.http.post('https://webhook.site/47b7ba5c-0fd0-487c-a161-f83921024e02', {'bla': '1'}, {headers: he}).map(res => res.json()).subscribe(result => {
-    // // this.http.post(ENV.HOSTNAME + '/teste', {'login': user, 'senha': encryptSenha}, {headers: new HttpHeaders()}).subscribe(result => {
-    
-    // // this.http.put(ENV.HOSTNAME + '/teste', {'bla': '1'}, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe(result => {
-    // this.http.get(ENV.HOSTNAME + '/teste', {responseType: 'text'}).subscribe(result => {
-    //   console.log(result)
-    //   let alert = this.alertCtrl.create({
-    //     title: 'Nice!',
-    //     subTitle: 'Servidor Remoto <IG99> OK',
-    //     buttons: ['Dismiss']
-    //   });
-    //   alert.present();
-    // }, err => {
-    //   console.log(err)
-    //   let alert = this.alertCtrl.create({
-    //     title: err.name,
-    //     subTitle: err.message,
-    //     buttons: ['Dismiss']
-    //   });
-    //   alert.present();
-    // })
-
-    document.getElementById("tabs").style.display = "none"
-    document.getElementById("botao_menu").style.display = "none"
+    this.storage.get("aluno_nome").then((usu) => {
+      if(usu != null) {
+        this.navCtrl.setRoot(TabsPage);
+        this.navCtrl.push(TabsPage);
+      }
+    })
   }
   
   clickLogin() {

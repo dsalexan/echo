@@ -47,8 +47,6 @@ export class InicialGradePage {
   ionViewWillEnter() {
     this.checkSession();
     console.log('ionViewWillEnter InicialGradePage');
-    document.getElementById("tabs").style.display = "block"
-    document.getElementById("botao_menu").style.display = "block"
   }
 
   createRange(n) {return new Array(n);}

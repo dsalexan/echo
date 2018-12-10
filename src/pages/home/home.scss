@@ -11,4 +11,26 @@ page-home {
         padding: 5px 10px;
         margin-top: 10px;
     }
+
+    ion-card{
+        ion-card-header{
+            white-space: normal;
+            position: relative;
+
+            div.tipo{
+                font-size: 0.8em;
+                color: rgba(grey, 0.85);
+                font-weight: 300;
+                right: 16px;
+                top: 16px;
+                position: absolute;
+                display: inline-block;
+            }
+        }
+
+        ion-card-content{
+            color: color($colors, dark);
+            font-weight: 300;
+        }
+    }
 }

@@ -165,3 +165,69 @@ CREATE OR REPLACE FUNCTION CONVERT_WEEKDAY(weekday TEXT) RETURNS TEXT AS $$
     END CASE;
   END;
 $$ LANGUAGE plpgsql;
+
+create function display_weekday(weekday text)
+  returns text
+language plpgsql
+as $$
+BEGIN
+  CASE
+    WHEN weekday = 'SEG'
+    THEN RETURN 'Segunda';
+    WHEN weekday = 'TER'
+    THEN RETURN 'Terça';
+    WHEN weekday = 'QUA'
+    THEN RETURN 'Quarta';
+    WHEN weekday = 'QUI'
+    THEN RETURN 'Quinta';
+    WHEN weekday = 'SEX'
+    THEN RETURN 'Sexta';
+    WHEN weekday = 'SAB'
+    THEN RETURN 'Sábado';
+  ELSE RETURN 'Domingo';
+  END CASE;
+END;
+$$;
+
+create function dow_to_weekday(_day integer)
+  returns text
+language plpgsql
+as $$
+BEGIN
+  CASE
+    WHEN _day = 1
+    THEN RETURN 'Segunda';
+    WHEN _day = 2
+    THEN RETURN 'Terça';
+    WHEN _day = 3
+    THEN RETURN 'Quarta';
+    WHEN _day = 4
+    THEN RETURN 'Quinta';
+    WHEN _day = 5
+    THEN RETURN 'Sexta';
+    WHEN _day = 6
+    THEN RETURN 'Sábado';
+  ELSE RETURN 'Domingo';
+  END CASE;
+END;
+$$;
+
+
+create function parse_int_weekday(weekday text)
+  returns integer
+language plpgsql
+as $$
+BEGIN
+    CASE
+      WHEN weekday = 'SEG' THEN RETURN 1;
+      WHEN weekday = 'TER' THEN RETURN 2;
+      WHEN weekday = 'QUA' THEN RETURN 3;
+      WHEN weekday = 'QUI' THEN RETURN 4;
+      WHEN weekday = 'SEX' THEN RETURN 5;
+      WHEN weekday = 'SAB' THEN RETURN 6;
+      ELSE RETURN 7;
+    END CASE;
+  END;
+$$;
+
+

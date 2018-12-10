@@ -73,7 +73,11 @@ $colors: (
 // so that the above variables are used and Ionic's
 // default are overridden.
 
-@import "ionic.theme.dark";
+// @import "ionic.theme.dark";
+// $tab-item-color: color($colors, light);
+
+@import "ionic.theme.default";
+$tab-item-color: rgba(color($colors, dark), 0.8);
 
 
 // Ionicons

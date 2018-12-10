@@ -1,0 +1,23 @@
+page-tabs {
+    .tabs-md, .tabs-ios {
+        .tab-button{    
+            color: $tab-item-color;
+
+            &[aria-selected="true"]{
+                background-color: rgba(color($colors, dark), 0.85);
+            }
+        }
+            
+        .tab-button-icon{
+            color: $tab-item-color;
+        }
+
+        .tab-button-text{
+            font-weight: 300;
+        }
+
+        .badge-md, .badge-ios{
+            border-radius: 50%;
+        }
+    }
+}

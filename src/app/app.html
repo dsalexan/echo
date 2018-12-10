@@ -18,9 +18,14 @@
                         <ion-col col-6>
                             <ion-avatar large><img src="assets/imgs/anonimo.png"/></ion-avatar>
                         </ion-col>
-                        <ion-col class="icon-wrapper" col-3 align-self-center>
-                            <ion-icon name="notifications" new></ion-icon>
+                        <ion-col class="icon-wrapper" col-2 align-self-center>
+                            <button ion-button icon-only (click)="showNotifications()">
+                                <ion-badge *ngIf="notifications" color="danger">{{ notifications }}</ion-badge>
+                                <ion-icon *ngIf="notifications" class="notification-icon" name="notifications" new></ion-icon>
+                                <ion-icon *ngIf="notifications == 0" class="notification-icon" name="notifications" empty></ion-icon>
+                            </button>
                         </ion-col>
+                        <ion-col col-1 align-self-center></ion-col>
                     </ion-row>
                     <ion-row>
                         <div class="name">
@@ -48,10 +53,7 @@
 
 </ion-menu>
 
-<button menuToggle class="menuButton" id="botao_menu">
-    <ion-icon md="md-menu" class="menuIcon"></ion-icon>
-</button>
-
+<!-- 
 <div style="width: 100%; text-align: center; position: absolute; bottom: 0px">
     <div id="tabs">
         <button ion-button large icon-only (click)="clickHome()">
@@ -67,6 +69,12 @@
             <ion-icon name="md-pricetags"></ion-icon>
         </button>
     </div>
-</div>
+</div> -->
+
+<ion-tabs>
+    <ion-tab [root]="tab1Root"></ion-tab>
+    <ion-tab [root]="tab2Root"></ion-tab>
+    <ion-tab [root]="tab3Root"></ion-tab>
+</ion-tabs>
 
 <ion-nav [root]="rootPage" #content></ion-nav>

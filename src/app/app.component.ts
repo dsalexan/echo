@@ -17,6 +17,7 @@ import { InicialDivulgacaoPage } from '../pages/inicial-divulgacao/inicial-divul
 import { ViagemMotoristaPage } from '../pages/viagem-motorista/viagem-motorista';
 import { MensagemPage } from '../pages/mensagem/mensagem';
 import { AgendaPage } from '../pages/agenda/agenda';
+import { TabsPage } from '../pages/tabs/tabs';
 
 
 export interface PageInterface {
@@ -31,13 +32,15 @@ export interface PageInterface {
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = HomePage;
+  rootPage:any = LoginPage;
 
   pages: PageInterface[] = [
     { title: 'Perfil', pageName: 'PerfilPage', icon: 'person' },
     { title: 'Utilidades', pageName: 'UtilidadesPage', icon: 'albums' },
     { title: 'Bug', pageName: 'BugReportPage', icon: 'bug' },
   ];
+
+  notifications = 1
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public storage: Storage) {
     platform.ready().then(() => {
@@ -80,6 +83,7 @@ export class MyApp {
 
   clickLogout() {
     this.storage.clear();
+    this.nav.setRoot(LoginPage);
     this.nav.push(LoginPage);
   }
 
