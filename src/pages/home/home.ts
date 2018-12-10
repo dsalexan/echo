@@ -103,7 +103,6 @@ export class HomePage {
           }
 
           this.mensagens = Object.values(_tipos)
-          console.log(this.mensagens)
         }
       })
     })

@@ -141,10 +141,10 @@ export class InicialGradePage {
                  '?data_inicio=' + this.semana[0].yyyy + '-' + this.semana[0].mm + '-' + this.semana[0].dd +
                  '&data_fim=' + this.semana[6].yyyy + '-' + this.semana[6].mm + '-' + this.semana[6].dd
       // console.log(this.semana)
-      this.http.get(path, {headers: new HttpHeaders()}).subscribe(data => {
+      this.http.get(path, {headers: new HttpHeaders()}).subscribe((data: any) => {
       // this.http.get(path).map(res => res.json()).subscribe(data => {
         console.log(data)
-        data["data"].forEach(c => {
+        for(let c of data.data){
           var o = {}
 
           if (c.tipo == 'aula'){
@@ -177,7 +177,9 @@ export class InicialGradePage {
             // Colocar aqui informacoes do compromisso que vao ser adicionadas no evento
             o
           )
-        })
+        }
+
+        console.log(this.compromissos)
       }, (err) => {
         console.log(err)
       })
