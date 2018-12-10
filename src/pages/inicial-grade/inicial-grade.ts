@@ -172,6 +172,7 @@ export class InicialGradePage {
           }
           o["tipo"] = c.tipo
           o["descricao_evento"] = c.descricao
+          o["dia_semana"] = dia_semana
 
           this.compromissos[dia_semana].push(
             // Colocar aqui informacoes do compromisso que vao ser adicionadas no evento

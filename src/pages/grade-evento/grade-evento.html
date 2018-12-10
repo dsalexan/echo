@@ -5,45 +5,46 @@
       <ion-icon name="menu"></ion-icon>
     </button>
 
-    <ion-title>Cadastrar Evento</ion-title>
+    <ion-title>{{dados.nome}}</ion-title>
+    
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="options"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
+  <div class="ion-navbar-extension">
+    <ion-title>{{dados.nome_uc}}</ion-title>
+  </div>
 </ion-header>
 
 <ion-content>
 
-  <!-- <div class="navHeight">
-  <ion-title class="backTitle">Agenda semestral</ion-title>
-  <button class="backButton" (click)="clickBack()"><ion-icon class="backIcon" md="md-arrow-back"></ion-icon></button>
-  </div>
-  <div style="height: 65px"></div> -->
+  <ng-container *ngIf="!eventoOuNao(dados)">
+      <ion-fab right bottom>
+        <button ion-fab color="primary"><ion-icon name="arrow-dropleft"></ion-icon></button>
+        <ion-fab-list side="left">
+          <button ion-fab (click)="addFalta()"><ion-icon name="add"></ion-icon><ion-label>Adicionar Falta</ion-label></button>
+          <button ion-fab (click)="removeFalta()"><ion-icon name="remove"></ion-icon><ion-label>Remover Falta</ion-label></button>
+        </ion-fab-list>
+      </ion-fab>
 
-  <div id="info" style="--width: 100%; --height: 170px" *ngIf="!eventoOuNao(dados)">
-    <div id="tipo"><h2><b>{{dados.nome}}</b></h2></div>
-    <div id="data"><h2><b>{{dados.hora}}</b></h2></div>
-    
-    <div id="nomeuc">UC: {{dados.nome_uc}}</div>
-    <div id="turma">Turma: {{dados.nome_turma}}</div>
-    <div id="professor">Professor: {{dados.nome_prof}}</div>
-
-    <div id="faltas">Faltas:</div>
-    <div id="botaofaltas">
-      <button ion-button (click)="removeFalta()">
-        <ion-icon name="md-remove-circle"></ion-icon>
-      </button>
-      <div id="qtdFaltas">
-        {{dados.faltas}}
-      </div>
-      <button ion-button (click)="addFalta()">
-        <ion-icon name="md-add-circle"></ion-icon>
-      </button>
-    </div>
-    <!-- <div id="data" *ngIf="eventoOuNao(dados)"><h2><b>{{dados.dia_mes}}/{{dados.mes}}</b></h2></div> -->
-    <!-- <div style="float: bottom; margin-top: 10px"> -->
-    <!-- <div id="tipo">{{dados.nome}}</div>
-    <div id="hora">{{dados.hora}}</div> -->
-    <!-- </div> -->
-    
-  </div>
+    <ion-list>
+      <ion-item class="title">
+        <b>{{dados.dia_semana}}</b> <div style="display: inline-block; margin-left: 1em;">{{dados.hora}}</div>
+      </ion-item>
+      <ion-item-divider color="light">Dados</ion-item-divider>
+      <ion-item class="labeled">
+        <span>turma</span> <b>{{dados.nome_turma}}</b>
+      </ion-item>
+      <ion-item class="labeled">
+        <span>professor</span> <b>{{dados.nome_prof}}</b> 
+      </ion-item>
+      <ion-item class="labeled">
+        <span>faltas</span> <b>{{dados.faltas}}</b>
+      </ion-item>
+    </ion-list>
+  </ng-container>
 
   <div id="info" style="--width: 100%; --height: 100px" *ngIf="eventoOuNao(dados)">
       <div id="tipo"><h2><b>{{dados.nome}}</b></h2></div>
@@ -58,14 +59,5 @@
       <div id="nomeuc">{{dados.descricao_evento}}</div>
     </div>
   </ng-container>
-
-  <!-- <div id="info2" style="--width: 100%; --height: 200px">
-
-    <div style="display: block; position: absolute; top: 10px; left: 10px"><h2><b>Alunos da turma</b></h2></div>
-    <div style="margin-top: 50px"></div>
-    <div class="alunos" *ngFor="let aluno of dados.alunos">
-      {{aluno.nome}} - {{aluno.ra}}
-    </div>
-  </div> -->
 
 </ion-content>

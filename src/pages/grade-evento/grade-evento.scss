@@ -122,4 +122,101 @@ page-grade-evento {
         left: 10px;
     }
 
+
+    div.ion-navbar-extension{
+        min-height: $navbar-md-height;
+        display: block;
+        background: color($colors, primary);
+        display: flex;
+        align-items: center;
+        text-align: center;
+        padding: 1.2em 0.5em;
+
+        ion-title .toolbar-title-md, ion-title .toolbar-title-ios {
+            color: black;
+            // font-size: 1.75em;
+            text-transform: uppercase;
+            white-space: normal;
+        }
+    }
+
+    ion-navbar{
+        ion-title{
+            .toolbar-title, .toolbar-title-md, .toolbar-title-ios{
+                text-align: center;
+            }
+        }
+
+        ion-buttons[end]{
+            margin-right: 11px;
+            margin-left: 11px;
+            opacity: 0;
+            pointer-events: none;
+        }
+    }    
+
+    ion-list, ion-list.list-md{
+        ion-item, ion-item.item-block{
+            &.labeled{
+                ion-label{
+                    position: relative;
+
+                    &::before{
+                        content: "";
+                        width: calc(70px + 1em);
+                        height: 1em;
+                        display: inline-block;
+                    }
+
+                    span{
+                        position: absolute;
+                        left: 0;
+
+                        color: grey;
+                        font-weight: 300;
+                        display: inline-block;
+                        margin-right: 1em;
+                    }
+                }
+            }
+
+            &.title{
+                $padding-item: 0.5em;
+                padding-top: $padding-item;
+                padding-bottom: $padding-item;
+
+                .item-inner{
+                    border-bottom: none;
+                }
+            }
+        }
+        ion-item-divider{
+            text-align: center;
+            
+            // &.item-divider-md, &.item-divider-ios{
+            //     padding-right: 2em;
+            // }
+        }
+    }
+
+    &.ion-page{
+        button[ion-fab] {
+            overflow: visible;
+            position: relative;
+
+            ion-label {
+                position: absolute;
+                top: -100px;
+                right: -43px;
+
+                color: white;
+                background-color: rgba(0,0,0,0.7);
+                line-height: 24px;
+                padding: 4px 8px;
+                border-radius: 4px;
+
+                transform: rotate(90deg);
+            }
+        }
+    }
 }
