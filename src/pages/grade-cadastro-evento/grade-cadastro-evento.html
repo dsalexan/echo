@@ -79,7 +79,7 @@
       </ion-input>
     </ion-item>
     
-    <button type="submit" ion-button full large>Cadastrar</button>
+    <button [disabled]="!viagemForm.form.valid" type="submit" ion-button full large>Cadastrar</button>
     
   </form>
 </ion-content>

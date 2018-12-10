@@ -187,9 +187,6 @@ export class OferecerCaronaPage {
     //   this.navCtrl.setPages(pages);
     // }
     this.mostrarLocalidade();
-    console.log('ionViewWillEnter OferecerCaronaPage');
-    document.getElementById("tabs").style.display = "none"
-    document.getElementById("botao_menu").style.display = "none"
   }
 
 }

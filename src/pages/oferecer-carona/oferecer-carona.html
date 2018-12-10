@@ -1,11 +1,15 @@
 
+<ion-header>
+    <ion-navbar color="primary">
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+  
+      <ion-title>Oferecer Carona</ion-title>
+    </ion-navbar>
+  </ion-header>
 
-<ion-content padding>
-  <div class="navHeight">
-  <ion-title class="backTitle">Oferecer Carona</ion-title>
-  <button class="backButton" (click) = "clickBack()"><ion-icon class="backIcon" md="md-arrow-back"></ion-icon></button>
-  </div>
-  <div style="height: 65px"></div>
+<ion-content>
   <form #viagemForm="ngForm" (ngSubmit)="oferecer()">
 
     <ion-item>

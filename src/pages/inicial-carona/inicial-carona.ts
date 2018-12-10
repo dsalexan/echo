@@ -28,9 +28,6 @@ export class InicialCaronaPage {
 
   ionViewWillEnter() {
     this.checkSession();
-    console.log('ionViewWillEnter InicialCaronaPage');
-    document.getElementById("tabs").style.display = "block"
-    document.getElementById("botao_menu").style.display = "block"
   }
 
   clickOferecerCarona() { // vai para a pagina de configurações
