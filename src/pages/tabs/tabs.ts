@@ -30,8 +30,8 @@ export class TabsPage {
 
   badges = {
     grade: 0,
-    caronas: 1,
-    divulgacao: 37
+    caronas: 0,
+    divulgacao: 0
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
