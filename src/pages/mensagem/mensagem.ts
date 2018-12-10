@@ -51,7 +51,7 @@ export class MensagemPage {
         }
       })
 
-      var path2 = endpoints.api.menagens.novas + '?id_destinatario=' + usu
+      var path2 = endpoints.api.mensagens.novas + '?id_destinatario=' + usu
       
       this.http.get(path2, {headers: new HttpHeaders()}).subscribe((data: any) => {
         if(data.success){

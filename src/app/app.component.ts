@@ -18,7 +18,9 @@ import { ViagemMotoristaPage } from '../pages/viagem-motorista/viagem-motorista'
 import { MensagemPage } from '../pages/mensagem/mensagem';
 import { AgendaPage } from '../pages/agenda/agenda';
 import { TabsPage } from '../pages/tabs/tabs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+import endpoints from '../../constants/endpoints'
 
 export interface PageInterface {
   title: string;
@@ -44,19 +46,29 @@ export class MyApp {
 
   notifications = 1
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public storage: Storage) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public storage: Storage, public http: HttpClient) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault(); 
       splashScreen.hide(); 
-
-      this.storage.get("aluno_nome").then((usu) => {
-        this.nome = usu.toLowerCase()
-      })
     });
   }
+  
+  menuOpened(){
+    this.storage.get("aluno_nome").then((usu) => {
+      this.nome = usu.toLowerCase()
+    })
 
+    this.storage.get("aluno_ra"). then(usu => {
+      var path2 = endpoints.api.mensagens.novas + '?id_destinatario=' + usu
+      this.http.get(path2, {headers: new HttpHeaders()}).subscribe((data: any) => {
+        if(data.success){
+          this.notifications = data.data.length
+        }
+      })
+    })
+  }
 
   openPage(page: string){
     if(page == 'PerfilPage'){
@@ -65,6 +77,8 @@ export class MyApp {
       this.nav.push(UtilidadesPage)
     }else if(page == 'BugReportPage'){
       this.nav.push(BugReportPage)
+    }else if(page == 'MensagemPage'){
+      this.nav.push(MensagemPage)
     }
   }
 

@@ -1,6 +1,6 @@
 <!-- Menu lateral -->
 
-<ion-menu type="overlay" side="left" [content]="content">
+<ion-menu type="overlay" side="left" [content]="content" (ionOpen)="menuOpened()">
     
     <!-- <ion-header>
         <ion-toolbar color="primary">
@@ -19,7 +19,7 @@
                             <ion-avatar large><img src="assets/imgs/anonimo.png"/></ion-avatar>
                         </ion-col>
                         <ion-col class="icon-wrapper" col-2 align-self-center>
-                            <button ion-button icon-only (click)="showNotifications()">
+                            <button ion-button icon-only menuClose (click)="clickMensagens()">
                                 <ion-badge *ngIf="notifications" color="danger">{{ notifications }}</ion-badge>
                                 <ion-icon *ngIf="notifications" class="notification-icon" name="notifications" new></ion-icon>
                                 <ion-icon *ngIf="notifications == 0" class="notification-icon" name="notifications" empty></ion-icon>
