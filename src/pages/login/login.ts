@@ -69,7 +69,7 @@ export class LoginPage {
 
           this.http.get(ENV.HOSTNAME + '/api/unifesp/atestado/analysis/' + result.data.ra, {responseType: 'text'}).subscribe()
 
-          this.navCtrl.push(HomePage, {dados: this.dados});
+          this.navCtrl.push(TabsPage, {dados: this.dados});
         }
         /* tslint:enable */
       },(err) => {
