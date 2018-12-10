@@ -129,7 +129,7 @@ export class UtilidadesPage {
   clickAtestado() {
     // const browser = this.iab.create(atestado,target,this.options);
     // browser.show();
-    // var path = 'http://localhost:3000/getPdf'
+    // var path = 'http://104.248.9.4:3000/getPdf'
     // let headers = new HttpHeaders();
     // headers = headers.set('Accept', 'application/pdf');
     // this.http.get(path ,{responseType: 'arraybuffer', headers: headers} )
