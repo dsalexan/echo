@@ -1,3 +1,9 @@
 page-oferecer-carona {
-
+    button{
+        &.button-full-md, &.button-full-ios{
+            position: absolute;
+            bottom: 5vh;
+            width: 100%;
+        }
+    }
 }

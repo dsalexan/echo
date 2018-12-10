@@ -1,3 +1,59 @@
 page-minhas-caronas {
 
+    ion-list, ion-list.list-md{
+        ion-item, ion-item.item-block, button.item, button.item-md, button.item-ios{
+            position: relative;
+            $padding-extra: 0.3em;
+            $padding-bottom-limbo: 0.9em;
+
+            &[extra]{
+                padding-bottom: calc(0.75em + 2*#{$padding-extra} + #{$padding-bottom-limbo});
+            }
+
+            &.title{
+                text-align: center;
+            }
+
+            ion-avatar{
+                display: flex;
+                align-items: center;
+                text-align: center;
+
+                img{
+                    border-radius: 50%;
+                    border: 2px solid rgba(color($colors, primary), 0.8);
+                }
+            }
+
+            span{
+                font-weight: 300;
+            }
+
+            div.extra{
+                position: absolute;
+                bottom: $padding-bottom-limbo;
+                width: 100%;
+                margin-left: -72px;
+                padding: $padding-extra 0;
+                text-align: center;
+                font-size: 0.95em;
+
+                background: color($colors, primary);
+                color: rgba(color($colors, dark), 0.75);
+
+                &[weak]{
+                    background: rgba(color($colors, primary), 0.15);
+                }
+            }
+        }
+
+        ion-item-divider{
+            text-align: center;
+            padding-right: 16px;
+            
+            // &.item-divider-md, &.item-divider-ios{
+            //     padding-right: 2em;
+            // }
+        }
+    }
 }

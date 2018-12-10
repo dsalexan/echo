@@ -162,8 +162,5 @@ export class MinhasCaronasPage {
     this.mostrarLocalidade();
     this.caronasMotorista();
     this.caronasPassageiro();
-    console.log('ionViewWillEnter MinhasCaronasPage');
-    document.getElementById("tabs").style.display = "none"
-    document.getElementById("botao_menu").style.display = "none"
   }
 }

@@ -6,13 +6,17 @@
   </ion-navbar>
 </ion-header> -->
 
-<ion-content padding>
+<ion-header>
+    <ion-navbar color="primary">
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+  
+      <ion-title>Minhas Transações</ion-title>
+    </ion-navbar>
+  </ion-header>
 
-    <div class="navHeight">
-        <ion-title class="backTitle">Minhas Transações</ion-title>
-        <button class="backButton" (click) = "clickBack()"><ion-icon class="backIcon" md="md-arrow-back"></ion-icon></button>
-        </div>
-        <div style="height: 65px"></div>
+<ion-content>
         
   <ion-list>
     <h4> Ofertas </h4>

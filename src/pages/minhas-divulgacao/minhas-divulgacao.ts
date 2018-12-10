@@ -201,9 +201,6 @@ export class MinhasDivulgacaoPage {
     this.checkSession();
     this.itensVendedor();
     this.itensComprador();
-    console.log('ionViewDidLoad MinhasDivulgacaoPage');
-    document.getElementById("tabs").style.display = "none"
-    document.getElementById("botao_menu").style.display = "none"
   }
 
 }

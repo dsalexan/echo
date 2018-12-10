@@ -28,13 +28,12 @@ export class LoginPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage, public http: HttpClient, public loadingCtrl: LoadingController) {
   }
 
-  ionViewWillEnter() {
-    this.storage.get("aluno_nome").then((usu) => {
-      if(usu != null) {
-        this.navCtrl.setRoot(TabsPage);
-        this.navCtrl.push(TabsPage);
-      }
-    })
+  async ionViewWillEnter() {
+    let usu = await this.storage.get("aluno_nome")
+    if(usu != null) {
+      this.navCtrl.setRoot(TabsPage);
+      this.navCtrl.push(TabsPage);
+    }
   }
   
   clickLogin() {
