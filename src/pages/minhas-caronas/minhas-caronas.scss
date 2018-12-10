@@ -5,13 +5,18 @@ page-minhas-caronas {
             position: relative;
             $padding-extra: 0.3em;
             $padding-bottom-limbo: 0.9em;
+            margin-bottom: 2px;
 
-            &[extra]{
+            &[extra="true"]{
                 padding-bottom: calc(0.75em + 2*#{$padding-extra} + #{$padding-bottom-limbo});
             }
 
             &.title{
                 text-align: center;
+            }
+            
+            .item-inner{
+                border-bottom: none;
             }
 
             ion-avatar{
@@ -29,7 +34,7 @@ page-minhas-caronas {
                 font-weight: 300;
             }
 
-            div.extra{
+            &[extra="true"] div.extra{
                 position: absolute;
                 bottom: $padding-bottom-limbo;
                 width: 100%;

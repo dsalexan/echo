@@ -34,29 +34,14 @@
       
 
       <div class="extra">
-        Há reserva(s) pedendentes
         {{!reservas_motorista[viagem.id_viagem] && reservas_motorista[viagem.id_viagem] != undefined ? 'Há reserva(s) pendentes' : ''}}
       </div>
 
     </button>
-    
-    <button ion-item *ngFor="let viagem of viagens_motorista" (click)="abrirMotorista(viagem)">
-        <ion-avatar item-start>
-          <img src="assets/imgs/anonimo.png">
-        </ion-avatar>
-        
-        <h2>
-          {{viagem.dia.slice(8,10)}}/{{viagem.dia.slice(5,7)}}/{{viagem.dia.slice(0,4)}} <span>às</span> {{viagem.hora}}
-          <div style="float:right; font-weight: 300; font-size: 0.9em;">R$ {{viagem.preco}}</div>
-        </h2>
-        <p><span>Viagem de</span> {{loc[viagem.id_origem]}} <span>para</span> {{loc[viagem.id_destino]}}</p>
-        <p><span>Vagas disponíveis: </span>{{viagem.qtd_vagas}}</p>
-  
-      </button>
 
     <ion-item-divider color="light">Passageiro</ion-item-divider>
     
-    <button ion-item *ngFor="let viagem of viagens_passageiro" (click)="abrirPassageiro(viagem)" [attr.extra]="!reservas_motorista[viagem.id_viagem] && reservas_motorista[viagem.id_viagem] != undefined">
+    <button ion-item *ngFor="let viagem of viagens_passageiro" (click)="abrirPassageiro(viagem)" extra="true">
         <ion-avatar item-start>
             <img src="assets/imgs/anonimo.png">
         </ion-avatar>
@@ -71,26 +56,6 @@
         
         <div class="extra" [attr.weak]="viagem.status_reserva ? true : false">
           Reserva {{viagem.status_reserva ? 'confirmada' : 'pendente'}}
-        </div>
-  
-      </button>
-
-      
-    <button ion-item *ngFor="let viagem of viagens_passageiro" (click)="abrirPassageiro(viagem)" [attr.extra]="!reservas_motorista[viagem.id_viagem] && reservas_motorista[viagem.id_viagem] != undefined">
-        <ion-avatar item-start>
-            <img src="assets/imgs/anonimo.png">
-        </ion-avatar>
-
-        
-        <h2>
-          {{viagem.dia.slice(8,10)}}/{{viagem.dia.slice(5,7)}}/{{viagem.dia.slice(0,4)}} <span>às</span> {{viagem.hora}}
-        </h2>
-        <p><span>Viagem de</span> {{loc[viagem.id_origem]}} <span>para</span> {{loc[viagem.id_destino]}}</p>
-        <p style="text-transform: capitalize;"><span>Motorista:</span> {{viagem.nome.toLowerCase()}}</p>
-        <p><span>Descrição:</span> {{viagem.descricao}}</p>
-        
-        <div class="extra">
-          Reserva confirmada
         </div>
   
       </button>
